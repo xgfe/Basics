@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>&lt;!DOCTYPE&gt;标签简介</title>
+        <style>
+            body { margin: 0 50px; }
+            li { line-height: 30px; }
+            li>p { margin: 0; }
+        </style>
+    </head>
+    <body>
+        <h1>&lt;!DOCTYPE&gt;标签简介</h1>
+        <p>&lt;!DOCTYPE&gt;不是HTML标签，它是一项声明，告诉浏览器目前所处的文档是什么类型的文档，从而让浏览器能够正常的显示网页。</p>
+        <p>因为HTML 4.0基于SGML，所以在HTML 4.01中引用了DTD，DTD的作用是规定标记语言的规则；而HTML 5不是基于SGML的，所以不需要引用DTD。</p>
+        <h3>常见声明</h3>
+        <ul>
+            <li>
+                HTML 5<br/>
+                <!-- <!DOCTYPE html> -->
+                <span>&lt;!DOCTYPE html&gt;</span>
+            </li>
+            <li>
+                <span>HTML 4.01 Strict</span>
+                <p>包含所有HTML元素和属性，但不包括展示性和启用的元素如font等，也不允许框架集(Framesets)。</p>
+                <!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> -->
+                <span>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</span>
+            </li>
+            <li>
+                <span>HTML 4.01 Transitional</span>
+                <p>包含所有HTML元素和属性，也包括展示性和启用的元素如font等，但不允许框架集(Framesets)。</p>
+                <!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
+                <span>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span>
+            </li>
+            <li>
+                <span>HTML 4.01 Frameset</span>
+                <p>包含所有HTML元素和属性，也包括展示性和启用的元素如font等，并允许框架集(Framesets)。</p>
+                <!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"> -->
+                <span>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"&gt;</span>
+            </li>
+            <li>
+                <span>XHTML 1.0 Strict</span>
+                <p>同HTML 4.01 Strict，但必须以格式正确的XML编写标记。</p>
+                <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> -->
+                <span>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span>
+            </li>
+            <li>
+                <span>XHTML 1.0 Transitional</span>
+                <p>同HTML 4.01 Transitional，但必须以格式正确的XML编写标记。</p>
+                <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+                <span>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+            </li>
+            <li>
+                <span>XHTML 1.0 Frameset</span>
+                <p>同HTML 4.01 Frameset，但必须以格式正确的XML编写标记。</p>
+                <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"> -->
+                <span>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"&gt;</span>
+            </li>
+            <li>
+                <span>XHTML 1.1</span>
+                <p>同XHTML 1.0 Strict，但允许添加模型（例如提供对东亚语系的 ruby 支持）。</p>
+                <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> -->
+                <span>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;</span>
+            </li>
+        </ul>
+    </body>
+</html>

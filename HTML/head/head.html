@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>The head Element</title>
+        <style>
+            body { margin: 0 50px; }
+            p, li { line-height: 30px; }
+        </style>
+    </head>
+    <body>
+        <h1>&lt;head&gt;标签简介</h1>
+        <p>
+            head标签用于描述文档的头部，它是所有文档头部元素的容器。<br/>
+            在head部分可以使用&lt;base&gt;, &lt;link&gt;, &lt;meta&gt;, &lt;script&gt;, &lt;style&gt;以及&lt;title&gt;标签。<br/>
+            在head标签上支持profile属性和html的全局属性，profile属性的值是一个由空格分隔的url列表，这些url包含着有关页面的元数据信息，profile属性主要是为将来的开发保留的占位符。
+        </p>
+        <h3>可以用在head中的标签</h3>
+        <ul>
+            <li>
+                base；该标签为页面上的所有链接规定默认地址或默认目标，其上的属性如下：
+                <ol>
+                    <li>href，该属性为base上必需的属性，规定页面中所有相对链接的基准URL。</li>
+                    <li>target，规定在何处打开页面中所有的链接，其值有_blank, _parent, _self, _top, framename。</li>
+                </ol>
+            </li>
+            <li>
+                link；该标签定义文档与外部资源的关系，最常见的用途是链接样式表。其上的属性如下：
+                <ol>
+                    <li>href，被链接文件的位置。</li>
+                    <li>hreflang，规定被链接文档中文本的语言。</li>
+                    <li>
+                        media，规定被链接文档将显示在什么设备上，该属性用于为不同的媒介类型规定不同的样式。<br/>
+                        其属性值有screen、tty、tv、projection、handheld、print、braille、aural、all。
+                    </li>
+                    <li>
+                        rel，规定当前文档与被链接文档间的关系，它的属性值很多，但只有stylesheet得到了所有浏览器支持。<br/>
+                        其上的属性值有alternate、stylesheet、start、next、prev、contents、index、glossary、copyright、chapter、section、subsection、appendix、help、bookmark。
+                    </li>
+                    <li>
+                        sizes，规定被链接资源的尺寸，只有当rel="icon"时，才能使用该属性。<br/>
+                        其实属性值有heightxwidth（如16x16）或any，该属性可以接受多个值，值之间用空格分隔。
+                    </li>
+                    <li>type，规定被链接文档的 MIME 类型。</li>
+                </ol>
+            </li>
+            <li>meta；可提供有关页面的元信息。</li>
+            <li>
+                script；用于定义客户端脚本，如JavaScript。<br/>
+                script 元素既可以包含脚本语句，也可以通过 src 属性指向外部脚本文件。其上的属性如下：
+                <ol>
+                    <li>
+                        type，指示脚本的 MIME 类型。该属性是必需的。<br/>
+                        其中一些值为text/javascript、text/ecmascript、application/ecmascript、application/javascript、text/vbscript等。
+                    </li>
+                    <li>async，规定异步执行脚本（仅适用于外部脚本）。</li>
+                    <li>charset，规定在外部脚本文件中使用的字符编码。</li>
+                    <li>defer，规定是否对脚本执行进行延迟，直到页面加载为止。</li>
+                    <li>src，外部脚本文件的位置。</li>
+                    <li>xml:space，规定是否保留代码中的空白，其值是preserve。</li>
+                </ol>
+            </li>
+            <li>
+                style；用于为 HTML 文档定义样式信息。其上的属性如下：
+                <ol>
+                    <li>type，规定样式表的 MIME 类型，目前唯一可能的值是text/css。</li>
+                    <li>media，为样式表规定不同的媒介类型。</li>
+                </ol>
+            </li>
+            <li>
+                title；该元素定义文档的标题。<br/>
+                浏览器会以特殊的方式来使用标题，并且通常把它放置在浏览器窗口的标题栏或状态栏上。同样，当把文档加入用户的链接列表或者收藏夹或书签列表时，标题将成为该文档链接的默认名称。<br/>
+                该标签是head中唯一被要求包含的东西。其上的属性如下：
+                <ol>
+                    <li>dir，规定元素中内容的文本方向。</li>
+                    <li>lang，规定元素中内容的语言代码。</li>
+                    <li>xml:lang，规定 XHTML 文档中元素内容的语言代码。</li>
+                </ol>
+            </li>
+        </ul>
+        <h3>示例：</h3>
+        <ul>
+            <li>
+                head标签<br/>
+                &lt;head&gt;<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;The head Element&lt;/title&gt;<br/>
+                &lt;/head&gt;<br/>
+            </li>
+            <li>
+                base标签
+                <ol>
+                    <li>&lt;base href="http://www.w3school.com.cn/i/" /&gt;</li>
+                    <li>&lt;base target="_blank" /&gt;</li>
+                </ol>
+
+            </li>
+            <li>
+                link标签<br/>
+                &lt;link rel="stylesheet" type="text/css" href="theme.css" /&gt;
+            </li>
+            <li>
+                meta标签<br/>
+                &lt;meta charset="UTF-8"&gt;
+            </li>
+            <li>
+                script标签
+                <ol>
+                    <li>
+                        外部脚本文件<br/>
+                        &lt;script src="code.js"&gt;&lt;script /&gt;
+                    </li>
+                    <li>
+                        包含脚本语句<br/>
+                        &lt;script&gt;
+                            console.log('Hello world!');
+                        &lt;script /&gt;
+                    </li>
+                </ol>
+            </li>
+            <li>
+                style标签<br/>
+                &lt;style type="text/css"&gt;
+                body { margin: 0; }
+                &lt;style /&gt;
+            </li>
+            <li>
+                title标签<br/>
+                &lt;title&gt;我是标题&lt;title /&gt;
+            </li>
+        </ul>
+    </body>
+</html>

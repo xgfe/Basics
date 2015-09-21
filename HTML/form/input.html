@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>The input Element</title>
+        <style>
+            li{ line-height: 30px; }
+        </style>
+    </head>
+    <body>
+        <h1>input元素属性列表</h1>
+        <ul>
+            <li>
+                type；input元素的类型；其值如下(未提及部分不被大多数浏览器支持的属性值)：
+                <ol>
+                    <li>text，单行的输入字段，默认宽度为20个字符</li>
+                    <li>password，密码字段</li>
+                    <li>button，可点击按钮</li>
+                    <li>checkbox，复选框</li>
+                    <li>radio，单选按钮</li>
+                    <li>file，文件类型</li>
+                    <li>image，图像形式的提交按钮</li>
+                    <li>hidden，隐藏的输入字段</li>
+                    <li>reset，重置按钮，清除表单中的所有数据</li>
+                    <li>submit，提交按钮，把表单中的数据提交到服务器</li>
+                    <li>color，拾色器，其返回值为十六进制颜色的字符串</li>
+                    <li>date，日期选择器，其返回值是形式为yyyy-mm-dd的字符串</li>
+                    <li>email，邮箱格式的输入字段，提交时会自动验证</li>
+                    <li>month，月份选择器，其返回值是形式为yyyy-mm的字符串</li>
+                    <li>number，数字格式的输入字段，无法输入数字以外的字段，可以通过min和max属性设置数字范围，提交时会自动验证是否在该数字范围内</li>
+                    <li>range，滑动条，其返回值为0到100之间的整数</li>
+                    <li>search，搜索字段，表现和常规的文本域一样</li>
+                    <li>tel，电话号码格式的输入字段，目前只在Safari 8 中被支持</li>
+                    <li>time，时间选择器</li>
+                    <li>url，url格式的输入字段，提交时会自动验证</li>
+                    <li>week，周选择器，其返回值是形式为yyyy-Wdd(dd是第几周，如是2015年的第12周，则为2015-W12)</li>
+                </ol>
+            </li>
+            <li>name，input元素的名称</li>
+            <li>value，input元素的值，value与类型为file的input元素不能搭配使用</li>
+            <li>disabled，是否禁用input元素，其值就是disabled</li>
+            <li>autocomplete，是否使用输入字段的自动完成功能，其值为on或者off</li>
+            <li>autofocus，规定页面加载时input元素是否自动获取焦点，其值就是autofocus</li>
+            <li>list，引用数据列表，其中包含输入字段的预定义选项，其值为文档中datalist的id</li>
+            <li>checked，页面加载时input元素是否被选中，与类型为checkbox或radio的input元素搭配使用，其值就是checked</li>
+            <li>readonly，规定输入字段只读，其值就是readonly，与类型为text或password的input元素搭配使用</li>
+            <li>required，规定在提交表单前必须填写该字段，其值就是required</li>
+            <li>size，输入字段的宽度</li>
+            <li>placeholder，帮助用户填写输入字段的提示，与类型为text、search、url、telephone、email以及password的input元素搭配使用</li>
+            <li>pattern，规定用于验证输入字段的正则表达式，与类型为text、search、url、telephone、email以及password的input元素搭配使用</li>
+            <li>max，输入字段所允许的最大值，与类型为number、range、date、month、time以及week的input元素搭配使用</li>
+            <li>min，输入字段所允许的最小值，与类型为number、range、date、month、time以及week的input元素搭配使用</li>
+            <li>step，输入字段的合法数字间隔，与类型为number、range、date、month、time以及week的input元素搭配使用</li>
+            <li>maxlength，输入字段的最大长度(以字符数来计算)，与类型为text或password的input元素搭配使用</li>
+            <li>multiple，规定输入字段可选择多个值，其值就是multiple，与类型为email和file的input元素搭配使用</li>
+            <li>src，引用图像的url，与type="image"搭配使用</li>
+            <li>alt；与type="image"搭配使用，定义图像的替代文本</li>
+            <li>width，input元素的宽度，其值为像素值或者百分比，与type="image"搭配使用</li>
+            <li>height，input元素的高度，其值为像素值或者百分比，与type="image"搭配使用</li>
+            <li>form，input元素所属的一个或多个表单，其值为表单的id，多个表单之间用空格隔开，</li>
+            <li>formaction，覆盖表单的action属性，适用于类型为submit或image的input元素</li>
+            <li>formtarget，覆盖表单的target属性，适用于类型为submit或image的input元素</li>
+            <li>formmethod，覆盖表单的method属性，适用于类型为submit或image的input元素</li>
+            <li>formenctype，覆盖表单的enctype属性，适用于类型为submit或image的input元素</li>
+            <li>formnovalidate，覆盖表单的novalidate属性，适用于类型为submit或image的input元素</li>
+        </ul>
+        <h3>示例：</h3>
+        <ul>
+            <li>
+                <label for="example1">type='text', name='example1', value='我是text', disabled  : </label>
+                <input type="text" id="example1" name="example1" value="我是text" disabled/>
+            </li>
+            <li>
+                <label for="example2">type='password', autocomplete='on', maxlength='5', autofocus, required  : </label>
+                <input type="password" id="example2" value="12345" autocomplete="on" maxlength="5" autofocus required />
+            </li>
+            <li>
+                <label for="example3">type='number', list='data_list', placeholder='请输入数字', step='3'  : </label>
+                <input type="number" id="example3" id="example3" list="data_list" placeholder="请输入数字" step="3" />
+                <datalist id="data_list">
+                    <option>3</option>
+                    <option>6</option>
+                    <option>9</option>
+                </datalist>
+            </li>
+            <li>
+                <label for="example4">type='range', min='10', max='50'  : </label>
+                <input type="range" id="example4" min="10" max="50"/>
+            </li>
+            <li>
+                <label for="example5">type='checkbox', checked  : </label>
+                <input type="checkbox" id="example5" checked/>
+            </li>
+            <li>
+                <label for="example6">type='file', multiple  : </label>
+                <input type="file" id="example6" multiple/>
+            </li>
+            <li>
+                <label for="example7">type='image', src='image.jpg', alt='图片未加载', width='20px', height='20px'  : </label>
+                <input type="image" id="example7" src="image.jpg" alt="图片未加载" width="40px" height="40px"/>
+            </li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>The form element</title>
+        <style>
+            li{  line-height: 30px;  }
+        </style>
+    </head>
+    <body>
+        <h1>form元素属性列表</h1>
+        <ul>
+            <li>action；规定当提交表单时向何处发送表单数据；其值是一个url</li>
+            <li>method；规定用于发送表单数据的HTTP方法；其值为GET或POST</li>
+            <li>
+                target；规定在什么地方打开action中的url；其值如下：
+                <ol>
+                    <li>_blank ，在新窗口打开</li>
+                    <li>_self，在本身的页面中打开，默认值</li>
+                    <li>_parent，在父框架集中打开</li>
+                    <li>_top，在整个窗口中打开</li>
+                    <li>framename，该值为一个指定的frame的名称，url将在这个指定的frame中打开</li>
+                </ol>
+            </li>
+            <li>accept-charset；规定服务器用哪种字符集处理表单数据，其值为服务器可处理的一个或多个字符集，多个字符集用逗号隔开；常用值有utf-8、gb2312等</li>
+            <li>
+                enctype；规定在发送到服务器之前应该如何对表单数据进行编码；其值如下：
+                <ol>
+                    <li>application/x-www-form-urlencoded，在发送前编码所有字符，默认值</li>
+                    <li>multipart/form-data，不对字符编码，在使用包含文件上传控件的表单时必须使用该值</li>
+                    <li>text/plain，空格转换为 "+" 加号，但不对特殊字符编码</li>
+                </ol>
+            </li>
+            <li>autocomplete；是否启用表单的自动完成功能，其值为on或off，不是布尔值</li>
+            <li>novalidate；使用该属性则表示提交表单时不进行验证</li>
+            <li>name；表单的名称，其值为字符串</li>
+        </ul>
+        <h3>示例：</h3>
+        <ul>
+            <li>
+                form表单示例：<br/>
+                action="/url", method="GET", target="_blank", accept-charset="UTF-8"<br/>
+                enctype="application/x-www-form-urlencoded", autocomplete="off", novalidate, name="formname"<br/>
+                <form action="/url"
+                      method="GET"
+                      target="_blank"
+                      accept-charset="UTF-8"
+                      enctype="application/x-www-form-urlencoded"
+                      autocomplete="off"
+                      novalidate
+                      name="formname" >
+                    <label for="input">我是输入框：</label>
+                    <input type="text" id="input" />
+                    <input type="submit" value="提交" />
+                </form>
+            </li>
+        </ul>
+
+    </body>
+</html>

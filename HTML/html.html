@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>The html Element</title>
+        <style>
+            body { margin: 0 50px; }
+            div, li{ line-height: 30px; }
+            div { border: 1px solid gray;
+                padding: 10px; }
+        </style>
+    </head>
+    <body>
+        <h1>&lt;html&gt;标签简介</h1>
+        <p>html元素的作用是告诉浏览器其本身是一个html文档。</p>
+        <p>&lt;html&gt;与&lt;/html&gt;标签限定了文档的开始点和结束点，在它们之间是文档的头部和主体。</p>
+        <h3>&lt;html&gt;标签上的属性如下：</h3>
+        <ul>
+            <li>manifest；定义一个 URL，这个url是文档的缓存 manifest 的位置</li>
+            <li>
+                xmlns；定义 XML namespace 属性。<br/>
+                xmlns 属性在 XHTML 中是必需的，但在 HTML 中不是。<br/>
+                不过，即使 XHTML 文档中的&lt;html&gt;没有使用此属性，W3C 的验证器也不会报错。这是因为 "xmlns=http://www.w3.org/1999/xhtml" 是一个固定值，即使您没有包含它，此值也会被添加到&lt;html&gt;标签中。
+            </li>
+            <li>html的全局属性也可以在&lt;html&gt;标签上使用。</li>
+        </ul>
+        <h3>html的全局属性如下（忽略部分被大多数浏览器不支持的属性）：</h3>
+        <ul>
+            <li>
+                accesskey，规定激活元素的快捷键。<br/>
+                支持accesskey属性的元素有a, area, button, input, label, legend以及textarea。
+            </li>
+            <li>class，元素的一个或多个类名，多个类之间用空格隔开。</li>
+            <li>contenteditable，规定元素内容是否可编辑，其值为true或false。</li>
+            <li>
+                contentmenu，规定元素的上下文菜单。上下文菜单在用户点击元素时显示。<br/>
+                与&lt;menu&gt;标签搭配使用，contentmenu的值就是menu元素的id。
+            </li>
+            <li>
+                data-*，用于存储页面或应用程序的私有自定义数据，其值为任意字符串。
+            </li>
+            <li>
+                dir，规定元素内容的文本方向，其值为ltr（从左向右）或rtl（从右向左）。<br/>
+                dir在元素base, br, frame, frameset, hr, iframe, param以及script中无效。
+            </li>
+            <li>
+                draggable，规定元素是否可拖动。<br/>
+                其值为true、false或auto，值为auto时会使用浏览器的默认行为。
+            </li>
+            <li>hidden，规定元素仍未或不再相关。该属性为布尔属性，如果元素设置了该属性，则浏览器不会显示该元素。</li>
+            <li>id，元素的唯一id。</li>
+            <li>
+                lang，规定元素内容的语言。<br/>
+                lang属性在元素base, br, frame, frameset, hr, iframe, param以及script中无效。
+            </li>
+            <li>
+                spellcheck，规定是否对元素进行拼写和语法检查，其值为true或false。<br/>
+                可以对input元素中的输入内容（非密码），textarea元素中的文本和可编辑元素的内容进行检查。
+            </li>
+            <li>style，规定元素的行内CSS样式。</li>
+            <li>tabindex，规定元素的tab键次序。</li>
+            <li>title，规定关于元素的额外信息，这个额外信息通常是tooltip的内容。</li>
+        </ul>
+        <h3>html标签示例：</h3>
+        <div>
+        &lt;!DOCTYPE html&gt;<br/>
+        &lt;html lang="en"&gt;<br/>
+            &nbsp;&nbsp;&lt;head&gt;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;&lt;/title&gt;<br/>
+            &nbsp;&nbsp;&lt;/head&gt;<br/>
+            &nbsp;&nbsp;&lt;body&gt;<br/>
+            &nbsp;&nbsp;&lt;/body&gt;<br/>
+        &lt;/html&gt;<br/>
+        </div>
+    </body>
+</html>

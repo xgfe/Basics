@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>The meta Element</title>
+        <style>
+            body { margin: 0 50px; }
+            p, li { line-height: 30px; }
+        </style>
+    </head>
+    <body>
+        <h1>&lt;meta&gt;标签简介</h1>
+        <p>
+            meta元素可提供有关页面的元信息（meta-information），比如针对搜索引擎和更新频度的描述和关键词。
+            meta标签位于文档的头部，不包含任何内容。&lt;meta&gt;标签的属性定义了与文档相关联的名称/值对。
+        </p>
+        <h3>meta标签上的属性</h3>
+        <ul>
+            <li>
+                content，提供了名称/值对中的值，该值可以是任何有效的字符串。<br/>
+                该属性始终要和 name 属性或 http-equiv 属性一起使用。
+            </li>
+            <li>
+                http-equiv，该属性为名称/值对提供了名称。并指示服务器在发送实际的文档之前先在要传送给浏览器的 MIME 文档头部包含名称/值对。<br/>
+                其上的属性值通常有content-type、expires、refresh、set-cookie。
+            </li>
+            <li>
+                name，该属性提供了名称/值对中的名称。<br/>
+                通常情况下，您可以自由使用对自己和源文档的读者来说富有意义的名称。<br/>
+                "keywords" 是一个经常被用到的名称。它为文档定义了一组关键字。某些搜索引擎在遇到这些关键字时，会用这些关键字对文档进行分类。<br/>
+                如果没有提供 name 属性，那么名称/值对中的名称会采用 http-equiv 属性的值。<br/>
+                其上的属性值通常有author、description、keywords、generator、revised、others。
+            </li>
+            <li>scheme，该属性用于指定要用来翻译属性值的方案。此方案应该在由head标签的 profile 属性指定的概况文件中进行了定义。</li>
+            <li>charset，规定文档使用的字符编码。</li>
+        </ul>
+        <h3>示例：</h3>
+        <ul>
+            <li>&lt;meta name="keywords" content="HTML,ASP,PHP,SQL"&gt;</li>
+            <li>&lt;meta http-equiv="charset" content="iso-8859-1"&gt;</li>
+            <li>&lt;meta charset="UTF-8"&gt;</li>
+        </ul>
+    </body>
+</html>

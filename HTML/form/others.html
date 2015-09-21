@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>The other Elements</title>
+        <style>
+            li { line-height: 30px; }
+        </style>
+    </head>
+    <body>
+        <h1>form元素中的其它元素简介</h1>
+        <ul>
+            <li>fieldset标签；将表单内的相关元素进行分组，当一组表单元素被放在fieldset标签内时，浏览器会以特殊的方式来显示它们；</li>
+            <li>legend标签；为fieldset标签定义标题</li>
+            <li>label标签；为input元素定义标注，其上有一个属性for可以将label与对应的input元素绑定在一起，其属性值为元素id，不是元素的name</li>
+            <li>
+                textarea标签；多行文本输入控件，其上的属性如下：
+                <ol>
+                    <li>autofocus，页面加载后是否自动获取焦点</li>
+                    <li>cols，文本区的可见宽度，以字符数计算</li>
+                    <li>rows，文本区的可见行数</li>
+                    <li>disabled，是否禁用此文本区</li>
+                    <li>form，文本区所属的一个或多个表单</li>
+                    <li>maxlength，文本区的最大字符数</li>
+                    <li>name，文本区的名称</li>
+                    <li>placeholder，帮助用户填写输入字段的提示</li>
+                    <li>readonly，规定文本区只读</li>
+                    <li>required，规定文本区必填</li>
+                    <li>
+                        wrap，规定表单提交时，文本区的内容如何换行，其值如下：
+                        <ul>
+                            <li>soft，提交表单时文本区的内容不换行，默认值</li>
+                            <li>hard，提交表单时文本区的内容换行，会包含换行符，此时必须指定cols属性</li>
+                        </ul>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                select标签；单选或多选菜单，其上的属性如下：
+                <ol>
+                    <li>autofocus，页面加载后是否自动获取焦点</li>
+                    <li>disabled，是否禁用下拉列表</li>
+                    <li>form，下拉列表所属的一个或多个表单</li>
+                    <li>multiple，规定下拉列表可选择多个选项</li>
+                    <li>name，下拉列表的名称</li>
+                    <li>required，必填</li>
+                    <li>size，下拉列表里可见的选项数目</li>
+                </ol>
+            </li>
+            <li>
+                option标签；定义下拉列表中的一个选项，其上的属性如下：
+                <ol>
+                    <li>disabled，禁用该选项</li>
+                    <li>label，定义选项所使用的标注</li>
+                    <li>selected，规定该选项在首次加载下拉列表时被选中</li>
+                    <li>value，定义该选项送往服务器的值</li>
+                </ol>
+            </li>
+            <li>optgroup标签；用于组合选项，其上必须要有label属性用来为选项组规定描述，可选属性为disabled</li>
+            <li>button标签；可点击按钮</li>
+            <li>datalist标签；定义合法的输入值选项列表，配合input元素使用，该选项列表不会被显示出来</li>
+            <li>keygen标签；规定用于表单的密钥对生成器字段</li>
+        </ul>
+        <h3>示例：</h3>
+        <ul>
+            <li>
+                fieldset、legend、label标签示例：
+                <form action="/url" method="get">
+                    <fieldset>
+                        <legend>信息</legend>
+                        <label for="username">用户名：</label>
+                        <input type="text" id="username"/><br/>
+                        <label for="pwd">密码：</label>
+                        <input type="password" id="pwd"/>
+                    </fieldset>
+                </form>
+            </li>
+            <li>
+                textarea标签示例：<br/>
+                <textarea cols="10" rows="5" maxlength="50" placeholder="输入信息"></textarea>
+            </li>
+            <li>
+                select标签、optgroup标签、option标签示例：<br/>
+                <select multiple="2">
+                    <optgroup label="水果">
+                        <option value="苹果">苹果11111111111</option>
+                        <option value="水蜜桃">水蜜桃</option>
+                    </optgroup>
+                    <optgroup label="手机">
+                        <option value="三星" selected>三星</option>
+                        <option value="apple">apple</option>
+                    </optgroup>
+                </select>
+            </li>
+            <li>
+                datalist标签示例：<br/>
+                <input type="text" list="data_list"/>
+                <datalist id="data_list">
+                    <option value="fruit">水果</option>
+                    <option value="phone">手机</option>
+                    <option value="vegetable">蔬菜</option>
+                </datalist>
+            </li>
+            <li>
+                button标签示例：<br/>
+                <form action="/url" method="get">
+                    <input type="text" placeholder="请输入用户名"/><br/>
+                    <input type="password" placeholder="请输入密码"/><br/>
+                    <button type="submit">提交</button>&nbsp;
+                    <button type="reset">重置</button>&nbsp;
+                    <button type="button">普通按钮</button>
+                </form>
+            </li>
+        </ul>
+    </body>
+</html>
