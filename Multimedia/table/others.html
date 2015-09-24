@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>The Table element</title>
+        <style>
+            li{  line-height: 30px;  }
+            .tips{ color:red;display:block;}
+             body {
+                    margin: 0 50px;
+                    font-family: "Times New Roman",Georgia,Serif;
+                }
+                li ,p{ line-height: 30px; }
+        </style>
+    </head>
+    <body>
+        <h1>&lt;th&gt;&lt;td&gt;</h1>
+        <ul>
+             <li>
+                valign:规定单元格内容的垂直排列方式。取值有top、middle、bottom、baseline
+             </li>
+            <li>
+                align:规定单元格中内容的水平对齐方式。，其值为left、right、center、justify、char。
+            </li>
+            <li>
+                bgcolor:规定单元格的背景颜色。
+                <span class="tips">建议用样式代替</span>
+            </li>
+            <li>
+                axis:对单元进行分类。
+            </li>
+            <li>
+                char:规定根据哪个字符来进行内容的对齐。
+            </li>
+            <li>
+                charoff:charoff 属性设置内容相对于由 char 属性规定的字符的对齐偏移量。
+            </li>
+            <li>
+                colspan:规定规定单元格可横跨的列数。值为数字。
+                <span class="tips">若colspan的值大于总列数，则该行的宽度增加到行尾</span>
+            </li>
+            <li>
+                rowspan:规定规定单元格可横跨的行数。值为数字。
+                <span class="tips">若rowspan的值大于总列数，则该行的宽度增加到列尾</span>
+            </li>
+            <li>
+                headers:定义将表头单元与数据单元相关联的方法。
+            </li>
+            <li>
+                height:规定表格单元格的高度。
+                <span class="tips">建议用样式代替</span>
+            </li>
+            <li>
+                nowrap:规定表格单元格中的内容不换行。
+                <span class="tips">建议用样式代替</span>
+            </li>
+            <li>
+                scope:定义将表头单元与数据单元相关联的方法。
+            </li>
+            <li>
+                abbr:规定单元格中内容的缩写版本。
+            </li>
+            <li>
+                width:规定表格单元格的宽度。
+                <span class="tips">建议用样式代替</span>
+            </li>
+        </ul>
+        <h1>&lt;col&gt;</h1>
+        <ul>
+             <li>
+                &lt;col&gt;标签为表格中一个或多个列定义属性值。
+             </li>
+             <li>
+                如需对全部列应用样式，col标签很有用，这样就不需要对各个单元和各行重复应用样式了。
+             </li>
+            <li>
+                没有结束标签
+            </li>
+            <li>
+                属性值有：
+                <ol>
+                    <li>
+                        align(水平对齐方式)
+                    </li>
+                    <li>
+                        垂直对齐方式(水平对齐方式)
+                    </li>
+
+                    <li>
+                        char（根据字符对齐相关内容）
+                    </li>
+                    <li>
+                        charoff(规定第一个对齐字符的偏移量)
+                    </li>
+                    <li>
+                        span(规定col元素横跨的列数)
+                    </li>
+                    <li>
+                        width(规定col元素的宽度)
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <span class="tips">请为 col 标签添加 class 属性。这样就可以使用 CSS 来负责对齐方式、宽度和颜色等等。</span>
+            </li>
+        </ul>
+        <h1>&lt;colgroup&gt;</h1>
+        <ul>
+             <li>
+                &lt;col&gt;用于对表格中的列进行组合，以便对其进行格式化,其属性与&lt;col&gt;相同。
+             </li>
+        
+            <li>
+                有结束标签
+            </li>
+            <li>
+                属性值有：
+                <ol>
+                    <li>
+                        align(水平对齐方式)
+                    </li>
+                    <li>
+                        垂直对齐方式(水平对齐方式)
+                    </li>
+
+                    <li>
+                        char（根据字符对齐相关内容）
+                    </li>
+                    <li>
+                        charoff(规定第一个对齐字符的偏移量)
+                    </li>
+                    <li>
+                        span(规定colgroup元素横跨的列数)
+                    </li>
+                    <li>
+                        width(规定colgroup元素的宽度)
+                    </li>
+                </ol>
+            </li>
+            <li>
+                <span class="tips">请为 colgroup 标签添加 class 属性。这样就可以使用 CSS 来负责对齐方式、宽度和颜色等等。</span>
+            </li>
+        </ul>
+        <h1>&lt;caption&gt;</h1>
+        <ul>
+             <li>
+                &lt;col&gt;用于定义表格标题。
+             </li>
+        
+            <li>
+                caption 标签必须紧随 table 标签之后。您只能对每个表格定义一个标题。通常这个标题会被居中于表格之上。
+            </li>
+        </ul>
+        <h3>示例：</h3>
+        <ul>
+             <li>
+                align属性：align="right"
+                <br/>
+                <table width="50%" border="1">
+                  <tr>
+                    <th align="center">Month</th>
+                    <th>Savings</th>
+                  </tr>
+                  <tr>
+                    <td>January</td>
+                    <td align="right">$100</td>
+                  </tr>
+                </table>
+            </li>
+            <li>
+                合并单元格
+                rowspan="2"
+                colspan="2"
+                <br/>
+                <table width="50%" border="1">
+                  <tr>
+                    <th>Month</th>
+                    <th>Savings</th>
+                    <th>Savings for holiday!</th>
+                  </tr>
+                  <tr>
+                    <td colspan="2">January</td>
+                    <td rowspan="2">$50</td>
+                  </tr>
+                  <tr>
+                    <td>February</td>
+                    <td>$80</td>
+                  </tr>
+                </table> 
+            </li>
+            <li>
+                valign属性：
+                取值为bottom或baseline。
+                <br/>
+                <table border="1" style="height:200px">
+                  <tr>
+                    <th>Month</th>
+                    <th>Savings</th>
+                  </tr>
+                  <tr>
+                    <td valign="bottom">January</td>
+                    <td valign="bottom">$100</td>
+                  </tr>
+                  <tr> 
+                   <td valign="baseline">February</td>
+                   <td  valign="baseline" style="font-size:200%">$80</td>
+                  </tr>
+                </table>
+
+            </li>
+            <li>
+                caption标题：
+                <table border="6">
+                <caption>我的标题</caption>
+                <tr>
+                  <td>100</td>
+                  <td>200</td>
+                  <td>300</td>
+                </tr>
+                <tr>
+                  <td>400</td>
+                  <td>500</td>
+                  <td>600</td>
+                </tr>
+                </table>
+            </li>   
+         
+        </ul>
+
+    </body>
+</html>
