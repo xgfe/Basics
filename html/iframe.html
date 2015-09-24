@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>The Iframe element</title>
+        <style>
+            li{  line-height: 30px;  }
+             body {
+                margin: 0 50px;
+                font-family: "Times New Roman",Georgia,Serif;
+            }
+            li ,p{ line-height: 30px; }
+        </style>
+    </head>
+    <body>
+        <h1>iframe元素</h1>
+        <ul>
+            <li>src: 文件的路径，既可是HTML文件，也可以是文本、ASP等</li>
+            <li>width、height:”内部框架“区域的宽和高</li>
+            <li>
+                scrolling:当SRC的指定的HTML文件在指定的区域不显不完时，滚动选项
+                <ol>
+                    <li>如果为 NO，则不出现滚动条；</li>
+                    <li>如果为Yes，则显示;</li>
+                    <li> 如果为 Auto：则自动出现滚动条</li>
+                </ol>
+            </li>
+            <li>FrameBorder:设置或获取是否显示框架的边框。(1，0 或 no，yes)</li>
+            <li>name:框架的名字</li>
+            <li>
+                align:规定如何根据周围元素对齐框架
+                <span class="tips">建议用样式代替</span>
+            </li>
+            <li>
+                marginheight:规定 iframe 的顶部和底部的空白边距，以像素计。
+            </li>
+            <li>
+                marginwidth:规定 iframe 的左侧和右侧的空白边距，以像素计。
+            </li>
+            <li>
+                sandbox:sandbox 属性将会启用一系列对行内框架中内容的额外限制。其值如下：
+                <ol>
+                    <li>"":应用以下所有的限制。</li>
+                    <li>allow-same-origin:允许 iframe 内容被视为与包含文档有相同的来源。</li>
+                    <li>allow-top-navigation:允许 iframe 内容从包含文档导航（加载）内容。</li>
+                    <li>allow-forms:允许表单提交。</li>
+                    <li>allow-scripts:允许脚本执行。</li>
+                </ol>
+            </li>
+            <li>autocomplete；是否启用表单的自动完成功能，其值为on或off，不是布尔值</li>
+            <li>novalidate；使用该属性则表示提交表单时不进行验证</li>
+            <li>name；表单的名称，其值为字符串</li>
+        </ul>
+        <h3>示例：</h3>
+        <ul>
+            <li>
+                iframe示例：内嵌百度<br/>
+                src="http://www.baidu.com" width="500" height="500" scrolling="no" frameborder="0" name="main"<br/>
+                <Iframe id="test" src="http://www.baidu.com" width="500" height="500" scrolling="no" frameborder="0" name="main"></iframe>
+            </li>
+
+             <li>
+                获取子iframe中DOM节点：(必须是同域)<br/>
+                 <pre>
+     function ShowExit() {
+     //获取iframe的window对象
+        var topWin = window.top.document.getElementById("frame").contentWindow;
+        //通过获取到的window对象操作HTML元素，这和普通页面一样
+        title = topWin.document.title;
+        console.log(title);
+     }
+                 </pre>
+                 <h3 style="color:red" id="title2"></h3>
+               <Iframe onload="run()"id="frame" src="video.html" width="500" height="500" scrolling="no" frameborder="0" name="main"></iframe>
+            </li>
+
+        </ul>
+
+
+    </body>
+    <script>
+        function run() {
+            //获取iframe的window对象
+            var topWin = window.top.document.getElementById("frame").contentWindow;
+            //通过获取到的window对象操作HTML元素，这和普通页面一样
+            title = topWin.document.title;
+            if (title) document.getElementById("title2").innerHTML = "子iframe中的title为：" + title;
+        }
+    </script>
+</html>
