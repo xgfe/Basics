@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>The Table element</title>
+        <style>
+            li{  line-height: 30px;  }
+            .tips{ color:red;display:block;}
+            thead {color:green}
+            tbody {color:blue;height:50px}
+            tfoot {color:red}
+             body {
+                margin: 0 50px;
+                font-family: "Times New Roman",Georgia,Serif;
+            }
+            li ,p{ line-height: 30px; }
+        </style>
+    </head>
+    <body>
+        <h1 id="h1">table标签属性列表</h1>
+        <ul>
+            <li>
+                width:规定单元格的宽度，值为数字，单位为px。
+            </li>
+
+            <li>
+                align:规定表格相对周围元素对齐方式，其值为left、right、center。
+                <span class="tips">可实现其他HTML元素围绕表格的效果，建议用样式代替</span>
+            </li>
+            <li>
+                bgcolor:规定表格的背景颜色。
+                <span class="tips">建议用样式代替</span>
+            </li>
+            <li>
+                border:规定表格边框的宽度，值为数字
+                <span class="tips">自带border属性样式比较丑，建议设置单元格border属性代替</span>
+            </li>
+            <li>
+                cellpadding:规定单元格的内边距，值为数字，代表内边距的百分比
+                <span class="tips">从实用角度出发，最好不要规定 cellpadding，而是使用 CSS 来添加内边距</span>
+            </li>
+            <li>
+                cellspacing:规定单元格的外边距，值为数字，代表内边距的百分比
+                <span class="tips">从实用角度出发，最好不要规定 cellspacing，而是使用 CSS 来添加内边距</span>
+            </li>
+            <li>
+                frame:规定外部边框哪个部分是可见的。
+                <span class="tips">建议用样式代替</span>
+            </li>
+            <li>
+                rules:规定内部边框哪个部分是可见的。
+                <span class="tips">建议用样式代替</span>
+                <span class="tips">frame和rules组合技：frame="box" rules="all"展示所有边框</span>
+            </li>
+            <li>
+                summary:规定表格内容的摘要。
+                <span class="tips">不会产生任何视觉变化</span>
+            </li>
+        </ul>
+        <h1>thead、tbody、tfoot</h1>
+        <ul>
+            <li>
+                thead 标签定义表格的表头。该标签用于组合 HTML 表格的表头内容。
+            </li>
+            <li>
+                thead 元素应该与 tbody 和 tfoot 元素结合起来使用。
+                <span class="tips">&lt;thead&gt; 内部必须拥有 &lt;tr&gt; 标签！</span>
+            </li>
+            <li>
+                thead、tfoot 以及 tbody 元素使您有能力对表格中的行进行分组。当您创建某个表格时，您也许希望拥有一个标题行，一些带有数据的行，以及位于底部的一个总计行。这种划分使浏览器有能力支持独立于表格标题和页脚的表格正文滚动。当长的表格被打印时，表格的表头和页脚可被打印在包含表格数据的每张页面上。
+            </li>
+            <li>
+                <span class="tips">当table中省略这三个标签时，浏览器会自动在&lt;tr&gt;标签外层套一个&lt;tbody&gt;标签</span>
+            </li>
+            <li>
+                注意点：
+                <ol>
+                    <li>thead和tfoot在一张表中都只能有一个，而tbody可以有多个。</li>
+                    <li>tfoot必须出现在tbody前面，这样浏览器在接收主体数据之前，就能渲染表尾，有利于加快表格的显示速度。这一点对大型表格尤其重要。</li>
+                    <li> thead、tbody和tfoot里面都必须使用tr标签。</li>
+                </ol>
+            </li>
+        </ul>
+
+        <h3>示例：</h3>
+        <ul>
+             <li>
+                align属性：
+                <br/>
+                <table border="1" align="right">
+                  <tr>
+                    <th>Month</th>
+                    <th>Savings</th>
+                  </tr>
+                  <tr>
+                    <td>January</td>
+                    <td>$100</td>
+                  </tr>
+                  <tr>
+                    <td>February</td>
+                    <td>$80</td>
+                  </tr>
+                </table>
+
+                <p>align 属性可以使文本围绕在表格周围。</p>
+
+                <p>在 HTML 4.01 中，不赞成使用 body 元素的 align 属性；在 XHTML 1.0 Strict DTD 中，不支持 body 元素的 align 属性。</p>
+            </li>
+            <li>
+                内边距和外边距：
+                cellpadding="10"
+                cellspacing="10"
+                <br/>
+                <table border="1" style="display:inline-block" cellpadding="10">
+                  <tr>
+                    <th>Month</th>
+                    <th>Savings</th>
+                  </tr>
+                  <tr>
+                    <td>January</td>
+                    <td>$100</td>
+                  </tr>
+                </table>  
+                <table border="1" cellspacing="10"  style="display:inline-block" >
+                  <tr>
+                    <th>Month</th>
+                    <th>Savings</th>
+                  </tr>
+                  <tr>
+                    <td>January</td>
+                    <td>$100</td>
+                  </tr>
+                </table>
+            </li>
+            <li>
+                frame和rules属性：
+                table frame="box" rules="all"
+                <br/>
+                <table frame="box" rules="all">
+                  <tr>
+                    <th>Month</th>
+                    <th>Savings</th>
+                  </tr>
+                  <tr>
+                    <td>January</td>
+                    <td>$100</td>
+                  </tr>
+                </table>
+            </li>
+            <li>
+                tbody、thead、tfoot:
+                <br/>
+                    thead {color:green}
+                    tbody {color:blue;height:50px}
+                    tfoot {color:red}
+                <br/>
+                <table border="1">
+                  <thead>
+                    <tr>
+                      <th>Month</th>
+                      <th>Savings</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>January</td>
+                      <td>$100</td>
+                    </tr>
+                    <tr>
+                      <td>February</td>
+                      <td>$80</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td>Sum</td>
+                      <td>$180</td>
+                    </tr>
+                  </tfoot>
+                </table>
+            </li>
+        </ul>
+
+    </body>
+</html>

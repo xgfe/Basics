@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>The VIDEO element</title>
+        <style>
+            li{  line-height: 30px;  }
+            .tips{ color:red;display:block;}
+            thead {color:green}
+            tbody {color:blue;height:50px}
+            tfoot {color:red}
+             body {
+                margin: 0 50px;
+                font-family: "Times New Roman",Georgia,Serif;
+            }
+            li ,p{ line-height: 30px; }
+        </style>
+    </head>
+    <body>
+        <h1 >video标签属性列表</h1>
+        <ul>
+            <li>
+                width:设置视频播放器的宽度。
+            </li>
+            <li>
+                height:设置视频播放器的高度。
+            </li>
+            <li>
+                autoplay:如果出现该属性，则视频在就绪后马上播放,取值为autoplay。
+                <span class="tips">如果设置了该属性，视频将自动播放。</span>
+            </li>
+            <li>
+                controls:规定浏览器应该为视频提供播放控件。<br/>
+                浏览器控件应该包括：播放、暂停、定位、音量、全屏切换、字幕（如果可用）、音轨（如果可用）
+                <span class="tips">如果设置了该属性，则规定不存在作者设置的脚本控件。</span>
+            </li>
+            <li>
+                loop:当设置该属性后，它规定视频的音频输出应该被静音。
+            </li>
+            <li>
+                muted:规定单元格的内边距，值为数字，代表内边距的百分比
+                <span class="tips">从实用角度出发，最好不要规定 cellpadding，而是使用 CSS 来添加内边距</span>
+            </li>
+            <li>
+                poster:规定视频下载时显示的图像，或者在用户点击播放按钮前显示的图像。
+                <span class="tips">如果未设置该属性，则使用视频的第一帧来代替</span>
+            </li>
+            <li>
+                preload:规定是否在页面加载后载入视频。其值如下：
+                <span class="tips">如果设置了 autoplay 属性，则忽略该属性。</span>
+            </li>
+     
+            <li>
+                src:规定要播放的视频的 URL。
+                <span class="tips">其值可以填相对URL和绝对URL</span>
+            </li>
+        </ul>
+        <h1>audio标签属性列表</h1>
+        <ul>
+            <li>
+                autoplay:如果出现该属性，则音频在就绪后马上播放,取值为autoplay。
+            </li>
+            <li>
+                controls:如果出现该属性，则向用户显示控件，比如播放按钮。<br/>
+            </li>
+            <li>
+                loop:如果出现该属性，则每当音频结束时重新开始播放。
+            </li>
+            <li>
+                muted:规定视频输出应该被静音。
+            </li>
+            <li>
+                preload:如果出现该属性，则音频在页面加载时进行加载，并预备播放。
+                <span class="tips">如果设置了 autoplay 属性，则忽略该属性。</span>
+            </li>
+     
+            <li>
+                src:规定要播放的音频的 URL。
+            </li>
+        </ul>
+
+        <h3>示例：</h3>
+        <ul>
+             <li>
+                autoplay属性：
+                <br/>
+                <video autoplay="autoplay">
+                  <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg" />
+                  <source src="http://www.w3school.com.cn/i/movie.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+                </video>
+            </li>
+            <li>
+                controls工具栏：
+                <br/>
+                <video controls="controls">
+                  <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg" />
+                  <source src="http://www.w3school.com.cn/i/movie.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+                </video>
+            </li>
+            <li>
+                loop循环播放：
+                <br/>
+                <video loop="loop" autoplay="autoplay">
+                  <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg" />
+                  <source src="http://www.w3school.com.cn/i/movie.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+                </video>
+            </li>
+             <li>
+                muted默认静音
+                <br/>
+                <video muted="muted" controls="controls">
+                  <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg" />
+                  <source src="http://www.w3school.com.cn/i/movie.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+                </video>
+            </li>
+            
+            <li>
+                添加封面
+                <br/>
+                <video poster="http://img4.duitang.com/uploads/item/201212/12/20121212161025_YGFjR.gif" controls="controls">
+                  <source src="http://www.w3school.com.cn/i/movie.ogg" type="video/ogg" />
+                  <source src="http://www.w3school.com.cn/i/movie.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+                </video>
+            </li>
+            
+        </ul>
+
+    </body>
+</html>
