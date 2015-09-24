@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>布局标签简介</title>
+        <style>
+            body {
+                margin: 0 50px;
+                font-family: "Times New Roman",Georgia,Serif;
+            }
+            li ,p{ line-height: 30px; }
+            .layout-img{
+                float: right;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>布局标签简介</h1>
+        <h3>布局类标签</h3>
+        <img class="layout-img" src="http://www.w3schools.com/html/img_sem_elements.gif" alt="HTML5 layout" title="HTML5 页面布局结构图"/>
+        <ul>
+            <li>
+                标签：&lt;header&gt;<br/>
+                涵义：定义文档的页眉（介绍信息），主要是语义化方面的应用<br/>
+                示例：<header>Hello World</header>
+            </li>
+            <li>
+                标签：&lt;nav&gt;<br/>
+                涵义：定义导航链接的部分。<br/>
+                示例：<nav><a href="#back">后退</a>|<a href="#">首页</a>|<a href="#about">关于</a></nav>
+                注：如果文档中有“前后”按钮，则应该把它放到 &lt;nav&gt; 元素中。
+            </li>
+            <li>
+                标签：&lt;body&gt;<br/>
+                涵义：页面主体标签，不做介绍<br/>
+            </li>
+            <li>
+                标签：&lt;article&gt;<br/>
+                涵义：规定独立的自包含内容,一篇文章应有其自身的意义，应该有可能独立于站点的其余部分对其进行分发，如论坛帖子、报纸文章、博客条目、用户评论等<br/>
+                示例：<article>The HTML Article Element (&lt;article&gt;) represents a self-contained composition in a document, page, application, or site, which is intended to be independently distributable or reusable (e.g., in syndication). This could be a forum post, a magazine or newspaper article, a blog entry, an object, or any other independent item of content. Each &lt;article&gt; should be identified, typically by including a heading (h1-h6 element) as a child of the &lt;article&gt; element.</article>
+            </li>
+            <li>
+                标签：&lt;section&gt;<br/>
+                涵义：定义文档中的节（section、区段）。比如章节、页眉、页脚或文档中的其他部分<br/>
+                示例：<section>
+                        <h1>PRC</h1>
+                        <p>The People's Republic of China was born in 1949...</p>
+                    </section>
+            </li>
+            <li>
+                标签：&lt;h1&gt;---&lt;h6&gt;<br/>
+                涵义：各种标题<br/>
+            </li>
+            <li>
+                标签：&lt;hgroup&gt;<br/>
+                涵义：定义一组标题文本【实验性的技术】<br/>
+                示例：<hgroup>
+                        <h1>Main title</h1>
+                        <h2>Secondary title</h2>
+                    </hgroup>
+            </li>
+            <li>
+                标签：&lt;address&gt;<br/>
+                涵义：作者使用，用来标示自己的联系信息<br/>
+                示例：<address>You can contact me at <a href="www.meituan.com">meituan</a><br/>MEITUAN.com <br/>CN</address>
+            </li>
+            <li>
+                标签：&lt;aside&gt;<br/>
+                涵义：定义其所处内容之外的内容,&lt;aside&gt;的内容应该与附近的内容相关<br/>
+                示例：<p>Me and my family visited The Epcot center this summer.</p>
+                    <aside>
+                        <h4>Epcot Center</h4>
+                        The Epcot Center is a theme park in Disney World, Florida.
+                    </aside>
+            </li>
+            <li>
+                标签：&lt;footer&gt;<br/>
+                涵义：定义文档或节的页脚,页脚通常包含文档的作者、版权信息、使用条款链接、联系信息等等，同一文档可多次使用&lt;footer&gt;<br/>
+                示例：<footer>
+                        <p>Posted by: W3School</p>
+                        <p>Contact information: <a href="mailto:someone@example.com">someone@example.com</a>.</p>
+                    </footer>
+            </li>
+        </ul>
+        <h3>列表类标签</h3>
+        <ul>
+            <li>
+                标签：&lt;ul&gt;<br/>
+                涵义：定义一组无序列表,每一个&lt;li&gt;都是一个列表项<br/>
+                示例：基础技术要求 <ul>
+                        <li>JavaScript</li>
+                        <li>CSS</li>
+                        <li>HTML</li>
+                    </ul>
+            </li>
+            <li>
+                标签：&lt;ol&gt;<br/>
+                涵义：定义一组有序列表,每一个&lt;li&gt;都是一个列表项<br/>
+                示例：RD三件套<ol>
+                        <li>人体工学椅</li>
+                        <li>MacBook Pro</li>
+                        <li>大屏显示器</li>
+                    </ol>
+            </li>
+            <li>
+                标签：&lt;li&gt;<br/>
+                涵义：定义列表项目<br/>
+                示例：同上
+            </li>
+            <li>
+                标签：&lt;dl&gt;<br/>
+                涵义：定义了定义列表,常和&lt;dd&gt;&lt;dt&gt;搭配使用<br/>
+                示例：
+                    <dl>
+                        <dt>计算机</dt>
+                        <dd>用来计算的仪器 ... ...</dd>
+                        <dt>显示器</dt>
+                        <dd>以视觉方式显示信息的装置 ... ...</dd>
+                    </dl>
+            </li>
+            <li>
+                标签：&lt;dt&gt;<br/>
+                涵义：定义了定义列表中的项目（即术语部分）<br/>
+                示例：同上
+            </li>
+            <li>
+                标签：&lt;dd&gt;<br/>
+                涵义：定义列表中定义条目的定义部分<br/>
+                示例：同上
+            </li>
+        </ul>
+    </body>
+</html>

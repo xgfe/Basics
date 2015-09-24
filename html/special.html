@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>特殊标签简介</title>
+        <style>
+            body {
+                margin: 0 50px;
+                font-family: "Times New Roman",Georgia,Serif;
+            }
+            li ,p{ line-height: 30px; }
+        </style>
+    </head>
+    <body>
+        <h1>特殊标签简介</h1>
+        <ul>
+            <li>
+                标签：&lt;command&gt;<br/>
+                涵义：指定一个用户可以调用的命令【已废弃】<br/>
+                示例：Try This :<command>Hello</command>
+            </li>
+            <li>
+                标签：&lt;menu&gt;<br/>
+                涵义：代表一组用户可以操作或者激活的命令。【试验阶段，浏览器基本都不支持】<br/>
+            </li>
+            <li>
+                标签：&lt;progress&gt;<br/>
+                涵义：显示一个进度条<br/>
+                示例：<progress value="70" max="100">70 %</progress> <br/>
+                属性：
+                <ul>
+                    <li>
+                        value：当前值
+                    </li>
+                    <li>
+                        max：最大值
+                    </li>
+                </ul>
+            </li>
+            <li>
+                标签：&lt;meter&gt;<br/>
+                涵义：定义已知范围或分数值内的标量测量<br/>
+                示例：<meter min="200" low="300" max="500" value="350">350 degrees</meter> <br/>
+                属性：
+                <ul>
+                    <li>
+                        value：当前值
+                    </li>
+                    <li>
+                        max：最大值
+                    </li>
+                    <li>
+                        min：最小值
+                    </li>
+                    <li>
+                        low：规定被视作低的值的范围
+                    </li>
+                    <li>
+                        high：规定被视作高的值的范围
+                    </li>
+                    <li>
+                        optimum：规定度量的优化值
+                    </li>
+                    <li>
+                        form：规定 &lt;meter&gt;元素所属的一个或多个表单
+                    </li>
+                </ul>
+            </li>
+            <li>
+                标签：&lt;spacer&gt;<br/>
+                涵义：用来在网页中插入空格【已废弃】<br/>
+            </li>
+            <li>
+                标签：&lt;track&gt;<br/>
+                涵义：HTML &lt;track&gt; 元素 被当作媒体元素—&lt;audio&gt; 和 &lt;video&gt;的子元素来使用。它允许指定计时字幕（或者基于事件的数据），例如自动处理字幕。<br/>
+            </li>
+            <li>
+                标签：&lt;figure&gt;<br/>
+                涵义：设置独立的流内容（图像、图表、照片、代码等等）, 经常与标题 标签&lt;figcaption&gt;配合使用<br/>
+                示例：<figure>
+                        <img src="https://developer.cdn.mozilla.net/media/img/mdn-logo-sm.png" alt="An awesome picture">
+                    </figure>
+                    <figure>
+                        <img src="https://developer.cdn.mozilla.net/media/img/mdn-logo-sm.png" alt="An awesome picture">
+                        <figcaption>Fig1. MDN Logo</figcaption>
+                    </figure>
+            </li>
+            <li>
+                标签：&lt;figcaption&gt;<br/>
+                涵义：标签定义 &lt;figure&gt; 元素的标题,应该被置于 &lt;figure&gt; 元素的第一个或最后一个子元素的位置。<br/>
+                示例：同上
+            </li>
+            <li>
+                标签：&lt;map&gt;<br/>
+                涵义：定义一个客户端图像映射。图像映射（image-map）指带有可点击区域的一幅图像<br/>
+                示例：
+                <img src="http://www.w3school.com.cn/i/eg_planets.jpg" border="0" usemap="#planetmap" alt="Planets" />
+                    <map name="planetmap" id="planetmap">
+                        <area
+                                shape="circle"
+                                coords="180,139,14"
+                                href ="http://www.w3school.com.cn/example/html/venus.html"
+                                target ="_blank"
+                                alt="Venus" />
+
+                        <area
+                                shape="circle"
+                                coords="129,161,10"
+                                href ="http://www.w3school.com.cn/example/html/mercur.html"
+                                target ="_blank"
+                                alt="Mercury" />
+
+                        <area
+                                shape="rect"
+                                coords="0,0,110,260"
+                                href ="http://www.w3school.com.cn/example/html/sun.html"
+                                target ="_blank"
+                                alt="Sun" />
+
+                    </map>
+            </li>
+            <li>
+                标签：&lt;area&gt;<br/>
+                涵义：定义图像映射中的区域,永远嵌套在 &lt;map&gt; 元素内部（注：图像映射指得是带有可点击区域的图像）。<br/>
+                示例：同上 <br/>
+                属性：
+                <ul>
+                    <li>
+                        coords：定义可点击区域（对鼠标敏感的区域）的坐标【逗号分隔的四个数字】
+                    </li>
+                    <li>
+                        href：定义此区域的目标 URL
+                    </li>
+                    <li>
+                        nohref：从图像映射排除某个区域【nohref】
+                    </li>
+                    <li>
+                        shape：定义区域的形状【default/rect/circ/poly】
+                    </li>
+                    <li>
+                        target：规定在何处打开 href 属性指定的目标 URL【_blank/_parent/_self/_top】
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </body>
+</html>
