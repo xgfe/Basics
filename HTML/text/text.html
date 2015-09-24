@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>文本类标签简介</title>
+        <style>
+            body {
+                margin: 0 50px;
+                font-family: "Times New Roman",Georgia,Serif;
+            }
+            li ,p{ line-height: 30px; }
+        </style>
+    </head>
+    <body>
+        <h1>文本类标签简介</h1>
+        <p>HTML 文本标签用来组织文本块或者片段，一般放置在body标签中。这些标签具有较强的语义化涵义，对于可访问性和搜索引擎优化有积极的作用。</p>
+        <h3>常见标签</h3>
+        <ul>
+            <li>
+                标签：&lt;a&gt;<br/>
+                涵义：定义一个超链接<br/>
+                示例：<a href="www.meituan.com">美团网</a> <br/>
+                属性：
+                <ul>
+                    <li>
+                        href：链接地址
+                    </li>
+                    <li>
+                        target：目标网页【_blank/_self/_parent/_top】
+                    </li>
+                </ul>
+            </li>
+            <li>
+                标签：&lt;bdi&gt;<br/>
+                涵义：把用户名从周围的文本方向设置中隔离出来<br/>
+                示例：<p>Username <bdi>Bill</bdi>:80 points</p><br/>
+                属性：
+                <ul>
+                    <li>
+                        dir：规定 &lt;bdi&gt; 元素内的文本的文本方向【ltr/trl/auto】
+                    </li>
+                </ul>
+            </li>
+            <li>
+                标签：&lt;i&gt;<br/>
+                涵义：以斜体显示特殊文本，如技术术语、外文短语，或者小说中人物的中心思想。<br/>
+                示例：The <i>Queen Mary</i> Tsailed last night <br/>
+                注：&lt;i&gt;最开始只是表示斜体，无实际意义，但是在最新的HTML5规范中，&lt;i&gt;被赋予了新的语义化涵义，用来表示特殊文本，如技术术语、外文短语，或者小说中人物的中心思想等。
+            </li>
+            <li>
+                标签：&lt;em&gt;<br/>
+                涵义：以斜体显示文本，在于强调的重点。<br/>
+                示例：We <em>had to</em> do something about it <br>
+                注：和&lt;i&gt; 的区别在于语义化方面的不同，&lt;em&gt;是表达要素(phrase elements)，表示句子中的强调，即强调语义。
+            </li>
+            <li>
+                标签：&lt;b&gt;<br/>
+                涵义：以粗体显示文本。<br/>
+                示例：<b>Text is bold</b> <br/>
+                注：最开始的&lt;b&gt;表示无意义的加粗，但是在最新的HTML5规范中&lt;b&gt;表示文体上突出的不包含任何额外的重要性的一段文本，例如：文档概要中的关键字，评论中的产品名等。
+            </li>
+            <li>
+                标签：&lt;strong&gt;<br/>
+                涵义：以粗体显示文本，用于强调，比&lt;em&gt;更重点的强调<br/>
+                示例：<strong>Text is bold</strong><br>
+                注：同&lt;em&gt;也是表达元素，表示页面中的强调。
+            </li>
+            <li>
+                标签：&lt;sup&gt;<br/>
+                涵义：以上标显示文本<br/>
+                示例：This text is <sup>superscripted</sup> <br>
+            </li>
+            <li>
+                标签：&lt;sub&gt;<br/>
+                涵义：以下标显示文本<br/>
+                示例：水的化学表达式是H<sub>2</sub>O <br>
+            </li>
+            <li>
+                标签：&lt;big&gt;<br/>
+                涵义：增大显示文本【已废弃】
+            </li>
+            <li>
+                标签：&lt;small&gt;<br/>
+                涵义：使文本以更小的字号显示<br/>
+                示例：<small>&copy;版权所有</small> <br>
+                注：最开始是没有语义化色彩的，在HTML5规范中，&lt;small&gt;用来表示版权或法律信息等。
+            </li>
+            <li>
+                标签：&lt;ins&gt;<br/>
+                涵义：表示被插入的文本<br/>
+                示例：This text has been <ins>inserted</ins>. <br>
+                属性：
+                <ul>
+                    <li>cite：该属性定义了资源的URI,解释了变化的来源。</li>
+                    <li>datetime：这个属性表示变化的时间和日期。</li>
+                </ul>
+            </li>
+            <li>
+                标签：&lt;del&gt;<br/>
+                涵义：表示被删除的文本<br/>
+                示例：<del>This text has been deleted</del>, here is the rest of the paragraph. <br>
+                属性：同&lt;ins&gt;
+            </li>
+            <li>
+                标签：&lt;bdo&gt;<br/>
+                涵义：自定义文本的方向<br/>
+                示例：This is normal direction.<bdo dir="rtl">And this will right to left.</bdo> <br/>
+                属性:dir-文本方向，可选值[rtl/ltr/auto]
+            </li>
+            <li>
+                标签：&lt;cite&gt;<br/>
+                涵义：表示一些“有创意”的文本，如人们约定俗成的语言缩写<br/>
+                示例：我们经常用的文件编码格式是 <cite>[UTF-8]</cite>
+            </li>
+            <li>
+                标签：&lt;q&gt;<br/>
+                涵义：表示一小段外部引用文本，会自动加上双引号<br/>
+                示例：Mary said <q cite="http://developer.mozilla.org">Oh My God.</q>
+                属性：cite-表示引用来源
+            </li>
+            <li>
+                标签：&lt;blockquote&gt;<br/>
+                涵义：表示大段外部引用文本<br/>
+                示例：<blockquote cite="http://developer.mozilla.org">
+                        <p>This is a quotation taken from the Mozilla Developer Center.</p>
+                    </blockquote>
+            </li>
+            <li>
+                标签：&lt;dfn&gt;<br/>
+                涵义：表示定义一个专业术语名词<br/>
+                示例：I love <dfn>WWW</dfn>
+            </li>
+            <li>
+                标签：&lt;abbr&gt;<br/>
+                涵义：表示文本缩写<br/>
+                示例：I'm a <abbr title="Front End">FE</abbr> engineer.
+            </li>
+        </ul>
+        <h3>计算机相关标签</h3>
+        <ul>
+            <li>
+                标签：&lt;kbd&gt;<br/>
+                涵义：表示用户键盘输入<br/>
+                示例：press <kbd>ESC</kbd> to exit.
+            </li>
+            <li>
+                标签：&lt;var&gt;<br/>
+                涵义：代表了一个数学表达式或编程上下文<br/>
+                示例：A simple equation: <var>x</var> = <var>y</var> + 2
+            </li>
+            <li>
+                标签：&lt;samp&gt;<br/>
+                涵义：表示计算机编程的简单输出<br/>
+                示例：This program outputs:<samp>This is sample text.</samp>
+            </li>
+            <li>
+                标签：&lt;samp&gt;<br/>
+                涵义：表示计算机编程的简单输出<br/>
+                示例：This program outputs:<samp>This is sample text.</samp>
+            </li>
+            <li>
+                标签：&lt;tt&gt;<br/>
+                涵义：显示一段打字文本（大致是这个意思）【已废弃】
+            </li>
+            <li>
+                标签：&lt;code&gt;<br/>
+                涵义：显示一段计算机代码片段 <br/>
+                示例：write <code>console.log(window)</code> to see window object.
+            </li>
+            <li>
+                标签：&lt;pre&gt;<br/>
+                涵义：显示一段格式化的文本 <br/>
+                示例：<pre>
+                        body{
+                            margin:0;
+                            padding:0;
+                        }
+                    </pre>
+            </li>
+        </ul>
+        <h3>其他特殊文本标签</h3>
+        <ul>
+            <li>
+                标签：&lt;mark&gt;<br/>
+                涵义：显示一段高亮文本 <br/>
+                示例：The &lt;mark&gt; element is used to <mark>highlight</mark> text
+            </li>
+            <li>
+                标签：&lt;time&gt;<br/>
+                涵义：显示一个时间<br/>
+                示例：Time is <time datetime="2015-5-12 10:00">May 12</time> <br/>
+                属性：datetime-指定时间
+            </li>
+            <li>
+                标签：&lt;ruby&gt;<br/>
+                涵义：定义 ruby 注释（中文注音或字符）,和 &lt;rt&gt; 标签一同使用,&lt;ruby&gt; 元素由一个或多个字符（需要一个解释/发音）和一个提供该信息的 &lt;rt&gt; 元素组成，还包括可选的 &lt;rp&gt; 元素，定义当浏览器不支持 &lt;ruby&gt; 元素时显示的内容<br/>
+                示例：<ruby>
+                        示例 <rt>shi li</rt>
+                    </ruby>
+                    <ruby>
+                        不支持 <rt>shi li</rt><rp>浏览器不支持&lt;ruby&gt;</rp>
+                    </ruby>
+            </li>
+            <li>
+                标签：&lt;rt&gt;<br/>
+                涵义：定义&lt;ruby&gt;元素的注释<br/>
+                示例：同上
+            </li>
+            <li>
+                标签：&lt;ruby&gt;<br/>
+                涵义：定义当浏览器不支持 &lt;ruby&gt; 元素时显示的内容<br/>
+                示例：同上
+            </li>
+            <li>
+                标签：&lt;wbr&gt;<br/>
+                涵义：定义文本换行的时机，指定在何处添加换行符<br/>
+                示例：不得不说，<wbr>electroencephalography<wbr>是一个很长的单词
+            </li>
+        </ul>
+    </body>
+</html>
