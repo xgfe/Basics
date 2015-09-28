@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='UTF-8'>
+		<title>SVG结构相关元素</title>
+		<style type="text/css">
+			body {
+				margin: 0 30px;
+			}
+			li {
+				padding: 5px 0;
+			}
+			.example {
+				border: 1px solid lightgray;
+			}
+			.code {
+				width: 50%;
+				line-height: 20px;
+				font-style: italic;
+				padding: 20px;
+				vertical-align: top;
+				border-right: 1px solid lightgray;
+			}
+			.code, .shape {
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>SVG结构相关元素</h1>
+		<ul>
+			<li>
+				<h4>g元素</h4>
+				<p>g元素是分组元素，用于在逻辑上将相关的元素进行分组。给g元素添加的样式或者属性都会被应用到它所有的子元素上。如下示例所示，想对三个圆进行移动，可以直接在g上进行操作，这样既达到了移动的目的，也没有破坏他们之间的位置关系。</p>
+				<div class='example'>
+					<div class='code'>
+						&lt;svg><br>
+							&lt;g transform='translate(100,100)'><br>
+								&nbsp;&nbsp;&lt;circle cx='10' cy='10' r='5' /><br>
+								&nbsp;&nbsp;&lt;circle cx='30' cy='10' r='5' /><br>
+								&nbsp;&nbsp;&lt;circle cx='50' cy='10' r='5' /><br>
+							&lt;/g><br>
+						&lt;/svg>
+					</div>
+					<div class='shape'>
+						<svg width='600'>
+							<g transform='translate(100,100)'>
+								<circle cx='10' cy='10' r='5' />
+								<circle cx='30' cy='10' r='5' />
+								<circle cx='50' cy='10' r='5' />
+							</g>
+						</svg>
+					</div>
+				</div>
+			</li>
+			<li>
+				<h4>title元素和desc元素</h4>
+				<p>这两个标签可以用在g元素中使用，添加一些描述性的信息，使其更容易被屏幕阅读器解读，让代码的整体可读性更好。</p>
+			</li>
+			<li>
+				<h4>use元素</h4>
+				<p>该元素可以实现元素的重用，可以重用单个元素，也可以重用一组元素。use元素复制出的副本的样式和初始元素一样，不能覆盖初始元素的样式。其上的属性如下：</p>
+				<ol>
+					<li>x属性和y属性，重用的元素的位置。这两个属性是相对被重用的元素的位置来定位的。</li>
+					<li>width属性和height属性，重用元素的宽高。</li>
+					<li>xlink:href属性，引用内容的url，如id值。</li>
+				</ol>
+				<p>示例如下：</p>
+				<div class='example'>
+					<div class='code' style='width: 100%;'>
+						&lt;svg><br>
+							&lt;g id='circles' transform='translate(100,100)'><br>
+								&nbsp;&nbsp;&lt;circle cx='10' cy='10' r='5' /><br>
+								&nbsp;&nbsp;&lt;circle cx='30' cy='10' r='5' /><br>
+								&nbsp;&nbsp;&lt;circle cx='50' cy='10' r='5' /><br>
+							&lt;/g><br>
+							&lt;use x='10' y='10' xlink:href='#circles' /><br>
+						&lt;/svg>
+					</div>
+				</div>
+			</li>
+			<li>
+				<h4>defs元素</h4>
+				<p>该元素可以存储我们想重用的元素，但是不渲染它们，等到后面再被其他SVG元素应用或显示。defs元素的副本的x和y是相对于用户坐标系统来定位的。其副本可以用use元素来创建。示例如下：</p>
+				<div class='example'>
+					<div class='code' style='width: 100%;'>
+						&lt;svg><br>
+							&nbsp;&lt;defs><br>
+        						&nbsp;&nbsp;&lt;linearGradient id="gradient"><br>
+            						&nbsp;&nbsp;&nbsp;&lt;stop offset="0%" style="stop-color: deepPink">&lt;/stop><br>
+            						&nbsp;&nbsp;&nbsp;&lt;stop offset="100%" style="stop-color: #009966">&lt;/stop><br>
+        						&nbsp;&nbsp;&lt;/linearGradient><br>
+    						&nbsp;&lt;/defs><br>
+    						&nbsp;&lt;rect stroke="#eee" stroke-width="5" fill="url(#gradient)">&lt;/rect><br>
+						&lt;/svg>
+					</div>
+				</div>
+			</li>
+			<li>
+				<h4>symbol元素</h4>
+				<p>该元素和g元素相似，它提供了一种对元素进行分组的方式。该元素不会被渲染，同时它可以有自己的viewBox和preserveAspectRatio属性。</p>
+			</li>
+		</ul>
+	</body>
+</html>
