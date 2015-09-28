@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='UTF-8'>
+		<title>SVG元素</title>
+		<style type="text/css">
+			body {
+				margin: 0 30px;
+			}
+			li {
+				padding: 5px 0;
+			}
+			.example {
+				border: 1px solid lightgray;
+			}
+			.code {
+				width: 50%;
+				line-height: 20px;
+				font-style: italic;
+				padding: 20px;
+				vertical-align: top;
+				border-right: 1px solid lightgray;
+			}
+			.code, .shape {
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>SVG除形状和结构外的常用元素</h1>
+		<ul>
+			<li>
+				<h4>text元素</h4>
+				<p>text元素用来创建文字，其上的属性如下：</p>
+				<ol>
+					<li>x属性和y属性，每个字的位置，值可以是一个数字也可以是一个数字序列，如果值为一个数字则为第一个字的位置，后面的字紧随其后。</li>
+					<li>dx属性和dy属性，字的相对位置，x、y 是基於原本的位置去做改變，而 dx、dy 則是基於前一個字的位置去做變化。</li>
+					<li>rotate属性，字的旋转角度，值可以为一个数字或者一个数字序列。</li>
+					<li>textLength，设定这段文字的长度，与lengthAdjust搭配使用。</li>
+					<li>lengthAdjust，设定对这段文字长度的调整，值为spacing（拉宽文字间距）或者spacingAndGlyphs（拉宽文字）。</li>
+				</ol>
+				<p>示例及其代码如下：</p>
+				<div class='example'>
+					<div class='code'>
+						&lt;svg width='600'><br>
+							&lt;text x='50,100,150,200,250' y='50' rotate='90' fill='red' >我是文字！&lt;/text><br>
+							&lt;text x='50' y='100' textLength='200' lengthAdjust='spacingAndGlyphs' fill='blue' >我是文字！&lt;/text><br>
+						&lt;/svg>
+					</div>
+					<div class='shape'>
+						<svg width='600'>
+							<text x='50,100,150,200,250' y='50' rotate='90' fill='red' >我是文字！</text>
+							<text x='50' y='100' textLength='200' lengthAdjust='spacingAndGlyphs' fill='blue' >我是文字！</text>
+						</svg>
+					</div>
+				</div>
+			</li>
+			<li>
+				<h4>linearGradient元素</h4>
+				<p>该元素嵌套在defs元素中用来定义线性渐变。其上有x1、y1、x2和y2属性，用来形成一条直线，渐变就沿这条直线来变化。示例如下：</p>
+				<div class='example'>
+					<div class='code'>
+						&lt;svg><br>
+							&nbsp;&lt;defs><br>
+							    &nbsp;&nbsp;&lt;linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%"><br>
+							      &nbsp;&nbsp;&nbsp;&lt;stop offset="0%" stop-color='rgb(255,255,0)'stop-opacity='0.5' /><br>
+							      &nbsp;&nbsp;&nbsp;&lt;stop offset="100%" stop-color='rgb(255,0,0)'stop-opacity='1' /><br>
+							    &nbsp;&nbsp;&lt;/linearGradient><br>
+							&nbsp;&lt;/defs><br>
+							&nbsp;&lt;rect x="100" y="70" width="85" height="55" fill="url(#grad1)" /><br>
+						&lt;/svg>
+					</div>
+					<div class='shape'>
+						<svg width='600'>
+							<defs>
+							    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+							      <stop offset="0%" stop-color='rgb(255,255,0)'stop-opacity='0.5' />
+							      <stop offset="100%" stop-color='rgb(255,0,0)'stop-opacity='1' />
+							    </linearGradient>
+							</defs>
+							<rect x="100" y="70" width="85" height="55" fill="url(#grad1)" />
+						</svg>
+					</div>
+				</div>
+			</li>
+			<li>
+				<h4>radialGradient元素</h4>
+				<p>该元素嵌套在defs元素中用来定义放射性渐变，其上的属性如下：</p>
+				<ol>
+					<li>cx属性和cy属性定义渐变的外圈的圆心，r属性定义外圈的半径。</li>
+					<li>fx属性和fy属性定义渐变焦点的位置。</li>
+				</ol>
+				<p>放射性渐变是从焦点沿各个方向向外圈进行渐变。示例如下：</p>
+				<div class='example'>
+					<div class='code'>
+						&lt;svg><br>
+							&nbsp;&lt;defs><br>
+							    &nbsp;&nbsp;&lt;radialGradient id="grad2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%"><br>
+							      &nbsp;&nbsp;&nbsp;&lt;stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0" /><br>
+							      &nbsp;&nbsp;&nbsp;&lt;stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" /><br>
+							    &nbsp;&nbsp;&lt;/radialGradient><br>
+							&nbsp;&lt;/defs><br>
+							&nbsp;&lt;ellipse cx="200" cy="70" rx="85" ry="55" fill="url(#grad2)" /><br>
+						&lt;/svg>
+					</div>
+					<div class='shape'>
+						<svg width='600'>
+							<defs>
+							    <radialGradient id="grad2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+							      <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0" />
+							      <stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+							    </radialGradient>
+							</defs>
+							<ellipse cx="200" cy="70" rx="85" ry="55" fill="url(#grad2)" />
+						</svg>
+					</div>
+				</div>
+			</li>
+			<li>
+				<h4>stop标签</h4>
+				<p>该标签嵌套在linearGradient或radialGradient元素中，用来指定渐变应该在什么位置形成什么颜色。其上的属性有：</p>
+				<ol>
+					<li>offset属性，定义偏移位置，它必须从0%到1%（或者从0到1）。</li>
+					<li>stop-color属性，定义颜色状态。</li>
+					<li>stop-opacity属性，定义透明度状态。</li>
+				</ol>
+			</li>
+			<li>
+				<h4>a元素</h4>
+				<p>该元素可以用于在svg图形中创建链接，注意这里链接的属性变成了xlink:href。示例如下：</p>
+				<div class='example'>
+					<div class='code'>
+						&lt;svg><br>
+							&nbsp;&lt;a xlink:href='http://www.meituan.com' target='_blank'><br>
+								&nbsp;&nbsp;&lt;rect x='20' y='20' width='100' height='30' fill='blue' /><br>
+							&nbsp;&lt;/a><br>
+						&lt;/svg>
+					</div>
+					<div class='shape'>
+						<svg width='600'>
+							<a xlink:href='http://www.meituan.com' target='_blank'>
+								<rect x='20' y='20' width='100' height='30' fill='blue' />
+							</a>
+						</svg>
+					</div>
+				</div>
+			</li>
+			<li>
+				<h4>image元素</h4>
+				<p>该元素用于在你的SVG图像中嵌入普通的位图。</p>
+			</li>
+		</ul>
+	</body>
+</html>

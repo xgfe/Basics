@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>SVG简介</title>
+		<style type="text/css">
+			body {
+				margin: 0 30px;
+			}
+			.code {
+				border: 1px solid lightgray;
+				padding: 20px;
+				line-height: 20px;
+			}
+		</style>
+	</head> 
+	<body>
+		<h1>SVG简介</h1>
+		<p>SVG意为可缩放矢量图形，全称为Scalable Vector Graphics。</p>
+		<p>SVG是使用 XML 来描述二维图形和绘图程序的语言。</p>
+		<h3>SVG的使用形式</h3>
+		<ul>
+			<li>
+				<h4>SVG文件</h4>
+				<p>SVG文件必须以.svg为后缀来保存，具体示例如下：</p>
+				<div id='svgFile' class='code'>
+					
+					&lt;?xml version="1.0" standalone="no"?><br>
+					&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><br>
+					&lt;svg width="100%" height="100%" version="1.1"xmlns="http://www.w3.org/2000/svg"><br>
+						&nbsp;&lt;circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="red"/><br>
+					&lt;/svg><br>
+					
+				</div>
+				<p>第一行包含了 XML 声明。该属性规定此SVG文件是否是“独立的”，或含有对外部文件的引用。第二和第三行引用了这个外部的 SVG DTD。</p>
+			</li>
+			<li>
+				<h4>嵌在HTML中的SVG</h4>
+				<p>SVG可通过多种方式嵌入到HTML中，方式如下：</p>
+				<ol>
+					<li>
+						<p>通过embed的src属性来嵌入SVG。</p>
+						<p>&lt;embed src="rect.svg" width="300" height="100" type="image/svg+xml" pluginspage="http://www.adobe.com/svg/viewer/install/" /></p>
+					</li>
+					<li>
+						<p>通过object的data属性来嵌入SVG。</p>
+						<p>&lt;object data="rect.svg" width="300" height="100" type="image/svg+xml" codebase="http://www.adobe.com/svg/viewer/install/" /></p>
+					</li>
+					<li>
+						<p>通过iframe标签嵌入SVG。</p>
+						<p>&lt;iframe src="rect.svg" width="300" height="100">&lt;/iframe></p>
+					</li>	
+					<li>
+						<p>通过img标签的src属性嵌入SVG。</p>
+						<p>&lt;img src="../image.svg"  width="300" /></p>
+					</li>
+					<li>
+						<p>通过元素的background-image属性嵌入SVG。</p>
+						<p>div { background-image: url('../image.svg'); }</p>
+					</li>
+					<li>
+						<p>直接通过在svg标签嵌入到HTML中。</p>
+						<div class='code'>
+							&lt;div><br>
+								&nbsp;&lt;svg width='100px' height='100px'><br>
+									&nbsp;&nbsp;&lt;circle cx='10' cy='10' r='5'>&lt;/circle><br>
+								&nbsp;&lt;/svg><br>
+							&lt;/div><br>
+						</div>
+					</li>
+				</ol>	
+			</li>
+		</ul>
+		<h3>SVG中的全局属性</h3>
+		<p>有一些属性在SVG内的元素上是基本通用的，它们是：</p>
+		<ul>
+			<li>stroke属性，定义形状的描边。</li>
+			<li>stroke-width属性，定义描边的宽度。</li>
+			<li>opacity属性，定义形状的透明度。</li>
+			<li>fill属性，定义形状的填充色。</li>
+			<li>fill-opacity属性，定义形状填充色的透明度。</li>
+			<li>transform属性，定义svg图形或者坐标的变换。</li>
+		</ul>
+		<p>在SVG中，值可以带单位也不可以不带。一个不带单位的值可以在用户空间中通过用户单位声明。如果值通过用户单位声明，那么这个值的数值被认为和px单位的数值一样。</p>
+		<h3>SVG的兼容性</h3>
+		<p>目前除了IE在9之前（不包括9）不支持SVG以外，各大浏览器基本都对SVG进行了支持，详情可参见<a href='http://caniuse.com/#search=svg' target='_blank'>Caniuse</a>。</p>
+	</body>
+</html>
