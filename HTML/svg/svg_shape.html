@@ -6,6 +6,7 @@
 		<style type="text/css">
 			body {
 				margin: 0 30px;
+				font-family: "Times New Roman",Georgia,Serif;
 			}
 			li {
 				padding: 5px 0;
@@ -14,17 +15,8 @@
 				border: 1px solid lightgray;
 			}
 			.code {
-				width: 50%;
-				line-height: 20px;
-				font-style: italic;
-				padding: 20px;
-				vertical-align: top;
-			}
-			.code, .shape {
-				display: inline-block;
-			}
-			.shape {
-				border-left: 1px solid lightgray;
+				padding: 0 20px;
+				border-bottom: 1px solid lightgray;
 			}
 		</style>
 	</head>
@@ -43,13 +35,15 @@
 				<p>示例及代码如下：</p>
 				<div class='example'>
 					<div class='code'>
-						&lt;svg><br>
-							&lt;rect x='10' y='10' rx='10' ry='10' width='100' height='100' style='stroke: black; stroke-width: 1px;' /><br>
-						&lt;/svg>
+						<pre>
+&lt;svg>
+    &lt;rect x='100' y='20' rx='10' ry='10' width='100' height='100' style='stroke: black; stroke-width: 1px;' />
+&lt;/svg>
+						</pre>
 					</div>
 					<div class='shape'>
-						<svg>
-							<rect x='10' y='10' rx='10' ry='10' width='100' height='50' />
+						<svg height='100'>
+							<rect x='100' y='20' rx='10' ry='10' width='100' height='50' />
 						</svg>
 					</div>
 				</div>	
@@ -64,12 +58,14 @@
 				<p>示例及代码如下：</p>
 				<div class='example'>
 					<div class='code'>
-						&lt;svg><br>
-							&lt;circle cx='50' cy='50' r='10' /><br>
-						&lt;/svg>
+						<pre>
+&lt;svg>
+    &lt;circle cx='50' cy='50' r='10' />
+&lt;/svg>
+						</pre>
 					</div>
 					<div class='shape'>
-						<svg>
+						<svg height='100'>
 							<circle cx='50' cy='50' r='10' />
 						</svg>
 					</div>
@@ -85,12 +81,14 @@
 				<p>示例及代码如下：</p>
 				<div class='example'>
 					<div class='code'>
-						&lt;svg><br>
-							&lt;ellipse cx='50' cy='50' rx='10' ry='5' /><br>
-						&lt;/svg>
+						<pre>
+&lt;svg>
+    &lt;ellipse cx='50' cy='50' rx='10' ry='5' />
+&lt;/svg>
+						</pre>
 					</div>
 					<div class='shape'>
-						<svg>
+						<svg height='100'>
 							<ellipse cx='50' cy='50' rx='20' ry='10' />
 						</svg>
 					</div>
@@ -106,13 +104,15 @@
 				<p>示例及代码如下：</p>
 				<div class='example'>
 					<div class='code'>
-						&lt;svg><br>
-							&lt;line x1='50' y1='50' x2='10' y2='5' style='stroke: black;stroke-width: 2;' /><br>
-						&lt;/svg>
+						<pre>
+&lt;svg>
+    &lt;line x1='50' y1='50' x2='200' y2='50' style='stroke: black;stroke-width: 2;' />
+&lt;/svg>
+						</pre>
 					</div>
 					<div class='shape'>
-						<svg>
-							<line x1='50' y1='50' x2='10' y2='5' style='stroke: black;stroke-width: 2;' />
+						<svg height='100'>
+							<line x1='50' y1='50' x2='200' y2='50' style='stroke: black;stroke-width: 2;' />
 						</svg>
 					</div>
 				</div>
@@ -123,12 +123,14 @@
 				<p>其上的points属性，定义多边形每个角的x坐标和y坐标，坐标间可以用逗号或者空格隔开。具体示例及代码如下：</p>
 				<div class='example'>
 					<div class='code'>
-						&lt;svg><br>
-							&lt;polygon points='100,10 20,80 180,80' style='fill: white;stroke: black;' /><br>
-						&lt;/svg>
+						<pre>
+&lt;svg>
+    &lt;polygon points='100,10 20,80 180,80' style='fill: white;stroke: black;' />
+&lt;/svg>
+						</pre>
 					</div>
 					<div class='shape'>
-						<svg>
+						<svg height='100'>
 							<polygon points='100,10 20,80 180,80' style='fill: white;stroke: black;' />
 						</svg>
 					</div>
@@ -140,12 +142,14 @@
 				<p>其上的points属性，定义折线的各个点的坐标。示例及其代码如下：</p>
 				<div class='example'>
 					<div class='code'>
-						&lt;svg><br>
-							&lt;polyline points='100,10 20,80 180,80' style='fill: white;stroke: black;' /><br>
-						&lt;/svg>
+						<pre>
+&lt;svg>
+    &lt;polyline points='100,10 20,80 180,80' style='fill: white;stroke: black;' />
+&lt;/svg>
+						</pre>
 					</div>
 					<div class='shape'>
-						<svg>
+						<svg height='100'>
 							<polyline points='100,10 20,80 180,80' style='fill: white;stroke: black;' />
 						</svg>
 					</div>
@@ -169,20 +173,31 @@
 				<p>示例及代码如下：</p>
 				<div class='example'>
 					<div class='code'>
-						&lt;svg width='600'><br>
-							&lt;path d='M20,20 L100,20 V80 H20 Z' style='fill: white;stroke: black;' ><br>
-							&lt;path d='MM150,80 C180,10 205,10 235,80 S310,150 320,80' stroke='red' fill='white' /><br>
-							&lt;path d="M330,80 Q372.5,10 415,80 T500,80" stroke="blue" fill="white"/><br>
-						&lt;/svg>
+						<pre>
+&lt;svg width='600'>
+    &lt;path d='M20,20 L100,20 V80 H20 Z' style='fill: white;stroke: black;' >
+    &lt;path d='M150,80 C180,10 205,10 235,80 S310,150 320,80' stroke='red' fill='white' />
+    &lt;path d="M330,80 Q372.5,10 415,80 T500,80" stroke="blue" fill="white"/>
+&lt;/svg>
+						</pre>
 					</div>
 					<div class='shape'>
-						<svg width='600'>
+						<svg width='100%' height='150'>
 							<path d='M20,20 L100,20 V80 H20 Z' style='fill: white;stroke: black;' />
 							<path d='M150,80 C180,10 205,10 235,80 S310,150 320,80' stroke='red' fill='white' />
 							<path d="M330,80 Q372.5,10 415,80 T500,80" stroke="blue" fill="white"/>
 						</svg>
 					</div>
 				</div>	
+			</li>
+		</ul>
+		<h3>参考资料</h3>
+		<ul>
+			<li>
+				<a href="http://www.w3school.com.cn/svg/index.asp" target="_blank">SVG教程(w3school)</a>
+			</li>
+			<li>
+				<a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial/Paths" target="_blank">路径(MDN)</a>
 			</li>
 		</ul>
 	</body>

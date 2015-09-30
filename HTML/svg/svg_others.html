@@ -6,6 +6,7 @@
 		<style type="text/css">
 			body {
 				margin: 0 30px;
+				font-family: "Times New Roman",Georgia,Serif;
 			}
 			li {
 				padding: 5px 0;
@@ -14,15 +15,9 @@
 				border: 1px solid lightgray;
 			}
 			.code {
-				width: 50%;
-				line-height: 20px;
-				font-style: italic;
-				padding: 20px;
-				vertical-align: top;
-				border-right: 1px solid lightgray;
-			}
-			.code, .shape {
-				display: inline-block;
+				
+				padding: 0 20px;
+				border-bottom: 1px solid lightgray;
 			}
 		</style>
 	</head>
@@ -42,13 +37,15 @@
 				<p>示例及其代码如下：</p>
 				<div class='example'>
 					<div class='code'>
-						&lt;svg width='600'><br>
-							&lt;text x='50,100,150,200,250' y='50' rotate='90' fill='red' >我是文字！&lt;/text><br>
-							&lt;text x='50' y='100' textLength='200' lengthAdjust='spacingAndGlyphs' fill='blue' >我是文字！&lt;/text><br>
-						&lt;/svg>
+						<pre>
+&lt;svg>
+    &lt;text x='50,100,150,200,250' y='50' rotate='90' fill='red' >我是文字！&lt;/text>
+    &lt;text x='50' y='100' textLength='200' lengthAdjust='spacingAndGlyphs' fill='blue' >我是文字！&lt;/text>
+&lt;/svg>
+						</pre>
 					</div>
 					<div class='shape'>
-						<svg width='600'>
+						<svg>
 							<text x='50,100,150,200,250' y='50' rotate='90' fill='red' >我是文字！</text>
 							<text x='50' y='100' textLength='200' lengthAdjust='spacingAndGlyphs' fill='blue' >我是文字！</text>
 						</svg>
@@ -60,25 +57,27 @@
 				<p>该元素嵌套在defs元素中用来定义线性渐变。其上有x1、y1、x2和y2属性，用来形成一条直线，渐变就沿这条直线来变化。示例如下：</p>
 				<div class='example'>
 					<div class='code'>
-						&lt;svg><br>
-							&nbsp;&lt;defs><br>
-							    &nbsp;&nbsp;&lt;linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%"><br>
-							      &nbsp;&nbsp;&nbsp;&lt;stop offset="0%" stop-color='rgb(255,255,0)'stop-opacity='0.5' /><br>
-							      &nbsp;&nbsp;&nbsp;&lt;stop offset="100%" stop-color='rgb(255,0,0)'stop-opacity='1' /><br>
-							    &nbsp;&nbsp;&lt;/linearGradient><br>
-							&nbsp;&lt;/defs><br>
-							&nbsp;&lt;rect x="100" y="70" width="85" height="55" fill="url(#grad1)" /><br>
-						&lt;/svg>
+						<pre>
+&lt;svg height='100'>
+    &lt;defs>
+        &lt;linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            &lt;stop offset="0%" stop-color='rgb(255,255,0)'stop-opacity='0.5' />
+            &lt;stop offset="100%" stop-color='rgb(255,0,0)'stop-opacity='1' />
+        &lt;/linearGradient>
+    &lt;/defs>
+    &lt;rect x="50" y="50" width="85" height="35" fill="url(#grad1)" />
+&lt;/svg>
+						</pre>
 					</div>
 					<div class='shape'>
-						<svg width='600'>
+						<svg height='100'>
 							<defs>
 							    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
 							      <stop offset="0%" stop-color='rgb(255,255,0)'stop-opacity='0.5' />
 							      <stop offset="100%" stop-color='rgb(255,0,0)'stop-opacity='1' />
 							    </linearGradient>
 							</defs>
-							<rect x="100" y="70" width="85" height="55" fill="url(#grad1)" />
+							<rect x="50" y="50" width="85" height="35" fill="url(#grad1)" />
 						</svg>
 					</div>
 				</div>
@@ -93,25 +92,27 @@
 				<p>放射性渐变是从焦点沿各个方向向外圈进行渐变。示例如下：</p>
 				<div class='example'>
 					<div class='code'>
-						&lt;svg><br>
-							&nbsp;&lt;defs><br>
-							    &nbsp;&nbsp;&lt;radialGradient id="grad2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%"><br>
-							      &nbsp;&nbsp;&nbsp;&lt;stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0" /><br>
-							      &nbsp;&nbsp;&nbsp;&lt;stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" /><br>
-							    &nbsp;&nbsp;&lt;/radialGradient><br>
-							&nbsp;&lt;/defs><br>
-							&nbsp;&lt;ellipse cx="200" cy="70" rx="85" ry="55" fill="url(#grad2)" /><br>
-						&lt;/svg>
+						<pre>
+&lt;svg>
+    &lt;defs>
+        &lt;radialGradient id="grad2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            &lt;stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0" />
+            &lt;stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+        &lt;/radialGradient>
+    &lt;/defs>
+    &lt;ellipse cx="120" cy="70" rx="85" ry="55" fill="url(#grad2)" />
+&lt;/svg>
+						</pre>
 					</div>
 					<div class='shape'>
-						<svg width='600'>
+						<svg>
 							<defs>
 							    <radialGradient id="grad2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
 							      <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0" />
 							      <stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
 							    </radialGradient>
 							</defs>
-							<ellipse cx="200" cy="70" rx="85" ry="55" fill="url(#grad2)" />
+							<ellipse cx="120" cy="70" rx="85" ry="55" fill="url(#grad2)" />
 						</svg>
 					</div>
 				</div>
@@ -130,14 +131,16 @@
 				<p>该元素可以用于在svg图形中创建链接，注意这里链接的属性变成了xlink:href。示例如下：</p>
 				<div class='example'>
 					<div class='code'>
-						&lt;svg><br>
-							&nbsp;&lt;a xlink:href='http://www.meituan.com' target='_blank'><br>
-								&nbsp;&nbsp;&lt;rect x='20' y='20' width='100' height='30' fill='blue' /><br>
-							&nbsp;&lt;/a><br>
-						&lt;/svg>
+						<pre>
+&lt;svg height='100'>
+    &lt;a xlink:href='http://www.meituan.com' target='_blank'>
+        &lt;rect x='20' y='20' width='100' height='30' fill='blue' />
+    &lt;/a>
+&lt;/svg>
+						</pre>
 					</div>
 					<div class='shape'>
-						<svg width='600'>
+						<svg height='100'>
 							<a xlink:href='http://www.meituan.com' target='_blank'>
 								<rect x='20' y='20' width='100' height='30' fill='blue' />
 							</a>
@@ -148,6 +151,18 @@
 			<li>
 				<h4>image元素</h4>
 				<p>该元素用于在你的SVG图像中嵌入普通的位图。</p>
+			</li>
+		</ul>
+		<h3>参考资料</h3>
+		<ul>
+			<li>
+				<a href="http://www.oxxostudio.tw/articles/201406/svg-08-text.html" target="_blank">SVG 研究之路 (8) - text 文字</a>
+			</li>
+			<li>
+				<a href="http://www.runoob.com/svg/svg-grad-linear.html" target="_blank">SVG 渐变 - 线性</a>
+			</li>
+			<li>
+				<a href="http://www.runoob.com/svg/svg-grad-radial.html" target="_blank">SVG 渐变- 放射性</a>
 			</li>
 		</ul>
 	</body>
