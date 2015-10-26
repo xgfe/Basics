@@ -4,7 +4,10 @@
         <meta charset="UTF-8">
         <title>The head Element</title>
         <style>
-            body { margin: 0 50px; }
+            body { 
+                margin: 0 50px;
+                font-family: "Times New Roman",Georgia,Serif;
+            }
             p, li { line-height: 30px; }
         </style>
     </head>
@@ -35,7 +38,8 @@
                     </li>
                     <li>
                         rel，规定当前文档与被链接文档间的关系，它的属性值很多，但只有stylesheet得到了所有浏览器支持。<br/>
-                        其上的属性值有alternate、stylesheet、start、next、prev、contents、index、glossary、copyright、chapter、section、subsection、appendix、help、bookmark。
+                        其上的属性值有alternate、stylesheet、start、next、prev、contents、index、glossary、copyright、chapter、section、subsection、appendix、help、bookmark。<br>
+                        其中有一个比较重要的属性值是prefetch。Link prefetching 是利用浏览器最佳的时间去下载或者预加载一些用户可能将会在不久将来浏览的文档的一种浏览器机制。
                     </li>
                     <li>
                         sizes，规定被链接资源的尺寸，只有当rel="icon"时，才能使用该属性。<br/>
@@ -98,6 +102,11 @@
             <li>
                 link标签<br/>
                 &lt;link rel="stylesheet" type="text/css" href="theme.css" /&gt;
+            </li>
+            <li>
+                link预加载<br>
+                &lt;link rel="prefetch" href="http://www.meituan.com" /&gt;<br>
+                &lt;link rel="prefetch" href="image.png" /&gt;
             </li>
             <li>
                 meta标签<br/>
