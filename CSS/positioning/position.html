@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>positioning(定位)属性知识点总结</title>
+    <style>
+        body {
+            font: 17px/1.5 georgia, simsun, arial;
+        }
+
+        h1 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* relative demo css */
+        .staticClas{
+            width: 200px;
+            height: 100px;
+            background: red;
+        }
+        .relativeCls{
+            position: relative;
+            left:20px;
+            top:20px;
+            background: blue;
+            width: 200px;
+            height: 100px;
+            color: white;
+        }
+        .relativeCls p {
+            white-space: pre-line;
+        }
+        li > span {
+            color: red;
+        }
+
+        /* absolute demo css */
+        .absolute-brand {
+            width: 70em;
+            height: 10em;
+            position: relative;
+            border:1px solid #ddd;
+        }
+        .absolute-tel{
+            position: absolute;
+            right: 1em;
+            bottom: 1em;
+            text-align:right;
+        }
+
+        /* fixed demo css */
+        .fixedDiv {
+            background-color: #f00;
+            position: fixed;
+            width: 200px;
+            height: 100px;
+            left: 50%;
+            top: 50%;
+            margin-left: -50px;
+            margin-top: -50px;
+        }
+        .fixedDiv p{
+            white-space: pre-line;
+        }
+
+        /* z-index demo css */
+        .z-parent {
+            position: relative;
+            height: 200px;
+        }
+        .z-div{
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            text-align: right;
+            color:white;
+        }
+        .z-div1 {
+            z-index: 1;
+            background: #000;
+        }
+        .z-div2 {
+            z-index: 2;
+            top: 70px;
+            left: 70px;
+            background: #C00;
+        }
+        .z-div1-sub {
+            top: 35px;
+            left: 35px;
+            background: #999;
+            z-index:100;
+        }
+        .z-div2-sub{
+            top: 35px;
+            left: 35px;
+            background: #008000;
+            z-index: 10;
+        }
+
+        /* clip demo css*/
+        .clip img
+        {
+            position:absolute;
+            clip:rect(auto 50px 20px auto) ;
+        }
+
+
+    </style>
+</head>
+<body>
+<h1>position</h1>
+<ol>
+    <li>含义:定义对象的定位方式</li>
+    <li>
+        <p>取值</p>
+        <ol>
+            <li>
+                <p>static:对象遵循常规流.top,right,left,bottom等属性不会被应用.</p>
+                <ul>
+                    <li>常规流中元素框的位置由元素所在HTML中的位置决定.</li>
+                </ul>
+            </li>
+            <li>
+                <p>relative:对象遵循常规流,并且参照自身在常规流中的位置通过 top,right,left,bottom属性进行偏移时不影响常规流中的任何元素.</p>
+                <ul>
+                    <li>如果对一个元素进行相对定位,它将出现在它所在的位置上,通过设置水平或者垂直位置使元素"相对于"它的起点移动.<span>使用相对定位,无论移动与否,它仍然占据原来的空间,移动元素会导致它覆盖其他框</span></li>
+                    <li>
+                        <div>
+                            <p>Demo</p>
+                            <div class="relativeCls">
+                                <p>
+                                    position: relative;
+                                    left:20px;
+                                    top:20px;
+                                </p>
+                            </div>
+                            <div class="staticClas"></div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>absolute:对象脱离常规流,使用top,right,left,bottom等属性进行绝对定位,盒子的偏移位置不影响常规流中的任何元素,其margin不与其他任何margin折叠.</p>
+                <ul>
+                    <li>绝对定位的元素的位置是相对于距离它最近的那个已定位的祖先元素确定的,如果元素没有已定位的祖先元素,那么它的位置是相对于初始包含块<span>根据用户代理的不同,初始包含块可能是画布或者HTML元素.</span></li>
+                    <li>绝对定位元素与文档流无关,因此它们不影响普通流中的框,如果扩大绝对定位的框,周围的框不会重新定位,因此,<span>尺寸的任何变化都会导致绝对定位的框产生重叠</span></li>
+                    <li>
+                        <div>
+                            <p>Demo</p>
+                            <div class="absolute-brand">
+                                <p class="absolute-tel">Tel: 185159474XX</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>fixed:对象脱离常规流,使用top,right,left,bottom等属性以窗口为参考点进行定位,当出现滚动条时,对象不会随着滚动.</p>
+                <ul>
+                    <li>固定定位是绝对定位的一种,差异在.于固定定位元素的包含块是视口(viewport).<span>可以创建总是出现在窗口中相同位置的浮动元素.</span></li>
+                    <li>IE6及以下版本不支持,IE7也只是部分支持.</li>
+                    <li>
+                        <div>
+                            <p>Demo</p>
+                            <div class="fixedDiv">
+                                <p>
+                                    demo:
+                                    position:fixed;
+                                    left:20px;
+                                    top:20px;
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>center:对象脱离常规流,使用top,right,left,bottom等属性指定盒子的位置或尺寸大小.盒子在其包含容器垂直水平居中.盒子的偏移位置不影响常规流中的任何元素,其margin不与其他任何margin折叠.（CSS3)(暂无浏览器支持)</p>
+            </li>
+            <li>
+                <p>page(css3)(暂无浏览器支持)</p>
+            </li>
+            <li>
+                <p>sticky:对象在常态时遵循常规流.它就像是「relative」和「fixed」的合体,当在屏幕中时按常规流排版,当卷动到屏幕外时则表现如「fixed」.该属性的表现是现实中你见到的吸附效果.如<a href="http://bj.meituan.com/deal/25827121.html?mtt=1.index%2Ffloornew.ip.1.ihq6rdtg">[美团商家位置]</a>的效果（CSS3）(部分浏览器支持)</p>
+            </li>
+        </ol>
+    </li>
+    <li>
+        <p>注意事项</p>
+        <ol>
+            <li>当 position的值为非static时,其层叠级别通过z-index属性定义.</li>
+            <li>绝对定位的元素,在top,right,left,bottom属性未设置时,会紧随在其前面的兄弟元素之后,但在位置上不影响常规流中的任何元素.</li>
+        </ol>
+    </li>
+</ol>
+
+<h1>z-index</h1>
+<ol>
+    <li>
+        <p>含义:检索或设置对象的层叠顺序.为元素指定沿着Z轴的值.</p>
+        <ol>
+            <li>在这个坐标系中有较高z-index值的元素比z-index值较低的元素离读者更近.</li>
+            <li>
+                <p>图例</p>
+                <ul>
+                    <li>
+                        <p>叠放概念视图</p>
+                        <img src="../img/z-index-1.png">
+                    </li>
+                    <li>
+                        <p>具体叠放</p>
+                        <img src="../img/z-index-2.png">
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </li>
+    <li>取值:auto(元素在当前层叠上下文中的层叠级别是0.元素不会创建新的局部层叠上下文,除非它是根元素的层叠上下文)|'integer'(可以为负值)li>
+    <li>适用对象:定位元素</li>
+    <li>注意点:如果存在父元素设置了z-index,子元素也设置了z-index.则依据父元素设置的z-index进行覆盖,并且子元素不会超出父优先级.</li>
+    <li>
+        <div >
+            <p>Demo</p>
+            <div class="z-parent">
+                <div class="z-div1 z-div">z-index:1
+                    <div  class="z-div1-sub z-div">z-index:100</div>
+                </div>
+                <div class="z-div2 z-div">z-index:2
+                    <div class="z-div2-sub z-div">z-index:10</div>
+                </div>
+            </div>
+        </div>
+    </li>
+</ol>
+
+<h1>clip</h1>
+<ol>
+    <li>含义:检索或设置对象的可视区域.区域外的部分是透明的.</li>
+    <li>
+        <p>取值</p>
+        <ol>
+            <li>auto:对象无剪切</li>
+            <li>rect(<number>|auto <number>|auto <number>|auto <number>|auto):依据上右下左的顺序提供自对象左上角(0,0)坐标计算的四个偏移数值,其中任何一个数值都可以用auto替换,即此边部剪切.</li>
+            <li>'上,左'方位的裁剪:从0开始剪裁直到设定值,即'上,左'方位的auto值等同于0；</li>
+            <li>'右,下'方位的裁剪:从设定值开始剪裁直到最右边和最下边,即 '右,下'方位的auto值为盒子的实际宽度和高度.</li>
+        </ol>
+    </li>
+    <li>适用对象:position设为absolute或fixed的元素.</li>
+    <li>注意:使用clip剪切掉的区域不可见.</li>
+    <li>
+        <div class="clip">
+            <p>Demo</p>
+            <ol>
+                <li>clip:rect(auto 50px 20px auto):上边不剪切,右边从左起第50个像素开始剪切直至最右边,下边从上起第20个像素开始剪切直至最底部,左边不剪切.</li>
+                <li>效果:剩余区域宽50px,高20px.</li>
+            </ol>
+            <p>clip 属性剪切了一幅图像:</p>
+            <p><img border="0" src="http://www.w3school.com.cn/i/eg_bookasp.gif" width="120" height="151"></p>
+        </div>
+    </li>
+</ol>
+</body>
+</html>
