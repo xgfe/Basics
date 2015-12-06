@@ -1,10 +1,24 @@
-
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>positioning(定位)属性知识点总结</title>
     <style>
+        body {
+            font: 17px/1.5 georgia, simsun, arial;
+        }
+
+        h1 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
         /* relative demo css */
         .staticClas{
             width: 200px;
@@ -57,6 +71,10 @@
         }
 
         /* z-index demo css */
+        .z-parent {
+            position: relative;
+            height: 200px;
+        }
         .z-div{
             position: absolute;
             width: 200px;
@@ -93,6 +111,8 @@
             position:absolute;
             clip:rect(auto 50px 20px auto) ;
         }
+
+
     </style>
 </head>
 <body>
@@ -209,7 +229,7 @@
     <li>
         <div >
             <p>Demo</p>
-            <div style="position: relative;">
+            <div class="z-parent">
                 <div class="z-div1 z-div">z-index:1
                     <div  class="z-div1-sub z-div">z-index:100</div>
                 </div>
@@ -247,6 +267,5 @@
         </div>
     </li>
 </ol>
-
 </body>
 </html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>float属性知识点总结</title>
+    <style>
+        body {
+            font: 17px/1.5 georgia, simsun, arial;
+        }
+
+        h1 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        li > span {
+            color: red;
+        }
+
+        /* float demo css */
+        .div-float {
+            width:100px;
+            height: 100px;
+            background-color: red;
+            margin:10px;
+        }
+        .parent{
+            width: 100%;
+            background-color: transparent;
+        }
+        .parent-1 {
+            height: 310px;
+        }
+        .parent-2 {
+            height: 210px;
+        }
+        .parent-3 {
+            height: 210px;
+        }
+        .parent-4 {
+            height: 210px;
+        }
+        .sub1-right {
+            float: right;
+        }
+        .sub1-left {
+            float: left;
+            background: blue;
+        }
+        .sub2 {
+            height: 150px;
+        }
+        .sub2-left {
+            float: left;
+        }
+        .sub3-left {
+            float: left;
+        }
+
+        .parent-w {
+            width:300px;
+        }
+
+        /* clear css demo */
+        .float-style {
+            width: 100px;
+            height: 100px;
+            float: right;
+            background: red;
+        }
+
+        .static-style {
+            width: 100px;
+            height: 100px;
+            background: green;
+            clear: right;
+        }
+        .float-style-1 {
+            width: 100px;
+            height: 100px;
+            float: right;
+            background: red;
+            margin-top: 10px;
+        }
+
+        .static-style-2 {
+            margin-top: 10px;
+            width: 100px;
+            height: 100px;
+            background: green;
+            float: left;
+        }
+
+        .parent-float {
+            border: 1px solid black;
+        }
+
+        /* 使用overflow清楚浮动 */
+        .clear-parent {
+            overflow: hidden;
+        }
+
+        /* 使用css方法清楚浮动 */
+        .float-left {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+        /*
+        * height:0,visibility:hidden(不希望新内容占据垂直空间或者在页面显示)
+        * display:block(被清理的元素在它们的顶外边距上添加了空间)
+        */
+        .clear:after {
+            content: ".";
+            height: 0;
+            visibility: hidden;
+            display: block;
+            clear: both;
+        }
+        .clear {
+            border: 1px solid #000000;
+        }
+
+        /* visibility demo css */
+        .hide {
+            visibility: hidden;
+        }
+
+        /* overflow demo css */
+        .overflow-scroll {
+            overflow: scroll;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>float</h1>
+    <ol>
+        <li>
+           <p>定义:指定对象是否以及如何浮动.</p>
+           <ul>
+               <li>浮动的框可以左右移动,直到它的外边缘碰到包含块或另一个浮动框的边缘.</li>
+               <li>如果包含块太窄无法容纳水平排列的3个浮动元素,那么其他浮动块向下滑动,只到有足够空间的地方.<span>如果浮动元素的高度不同,那么它们向下移动时可能会被其他浮动元素卡住.</span></li>
+           </ul>
+        </li>
+        <li> 取值: none(默认) | left | right.</li>
+        <li>
+            <p>注意点</p>
+            <ul>
+                <li>float在绝对定位和display为none时不生效.</li>
+                <li>如果浮动元素后面有一个文档流中的元素,那么这个元素的框会表现的像浮动根本不存在一样.但是,<span>框的文本内容会受浮动元素的影响,会移动以留出空间.</span></li>
+                <li>浮动框旁边的行框被缩短,从而给浮动元素留出空间,因此行框围绕浮动框架,<span>创建浮动框可以使文本可以围绕图像.</span></li>
+            </ul>
+        </li>
+        <div>
+            <p>Demo</p>
+            <h1>不浮动的框</h1>
+            <div class="parent div-float parent-1">
+                <div class="div-float">框1</div>
+                <div class="div-float">框2</div>
+                <div class="div-float">框3</div>
+            </div>
+            <h1>框1向右浮动</h1>
+            <div class="parent div-float parent-2">
+                <div class="sub1-right div-float">框1</div>
+                <div class="div-float">框2</div>
+                <div class="div-float">框3</div>
+            </div>
+            <h1>框1向左浮动:注意浮动元素margin不会和父margin合并,同时框1中的文字被浮动元素挤到下面显示</h1>
+            <div class="parent div-float parent-3">
+                <div class="sub1-left div-float">框1</div>
+                <div class="div-float">框2</div>
+                <div class="div-float">框3</div>
+            </div>
+            <h1>框1,2,3都向左浮动,且框1的高度高于2和3</h1>
+            <div class="parent parent-w div-float parent-4">
+                <div class="sub1-left sub2 div-float">框1</div>
+                <div class="sub2-left div-float">框2</div>
+                <div class="sub3-left div-float">框3</div>
+            </div>
+        </div>
+    </ol>
+
+    <h1>clear</h1>
+    <ol>
+        <li>
+            <p>定义:指出不允许有浮动的边.</p>
+            <ul>
+                <li>框的哪边不应该挨着浮动框(结合浮动中注意点理解).</li>
+                <li>对元素进行清理实际上是为前面的浮动元素留出了垂直空间.</li>
+                <div>
+                    <p>Demo</p>
+                    <div class="float-style"></div>
+                    <div class="static-style"></div>
+                    <h1>不使用clear:包裹div无高度</h1>
+                    <div class="parent-float">
+                        <div class="float-style-1"></div>
+                        <div class="static-style-2"></div>
+                    </div>
+                    <h1 style="clear: left">使用clear:包裹div有高度</h1>
+                    <div class="parent-float">
+                        <div class="float-style-1"></div>
+                        <div class="static-style-2"></div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </ul>
+        </li>
+        <li>取值: none(两边都可以有浮动,默认值)|both(不允许有浮动现象)|left(不不允许左边有浮动)|right(不允许右边有浮动).</li>
+        <li>
+            <p>清理浮动的方法(不增加额外标签)</p>
+            <ol>
+                <li>
+                    <p>应用值为hidden或auto的overflow属性有一个副作用,会自动清理包含的任何浮动元素.</p>
+                    <div>
+                        <p>Demo</p>
+                        <div class="parent-float clear-parent">
+                            <div class="float-style-1"></div>
+                            <div class="static-style-2"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <p>使用CSS的内容:结合after伪类和内容声明在指定的现有内容的末尾添加新的内容.</p>
+                    <div>
+                        <p>Demo</p>
+                        <div class="clear">
+                            <div class="float-left"></div>
+                            <p>clear 属性定义了元素的哪边上不允许出现浮动</p>
+                        </div>
+                    </div>
+                    <span>此方法对IE6以及更低版本不起作用,兼容ie需要使用下面代码</span>
+            <pre>
+&lt;!--[if IE]&gt;
+&lt;style type="text/css"&gt;
+    .clearfix {
+        zoom: 1;     /* triggers hasLayout */
+    }
+&lt;/style&gt;
+&lt;![endif]--&gt;
+            </pre>
+                </li>
+                <li>Javascript</li>
+                <li>css和js的本质是相同的,将它动态的添加到页面中,对于这两种方法需要指定进行清理的元素出现位置,并且需要添加一个类名.</li>
+            </ol>
+        </li>
+
+    </ol>
+
+    <h1>visibility</h1>
+    <ol>
+        <li>定义:设置或检索是否显示对象.</li>
+        <li>取值: visible(可见)|hidden(隐藏)|collapse(主要用来隐藏表格的行或列).</li>
+        <li>
+            <p>注意</p>
+            <ul>
+                <li>使用collapse隐藏的行或列能够被其他内容使用.对于表格外的其他对象,其作用等同于hidden.</li>
+                <li>与display属性不同,visibility属性设为hidden隐藏的对象仍占据的物理空间.</li>
+            </ul>
+        </li>
+        <div>
+            <p>Demo</p>
+            <div class="hide">设置为隐藏</div>
+            <div>上面有一个设置为隐藏的div</div>
+        </div>
+    </ol>
+
+    <h1>overflow</h1>
+    <ol>
+        <li>定义:检索或设置对象处理溢出内容的方式.复合属性.</li>
+        <li>
+            <p>取值</p>
+            <ul>
+                <p>visible:对溢出的内容不做处理,内容可能会超出容器.</p>
+                <p>hidden:隐藏溢出容器的内容且不出现滚动条.</p>
+                <p>scroll:隐藏溢出容器的内容,溢出的内容将以卷动滚动条的方式呈现.</p>
+                <p>auto:当内容没有溢出容器时不出现滚动条,当内容溢出容器时出现滚动条,按需出现滚动条.此为body对象和textarea的默认值.</p>
+                <p> paged-x(css3)| paged-y(css3)| paged-x-controls(css3)| paged-y-controls(css3)| fragments(css3)</p>
+            </ul>
+        </li>
+        <li>适用范围:块容器,伸缩盒容器,grid容器.</li>
+        <li>verflow的效果等同于overflow-x + overflow-y</li>
+        <li><a href="https://wiki.csswg.org/spec/page-view">关于CCS3新特性pages</a></li>
+        <div>
+            <p>Demo</p>
+            <div class="overflow-scroll">
+                <div>我有很多哦~</div>
+                <div>我有很多哦~</div>
+                <div>我有很多哦~</div>
+                <div>我有很多哦~</div>
+                <div>我有很多哦~</div>
+                <div>我有很多哦~</div>
+                <div>我有很多哦~</div>
+                <div>我有很多哦~</div>
+                <div>我有很多哦~</div>
+            </div>
+        </div>
+    </ol>
+    <h1>overflow-x</h1>
+    <div>定义:检索或设置对象处理横向溢出内容的方式.取值同overflow.</div>
+
+    <h1>overflow-y</h1>
+    <div>定义:检索或设置对象处理纵向溢出内容的方式.取值同overflow.</div>
+</body>
+</html>

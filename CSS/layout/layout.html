@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>常用布局</title>
+    <style>
+
+        /* 一列布局 css*/
+        .head,
+        .main,
+        .footer {
+            width: 960px;
+            margin: 0 auto;
+        }
+
+        .head {
+            background-color: #cccccc;
+            height: 160px;
+        }
+
+        .main {
+            background-color: #666666;
+            height: 600px;
+        }
+
+        .footer {
+            background-color: #999999;
+            height: 200px;
+        }
+
+        /* 单行两列布局 css */
+        #bodycenter {
+            width: 700px;
+            height: 1000px;
+            margin-right: auto;
+            margin-left: auto;
+            border: 1px solid red
+        }
+
+        .content-left {
+            float: left;
+            width: 280px;
+            height: 100%;
+            background: red;
+        }
+
+        .content-right {
+            float: right;
+            width: 420px;
+            height: 100%;
+            background: blue;
+        }
+
+        /* 三行两列布局 */
+        .header-3 {
+            width: 700px;
+            margin-right: auto;
+            margin-left: auto;
+            overflow: auto;
+            height:50px;
+            background:green
+        }
+        .bodycenter-3 {
+            width: 700px;
+            margin-right: auto;
+            margin-left: auto;
+            overflow: auto;
+            height:1000px;
+        }
+        .div1-3 {
+            float: left;
+            height:100%;
+            background:blue;
+            width: 280px;
+        }
+        .div2-3 {
+            float: right;
+            height:100%;
+            background:red;
+            width: 420px;
+        }
+        .footer-3{
+            width: 700px;
+            margin-right: auto;
+            margin-left: auto;
+            overflow: auto;
+            clear:both;
+            height:40px;
+            background:pink;
+        }
+
+        /* 三列布局:使用absolute css */
+        .wrapper {
+            width: 100%;
+            height: 1000px;
+            position: relative;
+        }
+
+        .left {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 120px;
+            height: 100%;
+            background: red;
+        }
+
+        .middle {
+            margin: 0px 120px;
+            height: 1000px;
+            background: green;
+        }
+
+        .right {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 120px;
+            height: 100%;
+            background: blue;
+        }
+
+        /* 三栏网页宽度自适应布局:absolute */
+        .left-a,
+        .right-a {
+            position: absolute;
+            top: 0;
+            width: 200px;
+            height: 100%;
+        }
+
+        .left-a {
+            left: 0;
+            background: #a0b3d6;
+        }
+
+        .right-a {
+            right: 0;
+            background: #a0b3d6;
+        }
+
+        .main-a {
+            margin: 0 200px;
+            background: #ffe6b8;
+            height: 100%;
+        }
+        .parent-a {
+            height: 500px;
+            position: relative;
+        }
+
+        /* 三栏网页宽度自适应布局:margin */
+        .main-m {
+            width: 100%;
+            height: 100%;
+            float: left;
+        }
+
+        .main-m .body-m {
+            margin: 0 210px;
+            background: #ffe6b8;
+            height: 100%;
+        }
+
+        .left-m, .right-m {
+            width: 200px;
+            height: 100%;
+            float: left;
+            background: #a0b3d6;
+        }
+
+        .left-m {
+            margin-left: -100%;
+        }
+
+        .right-m {
+            margin-left: -200px;
+        }
+
+        /* 三栏网页宽度自适应布局:自身浮动 */
+        .main-self {
+            height: 100%;
+            margin: 0 210px;
+            background: #ffe6b8;
+        }
+
+        .left-self, .right-self {
+            width: 200px;
+            height: 100%;
+            background: #a0b3d6;
+        }
+
+        .left-self {
+            float: left;
+        }
+
+        .right-self {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <h3>布局相关主要参考<a href="http://www.zhangxinxu.com/wordpress/2009/11/%E6%88%91%E7%86%9F%E7%9F%A5%E7%9A%84%E4%B8%89%E7%A7%8D%E4%B8%89%E6%A0%8F%E7%BD%91%E9%A1%B5%E5%AE%BD%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94%E5%B8%83%E5%B1%80%E6%96%B9%E6%B3%95">[张鑫旭]</a>对布局的讲解</h3>
+    <h1>一列剧中:使用margin:0 auto剧中</h1>
+    <div class="head"></div>
+    <div class="main"></div>
+    <div class="footer"></div>
+
+    <h1>单行两列布局:float布局</h1>
+    <div id="bodycenter">
+        <div class="content-left"></div>
+        <div class="content-right"></div>
+        <div style="clear:both;"></div>
+    </div>
+
+    <h1>三行两列布局:定高</h1>
+        <div class="header-3"></div>
+        <div class="bodycenter-3">
+            <div class="div1-3"></div>
+            <div class="div2-3"></div>
+        </div>
+        <div class="footer-3"></div>
+
+    <h1>三列布局:使用absolute(定高)</h1>
+    <div class="wrapper">
+        <div class="left"></div>
+        <div class="middle"></div>
+        <div class="right"></div>
+    </div>
+
+    <h1>三栏网页宽度自适应布局:左右两栏目宽度固定,中间拦宽度自适应－－absolute</h1>
+    <div class="parent-a">
+        <div class="left-a"></div>
+        <div class="main-a"></div>
+        <div class="right-a"></div>
+    </div>
+
+    <h1>三栏网页宽度自适应布局:左右两栏目宽度固定,中间拦宽度自适应－－margin负值法</h1>
+    <div class="parent-a">
+        <div class="main-m">
+            <div class="body-m"></div>
+        </div>
+        <div class="left-m"></div>
+        <div class="right-m"></div>
+    </div>
+
+    <h1>三栏网页宽度自适应布局:左右两栏目宽度固定,中间拦宽度自适应－－自身浮动法</h1>
+    <div class="parent-a">
+        <div class="left-self"></div>
+        <div class="right-self"></div>
+        <div class="main-self"></div>
+    </div>
+</body>
+</html>
