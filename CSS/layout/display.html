@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>display属性知识点总结</title>
+    <style>
+        body {
+            font: 17px/1.5 georgia, simsun, arial;
+        }
+
+        h1 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* display:none demo css*/
+        .no-set-div {
+            border: 1px solid blue;
+            height: 100px;
+        }
+        .noneCss {
+            display: none;
+            border: 1px solid red;
+            height: 100px;
+        }
+        .hiddenCss{
+            visibility: hidden;
+            border: 1px solid purple;
+            height: 100px;
+        }
+
+        /* display:inline & inline-block */
+        .inline-div{
+            display: inline;
+            width: 100px;
+            height: 100px;
+            border:1px solid blue;
+        }
+        .inline-block-div{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border:1px solid red;
+        }
+
+        /* table demo css */
+
+        .table {
+            display: table;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+        }
+
+        .table-caption {
+            display: table-caption;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        .table-column-group {
+            display: table-column-group;
+        }
+
+        .table-column {
+            display: table-column;
+            width: 100px;
+        }
+
+        .table-row-group {
+            display: table-row-group;
+        }
+
+        .table-row {
+            display: table-row;
+        }
+
+        .table-row-group .table-row:hover, .table-footer-group .table-row:hover {
+            background: #f6f6f6;
+        }
+
+        .table-cell {
+            display: table-cell;
+            padding: 0 5px;
+            border: 1px solid #ccc;
+        }
+
+        .table-header-group {
+            display: table-header-group;
+            background: #eee;
+            font-weight: bold;
+        }
+
+        .table-footer-group {
+            display: table-footer-group;
+        }
+
+        /* box demo css */
+        .default{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            border: 1px solid red;
+        }
+        .horizontal{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-orient:horizontal;
+        }
+        .vertical{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+        }
+        .inherit{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-orient:inherit;
+        }
+        .inline-axis{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-orient:inline-axis;
+        }
+        .block-axis{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-orient:block-axis;
+        }
+        .sectionOne{
+            background:orange;
+        }
+        .sectionTwo{
+            background:purple;
+        }
+        .sectionThree{
+            background:green;
+        }
+        .sectionFour{
+            background:red;
+        }
+        .start{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-pack:start;
+            -webkit-box-orient:vertical;
+            border:1px solid black;
+        }
+        .justify{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-pack:justify;
+            border:1px solid black;
+        }
+        .end{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-pack:end;
+            border:1px solid black;
+        }
+        .center{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-pack:center;
+            border:1px solid black;
+        }
+        .start-align{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-align:start;
+            border:1px solid black;
+        }
+        .end-align{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-align:end;
+            border:1px solid black;
+        }
+        .center-align{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-align:center;
+            border:1px solid black;
+        }
+        .baseline-align{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-align:baseline;
+            -webkit-box-orient:vertical;
+            border:1px solid black;
+        }
+        .stretch-align{
+            width:600px;
+            height:30px;
+            display:-webkit-box;
+            -webkit-box-align:stretch;
+            border:1px solid black;
+        }
+
+
+        /* flex demo css */
+        .sectionOne-flex{
+            background:orange;
+            -webkit-flex: 1;
+                    flex:2
+        }
+        .sectionTwo-flex{
+            background:purple;
+            -webkit-flex: 2;
+                    flex:2
+        }
+        .sectionThree-flex{
+            background:green;
+            -webkit-flex: 3;
+                    flex: 3;
+        }
+        .sectionFour-flex{
+            background:red;
+            -webkit-flex: none;
+                    flex:none;
+        }
+        .default-flex{
+            width:600px;
+            height:30px;
+            display:-webkit-flex;
+            display: flex;
+        }
+
+        /* flex 容器属性demo css */
+        .flex-layout{
+            display: flex;
+            display: -webkit-flex;
+        }
+        .direction-row{
+            flex-direction: row;
+            -webkit-flex-direction: row;
+        }
+        .direction-row-reverse{
+            flex-direction: row-reverse;
+            -webkit-flex-direction: row-reverse;
+        }
+        .direction-column{
+            flex-direction: column;
+            -webkit-flex-direction: column;
+        }
+        .direction-column-reverse{
+            flex-direction: column-reverse;
+            -webkit-flex-direction: column-reverse;
+        }
+        .wrap-no{
+            flex-wrap: nowrap;
+            -webkit-flex-wrap: nowrap;
+        }
+        .wrap-wrap{
+            flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
+        }
+        .wrap-wrap-reverse{
+            flex-wrap: wrap-reverse;
+            -webkit-flex-wrap: wrap-reverse;
+        }
+        .justify-start{
+            justify-content: flex-start;
+            -webkit-justify-content: flex-start;
+        }
+        .justify-end{
+            justify-content: flex-end;
+            -webkit-justify-content: flex-end;
+        }
+        .justify-center{
+            justify-content: center;
+            -webkit-justify-content: center;
+        }
+        .justify-space-bet{
+            justify-content: space-between;
+            -webkit-justify-content: space-between;
+        }
+        .justify-space-around{
+            justify-content: space-around;
+            -webkit-justify-content: space-around;
+        }
+        .items-start{
+            align-items: flex-start;
+            -webkit-align-items: flex-start;
+        }
+        .items-end{
+            align-items: flex-end;
+            -webkit-align-items: flex-end;
+        }
+        .items-center{
+            align-items: center;
+            -webkit-align-items: center
+        }
+        .items-baseline{
+            align-items: baseline;
+            -webkit-align-items: baseline
+        }
+        .stretch{
+            align-items: stretch;
+            -webkit-align-items: stretch
+        }
+        .content-start{
+            align-content: flex-start;
+            -webkit-align-content: flex-start;
+        }
+        .content-end{
+            align-content: flex-end;
+            -webkit-align-content: flex-end;
+        }
+        .content-center{
+            align-content: center;
+            -webkit-align-content: center;
+        }
+        .content-space-bet{
+            align-content: space-between;
+            -webkit-align-content: space-between;
+        }
+        .content-space-around{
+            align-content: space-around;
+            -webkit-align-content: space-around;
+        }
+        .parent-div{
+            width:100%;
+            height: 100px;
+            border: 1px solid red;
+        }
+        .parent-div-wrap{
+            width:200px;
+        }
+        .parent-div-justify{
+            width:800px;
+        }
+        .sub-div-1{
+            background: red;
+            flex:1;
+        }
+        .sub-div-2{
+            background: green;
+            flex:2;
+        }
+        .sub-div-3{
+            background: blue;
+            width: 100px;
+        }
+        .sub-div-4{
+            background: purple;
+            width: 100px;
+        }
+        .sub-div-5{
+            background: pink;
+            width: 100px;
+        }
+        .sub-div-6{
+            background: yellow;
+            width: 100px;
+        }
+
+        /* order demo css */
+        .order-parentDiv{
+            width: 1000px;
+            height: 200px;
+            border: 1px solid #000000;
+            display: flex;
+            display: -webkit-flex;
+        }
+        .orders-sub-div-1{
+            flex:1;
+            background: red;
+        }
+        .orders-sub-div-2{
+            flex:1;
+            background: blue;
+        }
+        .orders-sub-div-3{
+            flex:1;
+            background: green;
+        }
+        .order-sub-div-1{
+            order:4;
+        }
+        .order-sub-div-2{
+            order:1;
+        }
+        .order-sub-div-3{
+            order:2;
+        }
+
+    </style>
+    <script>
+        /** box demo js **/
+        function change(ele)
+        {
+            var orientEle = document.querySelector("#orient");
+            orientEle.className = ele.value;
+        }
+        function change_pack(ele)
+        {
+            var orientEle = document.querySelector("#pack");
+            orientEle.className = ele.value;
+        }
+        function change_align(ele)
+        {
+            var orientEle = document.querySelector("#align");
+            orientEle.className = ele.value;
+        }
+
+
+        /** flex 容器属性demo js **/
+        function change_direction(ele)
+        {
+            var directionEle = document.querySelector("#direction");
+            var cla = directionEle.className.match(/direction-\S+$/); // 类名匹配
+            var str = directionEle.className;
+            directionEle.className = str.replace(cla[0], ele.value); // 类名替换
+        }
+        function change_wrap(ele)
+        {
+            var wrapEle = document.querySelector("#wrap");
+            var cla = wrapEle.className.match(/wrap\S+/); // 类名匹配
+            var str = wrapEle.className;
+            wrapEle.className = str.replace(cla[0], ele.value); // 类名替换
+        }
+        function change_justify(ele)
+        {
+            var justifyEle = document.querySelector("#justify");
+            var cla = justifyEle.className.match(/justify\S+/); // 类名匹配
+            var str = justifyEle.className;
+            justifyEle.className = str.replace(cla[0], ele.value); // 类名替换
+        }
+
+        function change_items(ele)
+        {
+            var itemsEle = document.querySelector("#items");
+            var cla = itemsEle.className.match(/items\S+/); // 类名匹配
+            var str = itemsEle.className;
+            itemsEle.className = str.replace(cla[0], ele.value); // 类名替换
+        }
+        function change_content(ele)
+        {
+            var contentEle = document.querySelector("#content");
+            var cla = contentEle.className.match(/content\S+/); // 类名匹配
+            var str = contentEle.className;
+            contentEle.className = str.replace(cla[0], ele.value); // 类名替换
+        }
+
+        /** order demo js **/
+        function changeOrder(){
+            var order = document.getElementById("orderId");
+            var child = order.children;
+            for(var i=0 ;i<child.length; i++){
+                child[i].className = child[i].className + " " + child[i].getAttribute('data-class');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>display</h1>
+    <ol>
+        <li>定义:设置或检索对象是否及如何显示</li>
+        <li>
+            <p>取值</p>
+            <ol>
+                <li>
+                    <p>none:隐藏对象,不同于visibility:hidden,被隐藏的元素会从文档流中移除.因此display:none会引起重排.</p>
+                    <p>如果设置display:none,则float和position不再生效.</p>
+                    <div>
+                        <p>Demo</p>
+                        <div class="noneCss"></div>
+                        <div class="hiddenCss"></div>
+                        <div class="no-set-div">上面两个div分别使用了一次display:none和一次visibility:hidden</div>
+                    </div>
+                </li>
+                <li>inline:指定对象为内联元素.行内元素不会在之前或者之后生成"行分隔符".</li>
+                <li> block:指定对象为块级元素.块级元素在正常流中,会在其框之前和之后生成"换行",在正常流中会计元素会垂直摆放.</li>
+                <li>list-item:指定对象为列表项目</li>
+                <li>inline-block:指定元素为内联块元素.与inline的区别为可以设置宽和高.</li>
+                <div>
+                    <p>Demo</p>
+                    <div class="inline-div"></div>
+                    <div class="inline-block-div">inline-block-div</div>
+                </div>
+                <h2>table类</h2>
+                <li>table:指定对象作为块级元素的表格,其他相应的HTML元素为table.</li>
+                <li>inline-table:指定对象作为一个行内元素的表格,定义了一个生成行内框的矩形块.与之接近的HTML元素为table,但是默认情况下table不是行内元素.</li>
+                <li>table-caption:指定对象作为表格标题.CSS没有明确定义如果多个元素的display值都设置为table-caption会怎样,但是警告"创作人员不要再一个表或行内表元素中放多个display:table-caption的元素".相应的HTML元素为caption元素.</li>
+                <li>table-cell:指定对象作为表单元格.HTML元素th和td都属于table-cell元素</li>
+                <li>table-cell:</li>
+                <li>table-row:指定对象作为表格行.相应的HTML元素为tr.</li>
+                <li>table-row-group:指定对象为一个或多个行的组,相应的HTML元素为tbody</li>
+                <li>table-column:指定对象作为表格列.相应的HTML元素为col元素.</li>
+                <li>table-column-group:指定对象作为表格一个或者多个列的组.相应的HTML元素为colgroup元素</li>
+                <li>table-footer-group:指定对象作为表格脚注组.相应的HTML元素为tfoot元素.</li>
+                <li>table-header-group:指定对象作为表格标题组,类似table-row-group,只是视觉格式化方面有所不同,标题行组总是在其他行和行组之前显示.相应的HTML元素为thead.</li>
+                <div>
+                    <p>Demo</p>
+                    <div class="table">
+                        <!--如果设置多个caption,则会依次显示,而且无论放在table里面哪,它都会都在最前面显示 -->
+                        <h2 class="table-caption">花名册1:</h2>
+                        <!--主要用于样式设置 -->
+                        <div class="table-column-group">
+                            <div class="table-column"></div>
+                            <div class="table-column"></div>
+                            <div class="table-column"></div>
+                        </div>
+                        <!--如果设置多个header-group,则第一个遇到的header-group会放置在最前面,即caption下面,之后的按所在位置放 -->
+                        <div class="table-header-group">
+                            <ul class="table-row">
+                                <li class="table-cell">序号-1</li>
+                                <li class="table-cell">姓名-1</li>
+                                <li class="table-cell">年龄-1</li>
+                            </ul>
+                        </div>
+                        <!--如果设置多个footer-group,则第一个遇到的footer-group会放置在最后,之后的按所在位置放 -->
+                        <div class="table-footer-group">
+                            <ul class="table-row">
+                                <li class="table-cell">footer-1</li>
+                                <li class="table-cell">footer-1</li>
+                                <li class="table-cell">footer-1</li>
+                            </ul>
+                        </div>
+                        <div class="table-row-group">
+                            <ul class="table-row">
+                                <li class="table-cell">1</li>
+                                <li class="table-cell">John</li>
+                                <li class="table-cell">19</li>
+                            </ul>
+                        </div>
+                        <span class="table-caption">花名册2:</span>
+                        <div class="table-header-group">
+                            <ul class="table-row">
+                                <li class="table-cell">序号-2</li>
+                                <li class="table-cell">姓名-2</li>
+                                <li class="table-cell">年龄-2</li>
+                            </ul>
+                        </div>
+                        <div class="table-footer-group">
+                            <ul class="table-row">
+                                <li class="table-cell">footer-2</li>
+                                <li class="table-cell">footer-2</li>
+                                <li class="table-cell">footer-2</li>
+                            </ul>
+                        </div>
+                        <div class="table-row-group">
+                            <ul class="table-row">
+                                <li class="table-cell">1</li>
+                                <li class="table-cell">John</li>
+                                <li class="table-cell">19</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <h2>CSS3新增</h2>
+                <li>
+                    <p>run-in:根据上下文决定是内联对象还是块级对象</p>
+                    <p>在网上找到一篇英文,使用[demo](https://css-tricks.com/run-in/),但是还是没法验证(MDN上指出该值还只是试验性的值,不建议使用)</p>
+                </li>
+                <li>
+                    <ol>
+                        <li>box:将元素及其子直系子代加入弹性框模型.与flexbox的区别是:flexbox只适用于直系子代.</li>
+                        <li>
+                            <p>设置display:box之后可以设置一些用于框的样式.</p>
+                            <ol>
+                                <li>
+                                    <p>设置框的样式</p>
+                                    <ol>
+                                        <li>
+                                            <p> box-orient(设置子代如何排列): horizontal｜vertical｜inherit｜inline-axis(默认值)|block-axis</p>
+                                            <ul>
+                                                <li>inline-axis:沿着行内轴来排列子元素(映射为 horizontal).</li>
+                                                <li>block-axis:沿着块轴来排列子元素(映射为 vertical).</li>
+                                                <li>inherit:从父元素继承box-orient属性的值.</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <p>box-pack(设置沿box-orient轴的框排列方式,规定当框大于子元素的尺寸,在何处放置子元素):start|end|center|justify</p>
+                                            <ul>
+                                                <li>justify:在每个子元素之间分割多余的空间（首个子元素前和最后一个子元素后没有多余的空间）</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <p>box-align(设置框的子代在框中的排列方式):start｜end｜center｜baseline｜stretch</p>
+                                            <ul>
+                                                <li>这是一个与box-pack相对的方式排列.</li>
+                                                <li>baseline:从基线开始排列.</li>
+                                                <li>stretch:拉伸子元素以填充包含块.</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <p>设置子代框的样式</p>
+                                    <ol>
+                                        <li>box-flex(属性规定框的子元素是否可伸缩其尺寸):0(不具有弹性)｜任意整数.</li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>目前没有浏览器支持box属性以及相关box-XX属性Firefox 支持替代的 -moz-box- 属性.Safari、Opera 以及 Chrome 支持替代的 -webkit-box-属性.</li>
+                        <div>
+                            <p>Demo</p>
+                            <div>
+                                <h4>box-orient</h4>
+                                <article id="orient" class="default">
+                                    <section class="sectionOne">01</section>
+                                    <section class="sectionTwo">02</section>
+                                    <section class="sectionThree">03</section>
+                                </article>
+                                <div style="margin-top: 90px;">
+                                    <input type="radio" name="orient" value="horizontal" onClick="change(this)"/> horizontal
+                                    <input type="radio" name="orient" value="vertical" onClick="change(this)"/> vertical
+                                    <input type="radio" name="orient" value="inherit" onClick="change(this)"/> inherit
+                                    <input type="radio" name="orient" value="inline-axis" onClick="change(this)"/> inline-axis
+                                    <input type="radio" name="orient" value="block-axis" onClick="change(this)"/> block-axis
+                                </div>
+                                <h4>box-pack</h4>
+                                <article id="pack" class="default">
+                                    <section class="sectionOne">01</section>
+                                    <section class="sectionTwo">02</section>
+                                    <section class="sectionThree">03</section>
+                                    <section class="sectionFour">04</section>
+                                </article>
+                                <div>
+                                    <input type="radio" name="pack" value="start" onClick="change_pack(this)"/> start
+                                    <input type="radio" name="pack" value="end" onClick="change_pack(this)"/> end
+                                    <input type="radio" name="pack" value="center" onClick="change_pack(this)"/> center
+                                    <input type="radio" name="pack" value="justify" onClick="change_pack(this)"/> justify
+                                </div>
+                                <h4>box-align</h4>
+                                <article id="align" class="default">
+                                    <section class="sectionOne">01</section>
+                                    <section class="sectionTwo">02</section>
+                                    <section class="sectionThree">03</section>
+                                    <section class="sectionFour">04</section>
+                                </article>
+                                <div>
+                                    <input type="radio" name="align" value="start-align" onClick="change_align(this)"/> start
+                                    <input type="radio" name="align" value="end-align" onClick="change_align(this)"/> end
+                                    <input type="radio" name="align" value="center-align" onClick="change_align(this)"/> center
+                                    <input type="radio" name="align" value="baseline-align" onClick="change_align(this)"/> baseline
+                                    <input type="radio" name="align" value="stretch-align" onClick="change_align(this)"/> stretch
+                                </div>
+                                <h4>box-flex:01设置为1,02设置为3,03设置为0</h4>
+                                <article  class="default">
+                                    <section class="sectionOne" style="-webkit-box-flex: 1">01</section>
+                                    <section class="sectionTwo"  style="-webkit-box-flex: 3">02</section>
+                                    <section class="sectionThree">03</section>
+                                </article>
+                                <h4>box-flex:01设置为600px,02设置为3,03设置为1,04设置为0(总宽度600px;)</h4>
+                                <article class="default">
+                                    <section class="sectionOne" style="width: 700px;" >01</section>
+                                    <section class="sectionTwo"  style="-webkit-box-flex: 3">02</section>
+                                    <section class="sectionThree"  style="-webkit-box-flex: 1">03</section>
+                                    <section class="sectionThree"  style="-webkit-box-flex: 0;color: red">04</section>
+                                </article>
+                            </div>
+                        </div>
+                    </ol>
+                </li>
+                <li>inline-box(伸缩盒老版本):将对象作为内联块级弹性伸缩盒显示.</li>
+                <li>
+                    <p>flexbox== 这一功能等同于(display:box;设置子box-flex)(伸缩盒过渡版本)</p>
+                    <ol>
+                        <li>弹性盒布局,设置元素为display:flex则其变成弹性容器.</li>
+                        <li>给子框设置伸缩尺寸:flex:none|整数.</li>
+                    </ol>
+                </li>
+                <li>inline-flexbox(伸缩盒过渡版本):将对象作为内联块级弹性伸缩盒显示.</li>
+                <li>
+                    <p>flex(伸缩盒最新版本):将对象作为弹性伸缩盒显示.任何一个容器都可以指定为Flex布局.</p>
+                    <ol>
+                        <li> 设为Flex布局以后,子元素的float、clear和vertical-align属性将失效.采用Flex布局的元素,成为Flex容器,简称"容器",它的所有子元素自动成为容器成员,称为Flex项目(Flex item),简称"项目".</li>
+                        <li>容器默认存在两根轴:水平的主轴（main axis）和垂直的交叉轴（cross axis）.主轴的开始位置（与边框的交叉点）叫做main start,结束位置叫做main end；交叉轴的开始位置叫做cross start,结束位置叫做cross end.项目默认沿主轴排列.单个项目占据的主轴空间叫做main size,占据的交叉轴空间叫做cross size.</li>
+                        <li>父元素设置display:flex,而子元素可以使用固定宽度,也可以使用flex属性设置所占比例.</li>
+                        <div>
+                            <p>Demo</p>
+                            <article class="default-flex">
+                                <section class="sectionOne-flex" >01</section>
+                                <section class="sectionTwo-flex">02</section>
+                                <section class="sectionThree-flex">03</section>
+                                <section class="sectionFour-flex">04</section>
+                            </article>
+                        </div>
+                        <li>
+                            <p>容器的属性</p>
+                            <ol>
+                                <li>
+                                    <p>flex-direction</p>
+                                    <ol>
+                                        <li>含义:决定主轴的方向(即项目的排列方向)</li>
+                                        <li>
+                                            <p>取值</p>
+                                            <ol>
+                                                <li>row(默认值):主轴为水平方向,起点在左端.</li>
+                                                <li>row-reverse:主轴为水平方向,起点在右端.</li>
+                                                <li>column:主轴为垂直方向,起点在上沿.</li>
+                                                <li>column-reverse:主轴为垂直方向,起点在下沿.</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <p>flex-wrap</p>
+                                    <ol>
+                                        <li> 含义:默认情况下,项目都排在一条线(又称"轴线")上,flex-wrap的属性定义,如果一条轴线排不下,如何换行.</li>
+                                        <li>
+                                            <p>取值</p>
+                                            <ol>
+                                                <li>nowrap(默认):不换行.</li>
+                                                <li>wrap:换行,第一行在上方.</li>
+                                                <li>wrap-reverse:换行,第一行在下方.</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <p>flex-flow</p>
+                                    <ol>
+                                        <li>含义:flex-direction属性和flex-wrap属性的简写形式,默认值为row nowrap.</li>
+                                        <li>
+                                            <p>取值</p>
+                                            <ol>
+                                                <li>flex-flow:'lex-direction' || 'flex-wrap'</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <p>justify-content</p>
+                                    <ol>
+                                        <li>含义:定义了项目在主轴上的对齐方式.</li>
+                                        <li>
+                                            <p>取值</p>
+                                            <ol>
+                                                <li>flex-start(默认值):左对齐.</li>
+                                                <li>flex-end:右对齐.</li>
+                                                <li>center:居中.</li>
+                                                <li>space-between:两端对齐,项目之间的间隔都相等.</li>
+                                                <li>space-around:每个项目两侧的间隔相等.所以,项目之间的间隔比项目与边框的间隔大一倍.</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <p>align-items</p>
+                                    <ol>
+                                        <li>含义:定义项目在交叉轴上如何对齐</li>
+                                        <li>
+                                            <p>取值</p>
+                                            <ol>
+                                                <li>flex-start:交叉轴的起点对齐.</li>
+                                                <li>flex-end:交叉轴的终点对齐.</li>
+                                                <li>center:交叉轴的中点对齐.</li>
+                                                <li>baseline:项目的第一行文字的基线对齐.</li>
+                                                <li>stretch(默认值):如果项目未设置高度或设为auto,将占满整个容器的高度.</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <p>align-content</p>
+                                    <ol>
+                                        <li>含义:定义了多根轴线的对齐方式.如果项目只有一根轴线,该属性不起作用.</li>
+                                        <li>
+                                            <p>取值</p>
+                                            <ol>
+                                                <li>flex-start:与交叉轴的起点对齐.</li>
+                                                <li>flex-end:与交叉轴的终点对齐.</li>
+                                                <li>center:与交叉轴的中点对齐.</li>
+                                                <li>space-between:与交叉轴两端对齐,轴线之间的间隔平均分布.</li>
+                                                <li>space-around:每根轴线两侧的间隔都相等.所以,轴线之间的间隔比轴线与边框的间隔大一倍.</li>
+                                                <li>stretch(默认值):轴线占满整个交叉轴.</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <div>
+                                    <p>Demo</p>
+                                    <div id="direction" class="parent-div flex-layout direction-row">
+                                        <div class="sub-div-1">1</div>
+                                        <div class="sub-div-2">2</div>
+                                        <div class="sub-div-3">3</div>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="direction" value="direction-row" onclick="change_direction(this)"/> row
+                                        <input type="radio" name="direction" value="direction-row-reverse" onclick="change_direction(this)"/> row-reverse
+                                        <input type="radio" name="direction" value="direction-column" onclick="change_direction(this)"/> column
+                                        <input type="radio" name="direction" value="direction-column-reverse" onclick="change_direction(this)"/> column-reverse
+                                    </div>
+                                    <div id="wrap" class="parent-div flex-layout wrap-no parent-div-wrap">
+                                        <div class="sub-div-4">4</div>
+                                        <div class="sub-div-5">5</div>
+                                        <div class="sub-div-6">6</div>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="wrap" value="wrap-no" onclick="change_wrap(this)"/> nowrap
+                                        <input type="radio" name="wrap" value="wrap-wrap" onclick="change_wrap(this)"/> wrap
+                                        <input type="radio" name="wrap" value="wrap-wrap-reverse" onclick="change_wrap(this)"/> wrap-reverse
+                                    </div>
+                                    <div id="justify" class="parent-div flex-layout justify-start parent-div-justify">
+                                        <div class="sub-div-3">1</div>
+                                        <div class="sub-div-4">2</div>
+                                        <div class="sub-div-5">3</div>
+                                    </div>
+                                    <div >
+                                        <input type="radio" name="justify" value="justify-start" onclick="change_justify(this)"/> justify-start
+                                        <input type="radio" name="justify" value="justify-end" onclick="change_justify(this)"/> justify-end
+                                        <input type="radio" name="justify" value="justify-center" onclick="change_justify(this)"/> center
+                                        <input type="radio" name="justify" value="justify-space-bet" onclick="change_justify(this)"/> space-between
+                                        <input type="radio" name="justify" value="justify-space-around" onclick="change_justify(this)"/> space-around
+                                    </div>
+                                    <div id="items" class="parent-div flex-layout items-start">
+                                        <div class="sub-div-1">1</div>
+                                        <div class="sub-div-2">2</div>
+                                        <div class="sub-div-3">3</div>
+                                    </div>
+                                    <div >
+                                        <input type="radio" name="items" value="items-start" onclick="change_items(this)"/> flex-start
+                                        <input type="radio" name="items" value="items-end" onclick="change_items(this)"/> flex-end
+                                        <input type="radio" name="items" value="items-center" onclick="change_items(this)"/> center
+                                        <input type="radio" name="items" value="items-baseline" onclick="change_items(this)"/> baseline
+                                        <input type="radio" name="items" value="items-stretch" onclick="change_items(this)"/> stretch
+                                    </div>
+                                    <div id="content" class="parent-div flex-layout content-start">
+                                        <div class="sub-div-1">1</div>
+                                        <div class="sub-div-2">2</div>
+                                        <div class="sub-div-3">3</div>
+                                    </div>
+                                    <div >
+                                        <input type="radio" name="content" value="content-start" onclick="change_content(this)"/> justify-start
+                                        <input type="radio" name="content" value="content-end" onclick="change_content(this)"/> justify-end
+                                        <input type="radio" name="content" value="content-center" onclick="change_content(this)"/> center
+                                        <input type="radio" name="content" value="content-space-bet" onclick="change_content(this)"/> space-between
+                                        <input type="radio" name="content" value="content-space-around" onclick="change_content(this)"/> space-around
+                                    </div>
+                                </div>
+                            </ol>
+                        </li>
+                        <li>
+                            <p>项目属性</p>
+                            <ol>
+                                <li>
+                                    <p>order</p>
+                                    <ol>
+                                        <li>含义:定义项目的排列顺序.数值越小,排列越靠前,默认为0.</li>
+                                        <li>取值:integer</li>
+                                        <div>
+                                            <p>Demo</p>
+                                            <div id="orderId" class="order-parentDiv">
+                                                <div class="orders-sub-div-1" data-class="order-sub-div-1">1</div>
+                                                <div class="orders-sub-div-2" data-class="order-sub-div-2">2</div>
+                                                <div class="orders-sub-div-3" data-class="order-sub-div-3">3</div>
+                                            </div>
+                                            <div><span>1:order为4,2:order为1,3:order为2</span><button onclick="changeOrder()">修改order</button></div>
+                                        </div>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <p>flex-grow</p>
+                                    <ol>
+                                        <li>含义:定义项目的放大比例,默认值为0,即如果存在剩余空间也不会放大.</li>
+                                        <li>取值:integer</li>
+                                        <li>如果所有项目的flex-grow属性都为1,则它们将等分剩余空间(如果有的话).如果一个项目的flex-grow属性为2,其他项目都为1,则前者占据的剩余空间将比其他项多一倍.</li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <p>flex-shrink</p>
+                                    <ol>
+                                        <li>含义:flex-shrink属性定义了项目的缩小比例,默认为1,即如果空间不足,该项目将缩小.</li>
+                                        <li>取值:integer</li>
+                                        <li>如果所有项目的flex-shrink属性都为1,当空间不足时,都将等比例缩小.如果一个项目的flex-shrink属性为0,其他项目都为1,则空间不足时,前者不缩小.负值对该属性无效.</li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <p>flex-basis</p>
+                                    <ol>
+                                        <li>含义:定义了在分配多余空间之前,项目占据的主轴空间(main size).浏览器根据这个属性,计算主轴是否有多余空间.它的默认值为auto,即项目的本来大小.</li>
+                                        <li>取值:'length'|auto.</li>
+                                        <li>它可以设为跟width或height属性一样的值（比如350px）,则项目将占据固定空间.</li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <p>flex</p>
+                                    <ol>
+                                        <li>含义:flex属性是flex-grow, flex-shrink 和 flex-basis的简写,默认值为0 1 auto.后两个属性可选.</li>
+                                        <li>取值:none|['flex-grow' 'flex-shrink'? 'flex-basis']</li>
+                                        <li>快截值:auto(1 1 auto)和none(0 0 auto)</li>
+                                        <li> 推荐使用这个属性而不是单独写三个分离属性.</li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <p>align-self</p>
+                                    <ol>
+                                        <li>含义:允许单个项目有与其他项目不一样的对齐方式.可覆盖align-items属性.默认值为auto,表示继承父元素的align-items属性,如果没有父元素,则等同于stretch.</li>
+                                        <li>取值: auto | flex-start | flex-end | center | baseline | stretch</li>
+                                        <li>该属性可能取6个值,除了auto,其他都与align-items属性完全一致.</li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li>
+                <li>inline-flex(伸缩盒最新版本):将对象作为内联块级弹性伸缩盒显示.</li>
+            </ol>
+        </li>
+    </ol>
+</body>
+</html>
