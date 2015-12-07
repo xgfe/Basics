@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>尺寸</title>
+        <style>
+            body {
+                margin: 0 30px;
+                font-family: "Times New Roman", Georgia, Serif;
+            }
+            #box {
+                width: 316px;
+                height: 232px;
+            }
+            p {
+                text-indent: 2em;
+            }
+            .exampleForM {
+                list-style: none;
+            }
+            .exampleForM li {
+                float: left;
+                margin-right: 50px;
+            }
+            .exampleForM:after {
+                content: '.';
+                display: block;
+                width: 0;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+            .exampleForM li div {
+                background-color: turquoise;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>尺寸相关</h1>
+        <ul>
+            <li>
+                <h3>width属性</h3>
+                <p>该属性用于设置元素的宽度，在box-sizing属性值为content-box时，width为元素内容区的宽度，而当属性值为border-box时，width等于内容区宽度加padding加边框宽度。</p>
+                <p>默认值为auto，其计算值取决于其他属性；取值也可为长度值，不允许负值，如10px；或者为百分比，百分比参照其包含块的宽度进行计算，同样不允许负值。</p>
+            </li>
+            <li>
+                <h3>height属性</h3>
+                <p>该属性用于设置元素的高度，在box-sizing属性值为content-box时，height为元素内容区的高度，而当属性值为border-box时，height等于内容区高度加padding加边框宽度。</p>
+                <p>默认值为auto，和取auto的width一样，实际高度取决于其他属性；取值为长度值或者百分比，不允许负值。</p>
+            </li>
+            <li>
+                <h3>width、height注意点及示例</h3>
+                <ul>
+                    <li>
+                        <h4>注意点</h4>
+                        <p>对于img元素，当设置width(height)时，height(width)会自动根据图片的尺寸进行等比例缩放。</p>
+                    </li>
+                    <li>
+                        <h4>示例</h4>
+                        <div style="background-color: turquoise; width: 200px; height: 100px;">我的宽度是200px，高度是100px。</div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>min-width、max-width、min-height和max-height属性</h3>
+                <p>min-width定义元素的最小宽度，默认值为0，取值可为长度值或者百分比，均不允许负值。</p>
+                <p>max-width定义元素的最大宽度，默认值为none（即无最大宽度限制），取值可为长度值或者百分比，均不允许负值。</p>
+                <p>min-height定义元素的最小高度，默认值为0，取值可为长度值或者百分比，均不允许负值。</p>
+                <p>max-height定义元素的最大高度，默认值为none（即无最大高度限制），取值可为长度值或者百分比，均不允许负值。</p>
+            </li>
+            <li>
+                <h3>min-width、max-width、min-height和max-height注意点即示例</h3>
+                <ul>
+                    <li>
+                        <h4>注意点</h4>
+                        <p>如果min-width的值大于max-width的值，则max-width会自动以min-width的值作为自己的值。</p>
+                        <p>如果min-height的值大于max-height的值，则max-height会自动以min-height的值作为自己的值。</p>
+                    </li>
+                    <li>
+                        <h4>示例</h4>
+                        <ol class="exampleForM">
+                            <li>
+                                <div style="min-width: 200px; width: 100px; height: 100px;">我的width设置为100px，但是因为我的min-width设置为200px，所以我的实际宽度为200px。</div>
+                            </li>
+                            <li>
+                                <div style="max-width: 200px; width: 300px; height: 100px;">我的width设置为300px，但是因为我的max-width设置为200px，所以我的实际宽度为200px。</div>
+                            </li>
+                            <li>
+                                <div style="min-height: 100px; width: 200px; height: 50px;">我的height设置为50px，但是因为我的min-height设置为100px，所以我的实际高度为100px。</div>
+                            </li>
+                            <li>
+                                <div style="max-height: 100px; width: 200px; height: 200px;">我的height设置为200px，但是因为我的max-height设置为100px，所以我的实际高度为100px。</div>
+                            </li>
+                        </ol>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>min-width、max-width、min-height和max-height兼容IE方法</h3>
+                <p>因为这四个属性在IE6中不支持，所以需要针对IE6做兼容。</p>
+                <pre>
+        .min_width {
+            min-width: 300px;
+            _width: expression(document.body.clientWidth < 300 ? "300px" : "auto");
+        }
+
+        .max_width {
+            max-width: 600px;
+            _width: expression(document.body.clientWidth > 600 ? "600px" : "auto");
+        }
+
+        .min_height {
+            min-height: 300px;
+            _height: expression(this.scrollHeight < 300 ? "300px" : "auto");
+        }
+
+        .max_height {
+            max-height: 600px;
+            _height: expression(this.scrollHeight > 600 ? "600px" : "auto");
+        }
+
+        .min_and_max_width {
+            min-width: 300px;
+            max-width: 600px;
+            _width: expression(document.body.clientWidth > 600 ? "600px" : (document.body.clientWidth < 300 ? "300px" : "auto"));
+        }
+
+        .min_and_max_height {
+            min-height: 300px;
+            max-height: 600px;
+            _height: expression(this.scrollHeight > 600 ? "600px" : (this.scrollHeight < 300 ? "300px" : "auto"));
+        }
+                </pre>
+            </li>
+            <li>
+                <h3>参考链接</h3>
+                <ul>
+                    <li><a href="http://css.doyoe.com/">CSS参考手册</a></li>
+                    <li><a href="http://www.cnblogs.com/lch880/archive/2010/06/01/1749149.html">min-width、max-width、min-height、max-height在IE6下兼容的解决办法</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </body>
+</html>
