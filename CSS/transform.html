@@ -1,0 +1,458 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>CSS动画相关知识点</title>
+
+</head>
+<body>
+<h1>CSS动画相关知识点</h1>
+
+<h2>Transform</h2>
+
+<h3>transform</h3>
+
+<ul>
+<li>matrix:css中关于变换的操作都是由<code>matrix</code>和<code>matrix3d</code>实现的。前者是2D平面的移动，后者是3D变换。</li>
+</ul>
+
+
+<h4>transform</h4>
+
+<ul>
+<li><p>设置对检索对象的转换。其中分为2D Transform和3D Transform两部分。2D Transform取值具体如下：</p>
+
+<ol>
+<li> <code>matrix()</code>：以一个含6个值的(a,b,c,d,e,f)变换矩阵的形式制定一个2D变换，相当于直接应用[a,b,c,d,e,f]变换矩阵。</li>
+<li> <code>translate()</code>：指定对象的2D平移。第一个参数对应x轴，第二个参数对应y轴，若第二个参数没有，默认为0。</li>
+<li> <code>translateX()</code>：指定对象X轴（水平方向）的平移。</li>
+<li> <code>translateY()</code>：指定对象Y轴（垂直方向）的平移。</li>
+<li> <code>rotate()</code>：指定对象的2D旋转，需要先定义transform-origin属性。</li>
+<li> <code>scale()</code>：指定对象的2D缩放。第一个参数对应X轴，第二个参数对应Y轴。如果第二个参数未提供，则默认取第一个参数的值。Zoom是改变视图的显示大小，scale是改变图形尺寸的大小！</li>
+<li> <code>scalex()</code>：指定对象X轴的（水平方向）缩放。</li>
+<li> <code>scaley()</code>：指定对象Y轴的（垂直方向）缩放。</li>
+<li> <code>skew()</code>：指定对象的斜切扭曲。第一个参数对应X轴，第二个参数对应Y轴。如果第二个参数未提供，则默认为0。</li>
+<li>. <code>skewx()</code>：指定对象X轴的（水平方向）扭曲。</li>
+<li>. <code>scaley()</code>：指定对象Y轴的（垂直方向）扭曲。</li>
+</ol>
+</li>
+<li><p>3D Transform同理，具体取值如下：</p>
+
+<ol>
+<li> <code>matrix3d()</code>：以一个4x4矩阵的形式指定一个3D变换。</li>
+<li> <code>translate3d()</code>：指定对象的3D位移。第1个参数对应X轴，第2个参数对应Y轴，第3个参数对应Z轴，参数不允许省略。</li>
+<li> <code>translateZ()</code>：指定对象Z轴的平移。</li>
+<li> <code>rotate3d()</code>：指定对象的3D旋转角度，其中前3个参数分别表示旋转的方向x,y,z，第4个参数表示旋转的角度，参数不允许省略。</li>
+<li> <code>rotateX()</code>：指定对象在x轴上的旋转角度。</li>
+<li> <code>rotateY()</code>：指定对象在y轴上的旋转角度。</li>
+<li> <code>rotateZ()</code>：指定对象在z轴上的旋转角度。</li>
+<li> <code>scale3d()</code>：指定对象的3D缩放。第1个参数对应X轴，第2个参数对应Y轴，第3个参数对应Z轴，参数不允许省略。</li>
+<li> <code>scaley()</code>：指定对象Y轴的（垂直方向）缩放。</li>
+<li>. <code>scalez()</code>：指定对象的z轴缩放。</li>
+<li>. <code>perspective()</code>：指定透视距离。</li>
+</ol>
+</li>
+<li><p>transform几个值的先后问题：先旋转（改变坐标系），再通过translateZ进行定位。</p></li>
+</ul>
+
+
+<h5>matrix矩阵扩展</h5>
+
+<ul>
+<li><p>transform的<code>matrix()</code>是其他变换的基础，可以通过配置参数扩展为其他的变换。写法如下：</p>
+
+<pre><code>  transform: matrix(a,b,c,d,e,f);
+</code></pre>
+
+<p>  其对应的矩阵如下：</p>
+
+<p>  <img src="http://image.zhangxinxu.com/image/blog/201206/css-transforms-matrix3.gif" alt="matrix生成矩阵" /></p>
+
+<p>  则<code>初始坐标x,y</code>可以构成一个<code>3*1</code>的矩阵(x,y,1)，两个矩阵相乘，可以算出<code>变换后的坐标x',y'</code>,得出一个<code>3*1</code>的矩阵(x',y',1)。如下图所示：</p>
+
+<p>  <img src="http://image.zhangxinxu.com/image/blog/201206/css-transforms-matrix5.gif" alt="matrix矩阵乘法" /></p>
+
+<p>  此时，变换后的坐标即为 <code>x'= ax+ cy+ e, y'= bx+ dy +f</code>。</p></li>
+<li><p>因此，几个矩阵变换的转换如下：</p>
+
+<ol>
+<li> 平移： <code>transform: matrix(1, 0, 0, 1, tx, ty)</code> == <code>transform: translate(tx,ty)</code></li>
+<li> 缩放： <code>transform: matrix(sx, 0, 0, sy, 0, 0)</code> == <code>transform: scale(sx,sy)</code></li>
+<li> 旋转： <code>transform: matrix(cosθ,sinθ,-sinθ,cosθ,0,0)</code> == <code>transform: rotate(θ)</code></li>
+<li> 拉伸： <code>transform: matrix(1,tan(θy),tan(θx),1,0,0)</code> == <code>transform: skew(tx,ty)</code></li>
+</ol>
+</li>
+<li><p>matrix3d同理，为一个4*4的矩阵定义一个3D变换的序列。</p></li>
+</ul>
+
+
+<h5>scale和zoom的区别</h5>
+
+<ol>
+<li>zoom的缩放是相对于左上角的；scale的缩放是相对于transform-origin的</li>
+<li>zoom的缩放改变了元素占据的空间大小，scale缩放占据原始尺寸不变，页面布局不发生变化。</li>
+<li>zoom渲染图片比较锐利，scale渲染比较模糊。</li>
+<li>对文字的缩放规则不一样。zoom受限于最小12px中文大小限制，scale则是纯粹地图形进行比例控制。</li>
+<li>渲染的性能差异比较明显。由于zoom缩放会改变元素的真实大小，因此zoom改变会引起整个页面的重新渲染，scale只是在当前的元素上重绘。</li>
+<li>scale和zoom的缩放效果会叠加。</li>
+</ol>
+
+
+<p><a href="http://jsfiddle.net/psspdor5/">点我查看DEMO</a></p>
+
+<h4>坐标系统 transform-origin</h4>
+
+<ul>
+<li>transform旋转默认是绕着中心点进行旋转，也就是<code>transform-origin</code>对应的点，若对该属性重新设置的时候，矩阵相关计算的中心店也改变了，例如<code>-webkit-transform-origin: bottom left;</code>将坐标中心点移到左下角，<code>transform-origin: 50px 70px;</code>将坐标移动到距离左侧50px，顶部70px的地方。此时（30，30）为图中所示的点。</li>
+</ul>
+
+
+<p><img src="http://image.zhangxinxu.com/image/blog/201206/css-transforms-matrix4.png" alt="transform-origin" /></p>
+
+<ul>
+<li><p>有两个参数值，一个是横坐标，一个是纵坐标。如果只提供一个，将用于横坐标，纵坐标默认为50%。</p></li>
+<li><p>默认值为<code>50% 50%</code>,可以取值如下：</p>
+
+<ol>
+<li> <code>&lt;percentage&gt;</code>：百分比制定坐标，可以为负。</li>
+<li> <code>&lt;length&gt;</code>：用长度指定坐标，可以为负。</li>
+<li> <code>left</code>：指定原点的横坐标为left。</li>
+<li> <code>center</code>：指定原点的横坐标为center。</li>
+<li> <code>right</code>：指定原点的横坐标为right。</li>
+<li> <code>top</code>：指定原点的纵坐标为top。</li>
+<li> <code>center</code>：指定原点的纵坐标为center。</li>
+<li> <code>bottom</code>：指定原点的纵坐标为bottom。</li>
+</ol>
+</li>
+</ul>
+
+
+<h4>transform-style</h4>
+
+<ul>
+<li>指定某元素在三维空间内还是在平面内。若想改变变换元素所处的方式，需要在该元素的父元素上定义<code>transform-style</code>属性。取值上有<code>preserve-3d</code>和<code>flat</code>两个值。flat为默认值，表示所有子元素在2D平面呈现，preserve-3d表示在三维空间内。</li>
+</ul>
+
+
+<h4>perspective</h4>
+
+<ul>
+<li>指定观察者与[z=0]平面的距离，产生透视效果。[z>0]时比正常大，[z&lt;0]时比正常小。默认值为none，可以取长度值表示与[z=0]平面的距离，不允许负值。</li>
+<li><p>perspective有两种书写，一种是用在舞台元素上（该动画元素的父辈元素上），另一种是用在当前的动画元素上，与transform其他属性在一起。</p>
+
+<ol>
+<li> 舞台元素上：</li>
+</ol>
+
+
+<pre><code>.stage {
+  perspective: 600px;
+}
+</code></pre>
+
+<ol>
+<li> 当前动画元素上：</li>
+</ol>
+
+
+<pre><code>#stage .box {
+  transform: perspective(600px) rotateY(45deg);
+}
+</code></pre></li>
+</ul>
+
+
+<h4>perspective-origin</h4>
+
+<ul>
+<li>指定透视点的位置，该属性有两个数值，默认为center,center。如果提供一个，将用于横坐标，纵坐标将默认为center。</li>
+</ul>
+
+
+<p><img src="https://camo.githubusercontent.com/d9c4ab81054a95f36f6b41d3047298d29632124b/687474703a2f2f7365676d656e746661756c742e636f6d2f696d672f625670456350" alt="perspective、perspective-origin" /></p>
+
+<h4>backface-visibility</h4>
+
+<ul>
+<li>指定元素背面面向用户时是否可见。有两种取值，可见visible和不可见hidden，默认为visible。</li>
+<li>需要直接在该元素上定义<code>backface-visibility</code>属性，不能在其父元素上，因为该元素不可继承。</li>
+</ul>
+
+
+<p><a href="http://www.htmleaf.com/Demo/201504151687.html">demo(backface-visibility的应用)</a></p>
+
+<p><a href="http://www.meizu.com/products/pro5/summary.html">公司官网transform元素应用</a></p>
+
+<h2>Transition</h2>
+
+<h3>transition</h3>
+
+<ul>
+<li>检索或设置对象变换时的过渡。这是一个复合属性，顺序是<code>[ none | &lt;single-transition-property&gt; ] || &lt;time&gt; || &lt;single-transition-timing-function&gt; || &lt;time&gt;</code></li>
+<li>只有一个时间时，为transition-duration的定义，如果有两个的话，第二个为transition-delay的定义。</li>
+</ul>
+
+
+<h4>transition-property</h4>
+
+<ul>
+<li>检索或设置对象中的参与过渡的属性。默认值为all，默认为所有可以进行过渡的css属性，none表示不指定过渡的css属性，或者根据属性值单独指定。</li>
+</ul>
+
+
+<h4>transition-duration</h4>
+
+<ul>
+<li>检索或设置对象过渡的持续时间。</li>
+</ul>
+
+
+<h4>transition-timing-function</h4>
+
+<ul>
+<li><p>检索或设置对象中过渡的动画类型。默认为ease，有如下几种取值：</p>
+
+<ol>
+<li> <code>linear</code>：线性过渡。等同于贝塞尔曲线(0.0, 0.0, 1.0, 1.0)</li>
+<li> <code>ease</code>：平滑过渡。等同于贝塞尔曲线(0.25, 0.1, 0.25, 1.0)。</li>
+<li> <code>ease-in</code>：由慢到快。等同于贝塞尔曲线(0.42, 0, 1.0, 1.0)。</li>
+<li> <code>ease-out</code>：由快到慢。等同于贝塞尔曲线(0, 0, 0.58, 1.0)。</li>
+<li> <code>ease-in-out</code>：由慢到快再到慢。等同于贝塞尔曲线(0.42, 0, 0.58, 1.0)。</li>
+<li> <code>steps</code>：接受两个参数的步进函数。第一个参数必须为正整数，指定函数的步数。第二个参数取值可以是start或end，指定每一步的值发生变化的时间点。第二个参数是可选的，默认值为end。</li>
+<li> <code>step-start</code>：等同于 steps(1, start)。</li>
+<li> <code>step-end</code>：等同于 steps(1, end)。</li>
+<li> <code>cubic-bezier</code>：特定的贝塞尔曲线类型，4个数值需在[0, 1]区间内。</li>
+</ol>
+</li>
+</ul>
+
+
+<p><img src="http://www.w3.org/TR/2013/WD-css3-transitions-20130212/step.png" alt="step阶梯函数" /></p>
+
+<h4>transition-delay</h4>
+
+<ul>
+<li>指定对象过渡的延迟时间。</li>
+</ul>
+
+
+<h2>Animation</h2>
+
+<h3>animation</h3>
+
+<ul>
+<li>检索或设置对象所应用的动画特效。。这是一个复合属性，顺序是<code>&lt;single-animation-name&gt; || &lt;time&gt; || &lt;single-animation-timing-function&gt; || &lt;time&gt; || &lt;single-animation-iteration-count&gt; || &lt;single-animation-direction&gt; || &lt;single-animation-fill-mode&gt; || &lt;single-animation-play-state&gt;</code></li>
+<li>只有一个时间时，为animation-duration的定义，如果有两个的话，第二个为animation-delay的定义。</li>
+</ul>
+
+
+<h4>animation-name</h4>
+
+<ul>
+<li>检索或设置对象中的参与过渡的属性。检索或设置对象所应用的动画名称，必须与规则@keyframes配合使用，因为动画名称由@keyframes定义</li>
+</ul>
+
+
+<h4>animation-iteration-count</h4>
+
+<ul>
+<li>检索或设置对象动画的循环次数。默认值为1，当取infinite表示是无限循环。</li>
+</ul>
+
+
+<h4>animation-direction</h4>
+
+<ul>
+<li>检索或设置对象动画在循环中是否反向运动。默认值为normal，具体取值如下。</li>
+<li><ol>
+<li><code>normal</code>：正常方向</li>
+<li><code>reverse</code>：反方向运行</li>
+<li><code>alternate</code>：动画先正常运行再反方向运行，并持续交替运行</li>
+<li><code>alternate-reverse</code>：动画先反运行再正方向运行，并持续交替运行</li>
+</ol>
+</li>
+</ul>
+
+
+<h4>animation-play-state</h4>
+
+<ul>
+<li>检索或设置对象动画的状态。默认为running，运动状态，可设为paused为停止状态。</li>
+</ul>
+
+
+<h4>animation-fill-mode</h4>
+
+<ul>
+<li>检索或设置对象动画时间之外的状态。默认为none，取值具体含义如下。</li>
+<li><ol>
+<li><code>none</code>：不设置对象动画之外的状态</li>
+<li><code>forwards</code>：设置对象状态为动画结束时的状态</li>
+<li><code>backwards</code>：设置对象状态为动画开始时的状态</li>
+<li><code>both</code>：设置对象状态为动画结束或开始的状态</li>
+</ol>
+</li>
+</ul>
+
+
+<p><a href="http://dabblet.com/gist/1745856">animation中steps的应用</a></p>
+
+<h3>学习链接</h3>
+
+<p><a href="https://github.com/alvarto/blog/issues/1">前端中的变换矩阵</a></p>
+
+<p><a href="http://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%98%B5/">理解CSS3 transform中的Matrix(矩阵)</a></p>
+
+<p><a href="http://www.zhangxinxu.com/wordpress/2012/09/css3-3d-transform-perspective-animate-transition/">CSS3 3D transform变换</a></p>
+</body>
+</html>
