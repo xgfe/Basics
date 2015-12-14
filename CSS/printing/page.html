@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>page demo</title>
+<style>
+    @page{margin-left: 300px; size: A4 portrait;}
+    @page:first{size: A4 landscape; margin-left: 100px;}
+    @page:left{margin-left: 200px;}
+    div {page-break-after: always;}
+</style>
+</head>
+<body>
+    <p>这是答应测试，请通过cmd+p开启打印预览查看效果。</p>
+    <div>@page:first{size: A4 landscape; margin: 50px;}</div>
+    <div>@page:left{size: A4 portrait; margin: 100px;}</div>
+    <div>@page{size: A4 portrait; margin: 150px;}</div>
+</body>
+</html>
