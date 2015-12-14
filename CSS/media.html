@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>媒体查询 - CSS</title>
+<meta name="description" content="css媒体查询：media query">
+<meta name="keywords" content="CSS媒体查询 media query">
+<style>
+    .table {
+        margin-left: 2em;
+        line-height: 1.5;
+    }
+
+    .table th,
+    .table td {
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+    <h1>媒体查询</h1>
+    <h3>语法</h3>
+    <p>
+        &lt;media_query_list&gt;：[&lt;media_query&gt;[',' &lt;media_query&gt;]*]? 相当于or<br>
+        &lt;media_query&gt;：[only | not]? &lt;media_type&gt; [and &lt;expression&gt;]* | &lt;expression&gt; [and &lt;expression&gt;]* <br>
+        &lt;expression&gt;：'('&lt;media_feature&gt;[:&lt;value&gt;]?')' <br>
+    </p>
+    <h3>媒体查询的使用</h3>
+    <ul>
+        <li>
+            css样式中
+            <pre>
+    @media screen and (min-width: 320px){
+        ...
+    }
+            </pre>
+        </li>
+        <li>
+            @import url(...)后
+            <pre>
+    @import url(example.css) screen and (width:800px);
+            </pre>
+        </li>
+        <li>
+            link标签的media属性
+            <pre>
+    &lt;link media="screen and (min-width:400px) and (max-width:900px)" rel="stylesheet" href="example.css" /&gt;
+            </pre>
+        </li>
+    </ul>
+    <h3>媒体类型 Media Types</h3>
+    <table class="table" frame="box" rules="all">
+        <thead>
+            <tr>
+                <th>媒体类型</th>
+                <th>版本</th>
+                <th>兼容性</th>
+                <th>描述</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>aural</td>
+                <td>CSS2不推荐使用</td>
+                <td>Opera</td>
+                <td>用于语音和音乐合成器</td>
+            </tr>
+            <tr>
+                <td>braille</td>
+                <td>CSS2</td>
+                <td>Opera</td>
+                <td>用于触觉反馈设备</td>
+            </tr>
+            <tr>
+                <td>handheld</td>
+                <td>CSS2</td>
+                <td>Chrome,Safari,Opera</td>
+                <td>用于小型或手持设备</td>
+            </tr>
+            <tr>
+                <td>print</td>
+                <td>CSS2</td>
+                <td>所有浏览器</td>
+                <td>用于打印机</td>
+            </tr>
+            <tr>
+                <td>projection</td>
+                <td>CSS2</td>
+                <td>Opera</td>
+                <td>用于投影图像，如幻灯片</td>
+            </tr>
+            <tr>
+                <td>screen</td>
+                <td>CSS2</td>
+                <td>所有浏览器</td>
+                <td>用于计算机显示器</td>
+            </tr>
+            <tr>
+                <td>tty</td>
+                <td>CSS2</td>
+                <td>Opera</td>
+                <td>用于使用固定间距字符格的设备。如电传打字机和终端</td>
+            </tr>
+            <tr>
+                <td>tv</td>
+                <td>CSS2</td>
+                <td>Opera</td>
+                <td>用于电视类设备</td>
+            </tr>
+            <tr>
+                <td>embossed</td>
+                <td>CSS2</td>
+                <td>Opera</td>
+                <td>用于凸点字符（盲文）印刷设备</td>
+            </tr>
+            <tr>
+                <td>speech</td>
+                <td>CSS2</td>
+                <td>Opera</td>
+                <td>用于语音类型</td>
+            </tr>
+            <tr>
+                <td>all</td>
+                <td>CSS2</td>
+                <td>所有浏览器</td>
+                <td>用于所有媒体设备类型</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>媒体特性 Media Features</h3>
+    <table class="table" frame="box" rules="all">
+        <thead>
+            <tr>
+                <th>媒体特性</th>
+                <th>取值</th>
+                <th>接受min/max</th>
+                <th>描述</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/width.htm" class="g-color-css3-new">width</a>
+                </td>
+                <td>
+                    &lt;length&gt;
+                </td>
+                <td>yes</td>
+                <td>定义输出设备中的页面可见区域宽度</td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/height.htm" class="g-color-css3-new">height</a>
+                </td>
+                <td>
+                    &lt;length&gt;
+                </td>
+                <td>yes</td>
+                <td>定义输出设备中的页面可见区域高度</td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/device-width.htm" class="g-color-css3-new">device-width</a>
+                </td>
+                <td>
+                    &lt;length&gt;
+                </td>
+                <td>yes</td>
+                <td>定义输出设备的屏幕可见宽度</td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/device-height.htm" class="g-color-css3-new">device-height</a>
+                </td>
+                <td>
+                    &lt;length&gt;
+                </td>
+                <td>yes</td>
+                <td>定义输出设备的屏幕可见高度</td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/orientation.htm" class="g-color-css3-new">orientation</a>
+                </td>
+                <td>portrait | landscape</td>
+                <td>no</td>
+                <td>定义'height'是否大于或等于'width'。值portrait代表是，landscape代表否</td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/aspect-ratio.htm" class="g-color-css3-new">aspect-ratio</a>
+                </td>
+                <td>&lt;ratio&gt;</td>
+                <td>yes</td>
+                <td>定义'width'与'height'的比率</td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/device-aspect-ratio.htm" class="g-color-css3-new">device-aspect-ratio</a>
+                </td>
+                <td>&lt;ratio&gt;</td>
+                <td>yes</td>
+                <td>
+                    定义'device-width'与'device-height'的比率。如常见的显示器比率：4/3, 16/9, 16/10
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/color.htm" class="g-color-css3-new">color</a>
+                </td>
+                <td>
+                    &lt;integer&gt;
+                </td>
+                <td>yes</td>
+                <td>定义每一组输出设备的彩色原件个数。如果不是彩色设备，则值等于0</td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/color-index.htm" class="g-color-css3-new">color-index</a>
+                </td>
+                <td>
+                    &lt;integer&gt;
+                </td>
+                <td>yes</td>
+                <td>定义在输出设备的彩色查询表中的条目数。如果没有使用彩色查询表，则值等于0</td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/monochrome.htm" class="g-color-css3-new">monochrome</a>
+                </td>
+                <td>
+                    &lt;integer&gt;
+                </td>
+                <td>yes</td>
+                <td>定义在一个单色框架缓冲区中每像素包含的单色原件个数。如果不是单色设备，则值等于0</td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/resolution.htm" class="g-color-css3-new">resolution</a>
+                </td>
+                <td>&lt;resolution&gt;</td>
+                <td>yes</td>
+                <td>定义设备的分辨率。如：96dpi, 300dpi, 118dpcm</td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/scan.htm" class="g-color-css3-new">scan</a>
+                </td>
+                <td>progressive | interlace</td>
+                <td>no</td>
+                <td>定义电视类设备的扫描工序</td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank" href="http://css.doyoe.com/properties/media-queries/grid.htm" class="g-color-css3-new">grid</a>
+                </td>
+                <td>
+                    &lt;integer&gt;
+                </td>
+                <td>no</td>
+                <td>用来查询输出设备是否使用栅格或点阵。只有1和0才是有效值，1代表是，0代表否</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>参考</h3>
+    <ul>
+        <li>
+            <a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Media_queries#%E9%A2%9C%E8%89%B2%EF%BC%88color%EF%BC%89" target="_blank">CSS媒体查询</a>    
+        </li>
+    </ul>
+</body>
+</html>
