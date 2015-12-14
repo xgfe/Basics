@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>外补白(Margin)</title>
+        <style>
+            body {
+                margin: 0 30px;
+                font-family: "Times New Roman", Georgia, Serif;
+            }
+            p {
+                text-indent: 2em;
+            }
+            .container {
+                border: 1px solid #000;
+                display: inline-block;
+            }
+            .container div {
+                width: 200px;
+                height: 50px;
+                background-color: turquoise;
+            }
+            .group {
+                padding-left: 2em;
+            }
+            .group:after,
+            .nagative_example:after,
+            #percentGroup:after {
+                content: '.';
+                display: block;
+                width: 0;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+            .wrapper {
+                border: 1px solid #000;
+                float: left;
+                width: 150px;
+                height: 150px;
+                margin-right: 50px;
+            }
+            .wrapper1,
+            .wrapper2 {
+                -webkit-writing-mode: horizontal-tb;
+            }
+            .wrapper3,
+            .wrapper4 {
+                -webkit-writing-mode: vertical-lr;
+            }
+            .wrapper5,
+            .wrapper6 {
+                -webkit-writing-mode: vertical-rl;
+            }
+            .wrapper1,
+            .wrapper3,
+            .wrapper5 {
+                direction: ltr;
+            }
+            .wrapper2,
+            .wrapper4,
+            .wrapper6 {
+                direction: rtl;
+            }
+            .block {
+                /*margin: 10px 50px 100px 200px;*/
+                margin: auto;
+                width: 100px;
+                height: 100px;
+                background-color: turquoise;
+            }
+            .box {
+                width: 200px;
+                height: 200px;
+                float: left;
+                margin-right: 50px;
+                padding: 20px;
+                border: 1px solid #000;
+            }
+            .box .child1,
+            .box .child2 {
+                width: 70px;
+                height: 70px;
+            }
+            .child1 {
+                background-color: turquoise;
+            }
+            .child2 {
+                background-color: #9fe0f6;
+            }
+            #box1 .child1 {
+                margin-left: -20px;
+            }
+            #box2 .child1 {
+                margin-top: -20px;
+            }
+            #box3 .child1 {
+                margin-right: -20px;
+            }
+            #box4 .child1 {
+                margin-bottom: -20px;
+            }
+            #box1 div,
+            #box3 div {
+                float: left;
+            }
+            #nagative_example1 {
+                border: 1px solid #000;
+                padding: 5px 0;
+                list-style: none;
+            }
+            #nagative_example1 li {
+                border-left: 1px solid #000;
+                padding: 5px;
+                float: left;
+            }
+            #nagative_example1 li:nth-child(1) {
+                margin-left: -1px;
+            }
+            #nagative_example2 {
+                padding: 0;
+                list-style: none;
+                border-bottom: 1px solid #000;
+            }
+            #nagative_example2 li {
+                float: left;
+                padding: 5px;
+                border: 1px solid #000;
+                margin-bottom: -1px;
+            }
+            #nagative_example3 {
+                padding: 0;
+                list-style: none;
+                border: 1px solid #000;
+                margin-left: -15px;
+                margin-right: -15px;
+            }
+            #nagative_example3 li {
+                width: 25%;
+                box-sizing: border-box;
+                float: left;
+                padding: 5px 15px;
+                overflow: hidden;
+            }
+            #nagative_example4 {
+                list-style: none;
+                padding: 10px;
+                width: 1000px;
+                height: 100px;
+                border: 1px solid #000;
+            }
+            #nagative_example4 li:nth-child(1) {
+                width: 300px;
+                height: 100px;
+                background-color: turquoise;
+            }
+            #nagative_example4 li:nth-child(2) {
+                margin-left: 300px;
+                margin-top: -100px;
+                background-color: #9fe0f6;
+                width: 700px;
+                height: 100px;
+            }
+            #nagative_example5 {
+                width: 500px;
+                height: 200px;
+                border: 1px solid #000;
+                position: relative;
+            }
+            #nagative_example5 div {
+                width: 200px;
+                height: 100px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-top: -50px;
+                margin-left: -100px;
+                background-color: turquoise;
+            }
+            .percent_example {
+                border: 1px solid #000;
+                width: 400px;
+                height: 200px;
+                margin-right: 100px;
+                float: left;
+            }
+            .percent_example>div {
+                margin: 10%;
+                width: 200px;
+                height: 100px;
+                background-color: turquoise;
+            }
+            #percent_example1 {
+                writing-mode: horizontal-tb;
+                -webkit-writing-mode: horizontal-tb;
+            }
+            #percent_example2 {
+                writing-mode: vertical-lr;
+                -webkit-writing-mode: vertical-lr;
+            }
+            #foldExample {
+                border: 1px solid #000;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>外补白相关</h1>
+        <ul>
+            <li>
+                <h3>margin属性</h3>
+                <p>该属性用来设置元素四边上的外延边距。</p>
+                <p>其默认取值为auto（水平书写模式下，上边距和下边距计算值为0，左右边距的计算值取决于可用空间），也可取值为长度值或者百分比，正值负值均可，水平书写模式下百分比参照其包含块的width来计算。</p>
+                <p>如果提供4个参数值，则按上右下左(顺时针)的顺序作用于四边；如果提供3个参数，则第一个用于上边距，第二个用于左右边距，第三个用于下边距；如果提供2个参数，则第一个用于上下边距，第二个用于左右边距；如果提供1个参数，则作用于四边。</p>
+                <ul>
+                    <li>
+                        <h4>注意点</h4>
+                        <p>外边距始终是透明的。</p>
+                        <p>如果要设置非替代行内元素的上下边距，必须先让该元素成为块级或者内联块级元素再使用margin进行设置才有用。</p>
+                        <p>某些相邻(根据书写模式的不同可以是垂直方向或者水平方向)的margin会发生合并，该现象叫margin的折叠。</p>
+                    </li>
+                    <li>
+                        <h4>示例</h4>
+                        <div class="container">
+                            <div style="margin: 10px 20px 30px 40px;">我的上、右、下、左边距分别是10px、20px、30px和40px。</div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>margin-top、margin-right、margin-bottom和margin-left属性</h3>
+                <p>这四个属性可以对四个方向上的外边距进行单独的设置，其取值和注意点和margin属性类似，不再赘述。</p>
+            </li>
+            <li>
+                <h3>参考链接</h3>
+                <ul>
+                    <li><a href="http://css.doyoe.com/">CSS参考手册</a></li>
+                </ul>
+            </li>
+        </ul>
+        <h1>扩展</h1>
+        <p>margin属性是CSS基础中比较重要的一个属性，所以对其做以下扩展介绍。</p>
+        <ul>
+            <li>
+                <h3>书写模式对margin auto的影响</h3>
+                <p>当书写模式为水平书写模式时，margin取auto时，上下边距的计算值为0，左右边距为均分可用空间后的空间；而当书写模式为垂直书写模式时，margin取auto会让左右边距计算值为0，上下边距取可用空间均分后的空间。</p>
+                <div class="group">
+                    <div class="wrapper1 wrapper">
+                        <div class="block">陈五百</div>
+                    </div>
+                    <div class="wrapper2 wrapper">
+                        <div class="block">陈五百</div>
+                    </div>
+                    <div class="wrapper3 wrapper">
+                        <div class="block">陈五百</div>
+                    </div>
+                    <div class="wrapper4 wrapper">
+                        <div class="block">陈五百</div>
+                    </div>
+                    <div class="wrapper5 wrapper">
+                        <div class="block">陈五百</div>
+                    </div>
+                    <div class="wrapper6 wrapper">
+                        <div class="block">陈五百</div>
+                    </div>
+                </div>
+                <p style="clear: both;">上面示例的情况中前两种的书写模式（writing-mode）是水平书写模式，后四种的书写模式为垂直书写模式。第一、三、五种的文本流方向（direction）为从左到右，第二、四、六种的文本流方向为从右到左。</p>
+            </li>
+            <li>
+                <h3>margin取负值的使用场景</h3>
+                <p>一个在不同方向上的margin取负值，表现是有些许差异的。</p>
+                <div class="group">
+                    <div id="box1" class="box">
+                        <div class="child1">left:-20px</div>
+                        <div class="child2"></div>
+                    </div>
+                    <div id="box2" class="box">
+                        <div class="child1">top:-20px</div>
+                        <div class="child2"></div>
+                    </div>
+                    <div id="box3" class="box">
+                        <div class="child1">right:-20px</div>
+                        <div class="child2"></div>
+                    </div>
+                    <div id="box4" class="box">
+                        <div class="child1">bottom:-20px</div>
+                        <div class="child2"></div>
+                    </div>
+                </div>
+                <p style="clear: both;">如上图所示，四个大的div（黑色边框的）的padding为20px，小div的宽高均为70px，四个绿色的div分别设置了四个方向上的-20px的margin。可以看到，设置左边或上边的margin负值，会使元素本身向该方向移动，而设置右边或者下边的margin负值时，会使在该方向上和该元素靠近的元素向该元素拉近。</p>
+                <p>针对margin负值这样的特性，可以在一些特殊的场景来使用它来满足我们的技术实现的需求。</p>
+                <ul>
+                    <li>
+                        <h4>场景1</h4>
+                        <p>我们希望在一横排li中每个li之间都有一根竖线用来做隔离，一般的情况下我们给每个li都加一个左边框，但是这样第一个li的左边框就会显得多余。这时，我们可以给第一个li的margin-left设置为-1px，让它往左移动1px从而被遮住。</p>
+                        <ul id="nagative_example1" class="nagative_example">
+                            <li>嘿嘿嘿</li>
+                            <li>哈哈哈</li>
+                            <li>啊啊啊</li>
+                            <li>哦哦哦</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h4>场景2</h4>
+                        <p>有的时候为了制造tab的效果，还是会用ul包裹几个li(tab标签)，此时li的下边框会和ul的下边框重合，为了解决这样的问题，我们统一给li标签的margin-bottom设置为-1px。</p>
+                        <ul id="nagative_example2" class="nagative_example">
+                            <li>嘿嘿嘿</li>
+                            <li>哈哈哈</li>
+                            <li>啊啊啊</li>
+                            <li>哦哦哦</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h4>场景3</h4>
+                        <p>有的时候我们希望在同一行的某些分组的内容能够隔开一定的距离，可能就会给每个分组设置左右的padding，但是这样会导致最左边和最右边都会和容器有一个留白（这与我们的意志是相违背的，因为我们只想分组与分组之间有隔开的距离），这个时候我们可以给容器的左右margin均设置负值来抵消留白。绿色边框为我们的可视区域。</p>
+                        <div style="border: 1px solid turquoise; padding: 5px 0;">
+                            <ul id="nagative_example3" class="nagative_example">
+                                <li>嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿嘿</li>
+                                <li>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</li>
+                                <li>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</li>
+                                <li>哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>场景4</h4>
+                        <p>我们也可以用margin负值来做左右并排的布局。设想一下，两个div，如果把下面的div的margin-top设成上一个div的高度的负值，下面的那个div就会移动上去，这个时候再给下面这个div的margin-left设置上面那个div的宽度，这时他们就并排在了一起，并不需要设置float。</p>
+                        <ul id="nagative_example4">
+                            <li></li>
+                            <li>我的margin-left是300px，margin-top是-100px。</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h4>场景5</h4>
+                        <p>margin负值也可以用来实现元素水平垂直居中的效果，但前提是元素的宽高是已知的。将元素的position设成absolute，然后把top和left设成50%，最后将元素的margin-left和margin-top分别设成其宽高的一半的负值就可以实现这样的效果了。</p>
+                        <div id="nagative_example5">
+                            <div>
+                                width: 200px;<br/>
+                                height: 100px;<br/>
+                                margin-left: -100px;<br/>
+                                margin-top: -50px;
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>margin取百分比的“坑”</h3>
+                <p>当margin取百分比时，它是按照其包含块的宽度来做参照进行计算的，而不是水平方向上参照包含块宽度、垂直方向上参照包含块高度。这其中的原因是在排版中，水平方向上的长度是一定的，而垂直方向上的长度会随着内容的多少而进行扩展，如果是参照高度的话，margin就会随着高度的扩展而增大，这与排版的意图是相违背的。深一层次想，书写模式也会影响到margin取百分比时的参照，当书写模式为水平书写模式，margin百分比以包含块的宽度为参照，当书写模式为垂直书写模式时，margin百分比以包含块的高度为参照。</p>
+                <div id="percentGroup">
+                    <div id="percent_example1" class="percent_example">
+                        <div>包含块为水平书写模式，margin(10%)计算值为40px 40px 40px 40px。</div>
+                    </div>
+                    <div id="percent_example2" class="percent_example">
+                        <div>包含块为垂直书写模式，margin(10%)计算值为20px 20px 20px 20px。</div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <h3>margin的折叠</h3>
+                <p>margin的折叠是指，在某些特殊情况下，垂直相邻的margin会发生合并，俗称折叠。如下面的例子所示。</p>
+                <div id="foldExample">
+                    <div style="margin: 25px;">我的margin取值为25px</div>
+                    <div style="margin: 50px;">我的margin取值为50px</div>
+                </div>
+                <p>可以通过控制台看到，两个div中间最终的距离为50px，而不是75px。</p>
+                <p>margin的折叠发生在非浮动块级元素之间，同时发生合并的margin必须是相邻的，中间不能有诸如border、内容（如全角空格）的阻隔。</p>
+                <p>有些特例是不发生折叠的。</p>
+                <ul style="margin-left: 2em;">
+                    <li>浮动元素不与其他元素发生margin折叠；</li>
+                    <li>定义了overflow属性且值不畏visible（即创建了块级上下文）的块元素，不与其子元素发生margin折叠；</li>
+                    <li>绝对定位的元素不与元素发生margin折叠；</li>
+                    <li>根元素的margin不与元素发生margin折叠；</li>
+                    <li>元素之间有全角空格（不要忽视它，虽然看不见它，但是它却真实的作为内容存在着）阻隔的元素间不发生折叠。</li>
+                </ul>
+                <p>另，需要特别注意的是，不要以为margin的折叠只会发生在元素与元素之间，当一个元素没有内容时，它的margin-top和margin-bottom也是有可能折叠的。</p>
+                <p>除此之外，同margin取百分比一样，margin的折叠也是受书写模式的影响的，当书写模式为水平书写模式时，垂直方向上的margin有可能发生折叠，当书写模式为垂直书写模式时，水平方向的margin可能发生折叠。</p>
+            </li>
+            <li>
+                <h3>参考链接</h3>
+                <ul>
+                    <li><a href="http://blog.doyoe.com/2013/11/29/css/margin%E7%B3%BB%E5%88%97%E4%B9%8Bkeyword%20auto/">margin系列之keyword auto</a></li>
+                    <li><a href="http://segmentfault.com/a/1190000002409846">实用的margin负值</a></li>
+                    <li><a href="http://blog.doyoe.com/2013/11/30/css/margin%E7%B3%BB%E5%88%97%E4%B9%8B%E7%99%BE%E5%88%86%E6%AF%94/">margin系列之百分比</a></li>
+                    <li><a href="http://blog.doyoe.com/2013/12/04/css/margin%E7%B3%BB%E5%88%97%E4%B9%8B%E5%A4%96%E8%BE%B9%E8%B7%9D%E6%8A%98%E5%8F%A0/">margin系列之外边距折叠</a></li>
+                </ul>
+            </li>
+        </ul>
+    </body>
+</html>
