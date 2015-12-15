@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>内补白相关</title>
+        <style>
+            body {
+                margin: 0 30px;
+                font-family: "Times New Roman", Georgia, Serif;
+            }
+            p {
+                text-indent: 2em;
+            }
+            #padding_example {
+                display: inline-block;
+                padding: 10px 20px 30px 40px;
+                border: 1px solid #000;
+            }
+            #padding_example>div {
+                width: 100px;
+                height: 50px;
+                background-color: turquoise;
+            }
+            #wrapper {
+                margin-left: 2em;
+            }
+            #wrapper:after {
+                content: '.';
+                display: block;
+                width: 0;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+            .box {
+                width: 400px;
+                height: 250px;
+                border: 1px solid #000;
+                margin-right: 50px;
+                float: left;
+            }
+            .topBox {
+                background-color: turquoise;
+                margin: 30px;
+            }
+            .bottomBox {
+                background-color: #6ee4f2;
+                height: 100px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .child1 {
+                background-color: #93bef1;
+            }
+            .child2 {
+                background-color: #f1df9a;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>内补白相关</h1>
+        <ul>
+            <li>
+                <h3>padding属性</h3>
+                <p>该属性用来设置元素与元素内容之间的内边距。</p>
+                <p>其默认取值为0，也可取值为长度值或者百分比，均不允许负值。当取值为百分比时，计算值是参照包含块的宽度（水平书写模式下参照宽度，其他书写模式下参照高度）来得到的。</p>
+                <p>如果提供4个参数值，则按上右下左(顺时针)的顺序作用于四边；如果提供3个参数，则第一个用于上边距，第二个用于左右边距，第三个用于下边距；如果提供2个参数，则第一个用于上下边距，第二个用于左右边距；如果提供1个参数，则作用于四边。</p>
+                <ul>
+                    <li>
+                        <h4>注意点</h4>
+                        <p>padding和margin有所区别，当设置背景色时，背景色覆盖的范围会覆盖到padding的区域。</p>
+                        <p>如果要设置非替代行内元素的上下padding，则需要先把元素变为块级或者内联块级元素。</p>
+                    </li>
+                    <li>
+                        <h4>示例</h4>
+                        <p>下面的示例中，绿色div为外部div（带边框）的内容，绿色div与外部div的内边距依照上右下左的顺序分别为10px、20px、30px、40px。</p>
+                        <div id="padding_example">
+                            <div>我是属于内容的div</div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>padding-top、padding-right、padding-bottom和padding-left属性</h3>
+                <p>这四个属性可以对元素四个方向上的内边距进行单独的设置，其取值和注意点和padding属性类似，不再赘述。</p>
+            </li>
+            <li>
+                <h3>参考链接</h3>
+                <ul>
+                    <li><a href="http://css.doyoe.com/">CSS参考手册</a></li>
+                </ul>
+            </li>
+        </ul>
+        <h1>扩展</h1>
+        <p>时常在我们设计页面的时候，margin和padding都能够在视觉上达到同样的效果。To be margin or to be padding, that's a question.</p>
+        <p>padding的作用是用来隔绝元素和其中的内容，而margin的作用是用隔绝元素与元素之间的距离。同时，对于隔开子元素和父元素的距离这样的问题，如果用margin的话，很可能会因为意外出现的margin折叠而打乱了自己的原本的设计。</p>
+        <div id="wrapper">
+            <div class="box">
+                <div class="topBox">我是孩子1和孩子2的父节点的兄弟节点，我的margin是30px。</div>
+                <div class="bottomBox">
+                    <div class="child1" style="margin-top: 10px;">我是孩子1，为了隔开与父亲的距离，我的margin-top为10px。</div>
+                    <div class="child2">我是孩子2</div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="topBox">我是孩子1和孩子2的父节点的兄弟节点，我的margin是30px。</div>
+                <div class="bottomBox" style="padding-top: 10px;">
+                    <div class="child1">我是孩子1，为了隔开我和父亲的距离，我的父亲的padding-top为10px。</div>
+                    <div class="child2">我是孩子2</div>
+                </div>
+            </div>
+        </div>
+        <p>可以看到，上述左边的例子并没有达到想要的效果，因为这时候孩子1的父亲的兄弟节点的margin-bottom（30px）和孩子1的margin-top折叠了。所以，这时候用padding是更明智的选择。</p>
+        <h3>参考链接</h3>
+        <ul>
+            <li><a href="http://www.hicss.net/use-margin-or-padding/">用Margin还是用Padding</a></li>
+        </ul>
+    </body>
+</html>
