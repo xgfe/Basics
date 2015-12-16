@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>制表符的长度</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        .tab-size-4{
+            tab-size: 4;
+        }
+    </style>
+</head>
+<body>
+<h1>设置制表符的长度- tab-size</h1>
+<h2>取值说明</h2>
+<ul>
+    <li>&lt;integer&gt;：用整数值表示制表符长度。</li>
+    <li>&lt;length&gt;：长度值表示制表符长度</li>
+</ul>
+<h2>注意事项</h2>
+<ul>
+    <li>该属性的默认值是8，而不是4.</li>
+    <li>只有当<a href="./white-space.html">white-space</a>属性设置为pre或pre-wrap时，该属性才生效，不然的话空格符都会被合并，也就看不出效果了。</li>
+</ul>
+<h2>示例</h2>
+<pre class="tab-size-4">
+你站在桥上看风景，
+	看风景的人在楼上看你。
+明月装饰了你的窗子，
+	你装饰了别人的梦。
+</pre>
+<h2>兼容性</h2>
+<p>兼容性不是很好，IE不兼容，高级浏览器的高级版本才兼容。</p>
+</body>
+</html>

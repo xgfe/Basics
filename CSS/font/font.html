@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字体属性介绍</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+    </style>
+</head>
+<body>
+<h1>字体属性介绍-font</h1>
+<h2>语法</h2>
+<ul>
+    <li>font：[ [ <' <a href="./font-style.html">font-style</a> '> || <' <a href="./font-variant.html">font-variant</a> '> || <' <a href="./font-weight.html">font-weight</a> '> ]? <' <a href="./font-size.html">font-size</a> '> [ / <' <a href="../text/line-height.html">line-height</a> '> ]? <' <a href="./font-family.html">font-family</a> '> ] | caption | icon | menu | message-box | small-caption | status-bar</li>
+    <li>默认值：由各独立属性决定</li>
+    <li>适用于：所有元素</li>
+    <li>继承性：有</li>
+    <li>动画性：由各独立属性决定</li>
+    <li>计算值：由各独立属性决定</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>&lt;font-style&gt;：指定文本字体样式</li>
+    <li>&lt;font-variant&gt;：指定文本是否为小型的大写字母</li>
+    <li>&lt;font-weight&gt;：指定文本字体的粗细</li>
+    <li>&lt;font-size&gt;：指定文本字体尺寸(必须有) </li>
+    <li>&lt;line-height&gt;：指定文本字体的行高 </li>
+    <li>&lt;font-family&gt;：指定文本使用某个字体或字体序列(必须有)</li>
+    <li>caption：使用有标题的系统控件的文本字体（如按钮，菜单等） </li>
+    <li>icon：使用图标标签的字体 </li>
+    <li>menu：使用菜单的字体 </li>
+    <li>message-box：使用信息对话框的文本字体 </li>
+    <li>small-caption：使用小控件的字体 </li>
+    <li>status-bar：使用窗口状态栏的字体</li>
+</ul>
+<h2>示例</h2>
+<p style="font: 18px Simsun, arial">指定字体大小和字体: 18px Simsun, arial</p>
+<p style="font: italic 18px Simsun, arial">指定字体样式、大小和字体: italic 18px Simsun, arial</p>
+<p style="font: italic small-caps 18px Simsun, arial">指定字体样式、小型大写字母、大小和字体: italic small-caps 18px Simsun, arial</p>
+<p style="font: italic small-caps bold 18px Simsun, arial">指定字体样式、小型大写字母、粗细、大小和字体: italic small-caps bold 18px Simsun, arial</p>
+<p style="font: italic small-caps bold 18px/20px Simsun, arial">指定字体样式、小型大写字母、粗细、大小、行高和字体: italic small-caps bold 18px/20px Simsun, arial</p>
+<p style="font: caption">指定字体为 caption = normal normal normal normal 13px normal .HelveticaNeueDeskInterface-Regular</p>
+<p style="font: icon">指定字体为 icon = normal normal normal normal 13px normal .HelveticaNeueDeskInterface-Regular</p>
+<p style="font: menu">指定字体为 menu = normal normal normal normal 13px normal .HelveticaNeueDeskInterface-Regular</p>
+<p style="font: small-caption">指定字体为 small-caption = normal normal normal normal 11px normal .HelveticaNeueDeskInterface-Regular</p>
+<p style="font: status-bar">指定字体为 status-bar = normal normal normal normal 10px normal .HelveticaNeueDeskInterface-Regular</p>
+
+<h2>其他特性</h2>
+<p>1.相应的脚本特性为font,即通过<code>el.style.font</code>即可设置或获取字体</p>
+<h2>兼容性</h2>
+<p>所有浏览器均支持该属性</p>
+<h2>需要注意的点</h2>
+<ul>
+    <li>
+        font是一个复合属性，但是至少需要两个独立属性，font-size和font-family
+    </li>
+</ul>
+</body>
+</html>

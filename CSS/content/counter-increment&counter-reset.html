@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计数器</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        ol{
+            list-style: none;
+        }
+        .demo1 li:before{
+            content:counter(test)":";
+        }
+        .demo1 li{
+            counter-increment:test 2;
+        }
+        .demo2 li{
+            content:counter(test2)":";
+            counter-reset: test2 20;
+        }
+        .demo2 li:before{
+            content:counter(test2)":";
+        }
+    </style>
+</head>
+<body>
+<h1>设置计数器- counter-increment/counter-reset</h1>
+<h2>取值</h2>
+<h3>counter-increment/counter-reset</h3>
+<ul>
+    <li>none：阻止计数器增加</li>
+    <li>&lt;identifier&gt;：identifier定义一个或多个将被增加的selector，id，或者class</li>
+    <li>&lt;integer&gt;：定义计算器每次增加的数值或复位的数值，可以为负值</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>1.counter-increment是设置在元素属性里的，而counter-reset是设置到元素的伪元素里；</li>
+</ul>
+<h2>示例</h2>
+<ol class="demo1">
+    <li>列表项</li>
+    <li>列表项</li>
+    <li>列表项</li>
+</ol>
+<ol class="demo2">
+    <li>列表项</li>
+    <li>列表项</li>
+    <li>列表项</li>
+</ol>
+</body>
+</html>

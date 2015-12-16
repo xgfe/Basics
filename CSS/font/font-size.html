@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字体大小属性介绍</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+    </style>
+</head>
+<body>
+<h1>字体大小属性介绍-font-size</h1>
+<h2>语法</h2>
+<ul>
+    <li>font-size：&lt;absolute-size&gt; | &lt;relative-size&gt; | &lt;length&gt; | &lt;percentage&gt;</li>
+    <li>默认值：medium</li>
+    <li>适用于：所有元素</li>
+    <li>继承性：有</li>
+    <li>动画性：是</li>
+    <li>计算值：指定值</li>
+</ul>
+<h2>取值说明</h2>
+<ul>
+    <li>&lt;absolute-size&gt;：根据对象字号进行调节。以 medium 作为基础参照，xx-small相当于medium 3/5 (h6)，x-small: 3/4，small: 8/9 (h5)，medium: 1 (h4)，large: 6/5 (h3)，x-large: 3/2 (h2)，xx-large: 2/1 (h1)</li>
+    <li>&lt;relative-size&gt;：相对于父对像中字号进行相对调节。使用成比例的em单位计算</li>
+    <li>&lt;length&gt;：用长度值指定文字大小。不允许负值</li>
+    <li>&lt;percentage&gt;：用百分比指定文字大小。其百分比取值是基于父对象中字体的尺寸。不允许负值</li>
+</ul>
+<h2>示例</h2>
+<p style="font-size: xx-small">指定xx-small字体</p>
+<p style="font-size: x-small">指定x-small字体</p>
+<p style="font-size: small">指定small字体</p>
+<p style="font-size: medium">指定medium字体</p>
+<p style="font-size: large">指定large字体</p>
+<p style="font-size: x-large">指定x-large字体</p>
+<p style="font-size: xx-large">指定xx-large字体</p>
+
+<p style="font-size: smaller">指定smaller字体</p>
+<p style="font-size: larger">指定larger字体</p>
+
+<p style="font-size: 20px">指定xx-large字体</p>
+
+<p style="font-size: 20px">父级20px<span style="font-size: 60%">指定父级60%的字体</span></p>
+
+<h2>其他特性</h2>
+<p>1.相应的脚本特性为fontSize,即通过<code>el.style.fontSize</code>即可设置或获取字体大小</p>
+<h2>兼容性</h2>
+<p>所有浏览器均支持该属性</p>
+</body>
+</html>

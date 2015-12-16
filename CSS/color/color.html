@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>颜色属性介绍</title>
+        <style>
+            body {
+                margin: 0 50px;
+                font-family: "Times New Roman",Georgia,Serif;
+                line-height: 25px;
+            }
+            a{
+                text-decoration: none;
+            }
+            li ,p{ line-height: 30px; }
+            .red{color: red;}
+            .green{color: green;}
+            .hex1{color: #ff33E9;;}
+            .hex2{color: #3e3;}
+            .rgb1{color: rgb(123,231,13);}
+            .rgb2{color: rgb(20%,25%,100%);}
+            .rgba{color: rgba(123,231,13,0.5);}
+            .hsl{color: hsl(280,100%,75%);}
+            .hsla{color: hsla(280,100%,75%,0.7);}
+            .trans-out{background: red;width: 10%;}
+            .transparent{color: transparent;}
+            .current-color{ border:2px solid;color:red;width: 20%;}
+        </style>
+    </head>
+    <body>
+        <h1>颜色属性介绍-color</h1>
+        <h2>语法</h2>
+        <ul>
+            <li>color:&lt;color&gt;</li>
+            <li>默认值:由客户端“user agent”决定</li>
+            <li>适用于：所有元素</li>
+            <li>继承性：有</li>
+            <li>动画性：是</li>
+            <li>计算值：指定值</li>
+        </ul>
+        <h2>说明</h2>
+        取值单位包括
+        <dl>
+            <dt><a href="http://w3school.com.cn/cssref/css_colornames.asp">颜色名称</a>:颜色名称设定的color不一定能被识别</dt>
+            <dd><span class="red">red</span>,<span class="green">green</span></dd>
+            <dt><a href="http://css.doyoe.com/values/color/hex.htm">HEX</a>:十六进制颜色值</dt>
+            <dd><span class="hex1">#ff33E9;</span>,<span class="hex2">#3e3/#33ee33</span></dd>
+            <dt><a href="http://css.doyoe.com/values/color/rgb.htm">RGB</a>:R[红]G[绿]B[蓝]</dt>
+            <dd><span class="rgb1">rgb(123,231,13)</span>,<span class="rgb2">rgb(20%,25%,100%)</span></dd>
+            <dt><a href="http://css.doyoe.com/values/color/rgba.htm">RGBA</a>:比RGB多了一个透明度值</dt>
+            <dd><span class="rgba">rgba(123,231,13,0.5)</span></dd>
+            <dt><a href="http://css.doyoe.com/values/color/hsl.htm">HSL</a>:H[色调][0-360]、S[饱和度][0%-100%]、L[亮度][0%-100%]</dt>
+            <dd><span class="hsl">hsl(280,100%,<div></div>75%)</span></dd>
+            <dt><a href="http://css.doyoe.com/values/color/hsla.htm">HSLA</a>:比HSL多了一个透明度值</dt>
+            <dd><span class="hsla">hsla(120,100%,75%,0.7)</span></dd>
+            <dt><a href="http://css.doyoe.com/values/color/transparent.htm">transparent</a>:透明色,IE8及以下浏览器将文本颜色设置为transparent，文本将显示为黑色</dt>
+            <dd class="trans-out"><span class="transparent">transparent</span></dd>
+        </dl>
+        <h2>其他特性</h2>
+        <p>1.color属性值被间接用来提供一个中间值 currentColor 以供其他接受颜色值的属性(如border)使用</p>
+
+        <div class="current-color">
+            div{
+                border:2px solid;
+                color:red;
+            }
+        </div>
+        <p>2.相应的脚本特性为color,即通过<code>el.style.color</code>即可设置或获取颜色</p>
+        <h2>兼容性</h2>
+        <p>颜色名称和RGB单位所有浏览器都支持.</p>
+        <p>RGBA,HSL,HSLA,transparent在IE6-8不支持。transparent会被设置成黑色（不管父级元素有没有color属性），其他方式设置无效，如果有继承的颜色就表现为继承的颜色，如果没有就是黑色（user agent）</p>
+    </body>
+</html>

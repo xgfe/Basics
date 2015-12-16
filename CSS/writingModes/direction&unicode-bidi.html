@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本流的方向</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        .demo p{
+            width: 600px;
+            border:1px solid #000;
+        }
+        .ltr{
+            direction:ltr;
+        }
+        .rtl{
+            direction:rtl;
+            unicode-bidi:bidi-override;
+        }
+    </style>
+</head>
+<body>
+<h1>设置文本流的方向- direction&unicode-bidi</h1>
+<h2>direction取值</h2>
+<ul>
+    <li>ltr:文本流从左到右</li>
+    <li>rtl:文本流从右到左</li>
+</ul>
+<h2>unicode-bidi取值</h2>
+<ul>
+    <li>normal:默认值</li>
+    <li>embed:对象打开附加的嵌入层，<' direction '> 属性的值指定嵌入层，在对象内部进行隐式重排序（没看懂-_-!）</li>
+    <li>bidi-override:严格按照 <' direction '> 属性的值重排序。忽略隐式双向运算规则（没看懂+1）</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>当unicode-bidi的取值为normal时，direction设置为rtl无效</li>
+</ul>
+<h2>示例</h2>
+<div class="demo">
+    <p class="ltr">本段文字将按照从左到右的方向进行流动。</p>
+    <p class="rtl">本段文字将按照从右到左的方向进行流动。</p>
+</div>
+</body>
+</html>

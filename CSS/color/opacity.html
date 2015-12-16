@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>透明度属性介绍</title>
+        <style>
+            body {
+                margin: 0 50px;
+                font-family: "Times New Roman",Georgia,Serif;
+                line-height: 25px;
+            }
+            a{
+                text-decoration: none;
+            }
+            li ,p{ line-height: 30px; }
+            .filter{
+                filter:alpha(opacity=50);
+                opacity:0.5;
+            }
+            .only-opacity{
+                opacity:0.49;
+                color:rgb(123,231,13);
+            }
+            .opacity-and-rgba{
+                opacity:0.7;
+                color:rgba(123,231,13,0.7);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>透明度属性介绍-opacity</h1>
+        <h2>语法</h2>
+        <ul>
+            <li>opacity：&lt;number&gt;</li>
+            <li>默认值：1</li>
+            <li>适用于：所有元素</li>
+            <li>继承性：无</li>
+            <li>动画性：是</li>
+            <li>计算值：指定值</li>
+        </ul>
+        <h2>说明</h2>
+        &lt;number&gt;：使用浮点数，在0.0-1.0之间，0.0表示完全透明，1.0表示完全不透明，取值小于0.0的话按0.0展现，大于1.0的话按照1.0展现
+        <h2>其他特性</h2>
+        <p>1.这里的透明度和color属性中rgba的透明度是有区别的，这里指的是整体的透明度，包括字体，颜色，边框，rgba只是表示字体的透明度。</p>
+        <p>2.如果既设置了rgba或hsla的透明度，又设置了opacity，容器中字体的透明度绘会叠加(应该是相乘的关系)</p>
+        <div class="opacity only-opacity">
+            div{
+                opacity:0.49;
+                color:rgb(123,231,13);
+            }
+        </div>
+        <div class="opacity opacity-and-rgba">
+            div{
+                opacity:0.7;
+                color:rgba(123,231,13,0.7);
+            }
+        </div>
+        <input type="checkbox" id="add-bg" onclick="addBgColor(this)"/> <label for="add-bg">添加背景颜色</label>
+        <p>3.相应的脚本特性为opacity,即通过<code>el.style.opacity</code>即可设置或获取透明度</p>
+        <h2>兼容性</h2>
+        <p>IE6-8不支持该属性，可以通过设置IE私有的滤镜属性实现相同效果，opacity的取值范围是0-100，对应opacity的0.0-1.0</p>
+        <div class="filter">
+            div{
+                filter:alpha(opacity=50);
+                opacity:0.5;
+            }
+        </div>
+        <script>
+            window.addBgColor = function (checkbox) {
+                var els = document.querySelectorAll('.opacity');
+                if(checkbox.checked){
+                    els[0].style.backgroundColor = "#000";
+                    els[1].style.backgroundColor = "#000";
+                }else{
+                    els[0].style.backgroundColor = "";
+                    els[1].style.backgroundColor = "";
+                }
+            }
+        </script>
+    </body>
+</html>

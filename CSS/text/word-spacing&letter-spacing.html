@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单词以及字母之间的间距</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        .demo1 .w-s-10{
+            word-spacing: 20px;
+        }
+        .l-s-10{
+            letter-spacing: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>单词以及字母之间的间距- word-spacing,letter-spacing</h1>
+<h2>取值说明</h2>
+<ul>
+    <li>&lt;length&gt;：长度值。</li>
+    <li>&lt;percent&gt;：百分比值，不支持。</li>
+</ul>
+<h2>注意事项</h2>
+<ul>
+    <li>word-spacing判断是否为单词的依据是单词间是否有空格。</li>
+</ul>
+<h2>示例一:word-spacing</h2>
+<div class="demo1">
+    <p>我是正常文本间距</p>
+    <p class="w-s-10">我 的 文 本 间 距 是 20px</p>
+</div>
+<h2>示例二:letter-spacing</h2>
+<div class="demo2">
+    <p>Normal Hello World</p>
+    <p class="l-s-10">Hello World</p>
+</div>
+<h2>兼容性</h2>
+<p>所有浏览器都不支持百分比属性值。</p>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本的字内换行行为</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+    </style>
+</head>
+<body>
+<h1>元素内文本的字内换行行为- word-break,word-wrap,overflow-wrap</h1>
+<p>
+    这三个属性都是定义元素内文本换行行为（内容超出容器边界是否断行）。
+</p>
+<h2>取值说明</h2>
+<h3>word-break</h3>
+<ul>
+    <li>normal：默认处理方式，允许（亚洲文本）在字内换行，英文不会换行。</li>
+    <li>keep-all：对于中日韩文字不允许断开，该值大部分浏览器不支持</li>
+    <li>break-all：允许所有的文本呢断开，包括亚洲文本。</li>
+</ul>
+<h3>word-wrap,overflow-wrap</h3>
+<ul>
+    <li>normal：默认处理方式，允许文本超出容器边界。</li>
+    <li>break-word：内容将在边界内换行。如果需要，单词内部允许断行。</li>
+</ul>
+<h2>注意事项</h2>
+word-break主要用于亚洲语言的折断换行，而word-wrap和overflow-wrap主要用户非亚洲语言的折断换行，而且在CSS3中将 word-wrap改名为overflow-wrap，所以在需要文本超出容器折断换行的话，需要同时写三个属性，即:
+<pre>
+    word-break:break-all;
+    word-wrap:break-word;
+    overflow-wrap:break-word;/*为了保证向前兼容*/
+</pre>
+<p>这样才能保证最大的兼容性。</p>
+</body>
+</html>

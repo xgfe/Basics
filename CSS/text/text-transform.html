@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本的大小写</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        .capitalize span{
+            text-transform: capitalize;
+        }
+        .uppercase span{
+            text-transform: uppercase;
+        }
+        .lowercase span{
+            text-transform: lowercase;
+        }
+        .full-width span{
+            text-transform: full-width;
+        }
+    </style>
+</head>
+<body>
+<h1>文本的大小写- text-transform</h1>
+<h2>取值说明</h2>
+<ul>
+    <li>none:无转换</li>
+    <li>capitalize:将每个单词的第一个字母转换成大写</li>
+    <li>uppercase:将每个单词转换成大写</li>
+    <li>lowercase:将每个单词转换成小写</li>
+    <li>full-width:将所有字符转换成fullwidth形式。如果字符没有相应的fullwidth形式，将保留原样。这个值通常用于排版拉丁字符和数字等表意符号</li>
+</ul>
+<h2>示例</h2>
+
+    <div>
+        <h3>无转换</h3>
+        <div>转换前:hello world!</div>
+        <div class="none">转换后: <span>hello world!</span> </div>
+    </div>
+    <div>
+        <h3>首字母大写</h3>
+        <div>转换前:hello world!</div>
+        <div class="capitalize">转换后: <span>hello world!</span> </div>
+    </div>
+    <div>
+        <h3>全部大写</h3>
+        <div>转换前:hello world!</div>
+        <div class="uppercase">转换后: <span>hello world!</span> </div>
+    </div>
+    <div>
+        <h3>全部小写</h3>
+        <div>转换前:hello world!</div>
+        <div class="lowercase">转换后: <span>hello world!</span> </div>
+    </div>
+    <div>
+        <h3>full-width(在Firefox中才能看到效果)</h3>
+        <div>转换前:hello world!</div>
+        <div class="full-width">转换后: <span>hello world!</span> </div>
+    </div>
+
+<h2>兼容性</h2>
+<p>full-width只有Firefox兼容</p>
+<h2>需要注意的点</h2>
+<ul>
+    <li>
+        <a href="../font/font-variant.html">font-variant</a>属性也可以转换大小写，当font-variant设置未small-caps时可以将文本设置成小型的大写字母，样式展现并不一样。
+    </li>
+</ul>
+</body>
+</html>

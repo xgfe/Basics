@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字体风格属性介绍</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+    </style>
+</head>
+<body>
+<h1>字体风格属性介绍-font-style</h1>
+<h2>语法</h2>
+<ul>
+    <li>font-style：normal | italic | oblique</li>
+    <li>默认值：normal</li>
+    <li>适用于：所有元素</li>
+    <li>继承性：有</li>
+    <li>动画性：否</li>
+    <li>计算值：指定值</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>normal：指定正常字体</li>
+    <li>italic：指定设置斜体字，前提是该字体有设计的斜体字，否则须使用oblique。&lt;em&gt;，&lt;i&gt;实际是设置字体的font-style为italic</li>
+    <li>oblique：指定倾斜的文本，人为倾斜，不管该字体是否有斜体字设计</li>
+</ul>
+<h2>示例</h2>
+<p style="font-style: normal">指定正常字体</p>
+<p style="font-style: italic">指定设置斜体字</p>
+<p style="font-style: oblique">指定倾斜的文本</p>
+
+<h2>其他特性</h2>
+<p>1.相应的脚本特性为fontStyle,即通过<code>el.style.fontStyle</code>即可设置或获取字体风格</p>
+<h2>兼容性</h2>
+<p>所有浏览器均支持该属性</p>
+</body>
+</html>
