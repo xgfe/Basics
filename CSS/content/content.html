@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在元素前或后显示内容</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+    </style>
+</head>
+<body>
+<h1>设置在元素前或后显示内容- content</h1>
+<h2>取值</h2>
+<ul>
+    <li>normal/none：不显示任何内容</li>
+    <li>&lt;attr&gt;：插入标签属性值</li>
+    <li>&lt;url&gt;：插入url</li>
+    <li>&lt;string&gt;：插入字符串</li>
+    <li><a href="./counter-increment&counter-reset.html">counter-increment/counter-reset</a>：计数器等</li>
+    <li><a href="./quotes.html">quotes</a>：插入嵌套标记</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>1.写在伪元素里的content属性有很多用处，包括设置图标，显示额外内容等。</li>
+    <li>2.attr的例子① <a href="http://picturepan2.github.io/fileicon.css/">fileicon</a>，②<a href="https://github.com/twbs/bootstrap/blob/master/dist/css/bootstrap.css#L205-L209">Bootstrap</a></li>
+    <li>3.设置图标的用法可参看 <a href="../rules/font-face.html">font-face</a>，<a href="https://github.com/twbs/bootstrap/blob/master/dist/css/bootstrap.css#L281">Bootstrap的图标设置</a></li>
+</ul>
+</body>
+</html>

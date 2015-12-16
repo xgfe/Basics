@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>元素内文本的行高</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        .test div{width:300px;margin:15px 0;border:1px solid #000;}
+        .test p{margin:0;font-size:30px;}
+        .fixed div{line-height:20px;}
+        .percentage div{line-height:130%;}
+        .gene div{line-height:1.5;}
+    </style>
+</head>
+<body>
+<h1>设置对象的行高。即字体最底端与字体内部顶端之间的距离- line-height</h1>
+<h2>取值说明</h2>
+<ul>
+    <li>normal：允许内容顶开或溢出指定的容器边界。</li>
+    <li>length：用长度直接指定行高</li>
+    <li>percentage：百分比指定行高</li>
+    <li>number：乘数因子指定行高</li>
+</ul>
+<h2>示例</h2>
+<ul class="test">
+    <li class="fixed">
+        <strong>固定数值方式：</strong> - {line-height:20px;}
+        <div><p>使用固定数值的方式定义line-height，如设置行高为18px类似这样的固定数值，可能会引发文字重叠的现象。</p></div>
+    </li>
+    <li class="percentage">
+        <strong>百分比方式：</strong> - {line-height:130%;}
+        <div>
+            如果是这种情况
+            <p>使用百分比的方式定义line-height，当小于100%时会引发文字重叠的现象。</p>
+        </div>
+    </li>
+    <li class="gene">
+        <strong>因子方式：</strong> - {line-height:1.5;}
+        <div>
+            如果是这种情况
+            <p>使用因子方式定义line-height,当小于1时会出现文字重叠现象。</p>
+        </div>
+    </li>
+</ul>
+<h2>注意事项</h2>
+<ul>
+    <li>该属性的所有单位的取值都不支持负值</li>
+</ul>
+</body>
+</html>

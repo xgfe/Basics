@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>嵌套标记</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        .demo p{
+            quotes:'[' ']'  "<" ">";
+        }
+    </style>
+</head>
+<body>
+<h1>设置嵌套标记- quotes</h1>
+<h2>取值</h2>
+<ul>
+    <li>none：不显示任何嵌套标记</li>
+    <li>&lt;string&gt;：定义content属性的open-quote和close-quote值的标记，2个为一组</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>如果属性值不是2个一组出现的话，设置无效。</li>
+</ul>
+<h2>示例</h2>
+<div class="demo">
+    <p><q>Quote me <q>Quote me</q> Quote me!</q></p>
+</div>
+</body>
+</html>

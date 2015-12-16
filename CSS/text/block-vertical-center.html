@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>vertical-center</title>
+    <style>
+        .wrapper{
+            height:300px;
+            background: #eee;
+            margin: 20px;
+            position: relative;
+        }
+        pre{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .inner{
+            width: 100px;
+            height: 100px;
+            background: #ef5a28;
+        }
+        .first .inner{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+        }
+        .second .inner{
+            margin: auto;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+        }
+        .third{
+            display: -webkit-box;
+            box-align:center;
+            -webkit-box-align:center;
+            -moz-box-align:center;
+            box-pack:center;
+            -webkit-box-pack:center;
+            -moz-box-pack:center;
+        }
+        .forth{
+            display: table-cell;
+            vertical-align:middle;
+            width: 500px;
+        }
+        .fifth{
+            line-height: 300px;
+        }
+        .fifth pre{
+            line-height: 14px;
+        }
+        .fifth .inner{
+            vertical-align:middle;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper first">
+        <pre>
+.first .inner{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+        </pre>
+    <div class="inner"></div>
+</div>
+<div class="wrapper second">
+    <pre>
+.second .inner{
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+    </pre>
+    <div class="inner"></div>
+</div>
+<div class="wrapper third">
+    <pre>
+.third{
+    display: -webkit-box;
+    (-webkit-)box-align:center;
+    (-webkit-)box-pack:center;
+}
+    </pre>
+    <div class="inner"></div>
+    <div class="inner" style="background:green"></div>
+</div>
+<div class="wrapper forth">
+    <pre>
+.forth{
+    display: table-cell;
+    vertical-align:middle;
+    width: 500px;
+}
+    </pre>
+    <div class="inner"></div>
+</div>
+<div class="wrapper fifth">
+    <pre>
+.fifth{
+    height:300px;
+    line-height: 300px;
+}
+.fifth .inner{
+    vertical-align:middle;
+    display: inline-block;
+}
+    </pre>
+        <span>
+            <div class="inner"></div>
+        </span>
+</div>
+</body>
+</html>
+

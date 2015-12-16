@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本空格的处理方式</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+    </style>
+</head>
+<body>
+<h1>元素里文本空格的处理方式- white-space</h1>
+<h2>取值说明</h2>
+<ul>
+    <li>normal：默认处理方式。</li>
+    <li>pre：用等宽字体显示预先格式化的文本，不合并文字间的空白距离，当文字超出边界时不换行。可查阅pre对象</li>
+    <li>nowrap：强制在同一行内显示所有文本，合并文本间的多余空白，直到文本结束或者遭遇br对象。</li>
+    <li>pre-wrap：用等宽字体显示预先格式化的文本，不合并文字间的空白距离，当文字碰到边界时发生换行。</li>
+    <li>pre-line：保持文本的换行，不保留文字间的空白距离，当文字碰到边界时发生换行。</li>
+</ul>
+<table border="1">
+    <tr>
+        <th>取值</th>
+        <th>换行符</th>
+        <th>空格和制表符</th>
+        <th>文字转行</th>
+    </tr>
+    <tr><td>normal</td><td>合并</td><td>合并</td><td>转行</td></tr>
+    <tr><td>nowrap</td><td>合并</td><td>合并</td><td>不转行</td></tr>
+    <tr><td>pre</td><td>保留</td><td>保留</td><td>不转行</td></tr>
+    <tr><td>pre-wrap</td><td>保留</td><td>保留</td><td>转行</td></tr>
+    <tr><td>pre-line</td><td>保留</td><td>合并</td><td>转行</td></tr>
+</table>
+<h2>兼容性</h2>
+<p>除pre-wrap和pre-line比较特殊之外，其他属性均兼容多浏览器，pre-wrap和pre-line个别旧浏览器不兼容。</p>
+</body>
+</html>

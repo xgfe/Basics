@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本的文字是否有阴影及模糊效果</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        .demo {
+            font: bold 100px/1.5 arial,sans-serif;
+            text-shadow: 0 0 5px #fff,0 0 20px #fefcc9,10px -10px 30px #feec85,-20px -20px 40px #ffae34,20px -40px 50px #ec760c,-20px -60px 60px #cd4606,0 -80px 70px #973716,10px -90px 80px #451b0e;
+        }
+    </style>
+</head>
+<body>
+<h1>文本的文字是否有阴影及模糊效果- text-shadow</h1>
+<h2>取值</h2>
+<ul>
+    <li>none:无阴影</li>
+    <li>length①:第1个长度值用来设置对象的阴影水平偏移值。可以为负值</li>
+    <li>length②:第2个长度值用来设置对象的阴影垂直偏移值。可以为负值</li>
+    <li>length③:如果提供了第3个长度值则用来设置对象的阴影模糊值。不允许负值</li>
+    <li>color:阴影颜色值</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>参考 <a href="http://css.doyoe.com/properties/border/box-shadow.htm">box-shadow</a> 属性</li>
+</ul>
+<h2>示例</h2>
+<div class="demo">
+    <p>火焰文字</p>
+</div>
+</body>
+</html>

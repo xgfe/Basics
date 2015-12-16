@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>垂直对齐</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        .test p{border:1px solid #000;font-size:16px;line-height:2;}
+        .test a{margin-left:5px;font-size:12px;}
+        .baseline a{vertical-align:baseline;}
+        .sub a{vertical-align:sub;}
+        .super a{vertical-align:super;}
+        .top a{vertical-align:top;}
+        .text-top a{vertical-align:text-top;}
+        .middle a{vertical-align:middle;}
+        .bottom a{vertical-align:bottom;}
+        .text-bottom a{vertical-align:text-bottom;}
+        .length a{vertical-align:10px;}
+    </style>
+</head>
+<body>
+<h1>设置文本的垂直对齐- vertical-align</h1>
+<h2>取值说明</h2>
+<ul>
+    <li>baseline：将支持valign特性的对象的内容与基线对齐</li>
+    <li>middle：将支持valign特性的对象的内容与对象中部对齐</li>
+    <li>bottom：将支持valign特性的对象的文本与对象底端对齐</li>
+    <li>......</li>
+</ul>
+<h2>注意事项</h2>
+<ul>
+    <li>该属性只有在元素是内联及 table-cell 元素时才生效。</li>
+</ul>
+<h2>示例</h2>
+<ul class="test">
+    <li class="baseline">
+        <strong>与基线对齐</strong>
+        <p>参考内容<a href="?">基线对齐</a></p>
+    </li>
+    <li class="sub">
+        <strong>与参考内容的下标对齐</strong>
+        <p>参考内容<a href="?">下标对齐</a></p>
+    </li>
+    <li class="super">
+        <strong>与参考内容的上标对齐</strong>
+        <p>参考内容<a href="?">上标对齐</a></p>
+    </li>
+    <li class="top">
+        <strong>对象的内容与对象顶端对齐</strong>
+        <p>参考内容<a href="?">要对齐的内容</a></p>
+    </li>
+    <li class="text-top">
+        <strong>对象的文本与对象顶端对齐</strong>
+        <p>参考内容<a href="?">要对齐的内容</a></p>
+    </li>
+    <li class="middle">
+        <strong>对象的内容与对象中部对齐</strong>
+        <p>参考内容<a href="?">要对齐的内容</a></p>
+    </li>
+    <li class="bottom">
+        <strong>对象的内容与对象底端对齐</strong>
+        <p>参考内容<a href="?">要对齐的内容</a></p>
+    </li>
+    <li class="text-bottom">
+        <strong>对象的文本与对象顶端对齐</strong>
+        <p>参考内容<a href="?">要对齐的内容</a></p>
+    </li>
+    <li class="length">
+        <strong>与基线算起的偏移量</strong>
+        <p>参考内容<a href="?">偏移量对齐</a></p>
+    </li>
+</ul>
+<h2>扩展</h2>
+<p>vertical-align只是文本的垂直对齐，而且只适用于内联元素，这里列举了一些块垂直居中的方式，<a href="./block-vertical-center.html">传送门</a></p>
+</body>
+</html>

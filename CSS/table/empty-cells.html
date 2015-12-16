@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>是否显示该单元格的边框</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        .test{empty-cells:show;}
+        .test2{empty-cells:hide;}
+    </style>
+</head>
+<body>
+<h1>设置当表格的单元格无内容时，是否显示该单元格的边框- empty-cells</h1>
+<h2>取值</h2>
+<ul>
+    <li>hide：指定当表格的单元格无内容时，隐藏该单元格的边框。</li>
+    <li>show：指定当表格的单元格无内容时，显示该单元格的边框。</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>只有当表格边框独立（即属性等于separate）时才起作用。</li>
+    <li>IE7及以下浏览器中默认隐藏无内容的单元格边框，要想使其获得与show参数值相同的效果，可以变相给该空单元格加个占位且不可见的元素，例如全角空格或&amp;nbsp;等等。</li>
+</ul>
+<h2>示例</h2>
+<h3>show:</h3>
+<table border="1" class="test">
+    <tbody>
+    <tr>
+        <td>序号</td>
+        <td>姓名</td>
+        <td>年龄</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Joy</td>
+        <td>26</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Kate</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>hide:</h3>
+<table border="1" class="test2">
+    <tbody>
+    <tr>
+        <td>序号</td>
+        <td>姓名</td>
+        <td>年龄</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Joy</td>
+        <td>26</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Kate</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
