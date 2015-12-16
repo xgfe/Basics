@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小型大写字母属性介绍</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+    </style>
+</head>
+<body>
+<h1>小型大写字母属性介绍-font-variant</h1>
+<h2>语法</h2>
+<ul>
+    <li>font-variant：normal | small-caps</li>
+    <li>默认值：normal</li>
+    <li>适用于：所有元素</li>
+    <li>继承性：有</li>
+    <li>动画性：否</li>
+    <li>计算值：指定值</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>normal：指定正常字体</li>
+    <li>small-caps：小型的大写字母字体</li>
+</ul>
+<h2>示例</h2>
+<p style="font-variant: normal">This is normal font.</p>
+<p style="font-variant: small-caps">This is small-caps font.</p>
+
+<h2>其他特性</h2>
+<p>1.相应的脚本特性为fontVariant,即通过<code>el.style.fontVariant</code>即可设置或获取字体是否为小型的大写字母</p>
+<h2>兼容性</h2>
+<p>所有浏览器均支持该属性</p>
+<h2>注意事项</h2>
+<ul>
+    <li>区别对待 <a href="../text/text-transform.html">text-transform</a></li>
+</ul>
+</body>
+</html>

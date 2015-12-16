@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格的布局算法</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        table{
+            width:400px;
+        }
+        table.one{
+            table-layout: auto
+        }
+        table.two{
+            table-layout: fixed
+        }
+    </style>
+</head>
+<body>
+<h1>设置表格的布局算法- table-layout</h1>
+<h2>取值</h2>
+<ul>
+    <li>auto：默认的自动算法。布局将基于各单元格的内容，换言之，可能你给某个单元格定义宽度为100px，但结果可能并不是100px。表格在每一单元格读取计算之后才会显示出来，速度很慢</li>
+    <li>fixed：固定布局的算法。在这算法中，水平布局是仅仅基于表格的宽度，表格边框的宽度，单元格间距，列的宽度，而和表格内容无关。也就是说，内容可能被裁切</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>通常fixed算法会比auto算法高效，尤其是对于那些长表格来说。fixed算法使得表格可以像其它元素一样一行一行的渲染。</li>
+</ul>
+<h2>示例</h2>
+<table class="one" border="1">
+    <tr>
+        <td width="20%">1000000000000000000000000000</td>
+        <td width="40%">10000000</td>
+        <td width="40%">100</td>
+    </tr>
+</table>
+<br/>
+<table class="two" border="1">
+    <tr>
+        <td width="20%">1000000000000000000000000000</td>
+        <td width="40%">10000000</td>
+        <td width="40%">100</td>
+    </tr>
+</table>
+<p>设置两个table的三列宽度分别为20%,40%,40%，但是table-layout设置为auto的table并没有按照设置的宽度渲染，而是根据文本内容。table-layout设置为fixed的就可以按照指定宽度显示。</p>
+</body>
+</html>

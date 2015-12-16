@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本流的方向</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+    </style>
+</head>
+<body>
+<h1>设置对象的内容块固有的书写方向- writing-mode</h1>
+<h2>取值</h2>
+<ul>
+    <li>horizontal-tb：水平方向自上而下的书写方式。即 left-right-top-bottom（类似IE私有值lr-tb）</li>
+    <li>vertical-rl：垂直方向自右而左的书写方式。即 top-bottom-right-left（类似IE私有值tb-rl）</li>
+    <li>vertical-lr：垂直方向自左而右的书写方式。即 top-bottom-left-right</li>
+    <li>lr-tb：左-右，上-下。对象中的内容在水平方向上从左向右流入，后一行在前一行的下面。 所有的字形都是竖直向上的。这种布局是罗马语系使用的（IE）</li>
+    <li>tb-rl：上-下，右-左。对象中的内容在垂直方向上从上向下流入，自右向左。后一竖行在前一竖行的左面。全角字符是竖直向上的，半角字符如拉丁字母或片假名顺时针旋转90度。这种布局是东亚语系通常使用的（IE）</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>西方语言一般都是 lr-tb 的书写方式，但是亚洲语言 lr-tb | tb-rl 的书写方式都有。</li>
+    <li>不关注排版的页面用途不大...不做详细介绍</li>
+</ul>
+</body>
+</html>

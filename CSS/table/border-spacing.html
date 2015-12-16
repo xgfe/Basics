@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>行和单元格的边框在横向和纵向上的间距</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        table{
+            width:400px;
+        }
+        table.two{
+            border-spacing: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>设置行和单元格的边框在横向和纵向上的间距- border-spacing</h1>
+<h2>取值</h2>
+<ul>
+    <li>&lt;length&gt;：用长度值来定义行和单元格的边框在横向和纵向上的间距。不允许负值</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>只有当表格边框独立（即属性等于separate）时才起作用。</li>
+    <li>该属性作用等同于标签属性cellspacing(单元格边距)。border-spacing:0等同于cellspacing="0"</li>
+</ul>
+<h2>示例</h2>
+<table class="one" border="1">
+    <tr>
+        <td width="20%">100</td>
+        <td width="40%">10000</td>
+        <td width="40%">100</td>
+    </tr>
+</table>
+<br/>
+<table class="two" border="1">
+    <tr>
+        <td width="20%">1000</td>
+        <td width="40%">10000</td>
+        <td width="40%">100</td>
+    </tr>
+</table>
+</body>
+</html>

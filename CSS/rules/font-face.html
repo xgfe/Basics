@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设置嵌入HTML文档的字体</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        .extend{
+            list-style-type:decimal ;
+        }
+        .extend .before:after{
+            content:"\\6211";
+        }
+    </style>
+</head>
+<body>
+<h1>设置嵌入HTML文档的字体-@font-face</h1>
+<h2>语法</h2>
+<ul>
+    <li>@font-face [family-family: name ; src: &lt;fontsrc&gt; ; &lt;font&gt;</li>
+</ul>
+<h2>取值说明</h2>
+<ul>
+    <li>需要兼容当前的主流浏览器，需同时使用TureTpe(.ttf)、Web Open Font Format(.woff)、Embedded Open Type(.eot)、SVG(.svg)四种字体格式</li>
+</ul>
+<h2>示例</h2>
+<pre>
+  <code>
+    @font-face {
+      font-family: 'iconfont';
+      src: url('../font/fontello.eot');    /* IE9*/
+      src: url('../font/fontello.eot#iefix') format('embedded-opentype'),  /* IE6-IE8 */
+      url('../font/fontello.woff') format('woff'),  /* chrome、firefox */
+      url('../font/fontello.ttf') format('truetype'),       /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+      url('../font/fontello.svg#fontello') format('svg');   /* iOS 4.1- */
+    }
+  </code>
+</pre>
+
+<h2>兼容性</h2>
+<p>不同格式的字体文件对于不同的浏览器。</p>
+<h1>扩展阅读</h1>
+<ul class="extend">
+    <li>
+        这样为什么能设置自定义的字体，设置图标?<br>
+        计算机统一识别的是Unicode编码，Unicode编码有非常庞大的编码表，每一个Unicode码对应一个字符（数字，符号，汉字等），我们可以在网页或者js脚本中使用Unicode编码，如"我"的Unicode编码为6211，那么在网页中可以使用
+        类似于实体符号的方式，用Unicode码展示“我”，即 <code>&#38;#x6211;</code>。也可以在HTML元素的伪元素的content中使用 <span class="before"></span>。在js中使用\u6211;三种书写方式在不同情况下使用。
+        在Unicode庞大的编码表中，总有一些是用不到的，但是这些位置有相应的编码值，这样就可以利用这些有编码值的码位，将我们自定义的字体或图标放在这个码位上，然后就可以用相应的Unicode值显示图标或字体。
+    </li>
+    <li>
+        webfont又是什么? <br/>
+        wenfont其实就是一个字体的集合，自定义特殊的字体，定义的字体的每一个符号和的原符号的码值一样，但是表现样式不同，这样页面展示的字就是自定义的字体了。英文的字符数比较少，所以生成的webfont也比较小，目前使用的还是蛮多的，但是
+        我大中文实在是太多字了（跪），要是有一个囊括所有汉字的webfont，必然是十分庞大的，实在是没啥价值，所以，汉字的webfont一般都不是包括全部的汉字，而是包括一部分，这样只对特定的汉字做自定义字体展示就好了，字体文件也不会太大。
+    </li>
+    <li>
+        图标的蜕化操作 <br/>
+        上面说到font-face可以定义图标，但是面临一个问题，如果页面加载的时候，整体结构已经出来了，但是因为网络或cdn的原因，字体文件迟迟没有加载来，就会出现展示异常，这样非常影响用户体验，但是不用图标又不好看，怎么做到既好看又不影响
+        使用呢？结合webfont的思路，比如我们想要一个音乐图标♬，那么我们可以先把浏览器可识别的一个符号♫的编码找到，即2660，那么制作图标的时候，新图标♬可以覆盖♫的编码，这样在网络条件良好的情况下，会显示我们自定义的图标，哪怕网络不好
+        也不会显示乱码，而是退而求其次，显示♫，总是没有太大的影响嘛，这就是蜕化。
+    </li>
+    <li>
+        相关链接 <br/>
+        <a href="http://www.ruanyifeng.com/blog/2014/12/unicode.html">Unicode与JavaScript详解</a> <br/>
+        <a href="http://fontello.com/">fontello图标下载</a><br/>
+        <a href="http://font-spider.org/">字蛛</a><br/>
+        <a href="http://www.barretlee.com/blog/2015/08/17/cb-iconfont-opt/">iconfont的蜕化操作</a>
+    </li>
+</ul>
+
+</body>
+</html>

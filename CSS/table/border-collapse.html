@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格的行和单元格的边是合并还是独立</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        table{
+            width:400px;
+        }
+        table.one{
+            border-collapse: separate;
+        }
+        table.two{
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+<h1>设置表格的行和单元格的边是合并还是独立- border-collapse</h1>
+<h2>取值</h2>
+<ul>
+    <li>separate：边框独立</li>
+    <li>collapse：相邻边被合并</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>只有当表格边框独立（即属性等于separate时）， border-spacing 和 empty-cells 才起作用。</li>
+</ul>
+<h2>示例</h2>
+<table class="one" border="1">
+    <tr>
+        <td width="20%">100</td>
+        <td width="40%">10000</td>
+        <td width="40%">100</td>
+    </tr>
+</table>
+<br/>
+<table class="two" border="1">
+    <tr>
+        <td width="20%">1000</td>
+        <td width="40%">10000</td>
+        <td width="40%">100</td>
+    </tr>
+</table>
+</body>
+</html>

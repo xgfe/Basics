@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本装饰属性</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+    </style>
+</head>
+<body>
+<h1>文本装饰属性- text-decoration</h1>
+<h2>语法</h2>
+<ul>
+    <li>text-decoration：<'  text-decoration-line '> || <'  text-decoration-style '> || <'  text-decoration-color '> </li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>text-decoration-line:指定文本装饰种类，可取值none,underline,overline,line-through,blink</li>
+    <li>text-decoration-style:指定文本装饰样式，可取值solid,double,dotted,dashed,wavy</li>
+    <li>text-decoration-color:指定文本装饰线条的颜色</li>
+</ul>
+<h2>注意事项</h2>
+<p>1.大部分浏览器都不支持text-decoration-line的blink值。</p>
+<p>2.text-decoration-style的取值dotted和dashed取值在除FF的浏览器中要么实现不了，要么表现为实线。</p>
+<h2>兼容性</h2>
+<p>FireFox对text-decoration属性支持的比较好，其他浏览器欠佳。</p>
+</body>
+</html>

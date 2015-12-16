@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本的缩进</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        .inline span,.block{
+            text-indent: 30px;
+        }
+    </style>
+</head>
+<body>
+<h1>设置文本的缩进- text-indent</h1>
+<h2>取值说明</h2>
+<ul>
+    <li>&lt;length&gt;：缩进长度值，可以为负</li>
+    <li>&lt;percent&gt;：缩进长度值百分比</li>
+</ul>
+<h2>注意事项</h2>
+<ul>
+    <li>该属性只有在元素是块级元素或者内联块级元素时才生效。</li>
+</ul>
+<h2>示例</h2>
+<p class="inline"><span>我是内敛元素，我设置30px缩进无效</span></p>
+<p class="block">我是块级元素，我的左边有30px的缩进</p>
+<h2>兼容性</h2>
+<p>所有浏览器均不兼容CSS3新特性hanging 和 each-line。</p>
+</body>
+</html>

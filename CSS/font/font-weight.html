@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字体粗细属性介绍</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+    </style>
+</head>
+<body>
+<h1>字体粗细属性介绍-font-weight</h1>
+<h2>语法</h2>
+<ul>
+    <li>font-weight：normal | bold | bolder | lighter | < interger ></li>
+    <li>默认值：normal</li>
+    <li>适用于：所有元素</li>
+    <li>继承性：有</li>
+    <li>动画性：是</li>
+    <li>计算值：数字重量值</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>normal：正常的字体。相当于数字值400</li>
+    <li>bold：粗体。相当于数字值700</li>
+    <li>bolder：定义比【继承值】更重的值</li>
+    <li>lighter：定义比【继承值】更轻的值</li>
+    <li>&lt;interger&gt;：用数字表示文本字体粗细。取值范围：100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900</li>
+</ul>
+<h2>示例</h2>
+<p style="font-weight: normal">指定正常字体</p>
+<p style="font-weight: bold">指定设置粗体</p>
+<div style="font-weight:bold"><p style="font-weight: bolder">指定设置更粗体</p></div>
+<div style="font-weight:bold"><p style="font-weight: lighter">指定设置比继承的更轻的字体</p></div>
+<p style="font-weight: 800">指定设置800的字体</p>
+<p style="font-weight: 100">指定设置100的字体</p>
+
+<h2>其他特性</h2>
+<p>1.相应的脚本特性为fontWeight,即通过<code>el.style.fontWeight</code>即可设置或获取字体粗细</p>
+<p>2.作用由客户端系统安装的字体的特定字体变量映射决定。系统选择最近的匹配。也就是说，用户可能看不到不同值之间的差异</p>
+<h2>兼容性</h2>
+<p>所有浏览器均支持该属性</p>
+</body>
+</html>

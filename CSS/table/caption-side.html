@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格的caption对象的位置</title>
+    <style>
+        body {
+            margin: 0 50px;
+            font-family: "Times New Roman",Georgia,Serif;
+            line-height: 25px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li ,p{ line-height: 30px; }
+        .test1{caption-side:top;}
+        .test2{caption-side:right;}
+        .test3{caption-side:bottom;}
+        .test4{caption-side:left;}
+    </style>
+</head>
+<body>
+<h1>设置表格的caption对象的位置- border-collapse</h1>
+<h2>取值</h2>
+<ul>
+    <li>top：指定caption在表格上边</li>
+    <li>bottom：指定caption在表格下边</li>
+</ul>
+<h2>说明</h2>
+<ul>
+    <li>Firefox还额外支持right和left两个非标准值</li>
+</ul>
+<h2>示例</h2>
+<h3>caption在上边</h3>
+<table border="1" class="test1">
+    <caption>caption在上边</caption>
+    <tbody>
+    <tr>
+        <td>这是某一单元格</td>
+        <td>这是某一单元格</td>
+    </tr>
+    <tr>
+        <td>这是某一单元格</td>
+        <td>这是某一单元格</td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>caption在右边</h3>
+<table border="1" class="test2">
+    <caption>caption在右边</caption>
+    <tbody>
+    <tr>
+        <td>这是某一单元格</td>
+        <td>这是某一单元格</td>
+    </tr>
+    <tr>
+        <td>这是某一单元格</td>
+        <td>这是某一单元格</td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>caption在下边</h3>
+<table border="1" class="test3">
+    <caption>caption在下边</caption>
+    <tbody>
+    <tr>
+        <td>这是某一单元格</td>
+        <td>这是某一单元格</td>
+    </tr>
+    <tr>
+        <td>这是某一单元格</td>
+        <td>这是某一单元格</td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>caption在左边</h3>
+<table border="1" class="test4">
+    <caption>caption在左边</caption>
+    <tbody>
+    <tr>
+        <td>这是某一单元格</td>
+        <td>这是某一单元格</td>
+    </tr>
+    <tr>
+        <td>这是某一单元格</td>
+        <td>这是某一单元格</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
