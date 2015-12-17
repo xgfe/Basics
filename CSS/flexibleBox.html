@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伸缩盒模型-新</title>
+    <style>
+        .demo {
+            border: 1px solid #aaa;
+            margin: 10px;
+            padding: 20px;
+        }
+        .prop-title{
+            background: #eee;
+            padding: 5px;
+        }
+        .prop-value{
+            padding: 5px;
+        }
+        .prop-value::after{
+            content: "";
+            clear: both;
+            visibility: hidden;
+            height: 0;
+            display: block;
+        }
+        .prop-value > dt{
+            float: left;
+            clear: left;
+            width: 150px;
+            text-align: right;
+        }
+        .prop-value > dt::after{
+            content:":";
+        }
+        .prop-value > dd{
+            float: left;
+            margin-left:5px;
+        }
+        h2{
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1>伸缩盒模型-新</h1>
+<p>第三版标准，和旧版大同小异，只是添加了几个属性，更改了些细节，推荐和旧标准一起写防止不兼容</p>
+<p>下面的属性需要前置条件，display: flex;依然需要前缀</p>
+<h2>flex</h2>
+<p>flex-grow,flex-shrink,flex-basis的集合属性</p>
+<p>none: none的计算值为0 0 auto</p>
+<p>1: 计算值为1 1 0%</p>
+<p>auto: 计算值为1 1 auto</p>
+<p>o auto: 计算值为0 1 auto</p>
+<h2>flex-grow</h2>
+<p>定义扩展比例，和box-flex类似,注意：新版的是分配所有剩余空间，而不是分配剩余空间，只生效于父元素大于子元素所有长度和的情况</p>
+<p class="prop-title">取值:</p>
+<dl class="prop-value">
+    <dt>number</dt>
+    <dd>定义扩展比例，不允许负值，默认0</dd>
+</dl>
+<div class="demo">
+    <style>
+        .flex{
+            display: -webkit-flex;
+            display: flex;
+        }
+        .flex > div{
+            border: 1px red solid;
+        }
+        .flex1 {
+            width: 600px;
+        }
+        .flex1 > div:nth-child(1){
+            flex-grow: 1;
+        }
+        .flex1 > div:nth-child(2){
+            flex-grow: 2;
+        }
+        .flex1 > div:nth-child(3){
+            flex-grow: 3;
+        }
+    </style>
+    <p>这里总共有600px,按1:2:3的比例，第一个分到100,第二个分到200，第三个分到300，和旧标准不一样。旧标准可以设置width: 0;来模仿新标准</p>
+    <div class="flex flex1">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+<h2>flex-shrink</h2>
+<p>定义伸缩比例，生效于父元素的长度小于子元素和的长度，flex-shrink,flex-grow加起来等于box-flex</p>
+<p class="prop-title">取值:</p>
+<dl class="prop-value">
+    <dt>number</dt>
+    <dd>定义收缩比例，不允许负值，默认0</dd>
+</dl>
+<div class="demo">
+
+    <style>
+        .flex2{
+            width: 200px;
+        }
+        .flex2 > div{
+            width: 100px;
+        }
+        .flex2 > div:nth-child(1){
+            flex-shrink: 1;
+        }
+        .flex2 > div:nth-child(2){
+            flex-shrink: 2;
+        }
+        .flex2 > div:nth-child(3){
+            flex-shrink: 3;
+        }
+    </style>
+    <p>父DIV宽度200，子DIV宽度100，收缩比例为1：2：3。100*3-200=100;第一个div=100-100/6*1=82.328。第二个div=100-100/6*2=64.672,第三个div=100-100/6*3=47</p>
+    <div class="flex flex2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+<h2>flex-basis</h2>
+<p>如果子元素之和大于父元素，则根据设置的基准值按比例伸缩剩余空间</p>
+<p class="prop-title">取值:</p>
+<dl class="prop-value">
+    <dt>length</dt>
+    <dd>用长度值来定义基准值</dd>
+    <dt>percentage</dt>
+    <dd>用百分比定义基准值</dd>
+    <dt>auto(默认)</dt>
+    <dd>取决于其他影响宽度的属性</dd>
+    <dt>content</dt>
+    <dd>基于内容自动计算</dd>
+</dl>
+<div class="demo">
+    <style>
+        .flex3{
+            width: 300px;
+        }
+
+        .flex3 > div:nth-child(1){
+            width: 100px;
+        }
+        .flex3 > div:nth-child(2){
+            flex-basis: 200px;
+        }
+        .flex3 > div:nth-child(3){
+            width: 100px;
+        }
+    </style>
+    <p>按1:2:1的比例进行分配</p>
+    <div class="flex flex3">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+<h2>flex-flow</h2>
+<p>flex-direction,flex-wrap的复合属性</p>
+<h2>flex-direction</h2>
+<p>定义对齐方式,旧标准的box-orient+box-direction合在一起就是这个属性的效果</p>
+<p class="prop-title">取值:</p>
+<dl class="prop-value">
+    <dt>row(默认)</dt>
+    <dd>主轴与行内轴方向作为默认的书写模式。即横向从左到右排列（左对齐）</dd>
+    <dt>row-reverse</dt>
+    <dd>对齐方式与row相反</dd>
+    <dt>column</dt>
+    <dd>主轴与块轴方向作为默认的书写模式。即纵向从上往下排列（顶对齐）。</dd>
+    <dt>column-reverse</dt>
+    <dd>对齐方式与column相反。</dd>
+</dl>
+
+<div class="demo">
+    <style>
+        .box{
+            display:-webkit-flex;
+            display:flex;
+            margin:0;padding:10px;list-style:none;background-color:#eee;}
+        .box li{width:100px;height:100px;border:1px solid #aaa;text-align:center;}
+        #box{
+            -webkit-flex-direction:row;
+            flex-direction:row;
+        }
+        #box2{
+            -webkit-flex-direction:row-reverse;
+            flex-direction:row-reverse;
+        }
+        #box3{
+            height:500px;
+            -webkit-flex-direction:column;
+            flex-direction:column;
+        }
+        #box4{
+            height:500px;
+            -webkit-flex-direction:column-reverse;
+            flex-direction:column-reverse;
+        }
+    </style>
+    <h2>flex-direction:row</h2>
+    <ul id="box" class="box">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+    <h2>flex-direction:row-reverse</h2>
+    <ul id="box2" class="box">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+    <h2>flex-direction:column</h2>
+    <ul id="box3" class="box">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+    <h2>flex-direction:column-reverse</h2>
+    <ul id="box4" class="box">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+</div>
+<h2>flex-wrap</h2>
+<p>当子元素定宽或定高的时候，flex-shrink:0;可能会产生溢出的情况，flex-wrap定义是否折行</p>
+<p class="prop-title">取值:</p>
+<dl class="prop-value">
+    <dt>nowrap</dt>
+    <dd>flex容器为单行。该情况下flex子项可能会溢出容器</dd>
+    <dt>wrap</dt>
+    <dd>flex容器为多行。该情况下flex子项溢出的部分会被放置到新行，子项内部会发生断行</dd>
+    <dt>wrap-reverse</dt>
+    <dd>反转 wrap 排列</dd>
+</dl>
+<div class="demo">
+    <style>
+        .flex4{
+            padding: 10px;
+            background: #eee;
+            width: 200px;
+        }
+        .flex4 > div{
+            flex-shrink: 0;
+            width: 90px;
+            flex-wrap: nowrap;
+        }
+        .wrap{
+            flex-wrap: wrap;
+        }
+        .wrap-reverse{
+            flex-wrap: wrap-reverse;
+        }
+    </style>
+    <p>子元素超过父元素宽度，且收缩比例为0，溢出</p>
+    <div class="flex flex4">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <p>flex-wrap: warp;子元素折行</p>
+    <div class="flex flex4 wrap">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <p>flex-wrap: warp-reverse;子元素折行且反转</p>
+    <div class="flex flex4 wrap-reverse">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+<h2>align-content</h2>
+<p>设置多行盒模型的对齐方式</p>
+<p class="prop-title">取值:</p>
+<dl class="prop-value">
+    <dl>flex-start</dl>
+    <dd>各行向弹性盒容器的起始位置堆叠</dd>
+    <dl>flex-end</dl>
+    <dd>各行向弹性盒容器的结束位置堆叠</dd>
+    <dl>center</dl>
+    <dd>各行向弹性盒容器的中间位置堆叠</dd>
+    <dl>space-between</dl>
+    <dd>各行在弹性盒容器中平均分布,如果剩余的空间是负数或弹性盒容器中只有一行，该值等效于'flex-start'</dd>
+    <dl>space-around</dl>
+    <dd>各行在弹性盒容器中平均分布，两端保留子元素与子元素之间间距大小的一半。如果剩余的空间是负数或弹性盒容器中只有一行，该值等效于'center'</dd>
+    <dl>stretch</dl>
+    <dd>各行将会伸展以占用剩余的空间。如果剩余的空间是负数，该值等效于'flex-start'。在其它情况下，剩余空间被所有行平分，以扩大它们的侧轴尺寸。</dd>
+</dl>
+<div class="demo">
+    <style>
+        .box2{
+            display:-webkit-flex;
+            display:flex;
+            -webkit-flex-wrap:wrap;
+            flex-direction:wrap;
+            width:200px;height:200px;margin:0;padding:0;border-radius:5px;list-style:none;background-color:#eee;}
+        .box2 li{margin:5px;padding:10px;border-radius:5px;background:#aaa;text-align:center;}
+        #box21{
+            -webkit-align-content:flex-start;
+            align-content:flex-start;
+        }
+        #box22{
+            -webkit-align-content:flex-end;
+            align-content:flex-end;
+        }
+        #box23{
+            -webkit-align-content:center;
+            align-content:center;
+        }
+        #box24{
+            -webkit-align-content:space-between;
+            align-content:space-between;
+        }
+        #box25{
+            -webkit-align-content:space-around;
+            align-content:space-around;
+        }
+        #box26{
+            -webkit-align-content:strecth;
+            align-content:strecth;
+        }
+    </style>
+    <h2>align-content:flex-start</h2>
+    <ul id="box21" class="box2">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <li>e</li>
+        <li>f</li>
+    </ul>
+    <h2>align-content:flex-end</h2>
+    <ul id="box22" class="box2">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <li>e</li>
+        <li>f</li>
+    </ul>
+    <h2>align-content:center</h2>
+    <ul id="box23" class="box2">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <li>e</li>
+        <li>f</li>
+    </ul>
+    <h2>align-content:space-between</h2>
+    <ul id="box24" class="box2">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <li>e</li>
+        <li>f</li>
+    </ul>
+    <h2>align-content:space-around</h2>
+    <ul id="box25" class="box2">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <li>e</li>
+        <li>f</li>
+    </ul>
+    <h2>align-content:strecth</h2>
+    <ul id="box26" class="box2">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <li>e</li>
+        <li>f</li>
+    </ul>
+</div>
+<h2>align-items</h2>
+<p>和旧标准的box-align类似，设置侧轴方向上的对齐方式</p>
+<p class="prop-title">取值:</p>
+<dl class="prop-value">
+    <dt>flex-start</dt>
+    <dd>子元素从开始方向排列</dd>
+    <dt>center</dt>
+    <dd>子元素居中对齐</dd>
+    <dt>flex-end</dt>
+    <dd>结束位置对齐</dd>
+    <dt>baseline</dt>
+    <dd>子元素基线对齐</dd>
+    <dt>stretch(默认值)</dt>
+    <dd>自适应父元素尺寸</dd>
+</dl>
+<div class="demo">
+    <style>
+        .flex5 {
+            background: #eee;
+            height: 100px;
+        }
+        .flex5 > div{
+            width: 30px;
+            height: 30px;
+        }
+        .align-item1{
+            align-items: flex-start;
+        }
+        .align-item2{
+            align-items: center;
+        }
+        .align-item3{
+            align-items: flex-end;
+        }
+        .align-item4{
+            align-items: baseline;
+        }
+        .align-item4 > div:nth-child(2){
+            line-height: 30px;
+        }
+        .align-item5{
+            align-items: stretch;
+        }
+        .align-item5 > div{
+            height: auto;
+        }
+    </style>
+    <p>align-items: start;</p>
+    <div class="flex flex5 align-item1">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <p>align-items: center;</p>
+    <div class="flex flex5 align-item2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <p>align-items: end;</p>
+    <div class="flex flex5 align-item3">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <p>align-items: baseline;</p>
+    <div class="flex flex5 align-item4">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <p>align-items: stretch;</p>
+    <div class="flex flex5 align-item5">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+<h2>align-self</h2>
+<p>用于子元素的对齐方式，可以使子元素拥有自己的对齐方式，而不是有父元素固定一个对齐方式</p>
+<p>和align-items基本类似，不过是作用于子元素</p>
+<p class="prop-title">取值:</p>
+<dl class="prop-value">
+    <dl>auto</dl>
+    <dd>如果'align-self'的值为'auto'，则其计算值为元素的父元素的'align-items'值，如果其没有父元素，则计算值为'stretch'。</dd>
+    <dl>flex-start</dl>
+    <dd>弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界</dd>
+    <dl>flex-end</dl>
+    <dd>弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界。</dd>
+    <dl>center</dl>
+    <dd>弹性盒子元素在该行的侧轴（纵轴）上居中放置。（如果该行的尺寸小于弹性盒子元素的尺寸，则会向两个方向溢出相同的长度）。</dd>
+    <dl>baseline</dl>
+    <dd>如弹性盒子元素的行内轴与侧轴为同一条，则该值与'flex-start'等效。其它情况下，该值将参与基线对齐。</dd>
+    <dl>stretch</dl>
+    <dd>如果指定侧轴大小的属性值为'auto'，则其值会使项目的边距盒的尺寸尽可能接近所在行的尺寸，但同时会遵照'min/max-width/height'属性的限制。</dd>
+</dl>
+<div class="demo">
+    <style>
+        h2{font:bold 20px/1.5 georgia,simsun,sans-serif;}
+        .box4{
+            display:-webkit-flex;
+            display:flex;
+            -webkit-align-items: flex-end;
+            height:100px;margin:0;padding:10px;border-radius:5px;list-style:none;background-color:#eee;}
+        .box4 li{margin:5px;padding:10px;border-radius:5px;background:#aaa;text-align:center;}
+        .box4 li:nth-child(1){
+            -webkit-align-self: flex-end;
+            align-self: flex-end;
+        }
+        .box4 li:nth-child(2){
+            -webkit-align-self: center;
+            align-self: center;
+        }
+        .box4 li:nth-child(3){
+            -webkit-align-self: flex-start;
+            align-self: flex-start;
+        }
+        .box4 li:nth-child(4){
+            -webkit-align-self: baseline;
+            align-self: baseline;
+            padding:20px 10px;
+        }
+        .box4 li:nth-child(5){
+            -webkit-align-self: baseline;
+            align-self: baseline;
+        }
+        .box4 li:nth-child(6){
+            -webkit-align-self: stretch;
+            align-self: stretch;
+        }
+        .box4 li:nth-child(7){
+            -webkit-align-self: auto;
+            align-self: auto;
+        }
+    </style>
+    <h3>align-self示例：</h3>
+    <ul  class="box4">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <li>e</li>
+        <li>f</li>
+        <li>g</li>
+        <li>h</li>
+        <li>i</li>
+    </ul>
+</div>
+<h2>justify-content</h2>
+<p>主轴方向对齐方式，和box-pack类似</p>
+<p class="prop-title">取值:</p>
+<dl class="prop-value">
+    <dt>flex-start(默认值)</dt>
+    <dd>子元素从主轴开始方向排列</dd>
+    <dt>center</dt>
+    <dd>子元素居中</dd>
+    <dt>flex-end</dt>
+    <dd>子元素在主轴末尾对齐</dd>
+    <dl>space-between</dl>
+    <dd>弹性盒子元素会平均地分布在行里</dd>
+    <dl>space-around</dl>
+    <dd>弹性盒子元素会平均地分布在行里，两端保留子元素与子元素之间间距大小的一半</dd>
+</dl>
+<div class="demo">
+    <style>
+        h1{font:bold 20px/1.5 georgia,simsun,sans-serif;}
+        .box5{
+            display:-webkit-flex;
+            display:flex;
+            width:400px;height:100px;margin:0;padding:0;border-radius:5px;list-style:none;background-color:#eee;}
+        .box5 li{margin:5px;padding:10px;border-radius:5px;background:#aaa;text-align:center;}
+        #box51{
+            -webkit-justify-content:flex-start;
+            justify-content:flex-start;
+        }
+        #box52{
+            -webkit-justify-content:flex-end;
+            justify-content:flex-end;
+        }
+        #box53{
+            -webkit-justify-content:center;
+            justify-content:center;
+        }
+        #box54{
+            -webkit-justify-content:space-between;
+            justify-content:space-between;
+        }
+        #box55{
+            -webkit-justify-content:space-around;
+            justify-content:space-around;
+        }
+    </style>
+    <h2>justify-content:flex-start</h2>
+    <ul id="box51" class="box5">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+    <h2>justify-content:flex-end</h2>
+    <ul id="box52" class="box5">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+    <h2>justify-content:center</h2>
+    <ul id="box53" class="box5">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+    <h2>justify-content:space-between</h2>
+    <ul id="box54" class="box5">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+    <h2>justify-content:space-around</h2>
+    <ul id="box55" class="box5">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+</div>
+<h2>order</h2>
+<p>排列顺序，小的在前，大的在后</p>
+<p class="prop-title">取值:</p>
+<dl class="prop-value">
+    <dt>integer</dt>
+    <dd>数值，支持负数，默认0</dd>
+</dl>
+<div class="demo">
+    <style>
+        .flex5 >div:nth-child(1){
+            order: 1;
+        }
+        .flex5 >div:nth-child(2){
+            order: 0;
+        }
+        .flex5 >div:nth-child(3){
+            order: -1;
+        }
+    </style>
+    <div class="flex flex5">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</div>
+</body>
+</html>

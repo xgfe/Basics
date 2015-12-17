@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css基础-用户界面</title>
+    <style>
+        .cont dt, .cont dd {
+            float: left;
+        }
+
+        .cont dt {
+            clear: left;
+        }
+
+        .clearfix::after {
+            content: '';
+            height: 0;
+            visibility: hidden;
+            clear: both;
+            display: block;
+        }
+
+        .demo {
+            border: 1px solid #aaa;
+            margin: 10px;
+            padding: 20px;
+        }
+
+        .defaultvalue {
+            color: #fff;
+            background: #000;
+            padding: 5px;
+        }
+
+        h2{
+            border-bottom:1px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+<h1>用户界面CSS属性</h1>
+
+<h2>appearance</h2>
+
+<div class="cont">
+    <p>改变元素的默认显示样式，注意此属性不是标准属性，很多取值不支持且浏览器表现不一致</p>
+
+    <p><strong>appearance</strong>：none | button | button-bevel ...</p>
+
+    <p><strong>默认值</strong>：
+        <mark class="defaultvalue">none</mark>
+    </p>
+    <p><strong>适用于</strong>：所有元素</p>
+
+    <p><strong>继承性</strong>：无</p>
+</div>
+
+<div class="cont">
+    <dl class="clearfix apperacne-dl">
+        <dt>none：</dt>
+        <dd>去除系统默认appearance的样式</dd>
+        <dt>button：</dt>
+        <dd>以按钮的风格渲染</dd>
+        <dt>button-arrow-down：</dt>
+        <dt>button-arrow-next：</dt>
+        <dt>button-arrow-previous：</dt>
+        <dt>button-arrow-up：</dt>
+        <dt>button-bevel：</dt>
+        <dt>button-focus：</dt>
+        <dt>caps-lock-indicator：</dt>
+        <dt>caret：</dt>
+        <dt>checkbox：</dt>
+        <dd>以复选框的风格渲染</dd>
+        <dt>checkbox-container：</dt>
+        <dt>checkbox-label：</dt>
+        <dt>checkmenuitem：</dt>
+        <dt>default-button：</dt>
+        <dt>dualbutton：</dt>
+        <dt>groupbox：</dt>
+        <dt>listbox：</dt>
+        <dd>以列表框的风格渲染</dd>
+        <dt>listitem：</dt>
+        <dd>以列表项的风格渲染</dd>
+        <dt>media-fullscreen-button：</dt>
+        <dt>media-mute-button：</dt>
+        <dt>media-play-button：</dt>
+        <dt>media-seek-back-button：</dt>
+        <dt>media-seek-forward-button：</dt>
+        <dt>media-slider：</dt>
+        <dt>media-sliderthumb：</dt>
+        <dt>menuarrow：</dt>
+        <dt>menubar：</dt>
+        <dt>menucheckbox：</dt>
+        <dt>menuimage：</dt>
+        <dt>menuitem：</dt>
+        <dt>menuitemtext：</dt>
+        <dt>menulist：</dt>
+        <dt>menulist-button：</dt>
+        <dt>menulist-text：</dt>
+        <dt>menulist-textfield：</dt>
+        <dt>menupopup：</dt>
+        <dt>menuradio：</dt>
+        <dt>menuseparator：</dt>
+        <dt>meterbar：</dt>
+        <dt>meterchunk：</dt>
+        <dt>progressbar：</dt>
+        <dd>以进度条的风格渲染</dd>
+        <dt>progressbar-vertical：</dt>
+        <dd>以垂直进度条的风格渲染</dd>
+        <dt>progresschunk：</dt>
+        <dd>以进度块的风格渲染</dd>
+        <dt>progresschunk-vertical：</dt>
+        <dd>以垂直进度块的风格渲染</dd>
+        <dt>push-button：</dt>
+        <dt>radio：</dt>
+        <dd>以单选框的风格渲染</dd>
+        <dt>radio-container：</dt>
+        <dt>radio-label：</dt>
+        <dt>radiomenuitem：</dt>
+        <dt>resizer：</dt>
+        <dt>resizerpanel：</dt>
+        <dt>scale-horizontal：</dt>
+        <dt>scalethumbend：</dt>
+        <dt>scalethumb-horizontal：</dt>
+        <dt>scalethumbstart：</dt>
+        <dt>scalethumbtick：</dt>
+        <dt>scalethumb-vertical：</dt>
+        <dt>scale-vertical：</dt>
+        <dt>scrollbarbutton-up：</dt>
+        <dd>以滚动条按钮-上的风格渲染</dd>
+        <dt>scrollbarbutton-right：</dt>
+        <dd>以滚动条按钮-右的风格渲染</dd>
+        <dt>scrollbarbutton-down：</dt>
+        <dd>以滚动条按钮-下的风格渲染</dd>
+        <dt>scrollbarbutton-left：</dt>
+        <dd>以滚动条按钮-左的风格渲染</dd>
+        <dt>scrollbargripper-horizontal：</dt>
+        <dt>scrollbargripper-vertical：</dt>
+        <dt>scrollbarthumb-horizontal：</dt>
+        <dd>以水平滚动条滑块的风格渲染</dd>
+        <dt>scrollbarthumb-vertical：</dt>
+        <dd>以垂直滚动条滑块的风格渲染</dd>
+        <dt>scrollbartrack-horizontal：</dt>
+        <dd>以水平滚动条拖动区域的风格渲染</dd>
+        <dt>scrollbartrack-vertical：</dt>
+        <dd>以垂直滚动条拖动区域的风格渲染</dd>
+        <dt>searchfield：</dt>
+        <dd>以搜索框的风格渲染</dd>
+        <dt>searchfield-cancel-button：</dt>
+        <dd>以搜索框取消按钮的风格渲染</dd>
+        <dt>searchfield-decoration：</dt>
+        <dt>searchfield-results-button：</dt>
+        <dt>searchfield-results-decoration：</dt>
+        <dt>separator：</dt>
+        <dt>sheet：</dt>
+        <dt>slider-horizontal：</dt>
+        <dt>sliderthumb-horizontal：</dt>
+        <dt>sliderthumb-vertical：</dt>
+        <dt>slider-vertical：</dt>
+        <dt>spinner：</dt>
+        <dt>spinner-downbutton：</dt>
+        <dt>spinner-textfield：</dt>
+        <dt>spinner-upbutton：</dt>
+        <dt>splitter：</dt>
+        <dt>square-button：</dt>
+        <dt>statusbar：</dt>
+        <dt>statusbarpanel：</dt>
+        <dt>tab：</dt>
+        <dd>以照选项卡标签的风格渲染</dd>
+        <dt>tabpanel：</dt>
+        <dd>以照选项卡区域的风格渲染</dd>
+        <dt>tabpanels：</dt>
+        <dt>tab-scroll-arrow-back：</dt>
+        <dt>tab-scroll-arrow-forward：</dt>
+        <dt>textarea：</dt>
+        <dd>以多行文本框的风格渲染</dd>
+        <dt>textfield：</dt>
+        <dd>以单行行文本框的风格渲染</dd>
+        <dt>textfield-multiline：</dt>
+        <dt>toolbar：</dt>
+        <dt>toolbarbutton：</dt>
+        <dt>toolbarbutton-dropdown：</dt>
+        <dt>toolbargripper：</dt>
+        <dt>toolbox：</dt>
+        <dt>tooltip：</dt>
+        <dd>以气泡提示的风格渲染</dd>
+        <dt>treeheader：</dt>
+        <dt>treeheadercell：</dt>
+        <dt>treeheadersortarrow：</dt>
+        <dt>treeitem：</dt>
+        <dt>treeline：</dt>
+        <dt>treetwisty：</dt>
+        <dt>treetwistyopen：</dt>
+        <dt>treeview：</dt>
+    </dl>
+</div>
+<div class="demo">
+    <span style="-webkit-appearance: radio"></span>
+    这是一个span标签，表现为一个radio
+</div>
+<h2>text-overflow</h2>
+
+<div class="cont">
+    <p>对于边界超出部分适用规则,此属性需同时定义:width:非auto,overflow:非visible,white-space:nowrap值</p>
+
+    <p><strong>text-overflow</strong>：clip | ellipsis</p>
+
+    <p><strong>默认值</strong>：
+        <mark class="defaultvalue">clip</mark>
+    </p>
+    <p><strong>适用于</strong>：块级容器元素</p>
+
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="demo">
+    <p>text-overflow: ellipsis;</p>
+
+    <div style="overflow: hidden;white-space: nowrap;width: 200px;text-overflow: ellipsis;">
+        我是需要被超出的部分我是需要被超出的部分我是需要被超出的部分我是需要被超出的部分我是需要被超出的部分我是需要被超出的部分
+    </div>
+    <p>text-overflow: clip;</p>
+
+    <div style="overflow: hidden;white-space: nowrap;width: 200px;text-overflow: clip;">
+        我是需要被超出的部分我是需要被超出的部分我是需要被超出的部分我是需要被超出的部分我是需要被超出的部分我是需要被超出的部分
+    </div>
+</div>
+
+<h2>outline</h2>
+
+<div class="cont">
+    <p>外边框不占盒模型位置</p>
+    <p><strong>outline</strong>：&lt;' <a href="#outline-width">outline-width</a> '&gt; || &lt;' <a
+            href="#outline-style">outline-style</a> '&gt; || &lt;' <a href="#outline-color">outline-color</a> '&gt;
+    </p>
+
+    <p><strong>默认值</strong>：
+        <mark class="defaultvalue">看每个独立属性</mark>
+    </p>
+    <p><strong>适用于</strong>：所有元素</p>
+
+    <p><strong>继承性</strong>：无</p>
+
+
+    <p><strong>相关属性</strong>: &lt;' <a href="#outline-offset">outline-offset</a> '&gt;</p>
+</div>
+
+<h2 id="outline-width">outline-width</h2>
+<div class="cont">
+    <p><strong>outline-width</strong>：<a href="../../values/length/length.htm">&lt;length&gt;</a> | thin | medium | thick</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">medium</mark></p>
+    <p><strong>适用于</strong>：所有元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>length：</dt>
+        <dd>用长度值来定义轮廓的厚度。不允许负值</dd>
+        <dt>medium：</dt>
+        <dd>定义默认宽度的轮廓。</dd>
+        <dt>thin：</dt>
+        <dd>定义比默认宽度细的轮廓。</dd>
+        <dt>thick：</dt>
+        <dd>定义比默认宽度粗的轮廓。</dd>
+    </dl>
+</div>
+<div class="demo">
+    <div style="outline-width:4px;outline-color: red;outline-style: solid;display:inline;">
+        我有红色外边框，但是边框不占位置
+    </div>
+    <div>
+        我会无视顶上的红色边框，被盖住
+    </div>
+</div>
+<h2 id="outline-color">outline-color</h2>
+<div class="cont">
+    <p><strong>outline-color</strong>：color | invert</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">invert</mark></p>
+    <p><strong>适用于</strong>：所有元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<h2 id="outline-style">outline-style</h2>
+<div class="cont">
+    <p><strong>outline-style</strong>：none | dotted | dashed | solid | double | groove | ridge | inset | outset</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">none</mark></p>
+    <p><strong>适用于</strong>：所有元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>none：</dt>
+        <dd>无轮廓。与任何指定的 &lt;' <a href="#outline-width">outline-width</a> '&gt; 值无关 </dd>
+        <dt>dotted：</dt>
+        <dd>点状轮廓。</dd>
+        <dt>dashed：</dt>
+        <dd>虚线轮廓。</dd>
+        <dt>solid：</dt>
+        <dd>实线轮廓</dd>
+        <dt>double：</dt>
+        <dd>双线轮廓。两条单线与其间隔的和等于指定的 &lt;' <a href="#outline-width">outline-width</a> '&gt; 值</dd>
+        <dt>groove：</dt>
+        <dd>3D凹槽轮廓。</dd>
+        <dt>ridge：</dt>
+        <dd>3D凸槽轮廓。</dd>
+        <dt>inset：</dt>
+        <dd>3D凹边轮廓。</dd>
+        <dt>outset：</dt>
+        <dd>3D凸边轮廓。</dd>
+    </dl>
+</div>
+
+<h2 id="outline-offset">outline-offset</h2>
+<div class="cont">
+    <p><strong>outline-offset</strong>：length</a></p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">0</mark></p>
+    <p><strong>适用于</strong>：所有元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl>
+        <dt>length：</dt>
+        <dd>用长度值来定义轮廓偏移。允许负值。</dd>
+    </dl>
+</div>
+<div class="demo">
+    <div style="outline-width:2px;outline-color: red;outline-style: solid;display:inline;outline-offset: -5px;">
+        我有红色外边框,offset:-5px;
+    </div>
+</div>
+
+<h2>cursor</h2>
+<div class="cont">
+    <p>设置鼠标样式,和系统相关</p>
+</div>
+<div class="demo">
+    <style>
+        .test{width:400px;border-collapse:collapse;font:14px/1.5 georgia,arial,serif,sans-serif;}
+        .test td{padding:2px 10px;border:1px solid #ddd;}
+        .test td:hover{background:#eee;}
+        .auto{cursor:auto;}
+        .default{cursor:default;}
+        .none{cursor:none;}
+        .context-menu{cursor:context-menu;}
+        .help{cursor:help;}
+        .pointer{cursor:pointer;}
+        .progress{cursor:progress;}
+        .wait{cursor:wait;}
+        .cell{cursor:cell;}
+        .crosshair{cursor:crosshair;}
+        .text{cursor:text;}
+        .vertical-text{cursor:vertical-text;}
+        .alias{cursor:alias;}
+        .copy{cursor:copy;}
+        .move{cursor:move;}
+        .no-drop{cursor:no-drop;}
+        .not-allowed{cursor:not-allowed;}
+        .e-resize{cursor:e-resize;}
+        .n-resize{cursor:n-resize;}
+        .ne-resize{cursor:ne-resize;}
+        .nw-resize{cursor:nw-resize;}
+        .s-resize{cursor:s-resize;}
+        .se-resize{cursor:se-resize;}
+        .sw-resize{cursor:sw-resize;}
+        .w-resize{cursor:w-resize;}
+        .ew-resize{cursor:ew-resize;}
+        .ns-resize{cursor:ns-resize;}
+        .nesw-resize{cursor:nesw-resize;}
+        .nwse-resize{cursor:nwse-resize;}
+        .col-resize{cursor:col-resize;}
+        .row-resize{cursor:row-resize;}
+        .all-scroll{cursor:all-scroll;}
+        .zoom-in{cursor:zoom-in;}
+        .zoom-out{cursor:zoom-out;}
+        .url{cursor:url('http://css.doyoe.com/properties/user-interface/skin/cursor.gif'),pointer}
+    </style>
+    <table class="test">
+        <caption>cursor光标类型</caption>
+        <tbody>
+        <tr>
+            <td class="auto">auto</td>
+            <td class="default">default</td>
+            <td class="none">none</td>
+            <td class="context-menu">context-menu</td>
+            <td class="help">help</td>
+            <td class="pointer">pointer</td>
+            <td class="progress">progress</td>
+        </tr>
+        <tr>
+            <td class="wait">wait</td>
+            <td class="cell">cell</td>
+            <td class="crosshair">crosshair</td>
+            <td class="text">text</td>
+            <td class="vertical-text">vertical-text</td>
+            <td class="alias">alias</td>
+            <td class="copy">copy</td>
+        </tr>
+        <tr>
+            <td class="move">move</td>
+            <td class="no-drop">no-drop</td>
+            <td class="not-allowed">not-allowed</td>
+            <td class="e-resize">e-resize</td>
+            <td class="n-resize">n-resize</td>
+            <td class="ne-resize">ne-resize</td>
+            <td class="nw-resize">nw-resize</td>
+        </tr>
+        <tr>
+            <td class="s-resize">s-resize</td>
+            <td class="se-resize">se-resize</td>
+            <td class="sw-resize">sw-resize</td>
+            <td class="w-resize">w-resize</td>
+            <td class="ew-resize">ew-resize</td>
+            <td class="ns-resize">ns-resize</td>
+            <td class="nesw-resize">nesw-resize</td>
+        </tr>
+        <tr>
+            <td class="nwse-resize">nwse-resize</td>
+            <td class="col-resize">col-resize</td>
+            <td class="row-resize">row-resize</td>
+            <td class="all-scroll">all-scroll</td>
+            <td class="url">url</td>
+            <td class="zoom-in">zoom-in</td>
+            <td class="zoom-out">zoom-out</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>zoom</h2>
+<div class="cont">
+    <p>缩放元素</p>
+    <p><strong>zoom</strong>：normal |number |percentage</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">normal</mark></p>
+    <p><strong>适用于</strong>：所有元素</p>
+    <p><strong>继承性</strong>：有</p>
+</div>
+<div class="demo">
+    <p style="zoom:1;">zoom:1</p>
+    <p style="zoom:2;">zoom:2</p>
+    <p style="zoom:300%;">zoom:300%</p>
+</div>
+
+<h2>box-sizing</h2>
+<div class="cont">
+    <p>设置盒模型类型</p>
+    <p><strong>box-sizing</strong>：content-box | border-box</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">content-box</mark></p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>content-box：</dt>
+        <dd>padding和border不被包含在定义的width和height之内。对象的实际宽度等于设置的width值和border、padding之和，即 ( Element width = width + border + padding )</dd>
+        <dd>此属性表现为标准模式下的盒模型。</dd>
+        <dt>border-box：</dt>
+        <dd>padding和border被包含在定义的width和height之内。对象的实际宽度就等于设置的width值，即使定义有border和padding也不会改变对象的实际宽度，即 ( Element width = width )</dd>
+        <dd>此属性表现为怪异模式下的盒模型。</dd>
+    </dl>
+</div>
+<h2>resize</h2>
+<div class="cont">
+    <p><strong>resize</strong>：none | both | horizontal | vertical</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">none</mark></p>
+    <p><strong>适用于</strong>：所有 overflow设置为非visible的元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>none：</dt>
+        <dd>不允许用户调整元素大小。</dd>
+        <dt>both：</dt>
+        <dd>用户可以调节元素的宽度和高度。</dd>
+        <dt>horizontal：</dt>
+        <dd>用户可以调节元素的宽度</dd>
+        <dt>vertical：</dt>
+        <dd>用户可以调节元素的高度。</dd>
+    </dl>
+</div>
+<div class="demo">
+    <div style="width:200px;height:100px;resize:both;overflow:hidden;background: #eee">
+        我是一个可以改变大小的div
+    </div>
+</div>
+
+<h2>ime-mode</h2>
+<div class="cont">
+    <p><strong>ime-mode</strong>：auto | normal | active | inactive | disabled</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">auto</mark></p>
+    <p><strong>适用于</strong>：所有输入文本框</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>auto：</dt>
+        <dd>不影响IME(input method editor)的状态。</dd>
+        <dt>normal：</dt>
+        <dd>正常的IME状态</dd>
+        <dt>active：</dt>
+        <dd>指定所有使用ime输入的字符。即激活本地语言输入法。用户仍可以撤销激活ime</dd>
+        <dt>inactive：</dt>
+        <dd>指定所有不使用ime输入的字符。即激活非本地语言。用户仍可以撤销激活ime</dd>
+        <dt>disabled：</dt>
+        <dd>完全禁用ime。对于有焦点的控件(如输入框)，用户不可以激活ime</dd>
+    </dl>
+</div>
+<div class="demo">
+    <p>请用firefox查看,注意输入法状态</p>
+    <input type="text" style="-moz-ime-mode: inactive"/>
+</div>
+
+<h2>user-select</h2>
+<div class="cont">
+    <p><strong>user-select</strong>：none | <mark class="defaultvalue">text</mark> | all | element</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">text</mark></p>
+    <p><strong>适用于</strong>：除替换元素外的所有元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>none：</dt>
+        <dd>文本不能被选择</dd>
+        <dt>text：</dt>
+        <dd>可以选择文本</dd>
+        <dt>all：</dt>
+        <dd>当所有内容作为一个整体时可以被选择。如果双击或者在上下文上点击子元素，那么被选择的部分将是以该子元素向上回溯的最高祖先元素。</dd>
+        <dt>element：</dt>
+        <dd>可以选择文本，但选择范围受元素边界的约束</dd>
+    </dl>
+</div>
+<div class="demo">
+    <p style="-webkit-user-select: none;">我是p标签内文本,我不能被选中</p>
+</div>
+
+<h2>pointer-events</h2>
+<div class="cont">
+    <p>主要用于是遮盖元素不响应鼠标事件</p>
+    <p><strong>pointer-events</strong>：<mark class="defaultvalue">auto</mark> | none </p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">auto</mark></p>
+    <p><strong>适用于</strong>：所有元素</p>
+    <p><strong>继承性</strong>：有</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>auto：</dt>
+        <dd>与pointer-events属性未指定时的表现效果相同。</dd>
+        <dt>none：</dt>
+        <dd>元素永远不会成为鼠标事件的target。但是，当其后代元素的pointer-events属性指定其他值时，鼠标事件可以指向后代元素，在这种情况下，鼠标事件将在捕获或冒泡阶触发父元素的事件侦听器。</dd>
+    </dl>
+</div>
+
+<div class="demo">
+    <div style="position: relative;height: 200px">
+        <button style="pointer-events: none;">点不到我</button>
+        <div style="position: absolute;left:0;top:0;width: 100%;height: 100%;background: rgba(0,0,0,0.3);line-height: 100px;">
+            设置成pointer-event:none;就可以点到button了
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css基础-多列</title>
+    <style>
+        .cont dt, .cont dd {
+            float: left;
+        }
+
+        .cont dt {
+            clear: left;
+        }
+
+        .clearfix::after {
+            content: '';
+            height: 0;
+            visibility: hidden;
+            clear: both;
+            display: block;
+        }
+
+        .demo {
+            border: 1px solid #aaa;
+            margin: 10px;
+            padding: 20px;
+        }
+
+        .defaultvalue {
+            color: #fff;
+            background: #000;
+            padding: 5px;
+        }
+        h2{
+            border-bottom:1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<h1>多列属性</h1>
+
+<h2>columns</h2>
+<div class="cont">
+    <p><strong>columns</strong>：&lt;' <a href="#column-width">column-width</a> '&gt; || &lt;' <a href="#column-count">column-count</a> '&gt;</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">看每个独立属性</mark></p>
+    <p><strong>适用于</strong>：除table外的非替换块级元素, table cells, inline-block元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+
+<h2 id="column-width">column-width</h2>
+<div class="cont">
+    <p>定义多列中每一列的宽度</p>
+    <p><strong>column-width</strong>：length | auto</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">auto</mark></p>
+    <p><strong>适用于</strong>：除table外的非替换块级元素, table cells, inline-block元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>length：</dt>
+        <dd>用长度值来定义列宽。不允许负值</dd>
+        <dt>auto：</dt>
+        <dd>根据 &lt;' <a href="#column-count">column-count</a> '&gt; 自定分配宽度</dd>
+    </dl>
+</div>
+
+<h2 id="column-count">column-count</h2>
+<div class="cont">
+    <p>定义多列中，分成多少列</p>
+    <p><strong>column-count</strong>：integer | auto</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">auto</mark></p>
+    <p><strong>适用于</strong>：除table外的非替换块级元素, table cells, inline-block元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>length：</dt>
+        <dd>用整数值来定义列数。不允许负值</dd>
+        <dt>auto：</dt>
+        <dd>根据 &lt;' <a href="#column-width">column-width</a> '&gt; 自定分配列数</dd>
+    </dl>
+</div>
+
+<div class="demo">
+    <style>
+        p.clum-p{margin:0;padding:5px 10px;background:#eee;line-height: 1.5}
+        .test{
+            width:628px;
+            border:10px solid #000;
+            -moz-column-width:200px;
+            -moz-column-count:3;
+            -webkit-column-width:200px;
+            -webkit-column-count:3;
+            column-width:200px;
+            column-count:3;
+        }
+        .test2{
+            border:10px solid #000;
+            -moz-column-width:200px;
+            -webkit-column-width:200px;
+            column-width:200px;
+        }
+        .test3{
+            border:10px solid #000;
+            -moz-column-count:5;
+            -webkit-column-count:5;
+            column-count:5;
+        }
+    </style>
+    <h2>列数及列宽固定:</h2>
+    <div class="test">
+        <p class="clum-p">This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns. </p>
+        <p class="clum-p">On the Web, tables have also been used to describe multi-column layouts. The main benefit of using CSS-based columns is flexibility; content can flow from one column to another, and the number of columns can vary depending on the size of the viewport. Removing presentation table markup from documents allows them to more easily be presented on various output devices including speech synthesizers and small mobile devices.</p>
+    </div>
+    <h2>列宽固定，根据容器宽度液态分布列数:</h2>
+    <div class="test2">
+        <p class="clum-p">This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns. </p>
+        <p class="clum-p">On the Web, tables have also been used to describe multi-column layouts. The main benefit of using CSS-based columns is flexibility; content can flow from one column to another, and the number of columns can vary depending on the size of the viewport. Removing presentation table markup from documents allows them to more easily be presented on various output devices including speech synthesizers and small mobile devices.</p>
+    </div>
+    <h2>列数固定，根据容器宽度液态分布列宽:</h2>
+    <div class="test3">
+        <p class="clum-p">This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns. </p>
+        <p class="clum-p">On the Web, tables have also been used to describe multi-column layouts. The main benefit of using CSS-based columns is flexibility; content can flow from one column to another, and the number of columns can vary depending on the size of the viewport. Removing presentation table markup from documents allows them to more easily be presented on various output devices including speech synthesizers and small mobile devices.</p>
+    </div>
+</div>
+
+<h2>column-gap</h2>
+<div class="cont">
+    <p>列与列直接的间隙宽度</p>
+    <p><strong>column-gap</strong>：length | normal</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">normal</mark></p>
+    <p><strong>适用于</strong>：定义了多列的元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>length：</dt>
+        <dd>用长度值来定义列与列之间的间隙。不允许负值</dd>
+        <dt>normal：</dt>
+        <dd>与 font-size 大小相同。假设该对象的font-size为16px，则normal值为16px，类推。</dd>
+    </dl>
+</div>
+<div class="demo">
+    <p>间隙30px</p>
+    <div class="test3" style="-webkit-column-gap:30px;">
+        <p class="clum-p">This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns. </p>
+        <p class="clum-p">On the Web, tables have also been used to describe multi-column layouts. The main benefit of using CSS-based columns is flexibility; content can flow from one column to another, and the number of columns can vary depending on the size of the viewport. Removing presentation table markup from documents allows them to more easily be presented on various output devices including speech synthesizers and small mobile devices.</p>
+    </div>
+</div>
+
+
+<h2>column-rule</h2>
+<div class="cont">
+    <p><strong>column-rule</strong>：&lt;' <a href="#column-rule-width">column-rule-width</a> '&gt; || &lt;' <a href="#column-rule-style">column-rule-style</a> '&gt; || &lt;' <a href="#column-rule-color">column-rule-color</a> '&gt;</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">看每个独立属性</mark></p>
+    <p><strong>适用于</strong>：定义了多列的元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+
+<h2 id="column-rule-width">column-rule-width</h2>
+<div class="cont">
+    <p>定义列与列之间边框的宽度</p>
+    <p><strong>column-rule-width</strong>：length | thin | medium | thick</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">medium</mark></p>
+    <p><strong>适用于</strong>：定义了多列的元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>length：</dt>
+        <dd>用长度值来定义边框的厚度。不允许负值</dd>
+        <dt>medium：</dt>
+        <dd>定义默认厚度的边框。</dd>
+        <dt>thin：</dt>
+        <dd>定义比默认厚度细的边框。</dd>
+        <dt>thick：</dt>
+        <dd>定义比默认厚度粗的边框。</dd>
+    </dl>
+</div>
+
+<h2 id="column-rule-style">column-rule-style</h2>
+<div class="cont">
+    <p>定义边框的样式，和border-style类似</p>
+    <p><strong>column-rule-style</strong>：none | hidden | dotted | dashed | solid | double | groove | ridge | inset | outset</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">none</mark></p>
+    <p><strong>适用于</strong>：定义了多列的元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+
+<div class="cont">
+    <dl class="clearfix">
+        <dt>none：</dt>
+        <dd>无轮廓。&lt;' <a href="#column-rule-color">column-rule-color</a> '&gt; 与&lt;' <a href="#column-rule-width">column-rule-width</a> '&gt; 将被忽略</dd>
+        <dt>hidden：</dt>
+        <dd>隐藏边框。</dd>
+        <dt>dotted：</dt>
+        <dd>点状轮廓。</dd>
+        <dt>dashed：</dt>
+        <dd>虚线轮廓。</dd>
+        <dt>solid：</dt>
+        <dd>实线轮廓</dd>
+        <dt>double：</dt>
+        <dd>双线轮廓。两条单线与其间隔的和等于指定的 &lt;' <a href="#column-rule-width">column-rule-width</a> '&gt; 值</dd>
+        <dt>groove：</dt>
+        <dd>3D凹槽轮廓。</dd>
+        <dt>ridge：</dt>
+        <dd>3D凸槽轮廓。</dd>
+        <dt>inset：</dt>
+        <dd>3D凹边轮廓。</dd>
+        <dt>outset：</dt>
+        <dd>3D凸边轮廓。</dd>
+    </dl>
+</div>
+
+<h2 id="column-rule-color">column-rule-color</h2>
+<div class="cont">
+    <p>边框的颜色</p>
+    <p><strong>column-rule-color</strong>：<a href="../../values/color/color.htm">&lt;color&gt;</a></p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">采用文本颜色</mark></p>
+    <p><strong>适用于</strong>：定义了多列的元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="demo">
+    <p>column-rule-width:10px; column-rule-style: solid; column-rule-color:red;</p>
+    <div class="test3" style="-webkit-column-rule-width:10px;-webkit-column-rule-style: solid;-webkit-column-rule-color:red;">
+        <p class="clum-p">This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns. </p>
+        <p class="clum-p">On the Web, tables have also been used to describe multi-column layouts. The main benefit of using CSS-based columns is flexibility; content can flow from one column to another, and the number of columns can vary depending on the size of the viewport. Removing presentation table markup from documents allows them to more easily be presented on various output devices including speech synthesizers and small mobile devices.</p>
+    </div>
+</div>
+<h2 id="column-span">column-span</h2>
+<div class="cont">
+    <p>定义一个横穿所有列的标签</p>
+    <p><strong>column-span</strong>：none | all</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">none</mark></p>
+    <p><strong>适用于</strong>：除浮动和绝对定位之外的块级元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>none：</dt>
+        <dd>不跨列</dd>
+        <dt>all：</dt>
+        <dd>横跨所有列</dd>
+    </dl>
+</div>
+<div class="demo">
+    <p>column-span:all;</p>
+    <div class="test3" style="">
+        <p class="clum-p">This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns. </p>
+        <p style="-webkit-column-span:all;background: blue;color:#fff;">column-span:all;</p>
+        <p class="clum-p">On the Web, tables have also been used to describe multi-column layouts. The main benefit of using CSS-based columns is flexibility; content can flow from one column to another, and the number of columns can vary depending on the size of the viewport. Removing presentation table markup from documents allows them to more easily be presented on various output devices including speech synthesizers and small mobile devices.</p>
+    </div>
+</div>
+
+<h2>column-fill</h2>
+<div class="cont">
+    <p>统一列高，但是浏览器表现不一致</p>
+    <p><strong>column-fill</strong>：auto | balance</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">auto</mark></p>
+    <p><strong>适用于</strong>：定义了多列的元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>auto：</dt>
+        <dd>列高度自适应内容</dd>
+        <dt>balance：</dt>
+        <dd>所有列的高度以其中最高的一列统一</dd>
+    </dl>
+</div>
+
+<h2>column-break-before</h2>
+<div class="cont">
+    <p>决定一列的前面是否新起一列</p>
+    <p><strong>column-break-before</strong>：auto | always | avoid | left | right | page | column | avoid-page | avoid-column</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">auto</mark></p>
+    <p><strong>适用于</strong>：块级元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>auto：</dt>
+        <dd>既不强迫也不禁止在元素之前断行并产生新列</dd>
+        <dt>always：</dt>
+        <dd>总是在元素之前断行并产生新列</dd>
+        <dt>avoid：</dt>
+        <dd>避免在元素之前断行并产生新列</dd>
+    </dl>
+</div>
+
+<div class="demo">
+    <div class="test">
+        <p class="clum-p">This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns.</p>
+        <div style="-webkit-column-break-before: always;">不管上一列有没有填满，我都另起一列</div>
+        <p class="clum-p">This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns.</p>
+    </div>
+</div>
+
+<h2>column-break-after</h2>
+<div class="cont">
+    <p>决定后面是否新起一列</p>
+    <p><strong>column-break-after</strong>：auto | always | avoid | left | right | page | column | avoid-page | avoid-column</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">auto</mark></p>
+    <p><strong>适用于</strong>：块级元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>auto：</dt>
+        <dd>既不强迫也不禁止在元素之后断行并产生新列</dd>
+        <dt>always：</dt>
+        <dd>总是在元素之后断行并产生新列</dd>
+        <dt>avoid：</dt>
+        <dd>避免在元素之后断行并产生新列</dd>
+    </dl>
+</div>
+
+<div class="demo">
+    <div class="test" style="height: 300px;">
+        <p class="clum-p">This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns.</p>
+        <div style="-webkit-column-break-after: always;">管本列有没有填满，后面新建一列</div>
+        <p class="clum-p">This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns.</p>
+    </div>
+</div>
+
+<h2>column-break-inside</h2>
+<div class="cont">
+    <p>定义自己本身是否可以进行多列分布</p>
+    <p><strong>column-break-inside</strong>：auto | avoid | avoid-page | avoid-column</p>
+    <p><strong>默认值</strong>：<mark class="defaultvalue">auto</mark></p>
+    <p><strong>适用于</strong>：块级元素</p>
+    <p><strong>继承性</strong>：无</p>
+</div>
+<div class="cont">
+    <dl class="clearfix">
+        <dt>auto：</dt>
+        <dd>既不强迫也不禁止在元素内部断行并产生新列</dd>
+        <dt>avoid：</dt>
+        <dd>避免在元素内部断行并产生新列</dd>
+    </dl>
+</div>
+
+<div class="demo">
+    <p>第二列强制断行，所以新起了一列,并没有跟在第一列后面</p>
+    <div class="test">
+        <p class="clum-p">This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns.</p>
+        <p class="clum-p" style="-webkit-column-break-inside: avoid;">This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns.This module describes multi-column layout in CSS. By using functionality described in this document, style sheets can declare that the content of an element is to be laid out in multiple columns.</p>
+    </div>
+</div>
+</body>
+</html>
