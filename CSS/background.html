@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>背景相关</title>
+        <style>
+            body {
+                margin: 0 30px;
+                font-family: "Times New Roman", Georgia, Serif;
+                background: url(./img/chenwubai/attachment_fixed.JPG) no-repeat fixed left/100px 100px padding-box,
+                            url(./img/chenwubai/attachment_scroll.JPG) no-repeat scroll center/100px 100px padding-box,
+                            url(./img/chenwubai/attachment_local.JPG) no-repeat local right/100px 100px padding-box;
+            }
+            p {
+                text-indent: 2em;
+            }
+            .example_bg {
+                border: 1px solid #000;
+                width: 300px;
+                height: 200px;
+                background: url(./img/chenwubai/bg.JPG) no-repeat scroll 10px 20px/50px 50px padding-box,
+                            url(./img/chenwubai/bg.JPG) no-repeat scroll 30px 40px/100px 100px padding-box,
+                            url(./img/chenwubai/bg.JPG) no-repeat scroll 50px 100px/150px 150px padding-box turquoise;
+            }
+            .example_bgColor {
+                border: 1px solid #000;
+                width: 200px;
+                height: 100px;
+                background-image: url(./img/chenwubai/bg.JPG);
+                background-size: 70px 70px;
+                background-repeat: no-repeat;
+                background-color: turquoise;
+                margin-left: 2em;
+            }
+            .example_bgImage {
+                border: 5px solid turquoise;
+                width: 200px;
+                height: 100px;
+                background-image: url(./img/chenwubai/bg.JPG);
+                background-size: 90px 90px;
+                margin-left: 2em;
+            }
+            .example {
+                padding: 1em 2em;
+                list-style: none;
+            }
+            .example:after {
+                content: '.';
+                display: block;
+                width: 0;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+            .example_bgRepeat li {
+                float: left;
+                margin-right: 50px;
+                border: 5px solid turquoise;
+                width: 130px;
+                height: 110px;
+                background-image: url(./img/chenwubai/bg.JPG);
+                background-size: 50px 50px;
+                color: #f3756f;
+            }
+            .example_bgRepeat li:nth-child(1) {
+                background-repeat: repeat-x;
+            }
+            .example_bgRepeat li:nth-child(2) {
+                background-repeat: repeat-y;
+            }
+            .example_bgRepeat li:nth-child(3) {
+                background-repeat: repeat;
+            }
+            .example_bgRepeat li:nth-child(4) {
+                background-repeat: no-repeat;
+            }
+            .example_bgRepeat li:nth-child(5) {
+                background-repeat: round;
+            }
+            .example_bgRepeat li:nth-child(6) {
+                background-repeat: space;
+            }
+            .example_bgPosition li {
+                background-image: url(./img/chenwubai/bg.JPG);
+                width: 150px;
+                height: 100px;
+                background-repeat: no-repeat;
+                background-size: 50px 50px;
+                border: 1px solid #000;
+                float: left;
+                margin-right: 50px;
+            }
+            .example_bgPosition li:nth-child(1) {
+                background-position: center;
+            }
+            .example_bgPosition li:nth-child(2) {
+                background-position: right bottom;
+            }
+            .example_bgPosition li:nth-child(3) {
+                background-position: left 10px bottom 10px;
+            }
+            .example_bgOrigin li {
+                background-image: url(./img/chenwubai/bg.JPG);
+                width: 150px;
+                height: 50px;
+                background-repeat: no-repeat;
+                background-size: 50px 50px;
+                border: 20px solid turquoise;
+                padding: 20px;
+                float: left;
+                margin-right: 50px;
+            }
+            .example_bgOrigin li:nth-child(1) {
+                background-origin: padding-box;
+            }
+            .example_bgOrigin li:nth-child(2) {
+                background-origin: border-box;
+            }
+            .example_bgOrigin li:nth-child(3) {
+                background-origin: content-box;
+            }
+            .example_bgClip li {
+                background-image: url(./img/chenwubai/bg.JPG);
+                width: 150px;
+                height: 50px;
+                background-repeat: no-repeat;
+                background-size: 50px 50px;
+                border: 10px dashed turquoise;
+                padding: 20px;
+                float: left;
+                margin-right: 50px;
+            }
+            .example_bgClip li:nth-child(1) {
+                background-origin: border-box;
+                background-clip: border-box;
+            }
+            .example_bgClip li:nth-child(2) {
+                background-origin: border-box;
+                background-clip: padding-box;
+            }
+            .example_bgClip li:nth-child(3) {
+                background-origin: border-box;
+                background-clip: content-box;
+            }
+            .example_bgClip li:nth-child(4) {
+                background-origin: border-box;
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+                text-align: center;
+                font-size: 35px;
+                font-weight: 700;
+                background-repeat: repeat;
+            }
+            .example_bgSize li {
+                background-image: url(./img/chenwubai/bg.JPG);
+                width: 100px;
+                height: 50px;
+                background-repeat: no-repeat;
+                border: 1px dashed #000;
+                float: left;
+                margin-right: 50px;
+            }
+            .example_bgSize li:nth-child(1) {
+                color: #fff;
+                background-size: auto;
+            }
+            .example_bgSize li:nth-child(2) {
+                background-size: 50px 50px;
+            }
+            .example_bgSize li:nth-child(3) {
+                background-size: 50% 50%;
+            }
+            .example_bgSize li:nth-child(4) {
+                background-size: cover;
+            }
+            .example_bgSize li:nth-child(5) {
+                background-size: contain;
+            }
+            #percent {
+                width: 200px;
+                height: 150px;
+                background-image: url(./img/chenwubai/bg.JPG);
+                background-size: 100px 100px;
+                background-position: left 20% top 20%;
+                background-repeat: no-repeat;
+                border: 1px dashed #000;
+                margin-left: 2em;
+            }
+            .tubiao {
+                background: url(./img/chenwubai/tubiao.png) no-repeat;
+                width: 100px;
+                height: 100px;
+                border: 1px solid lightgray;
+                float: left;
+                margin-left: 10px;
+            }
+            .tubiao1 {
+                background-position: -100px 0;
+            }
+            .tubiao2 {
+                background-position: -200px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>背景相关</h1>
+        <ul>
+            <li>
+                <h3>background属性</h3>
+                <p>该属性用来设置元素的背景，它是个复合属性，它可以设置背景的图像、图像位置、图像尺寸、图像的铺排方式、图像随元素滚动的方式、图像显示的原点、图像向外裁剪的区域和背景颜色。</p>
+                <ul>
+                    <li>
+                        <h4>注意点</h4>
+                        <p>一个元素可以设置多重背景图像，但是只能设置一次背景色。</p>
+                        <p>设置多重背景时，前面的背景图像会覆盖后面的背景图像（即重叠），所以一般为了背景色把背景图像覆盖了，都把背景色设置在最后一组背景上，每组属性之间用逗号隔开。</p>
+                    </li>
+                    <li>
+                        <h4>示例</h4>
+                        <div class="example_bg">
+                            我有三重背景，并且我的背景色是绿色的。
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>background-color属性</h3>
+                <p>该属性用来定义元素的背景色。元素的背景图像会覆盖在背景色上。</p>
+                <p>它的默认取值为transparent，除此之外还可以取值为颜色名称或十六进制码及rgba等。</p>
+                <div class="example_bgColor">
+                    我有背景图像和背景色，你看我的背景图像在我的背景色上面。
+                </div>
+            </li>
+            <li>
+                <h3>background-image属性</h3>
+                <p>该属性用来定义元素的背景图像。</p>
+                <p>它的默认取值为none，即不设置背景图像。其他取值为带绝对地址或相对地址的url，或者创建渐变色来作为背景图像。</p>
+                <p>当设置多重背景时，前面的图像会盖掉后面的图像。</p>
+                <div class="example_bgImage"></div>
+            </li>
+            <li>
+                <h3>background-repeat属性</h3>
+                <p>该属性用来定义元素图像在元素上的铺排方式。其取值如下：</p>
+                <ul style="margin-left: 2em;">
+                    <li>repeat-x，图像在横向上平铺</li>
+                    <li>repeat-y，图像在纵向上平铺</li>
+                    <li>repeat，图像在横向和纵向上平铺</li>
+                    <li>no-repeat，图像不平铺</li>
+                    <li>round，图像缩放至适应且充满整个元素</li>
+                    <li>space，图像以相同间距进行平铺且充满整个元素或者某个方向</li>
+                </ul>
+                <p>如果提供两个参数，则第一个参数用于横向，第二个参数用于纵向。如果只提供一个参数，则用于横向和纵向，除了repeat-x和repeat-y。默认取值为repeat。</p>
+                <ul class="example_bgRepeat example">
+                    <li>repeat-x</li>
+                    <li>repeat-y</li>
+                    <li>repeat</li>
+                    <li>no-repeat</li>
+                    <li>round</li>
+                    <li>space</li>
+                </ul>
+            </li>
+            <li>
+                <h3>background-attachment属性</h3>
+                <p>该属性用来设置背景图像随元素内容的滚动方式。</p>
+                <p>它的默认取值为scroll，即图像相对于元素固定。除此之外，还可以取值为fixed（图像相对于窗体固定）或local（图像相对于元素内容固定）。</p>
+                <p>fixed示例请看左边的小人（你走），scroll示例请看中间的小人（我不走），local示例请看最右边的小人（你走不走）。</p>
+            </li>
+            <li>
+                <h3>background-position属性</h3>
+                <p>该属性用来设置背景图像在元素中的位置。</p>
+                <p>它的默认取值为0% 0%，取值可以为百分比，也可以为长度值，或者为如下的关键字：</p>
+                <ul style="margin-left: 2em;">
+                    <li>center，背景图像横向和纵向均居中</li>
+                    <li>left，图像在横向上从左边开始填充</li>
+                    <li>right，图像在横向上从右边开始填充</li>
+                    <li>top，图像在纵向上从顶部开始填充</li>
+                    <li>bottom，图像在纵向上从底部开始填充</li>
+                </ul>
+                <p>可以提供1个参数或2个参数值或者4个参数值，当为4个参数值时，偏移量前必须带有关键字，如“left 20px bottom 20px”；当为两个参数时，第一个用于横向，第二个用于纵向；当为一个参数时，用于横向，纵向默认取50%。</p>
+                <ul class="example_bgPosition example">
+                    <li>center</li>
+                    <li>right bottom</li>
+                    <li>left 10px bottom 10px</li>
+                </ul>
+            </li>
+            <li>
+                <h3>background-origin属性</h3>
+                <p>该属性用来设置计算背景图像位置时所需要的参考原点。</p>
+                <p>它的取值如下所示，默认值为padding-box。</p>
+                <ul style="margin-left: 2em;">
+                    <li>padding-box，从padding（包含padding）开始显示背景图像</li>
+                    <li>border-box，从border（包含border）开始显示背景图像</li>
+                    <li>content-box，从内容区域开始显示背景图像</li>
+                </ul>
+                <ul class="example_bgOrigin example">
+                    <li>padding-box</li>
+                    <li>border-box</li>
+                    <li>content-box</li>
+                </ul>
+            </li>
+            <li>
+                <h3>background-clip属性</h3>
+                <p>该属性用于设置背景图像向外裁剪的区域。</p>
+                <p>它的取值如下所示，默认取值为border-box。</p>
+                <ul style="margin-left: 2em;">
+                    <li>padding-box，从padding（不含padding）开始向外裁剪背景</li>
+                    <li>border-box，从border（不含border）开始向外裁剪背景</li>
+                    <li>content-box，从content开始向外裁剪背景</li>
+                    <li>text，从前景内容的形状如文字作为裁剪区域向外裁剪</li>
+                </ul>
+                <ul class="example_bgClip example">
+                    <li>border-box</li>
+                    <li>padding-box</li>
+                    <li>content-box</li>
+                    <li>text</li>
+                </ul>
+            </li>
+            <li>
+                <h3>background-size属性</h3>
+                <p>该属性用来设置背景图像的尺寸大小。</p>
+                <p>它的默认取值为auto，即图像的真实大小。除此之外，还可以取值为长度值或者百分比，均不允许负值，还可以取值为cover（图像等比缩放到完全覆盖容器，图像可能超出元素）或者contain（图像等比缩放到宽度或者高度与元素的宽度或高度相等，使图像始终被包含在元素内）。</p>
+                <ul class="example_bgSize example">
+                    <li>auto</li>
+                    <li>50px 50px</li>
+                    <li>50% 50%</li>
+                    <li>cover</li>
+                    <li>contain</li>
+                </ul>
+            </li>
+            <li>
+                <h3>参考链接</h3>
+                <ul>
+                    <li><a href="http://css.doyoe.com/">CSS参考手册</a></li>
+                </ul>
+            </li>
+        </ul>
+        <h1>扩展</h1>
+        <ul>
+            <li>
+                <h3>background-position取百分比详解</h3>
+                <p>当该属性取百分比时，百分比的参照和我们平时认知上的参照有一些出入，它不是根据元素的宽度或者高度进行参照来计算背景图像原点的所在，而是让图像上百分比位置的点与元素百分比位置的点进行重合，从而找到背景图像的位置。</p>
+                <div id="percent">
+                    position: left 20% top 20%;<br/>
+                    origin: padding-box;
+                </div>
+            </li>
+            <li>
+                <h3>background使用场景——雪碧图</h3>
+                <p>在很多网站的页面都会用到很多图标，如果把所有图标都集合在同一张图片上，对于应用不同图标的元素应用背景图像的不同位置（但是背景图还是同一张），则可以省去请求很多次图片的麻烦。</p>
+                <ul id="sprite" class="example">
+                    <li class="tubiao tubiao1"></li>
+                    <li class="tubiao tubiao2"></li>
+                </ul>
+            </li>
+            <li>
+                <h3>参考链接</h3>
+                <ul>
+                    <li><a href="http://blog.csdn.net/freshlover/article/details/7197724">CSS背景图像位置属性background-position百分比详解</a></li>
+                    <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/CSS_Image_Sprites">CSS 雪碧图</a></li>
+                </ul>
+            </li>
+        </ul>
+    </body>
+</html>
