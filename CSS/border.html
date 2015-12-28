@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>边框相关</title>
+        <style>
+            body {
+                margin: 0 30px;
+                font-family: "Times New Roman", Georgia, Serif;
+            }
+            p {
+                text-indent: 2em;
+            }
+            .example {
+                margin-left: 2em;
+            }
+            #border {
+                width: 800px;
+                height: 100px;
+                text-align: center;
+                line-height: 100px;
+                border: 10px solid turquoise;
+            }
+            #borderWidth {
+                width: 400px;
+                height: 50px;
+                border: 1px solid turquoise;
+                border-width: 10px 15px 20px 25px;
+            }
+            #borderStyle {
+                border: 1px solid #000;
+                padding: 20px 50px;
+            }
+            #borderStyle:after,
+            #borderRadius:after,
+            #boxShadow:after,
+            #borderImageRepeat:after {
+                content: '.';
+                display: block;
+                width: 0;
+                height: 0;
+                clear: both;
+                visibility: hidden;
+            }
+            #borderStyle div {
+                float: left;
+                padding: 20px;
+                border-width: 5px;
+                border-color: turquoise;
+                margin-bottom: 10px;
+                margin-right: 50px;
+            }
+            #none {
+                border-style: none;
+            }
+            #hidden {
+                border-style: hidden;
+            }
+            #dotted {
+                border-style: dotted;
+            }
+            #dashed {
+                border-style: dashed;
+            }
+            #solid {
+                border-style: solid;
+            }
+            #double {
+                border-style: double;
+            }
+            #groove {
+                border-style: groove;
+            }
+            #ridge {
+                border-style: ridge;
+            }
+            #inset {
+                border-style: inset;
+            }
+            #outset {
+                border-style: outset;
+            }
+            #borderColor {
+                width: 300px;
+                height: 50px;
+                border-width: 15px;
+                border-style: solid;
+                border-color: #e3ccd0 #bbbad9 #8a7a6c #f2d272;
+            }
+            #borderRadius {
+                padding: 20px 50px;
+                border: 1px solid #000;
+            }
+            #borderRadius div {
+                width: 200px;
+                height: 50px;
+                border: 5px solid turquoise;
+                float: left;
+                margin-right: 50px;
+            }
+            #same {
+                border-radius: 10px/10px;
+            }
+            #different {
+                border-radius: 50px/10px;
+            }
+            #boxShadow {
+                padding: 20px 50px;
+                border: 1px solid #000;
+            }
+            #boxShadow div {
+                float: left;
+                margin-right: 50px;
+                width: 300px;
+                height: 50px;
+                border: 1px solid #000;
+            }
+            .uninset {
+                box-shadow: 10px 5px 10px 10px turquoise;
+            }
+            .inset {
+                box-shadow: 10px 5px 10px 10px turquoise inset;
+            }
+            #borderImage {
+                border-width: 27px;
+                padding: 10px;
+                border-image: url(./img/chenwubai/border.png) 27 27 repeat;
+            }
+            #borderImageSlice {
+                height: 27px;
+                border-width: 27px;
+                border-image-width: 27px;
+                border-image-source: url(./img/chenwubai/border.png);
+                border-image-slice: 27 27;
+                border-image-repeat: repeat;
+            }
+            #borderImageWidth {
+                padding: 20px 50px;
+                border: 1px solid #000;
+            }
+            #borderImageWidth div,
+            #borderImageOutset div {
+                height: 81px;
+                border-image-repeat: repeat;
+                border-image-slice: 27 27;
+                border-image-source: url(./img/chenwubai/border.png);
+                margin-bottom: 20px;
+            }
+            #gt {
+                border-width: 54px;
+                border-image-width: 27px;
+            }
+            #lt {
+                border-width: 10px;
+                border-image-width: 27px;
+            }
+            #equal {
+                border-width: 27px;
+                border-image-width: 27px;
+            }
+            #borderImageOutset {
+                padding: 20px 50px;
+                border: 1px solid #000;
+            }
+            #borderImageOutset div {
+                height: 50px;
+                border-width: 27px;
+                box-shadow: 0 0 0 1px #000;
+            }
+            #imageOutset {
+                border-image-outset: 10px;
+            }
+            #borderImageRepeat {
+                padding: 10px 50px;
+                border: 1px solid #000;
+            }
+            #borderImageRepeat div {
+                float: left;
+                border-width: 27px;
+                padding: 10px;
+                border-image-slice: 27 27;
+                border-image-source: url(./img/chenwubai/border.png);
+                margin-right: 20px;
+            }
+            #stretch {
+                border-image-repeat: stretch;
+            }
+            #repeat {
+                border-image-repeat: repeat;
+            }
+            #round {
+                border-image-repeat: round;
+            }
+            #space {
+                border-image-repeat: space;
+            }
+            #borderTrangle {
+                padding: 10px;
+                border: 1px solid #000;
+            }
+            #borderTrangle span {
+                border-style: solid;
+                display: inline-block;
+                margin-right: 20px;
+            }
+            #borderTrangle1 {
+                border-width: 30px;
+                border-color: #7ba3a8 #f4f3d3 #bead92 #f35a4a;
+            }
+            #borderTrangle2 {
+                border-width: 30px;
+                border-color: #7ba3a8 transparent transparent;
+            }
+            #borderTrangle3 {
+                border-width: 30px 30px 0;
+                border-color: #7ba3a8 #f4f3d3 #bead92 #f35a4a;
+            }
+            #borderTrangle4 {
+                border-width: 30px 30px 0;
+                border-color: #7ba3a8 transparent transparent;
+            }
+            #borderLoading {
+                border: 1px solid #000;
+                display: inline-block;
+                padding: 10px;
+            }
+            #borderLoading div {
+                margin: 2em;
+                font-size: 20px;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                box-shadow: 0 -2em rgba(255, 0, 0, 1),
+                            1.414em -1.414em rgba(255, 0, 0, 0.875),
+                            2em 0 rgba(255, 0, 0, 0.75),
+                            1.414em 1.414em rgba(255, 0, 0, 0.625),
+                            0 2em rgba(255, 0, 0, 0.5),
+                            -1.414em 1.414em rgba(255, 0, 0, 0.375),
+                            -2em 0 rgba(255, 0, 0, 0.25),
+                            -1.414em -1.414em rgba(255, 0, 0, 0.125);
+                animation: rotate 1s infinite forwards steps(8, end);
+            }
+            @keyframes rotate {
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1>边框相关</h1>
+        <ul>
+            <li>
+                <h3>border属性</h3>
+                <p>border是一个复合属性，可以用来设置元素边框的宽度、样式和颜色。</p>
+                <p>如果只用该复合属性定义单个参数的话，那么其他两个参数的默认值会自动生效。</p>
+                <p>border-top、border-right、border-bottom和border-left用来设置四个不同方向上的边框，其他方面同border一样，不再赘述。</p>
+                <div class="example" id="border">我是一个div，你看我的边框宽度为10px，边框样式是实线，边框颜色是绿色的。</div>
+            </li>
+            <li>
+                <h3>border-width属性</h3>
+                <p>该属性用来定义边框的宽度，其取值可为长度值（不允许赋值），或者为关键字thin（1px）、medium（3px）和thick（5px）。</p>
+                <p>如果提供一个参数，则作用于四边；如果提供两个参数，则第一个参数作用于上下两边，第二个参数作用于左右两边；如果提供三个参数，则第一个用于上边，第二个用于左右两边，第三个用于下边；如果提供四个参数，则按照上右下左的顺序作用于四边。</p>
+                <p>如果border-style为none或者hidden，则border-width的最终值将为0。</p>
+                <p>border-top-width、border-right-width、border-bottom-width和border-left-width分别用来单独设置四边的边框宽度，其他同border-width一样，不再赘述。</p>
+                <div class="example" id="borderWidth">我的边框宽度按上右下左的顺序分别为10px、15px、20px和25px。</div>
+            </li>
+            <li>
+                <h3>border-style属性</h3>
+                <p>该属性用来设置边框的样式，其取值如下所示。</p>
+                <ul class="example">
+                    <li>none，无轮廓，border-color被忽略，border-width值为0，除非边框轮廓为图像。</li>
+                    <li>hidden，隐藏边框。IE7及以下不支持。</li>
+                    <li>dotted，点状边框。IE6下显示为dashed效果。</li>
+                    <li>dashed，虚线边框。</li>
+                    <li>solid，实线边框。</li>
+                    <li>double，双线边框。</li>
+                    <li>groove，3D凹槽边框。</li>
+                    <li>ridge，3D凸槽边框。</li>
+                    <li>inset，3D凹边边框。</li>
+                    <li>outset，3D凸边边框。</li>
+                </ul>
+                <p>如果提供一个参数，则作用于四边；如果提供两个参数，则第一个参数作用于上下两边，第二个参数作用于左右两边；如果提供三个参数，则第一个用于上边，第二个用于左右两边，第三个用于下边；如果提供四个参数，则按照上右下左的顺序作用于四边。</p>
+                <p>如果border-width为0，则该属性将不起作用。</p>
+                <p>border-top-style、border-right-style、border-bottom-style和border-left-style分别用来单独设置四边的边框样式，其他同border-style一样，不再赘述。</p>
+                <div class="example" id="borderStyle">
+                    <div id="none">none</div>
+                    <div id="hidden">hidden</div>
+                    <div id="dotted">dotted</div>
+                    <div id="dashed">dashed</div>
+                    <div id="solid">solid</div>
+                    <div id="double">double</div>
+                    <div id="groove">groove</div>
+                    <div id="ridge">ridge</div>
+                    <div id="inset">inset</div>
+                    <div id="outset">outset</div>
+                </div>
+            </li>
+            <li>
+                <h3>border-color属性</h3>
+                <p>该属性用来设置边框颜色。</p>
+                <p>如果提供一个参数，则作用于四边；如果提供两个参数，则第一个参数作用于上下两边，第二个参数作用于左右两边；如果提供三个参数，则第一个用于上边，第二个用于左右两边，第三个用于下边；如果提供四个参数，则按照上右下左的顺序作用于四边。</p>
+                <p>如果border-width为0或者border-style为none，则该属性将不起作用。</p>
+                <p>border-top-color、border-right-color、border-bottom-color和border-left-style分别用来单独设置四边的边框颜色，其他同border-color一样，不再赘述。</p>
+                <div class="example" id="borderColor">
+                    我的边框颜色按上右下左的顺序分别为#e3ccd0、#bbbad9、#8a7a6c和#f2d272。
+                </div>
+            </li>
+            <li>
+                <h3>border-radius属性</h3>
+                <p>该属性用来设置边框的圆角效果。其取值可以为长度值或者百分比，均不允许负值。</p>
+                <p>该属性的参数形式是“水平半径/垂直半径”，其中每种半径又对应1到4个参数。如果代表垂直半径的参数省略的话，则默认等于第一个参数。</p>
+                <p>针对每种半径，如果提供一个参数，则作用于四角；如果提供两个参数，则第一个参数作用于上左和下右，第二个参数作用于上右和下左；如果提供三个参数，则第一个用于上左，第二个用于上右和下左，第三个用于下右；如果提供四个参数，则按照上左、上右、下右和下左的顺序作用于四角。</p>
+                <p>border-top-left-radius、border-top-right-radius、border-bottom-right-radius和border-bottom-left-radius分别用来单独设置四角的圆角效果，其他同border-radius一样，不再赘述。</p>
+                <div class="example" id="borderRadius">
+                    <div id="different">我的四个圆角的水平半径和垂直半径不同。</div>
+                    <div id="same">我的四个圆角的水平半径和垂直半径相同。</div>
+                </div>
+            </li>
+            <li>
+                <h3>box-shadow属性</h3>
+                <p>该属性用来设置元素的阴影效果。其默认值为none，表示无阴影。</p>
+                <p>除了取值为none以外，还可以取值为一系列的长度值，长度值的意义如下。</p>
+                <ul class="example">
+                    <li>第一个长度值，设置元素的阴影水平偏移量，可以为负值。</li>
+                    <li>第二个长度值，设置元素的阴影垂直偏移量，可以为负值。</li>
+                    <li>第三个长度值，设置元素的阴影模糊度，可以忽略，不允许负值。</li>
+                    <li>第四个长度值，设置元素的阴影外延值，可以忽略，可以为负值。</li>
+                </ul>
+                <p>在设置长度值时，还可以加上颜色值设置阴影的颜色。如果加上inset值，则该阴影类型为内阴影，不设置inset值则为外阴影。</p>
+                <p>需要注意的是，阴影是不占据空间的。</p>
+                <div class="example" id="boxShadow">
+                    <div class="uninset">
+                        box-shadow: 10px 5px 10px 10px turquoise;
+                    </div>
+                    <div class="inset">
+                        box-shadow: 10px 5px 10px 10px turquoise inset;
+                    </div>
+                </div>
+            </li>
+            <li>
+                <h3>border-image属性</h3>
+                <p>该属性是一个复合属性，用来设置元素边框的背景图，以及背景图的分割方式，设置了背景图的边框厚度，边框背景图的扩展和边框背景图的平铺方式。</p>
+                <p>可以理解为border-image的优先级高于border设置的边框，当border-image设置的背景图不可见时，就会显示border所设置的边框。</p>
+                <div class="example" id="borderImage">border-image: url(border.png) 27 27 repeat;</div>
+            </li>
+            <li>
+                <h3>border-image-source属性</h3>
+                <p>该属性用来设置边框背景图的来源。默认取值为none，表示无背景图片。或者取值为url路径或者创建的渐变色。</p>
+            </li>
+            <li>
+                <h3>border-image-slice属性</h3>
+                <p>该属性用来设置边框背景图的分割方式。分割的方法为根据上右下左四个方位来分割图像，把图像分成4个角、4条边和中间区域。</p>
+                <p>该属性的值为数值或者百分比（以包含块为参照进行计算），表示的是分割时四条边的宽度，中间区域不会对元素进行填充，除非加上fill关键字。</p>
+                <div class="example" id="borderImageSlice">
+                    我的边框背景图是一个81*81的图片，我的border-image-slice属性为 27 27 。
+                </div>
+            </li>
+            <li>
+                <h3>border-image-width属性</h3>
+                <p>该属性用来指定使用多宽的边框来承载被裁剪后的背景图像。其默认值为1，取值可为长度值、百分比或者数值，均不允许负值。</p>
+                <div class="example" id="borderImageWidth">
+                    <div id="gt">我的border-width为54px，border-image-width为27px。</div>
+                    <div id="lt">我的border-width为10px，border-image-width为27px。</div>
+                    <div id="equal">我的border-width为27px，border-image-width为27px。</div>
+                </div>
+            </li>
+            <li>
+                <h3>border-image-outset属性</h3>
+                <p>该属性用来设置边框背景图扩展。即图像会在原来的基础上往外扩展一定的长度再显示。</p>
+                <p>其默认取值为0，可取长度值或浮点数值，均不允许负值。</p>
+                <div class="example" id="borderImageOutset">
+                    <div id="imageOutset">
+                        我的边框背景图扩展为10px，黑色的边框实际是边框阴影，可以作为参照物来看出变化。
+                    </div>
+                    <div id="imageUnoutset">
+                        我没有设置边框背景图扩展，黑色的边框实际是边框阴影，可以作为参照物来看出变化。
+                    </div>
+                </div>
+            </li>
+            <li>
+                <h3>border-image-repeat属性</h3>
+                <p>该属性用来设置边框图像的填充方式。其取值如下。</p>
+                <ul class="example">
+                    <li>stretch，拉伸，属性默认值。</li>
+                    <li>repeat，平铺。</li>
+                    <li>round，平铺，但会根据边框的尺寸来调整图片的大小直至正好可以铺满边框。</li>
+                    <li>space，平铺，但会根据边框的尺寸来调整图片之间的间距直至正好铺满边框。</li>
+                </ul>
+                <p>如果提供两个参数，则一个用于水平方向，一个用于垂直方向。如果提供一个参数，则用于两个方向。</p>
+                <div class="example" id="borderImageRepeat">
+                    <div id="stretch">stretch</div>
+                    <div id="repeat">repeat</div>
+                    <div id="round">round</div>
+                    <div id="space">space</div>
+                </div>
+            </li>
+            <li>
+                <h3>参考链接</h3>
+                <ul class="example">
+                    <li><a href="http://css.doyoe.com/">CSS参考手册</a></li>
+                </ul>
+            </li>
+        </ul>
+        <h1>扩展</h1>
+        <ul>
+            <li>
+                <h3>边框相关属性的使用场景</h3>
+                <p>border相关的属性有一些特殊的使用场景，简单介绍一下。</p>
+                <ul class="example">
+                    <li>
+                        <h4>使用border画三角形</h4>
+                        <p>经常看到一些网页上有图标是三角形的，这样的效果可以轻松用border来实现。将元素的宽高均设为0，然后设置元素的一边的border可见，其他边框为透明，则可以创建出一个三角形。</p>
+                        <div class="example" id="borderTrangle">
+                            <span id="borderTrangle1"></span>
+                            <span id="borderTrangle2"></span>
+                            <span id="borderTrangle3"></span>
+                            <span id="borderTrangle4"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>使用box-shadow实现loading效果</h4>
+                        <p>因为边框阴影可以设置多重，所以通过设置多重相同形状的阴影，并设置各阴影的颜色逐渐变淡或变深和定位到元素的各个方向，最后旋转元素本身就可以看到loading效果了。</p>
+                        <div class="example" id="borderLoading">
+                            <div></div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h3>高清屏下1px的解决方案</h3>
+            </li>
+            <li>
+                <h3>参考链接</h3>
+                <ul class="example">
+                    <li><a href="http://segmentfault.com/a/1190000000524148">使用css实现全兼容的三角形</a></li>
+                    <li><a href="http://www.cnblogs.com/xljzlw/p/4696624.html">利用box-shadow制作loading图</a></li>
+                </ul>
+            </li>
+        </ul>
+    </body>
+</html>
