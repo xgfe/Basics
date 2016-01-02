@@ -1,0 +1,628 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>Array知识梳理</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Array知识梳理</h1>
+
+<h2 id="toc_1">Array的创建</h2>
+
+<ul>
+<li><p>使用构造函数Array  </p>
+
+<pre><code class="language-none">// 创建一个空数组
+var a1 = new Array();  
+
+// 创建一个数组长度为size的数组
+var a2 = new Array(size);  
+
+// 创建一个数组元素为参数列表的数组
+var a3 = new Array(ele1,ele2,···,eleN);  </code></pre>
+
+<p>如果把构造函数当作函数使用，不加new运算符，创建的数组也是一样的。  </p></li>
+<li><p>直接赋值  </p>
+
+<pre><code class="language-none">var a = [1,2,&#39;3&#39;,[4,true]];  </code></pre></li>
+</ul>
+
+<h3 id="toc_2">注意点</h3>
+
+<ul>
+<li><p>创建数组的规则重叠时的取舍  </p>
+
+<p>下列代码创建的数组都是怎样的？  </p>
+
+<pre><code class="language-none">var arr1 = new Array(3);  
+// 答案A  [null, null, null]  
+// 答案B  [undefined, undefined, undefined]  
+// 答案C  [3]  </code></pre>
+
+<p>当构造函数中的参数是一个数字时，似乎既满足Array(size)也满足Array(eleList)，这时js会选择按照Array(size)的规则去创建数组，而在没有指定数组元素值的情况下数组元素应为undefined，所以最终的正确答案是B。   </p></li>
+<li><p>直接比较数组是不靠谱的  </p>
+
+<p>下列每行比较数组的代码的返回结果是什么呢？  </p>
+
+<pre><code class="language-none">var arr_newArr = new Array(1,2,3);
+var arr_Arr = Array(1,2,3);  
+var arr_literal = [1,2,3];  
+
+console.log(arr_newArr == arr_Arr);
+console.log(arr_newArr == arr_literal);
+console.log(arr_Arr == arr_literal);
+console.log([1,2,3] == [1,2,3]);  </code></pre>
+
+<p>答案是全部都为false。所以不要直接拿数组来做比较的结果作为某些判断的依据。   </p></li>
+</ul>
+
+<h2 id="toc_3">Array的属性和方法</h2>
+
+<ul>
+<li><p>Function和Object的属性和方法  </p>
+
+<p>因为Array继承自Function和Object，所以自然也有它们的属性和方法。  </p></li>
+<li><p>Array.prototype  </p>
+
+<p>所有的数组实例都继承自Array.prototype，该属性指向的是Array的原型对象，该原型对象是一个数组。  </p>
+
+<pre><code class="language-none">Array.prototype  // 控制台输出为[]  </code></pre></li>
+<li><p>Array.length  </p>
+
+<p>该属性表示的是数组实例的长度，因为length属性是挂在Array上的，所以length属性是每个实例所独有的，并不会共享。可以通过减小length的属性值来截断一个数组，也可以通过增大length的属性值来拓展数组长度，但是拓展出的多余的数组元素默认为undefined。  </p>
+
+<pre><code class="language-none">var arr = [1, 2, 3];
+arr.length = 2;
+console.log(arr); // [1, 2]  
+arr.length = 3;
+console.log(arr); // [1, 2, undefined]    </code></pre>
+
+<p>值得注意的是，如上面提到的，Array.prototype也是一个数组，所以在Array.prototype上也有一个length属性，Array.prototype.length的值为0。  </p></li>
+<li><p>Array.isArray()  </p>
+
+<p>该方法用来判断一个值是否为数组。如果是，返回true，反之返回false。   </p>
+
+<pre><code class="language-none">Array.isArray([]);  // true  
+Array.isArray();  // false  
+Array.isArray({});  // false  </code></pre></li>
+<li><p>Array.from()  </p>
+
+<p>该方法可以把一个类数组对象或者可迭代对象(如Set或Map)转换成真正的数组。它有三个参数。  </p>
+
+<ul>
+<li><p>arrayLike<br>
+该参数为想要转换成真正数组的对象  </p></li>
+<li><p>mapFn<br>
+该参数为一个处理的函数，是一个可选的参数，如果制定了该参数，则转换的对象在转换成数组后其数组元素会经过该函数处理后再返回。  </p></li>
+<li><p>thisArg<br>
+该参数也是一个可选参数，是mapFn函数中的this的指向。  </p></li>
+</ul></li>
+<li><p>Array.of()  </p>
+
+<p>该方法可以根据传入的参数列表来生成数组。  </p>
+
+<pre><code class="language-none">var arr = Array.of(1,2,3,[true]);  
+console.log(arr);  // [1, 2, 3, [true]]    
+
+var arr1 = new Array(3);  // [undefined, undefined, undefined]
+var arr2 = Array.of(3);  // [3] </code></pre>
+
+<p>可以看到，Array.of()在一定程度上弥补了Array构造方法的一些缺陷。  </p></li>
+<li><p>Array.observe()  </p>
+
+<p>该方法用来异步监视数组的变化，有两个参数，第一个参数为需要监视的数组实例，第二个参数为数组发生变化时执行的回调函数。该方法仍处于ES7的规范提案中。不建议现在使用。  </p></li>
+<li><p>Array.unobserve()  </p>
+
+<p>该方法用来解除对数组的监视。也有两个参数，第一个参数是需要解除监视的数组实例，第二个参数为绑定监视器时的回调函数。该方法和Array.unobserve()一样仍处于ES7的规范提案阶段。不建议现在使用。    </p></li>
+</ul>
+
+<h2 id="toc_4">Array的类型</h2>
+
+<p>Array是JavaScript中的一种引用类型对象，所以追溯到根源Array也是继承自Object。  </p>
+
+<h3 id="toc_5">如何判断一个对象是否是数组</h3>
+
+<pre><code class="language-none">var arr = [1, 2, 3];
+var obj = {pro: 1};</code></pre>
+
+<ul>
+<li><p>instanceof运算符  </p>
+
+<p>instanceof 运算符可以用来判断某个构造函数的 prototype 属性是否存在另外一个要检测对象的原型链上。借由这样的特性，我们可以判断一个对象是否是Array类型。  </p>
+
+<pre><code class="language-none">console.log(arr instanceof Array);  // true
+console.log(obj instanceof Array);  // false</code></pre></li>
+<li><p>constructor属性  </p>
+
+<p>利用实例对象的原型的constructor属性来判断该对象是否由Array构造函数构造而来，同样可以达到判断类型的目的。  </p>
+
+<pre><code class="language-none">console.log(arr.constructor == Array); // true
+console.log(obj.constructor == Array); // false  </code></pre></li>
+</ul>
+
+<p>虽然上面两种方法在大多数场合用来判断实例是否为数组类型已经够用了，但是它们还是不够靠谱。因为跨页面的环境是不共享原型链的，如果在一个父页面的环境里用instanceof或者constructor去检测一个子页面的实例，得到的结果是不准确的。  </p>
+
+<pre><code class="language-none">var iframe = document.createElement(&#39;iframe&#39;);   
+document.body.appendChild(iframe);   
+xArray = window.frames[window.frames.length-1].Array;   
+var arr = new xArray(1,2,3); // [1,2,3]    
+arr instanceof Array; // false     
+arr instanceof xArray; // true
+arr.constructor === Array; // false  
+arr.constructor === xArray; // true  </code></pre>
+
+<p>如上所示，Array是处于父页面的环境中的，xArray才是子页面环境中的Array。 </p>
+
+<ul>
+<li><p>Object.prototype.toString方法   </p>
+
+<p>Object.prototype上的toString方法，会去获取实例对象的类型名称，并和&quot;[Object &quot;、&quot;]&quot;拼接成形如&quot;[Object className]&quot;的字符串并返回。我们可以通过获取该字符串中的子串className来获知实例对象的类型。   </p>
+
+<pre><code class="language-none">// 输出为 &quot;[Object Array]&quot;
+console.log(Object.prototype.toString.call(arr));      </code></pre></li>
+<li><p>Array.isArray()  </p>
+
+<p>正如该文档前面所介绍的，Array.isArray()可以用来判断某值是否为数组。</p></li>
+</ul>
+
+<h2 id="toc_6">Array的循环</h2>
+
+<ul>
+<li><p>for 循环    </p>
+
+<p>for循环一定的次数，在Array中一般是以数组的长度值作为边界条件来做循环。  </p></li>
+<li><p>for/in 循环  </p>
+
+<p>for/in 循环根据对象的属性来进行循环，在Array中把每个元素的索引看做属性，数组元素作为属性值。要注意的是，在Array的for/in循环中，length并不会被循环到，for/in循环只能枚举可枚举的属性（如用户定义的属性、可继承的用户定义的属性等）。  </p>
+
+<pre><code class="language-none">var arr = new Array(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;);
+var n = 0;
+for(var key in arr) {
+    console.log(key, arr[key]);
+    n++;
+}
+console.log(n);  </code></pre>
+
+<p>最终的结果如下。  </p>
+
+<pre><code class="language-none">// console.log(key, arr[key]);
+0  a  
+1  b   
+2  c   
+// console.log(n);
+3  </code></pre></li>
+<li><p>forEach 方法  </p>
+
+<p>forEach是Array的一个方法，它可以传入两个参数，一个是循环中针对每个数组元素项的执行函数，第二个参数是执行函数中this所指的对象。<br>
+在执行函数中，会传入三个参数，分别是当前遍历到的元素项的值、当前元素的索引和数组本身。  </p>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+arr.forEach(function(d,i,arr){
+    console.log(d, i, arr, this.a);
+}, {
+    a: 1000,
+    b: 2000
+})  </code></pre>
+
+<p>最终输出的结果如下。</p>
+
+<pre><code class="language-none">a 0 [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] 1000
+b 1 [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] 1000
+c 2 [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] 1000</code></pre>
+
+<p>但是在forEach中不能用break语句跳出循环。  </p></li>
+<li><p>for/of 循环  </p>
+
+<p>该循环方式是ES6新提供的，它适用于数组、类数组对象、字符串等。for/of循环读取键值，如果想获取键值对应的索引，必须间接的使用其他方法来获取。  </p>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+for(var value of arr) {
+    console.log(value); // 输出的是键值
+}  </code></pre></li>
+</ul>
+
+<h3 id="toc_7">注意点</h3>
+
+<ul>
+<li><p>for循环与for/in循环的区别  </p>
+
+<p>for/in循环中把数组元素的下标看成数组的属性，此时它是string类型的，而for循环中的索引是number类型的。如果此时对下标进行相加，在for/in循环中会被看成字符串的拼接，而在for循环中是数值的相加。<br>
+当我们对array进行了属性上的扩展的时候（比如给它添加了属性或者方法，虽然这样很奇葩），for/in循环就会有一定的问题。  </p>
+
+<pre><code class="language-none">var arr = new Array(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;);
+arr.otherProperty = &#39;pppp&#39;;  
+for(var key in arr) {
+    console.log(key, arr[key]);
+}  </code></pre>
+
+<p>上述代码的输出会是这样的。  </p>
+
+<pre><code class="language-none">0 a
+1 b
+2 c
+otherProperty pppp  </code></pre>
+
+<p>看，for/in循环遍历到了otherProperty，这跟我们对Array中的循环的预期认知是不一样的。所以需要慎用for/in循环。    </p></li>
+</ul>
+
+<h2 id="toc_8">类数组对象</h2>
+
+<p>顾名思义，类数组对象就是类似数组的对象。首先，它是个对象；其次，它只是类似数组，所以并没有所有数组的特性。  </p>
+
+<p>类数组对象需要满足两个条件：  </p>
+
+<ul>
+<li>指向对象元素的下标<br></li>
+<li>length属性<br></li>
+</ul>
+
+<p>它不具有数组的方法。并且添加元素并不会自动修改length属性的值。  </p>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+var obj = {
+    0: &#39;a&#39;,
+    1: &#39;b&#39;,
+    2: &#39;c&#39;,
+    length: 3
+};
+for(var i=0;i&lt;arr.length;i++) {
+    console.log(i, arr[i]);
+}
+for(var j=0;j&lt;obj.length;j++) {
+    console.log(j, obj[j]);
+}    </code></pre>
+
+<p>最终的输出结果是一样的，这就是类数组对象跟数组类似的地方。<br>
+但是，如果此时给obj添加元素，length属性并不会自动的增加，并且使用数组的方法会报错。  </p>
+
+<pre><code class="language-none">arr[3] = &#39;d&#39;;
+console.log(arr.length);  // 4
+obj[3] = &#39;d&#39;;
+console.log(obj.length);  // 3  
+
+obj.push(&#39;e&#39;);  // 报错  </code></pre>
+
+<p>当然，如果要让类数组对象使用数组的方法，也并不是没有办法，可以通过call或者apply方法间接达到这样的目的。  </p>
+
+<pre><code class="language-none">Array.prototype.slice.call(obj, eleList);  </code></pre>
+
+<p>但是要记住类数组对象它始终不是正宗的数组，所以有一些数组方法对它并不适用，如push等。  </p>
+
+<h2 id="toc_9">数组的空位</h2>
+
+<p>数组的空位是指，在数组中存在这样一个位置，但是该位置上并没有任何值（这里的任何值包括undefined，位置上的值为undefined说明该位置上依然是有值的，并不能算空位）。<br>
+在ES5中，对空位的处理并不是非常一致，所以应该避免使用空位。而在ES6中，统一将空位处理成undefined。   </p>
+
+<ul>
+<li>forEach(), filter(), every() 和some()都会跳过空位。</li>
+<li>map()会跳过空位，但会保留这个值</li>
+<li>join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。<br></li>
+</ul>
+
+<p>需要注意的是，有一种情况并不会产生空位。如下所示，最后的那个逗号会被忽略，并不会产生多余的空位。  </p>
+
+<pre><code class="language-none">var a = [1, 2,];  
+console.log(a);  // [1, 2]    </code></pre>
+
+<h2 id="toc_10">数组的推导</h2>
+
+<p>数组推导提供一种简洁的写法，使能够通过现有的数组直接生成新的数组。目前被推迟到ES7中。  </p>
+
+<pre><code class="language-none">var arr = [1, 2, 3];
+var newArr = [for (i of arr) i * 2];  // [2, 4, 6]    </code></pre>
+
+<h2 id="toc_11">参考链接</h2>
+
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array">Array——MDN</a><br></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/array">ECMAScript 6 入门——数组的扩展</a><br></li>
+<li><a href="http://segmentfault.com/q/1010000000130605">javascript中Array的类型为什么是object?</a><br></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/iterator#for---of%E5%BE%AA%E7%8E%AF">ECMAScript 6 入门——for...of循环</a><br></li>
+<li><a href="http://www.csdn.net/article/1970-01-01/2824965">【探秘ES6】系列专栏（二）：迭代器和for-of循环</a></li>
+<li><a href="https://github.com/justjavac/12-javascript-quirks/blob/master/cn/8-array-like-objects.md">JavaScript 的怪癖 8：“类数组对象”</a><br></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Grammar_and_types#%E6%95%B0%E7%BB%84%E5%AD%97%E9%9D%A2%E5%80%BC%E4%B8%AD%E7%9A%84%E5%A4%9A%E4%BD%99%E9%80%97%E5%8F%B7">数组字面值中的多余逗号</a><br></li>
+</ul>
+
+
+</body>
+
+</html>
