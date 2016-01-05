@@ -1,0 +1,413 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>String</title>
+<style type="text/css">
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">String</h1>
+
+<h2 id="toc_1">基础特性</h2>
+
+<ul>
+<li>value<br>
+&#39;Hello&#39;<br>
+&quot;World&quot;</li>
+<li><p>typeof </p>
+
+<pre><code>typeof &#39;Hello World&#39;    ——&gt; &#39;string&#39;
+typeof(&#39;Hello World&#39;)   ——&gt; &#39;string&#39;</code></pre></li>
+<li><p>toString VS valueOf</p>
+
+<pre><code>var bar = {
+    valueOf: function() { return 10; },
+    toString: function() { return &#39;foo&#39;; }
+}
+console.log(bar);
+alert(bar); 
+alert(+bar);</code></pre>
+
+<p>注:<a href="http://www.cnblogs.com/rubylouvre/archive/2010/10/01/1839748.html">valueOf与toString方法研究</a>  </p></li>
+<li><p>toString VS String()<br>
+toString和String并不是一样的，但是也有一定的共通性，如</p>
+
+<pre><code>var o = { toString: function () { return &quot;foo&quot;; } };
+String(o); // &quot;foo&quot;</code></pre>
+
+<p>看上去好像String构造函数只是简单的调用了参数的toString方法，但是其实不是这样的。又如  </p>
+
+<pre><code>var value = null;
+String(null); //       &quot;null&quot;
+value.toString(); //   TypeError</code></pre>
+
+<p>String构造函数传递参数为一个对象，执行步骤为<br>
+1.如果有值，指定该对象的toString方法，如果执行过之后返回的值是基本数据类型，则返回该结果，如果不是，执行第二步。<br>
+2.执行该对象的valueOf方法，如果执行过之后返回的值是基本数据类型，则返回该结果，如果不是，抛出异常TypeError。<br>
+以上只是一个简单的介绍，更深入详细的内容参看<a href="http://www.adequatelygood.com/Object-to-Primitive-Conversions-in-JavaScript.html">Object-to-Primitive-Conversions-in-JavaScript</a>、<a href="http://bclary.com/2004/11/07/#a-9.8">ToString</a></p></li>
+</ul>
+
+<h2 id="toc_2">方法</h2>
+
+<p><strong>注：字符串对象原型链上面的方法大部分不是字符串独有的，可以当做方法转移到其他类型对象。</strong>  </p>
+
+<ul>
+<li>String.fromCharCode：String构造函数的静态方法，传递Unicode编码，生成字符串</li>
+<li><p>String.prototype.charAt</p>
+
+<pre><code>&#39;Hello&#39;.charAt(1);
+String.prototype.charAt.call([1,2,3],1)   //,</code></pre></li>
+<li><p>String.prototype.charCodeAt</p>
+
+<pre><code>&#39;Hello&#39;.charCodeAt(1).toString(16); //65,e的unicode码
+String.prototype.charCodeAt.call([1,2,3],1).toString(16)   //,的Unicode码</code></pre></li>
+<li><p>String.prototype.concat   <strong>基本同Array.prototype.concat</strong></p></li>
+<li><p>String.prototype.indexOf      </p>
+
+<pre><code>&#39;Hello World&#39;.indexOf(&#39;o&#39;,5);注意第二个参数</code></pre></li>
+<li><p>String.prototype.lastIndexOf  <strong>同上</strong></p></li>
+<li><p>String.prototype.localeCompare</p>
+
+<pre><code>&#39;我&#39;.localeCompare(&#39;你&#39;); //1
+&#39;a&#39;.localeCompare(&#39;b&#39;);     //-1
+&#39;ab&#39;.localeCompare(&#39;ab&#39;);   //0</code></pre></li>
+<li><p>String.prototype.match</p>
+
+<pre><code>&#39;Hello2World&#39;.match(/[eo]/g)        //[&#39;e&#39;,&#39;o&#39;,&#39;o&#39;]</code></pre></li>
+<li><p>String.prototype.replace</p>
+
+<ul>
+<li><p>基本用法</p>
+
+<pre><code>&#39;Hello&#39;.replace(&#39;ll&#39;,&#39;LL&#39;);    //HeLLo,原字符串不变</code></pre></li>
+<li><p>使用正则进行筛选</p>
+
+<pre><code>&#39;a,b,c,d&#39;.replace(/\w(?=,)/g,&#39;O&#39;);   //&quot;O,O,O,d&quot;</code></pre></li>
+<li><p>替换文本使用正则匹配结果</p>
+
+<pre><code>var name = &quot;Doe John&quot;;  
+name.replace(/(\w+)\s*(\w+)/g,&#39;$2-$1($&amp;)&#39;);  //&quot;John-Doe(Doe John)&quot;
+&quot;$1,$2&quot;.replace(/(\$(\d))/g, &quot;$$1-$1$2&quot;) //&quot;$1-$11,$1-$22&quot;</code></pre>
+
+<table>
+<thead>
+<tr>
+<th><strong>字符</strong></th>
+<th style="text-align: center"><strong>替换文本</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>$n</td>
+<td style="text-align: center">第n个匹配结果</td>
+</tr>
+<tr>
+<td>$&amp;</td>
+<td style="text-align: center">与 regexp 相匹配的子串。</td>
+</tr>
+<tr>
+<td>$`</td>
+<td style="text-align: center">位于匹配子串左侧的文本。</td>
+</tr>
+<tr>
+<td>$&#39;</td>
+<td style="text-align: center">位于匹配子串右侧的文本。</td>
+</tr>
+<tr>
+<td>$$</td>
+<td style="text-align: center">$符号</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>替换文本使用function</p>
+
+<pre><code>&#39;a,b,c,d&#39;.replace(/\w(?=,)/g,function(m){   //&quot;A,B,C,d&quot;
+    return m.toUpperCase();
+});
+var name = &quot;Doe John&quot;;  
+name.replace(/(\w+)\s*(\w+)/g,function(m,$1,$2,index,str){
+    return $2-$1(m);
+});  //&quot;John-Doe(Doe John)
+参数列表, 匹配内容+捕获的部分?+匹配的开始索引+完整的字符串</code></pre></li>
+</ul></li>
+<li><p>String.prototype.search <strong>参数传递的是regExp，返回第一个匹配的索引，类似于indexOf</strong></p></li>
+<li><p>String.prototype.slice</p>
+
+<pre><code>var str = &#39;javascript&#39;;
+str.slice(1,5);   //截取索引1(包括)-5(不包括)之间的片段&#39;avas&#39;
+str.slice(4);       //截取下标4及之后的所有字符串&#39;script&#39;
+str.slice(-3);  //截取倒数最后第三个索引之后的所有片段&#39;ipt&#39;
+str.slice(-5,-1);  //截取倒数第五个索引到倒数第一索引（不含）之间的片段&quot;crip&quot;,同str.slice(-5,9);
+str.slice(5,1);   //截取范围不对，返回空字符串</code></pre></li>
+<li><p>String.prototype.substring</p>
+
+<pre><code>var str = &#39;javascript&#39;;
+str.substring(1,5);//同上
+str.substring(4);       //同上
+str.substring(-3);      //不支持传入负值，所以返回了整个字符串
+str.substring(5,1);     //截取范围索引不对的话会自动调转</code></pre></li>
+<li><p>String.prototype.substr</p>
+
+<pre><code>var str = &#39;javascript&#39;;
+str.substr(1,5);    //截取下标为1之后长度为5的字串,&#39;avasc&#39;
+str.substr(-3,3);   //ipt</code></pre>
+
+<p><strong>String 对象的方法 slice()、substring() 和 substr() （ECMAscript 没有对该方法进行标准化，因此反对使用它。）都可返回字符串的指定部分。slice() 比 substring() 要灵活一些，因为它允许使用负数作为参数。slice() 与 substr() 有所不同，因为它用两个字符的位置来指定子串，而 substr() 则用字符位置和长度来指定子串。</strong></p></li>
+<li><p>改变字符串展示方式(将String以特定标签包裹，输出为纯html)</p>
+
+<ul>
+<li>anchor：创建 HTML 锚。</li>
+<li>big：用大号字体显示字符串。</li>
+<li>small：使用小字号来显示字符串。</li>
+<li>bold：使用粗体显示字符串。</li>
+<li>italics：使用斜体显示字符串。</li>
+<li>blink：显示闪动字符串。</li>
+<li>fixed：以打字机文本显示字符串。</li>
+<li>strike：使用删除线来显示字符串。</li>
+<li>fontcolor：使用指定的颜色来显示字符串。</li>
+<li>fontsize：使用指定的尺寸来显示字符串。</li>
+<li>sub：把字符串显示为下标。</li>
+<li>sup：把字符串显示为上标。</li>
+<li>link：将字符串显示为链接。</li>
+</ul></li>
+<li><p>String.prototype.toLowerCase 转为小写</p></li>
+<li><p>String.prototype.toUpperCase 转为大写</p></li>
+<li><p>String.prototype.toLocaleUpperCase 转化为本地大写，只有几种语言（如土耳其语）具有地方特有的大小写映射，所有该方法的返回值通常与 toUpperCase() 一样。</p></li>
+<li><p>String.prototype.toLocaleLowerCase 同上</p></li>
+<li><p>String.prototype.trim </p>
+
+<pre><code>var str = &#39;    java   ja   &#39;;
+str.trim(); //java   ja</code></pre></li>
+</ul>
+
+<h3 id="toc_3">ES6新特性</h3>
+
+<ul>
+<li><p>String.prototype.endsWith--判断是否是以某个字串结尾</p>
+
+<pre><code>var str = &#39;javascript&#39;;
+str.endsWith(&#39;pt&#39;);  //true
+str.endsWith(&#39;script&#39;);  //true
+str.endsWith(&#39;java&#39;);  //false
+str.endsWith(&#39;java&#39;,4);  //true</code></pre></li>
+<li><p>String.prototype.startsWith--判断是否是以某个字串开头，用法同上</p></li>
+<li><p>String.prototype.includes--判断一个字符串是否被包含在另一个字符串中</p>
+
+<pre><code>var str = &#39;javascript&#39;;
+str.includes(&#39;java&#39;);  //true
+str.includes(&#39;java&#39;,5);  //false</code></pre></li>
+<li><p>String.prototype.normalize--按照指定的一种 Unicode 正规形式将当前字符串正规化</p>
+
+<pre><code>var str = &quot;\u6211\u662f\u8c01&quot;;
+str.normalize(&quot;NFC&quot;);
+str.normalize(&quot;NFD&quot;);
+str.normalize(&quot;NFKC&quot;);
+str.normalize(&quot;NFKD&quot;);</code></pre></li>
+<li><p>String.prototype.repeat--重复当前字符串若干次数的新字符串</p>
+
+<pre><code>var str = &#39;javascript&#39;;
+str.repeat(3);  //&quot;javascriptjavascriptjavascript&quot;
+str.repeat(-1); // Uncaught RangeError: Invalid count value
+str.repeat(0);  //&quot;&quot;</code></pre></li>
+<li><p>String.prototype[@@iterator]() -- 返回一个迭代器</p>
+
+<pre><code>var str = &#39;javascript&#39;;
+var strIter = str[Symbol.iterator]();
+strIter.next().value   //j
+strIter.next().value   //a
+strIter.next().value   //v
+...
+strIter.next().value   //t
+strIter.next().value   // undefined</code></pre></li>
+<li><p>String.raw -- String 构造函数上的静态方法，获取一个模板字符串的原始字面量值的。</p>
+
+<pre><code>String.raw &#39;Hi\n!&#39;;   //&#39;Hi\n!&#39; \n并没有起到换行的作用
+var name = &#39;Bob&#39;;
+String.raw `Hi\n${name}!`;    //&quot;Hi\nBob!&quot;  
+String.raw({raw: &quot;test&quot;}, 0, 1, 2);    //&quot;t0e1s2t&quot;
+String.raw({raw: &quot;testa&quot;}, 0, 1, 2, 5); //&quot;t0e1s2t5a&quot;
+String.raw({raw: &quot;testa&quot;}, 0, 1, 2);   //&quot;t0e1s2ta&quot;</code></pre></li>
+<li><p>模板字符串 </p>
+
+<ul>
+<li>用法：`String`来表示一个模板字符串</li>
+<li>特性：1.可换行;2.占位符替换 等</li>
+<li><p>换行</p>
+
+<pre><code>普通字符串
+var str = &#39;This is first line;\nThis is second line.&#39;
+模板字符串
+`string text line 1
+string text line 2`</code></pre></li>
+<li><p>占位符表达式</p>
+
+<pre><code>var user = {
+    name:&#39;Bob&#39;,
+    age:20, 
+    say:function(who){
+        return &quot;Hello!&quot; + who;
+    }
+};
+var str = `My name is ${user.name},I&#39;m ${user.age} years old.I want to say ${user.say(&#39;Jerry&#39;)}`   
+//&quot;My name is Bob,I&#39;m 20 years old.I want to say Hello!Jerry&quot;
+链接字符串，以前是这样做的 
+var a = 1,b=3;
+str = &quot;a + b = &quot;+(a+b);
+模板字符串可以这样
+str = `a + b = ${a+b}`</code></pre></li>
+</ul></li>
+</ul>
+
+
+</body>
+
+</html>
