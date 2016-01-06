@@ -1,0 +1,657 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>object-prototype</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h2 id="toc_0">Object.prototype</h2>
+
+<h3 id="toc_1">1. 概述</h3>
+
+<p>prototype是每个函数对象都具有的属性，称为原型对象。在Javascript中，所有对象都是基于Object，所有对象都继承了Object.prototype的属性和方法，它们可以被覆盖。Object.prototype属性是不可写，不可配置，不可枚举的。</p>
+
+<h3 id="toc_2">2. 属性</h3>
+
+<h4 id="toc_3">2.1 Object.prototype._<strong><em>proto</em></strong>_</h4>
+
+<ul>
+<li>描述：每个对象内部都会有一个初始化属性<strong>proto</strong>，它指向实例对象原型prototype对象的引用。</li>
+<li><strong>警告：该特性不是标准的，尽量不要在生产环境中使用它。在ES6中添加了标准实现</strong></li>
+<li><p>例子  </p>
+
+<ul>
+<li><p>普通对象的<code>__proto__</code></p>
+
+<pre><code class="language-none">function Person() {}
+var p = new Person();
+console.log(p.__proto__ === Person.prototype);  //true
+console.log(Object.__proto__ === Function.prototype); //true
+console.log(Function.__proto__ === Function.prototype); //true</code></pre></li>
+<li><p>构造器/函数的<code>__proto__</code><br>
+所有的构造器/函数的<code>__proto__</code>都指向Function的prototype</p>
+
+<pre><code class="language-none">function Person(name) {  
+   this.name = name ;  
+}
+console.log(Person.__proto__ === Function.prototype);  //true  </code></pre></li>
+<li><p>原型链<br>
+每个对象上都有一个<code>__proto__</code>属性，原型链上的对象是靠这个<code>__proto__</code>属性连接在一起的。当我们访问一个对象的属性时，如果当前对象不存在该属性，则会去<code>__proto__</code>里找，这个<code>__proto__</code>又会有自己的<code>__proto__</code>，这样就形成一个原型链。    </p>
+
+<pre><code class="language-none">function Person() {
+    this.name = &#39;person&#39;;
+}
+function Man() {
+    this.sex = &#39;male&#39;;
+}
+var m = new Man();
+m.__proto__ = Person;
+console.log(m.name);  //&#39;person&#39;</code></pre></li>
+<li><p>禁用<br>
+利用<code>__proto__</code>属性扩展一个对象，只能适用于可扩展的对象，一个不可扩展对象的<code>__proto__</code>属性是不变的：</p>
+
+<pre><code class="language-none">var obj = {};
+Object.preventExtensions(obj);
+obj.__proto__ = {}; // 抛出异常TypeError</code></pre></li>
+<li><p>参考资料<br>
+<a href="http://www.cnblogs.com/ziyunfei/archive/2012/10/05/2710955.html"><strong>proto</strong>参考资料</a><br>
+<a href="https://msdn.microsoft.com/zh-cn/library/dn342818(v=vs.94).aspx">Object的<strong>proto</strong>属性</a></p></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_4">2.2 Object.prototype.constructor</h4>
+
+<ul>
+<li>描述：constructor是原型对象拥有的属性，实例对象也会继承这个属性。constructor属性始终指向创建当前对象的构造函数</li>
+<li><p>例子：</p>
+
+<ul>
+<li><p>基本规则  </p>
+
+<pre><code class="language-none">function Person(name) {  
+    this.name = name;  
+}
+var p = new Person(&quot;ZhangSan&quot;);
+console.log(p.constructor === Person);  // true  
+console.log(p.constructor === Person.prototype.constructor); // true 
+//所有构造器/函数的constructor指向Function
+console.log(Person.constructor);  // function Function() { [native code] }
+console.log(Object.constructor); // function Function() { [native code] }</code></pre></li>
+<li><p>constructor是可变的<br>
+当我们重新定义函数的prototype时，constructor是变化的 </p>
+
+<pre><code class="language-none">function Person(name) {  
+    this.name = name;  
+}
+Person.prototype = {
+    constructor: Person,
+    getName: function(){
+        return this.name;
+    }
+}
+var p = new Person(&#39;zhangsan&#39;);
+console.log(p.constructor === Person);  // false
+
+console.log(p.constructor === Object);  // true
+console.log(Person.prototype.constructor === Object);  // true</code></pre></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_5">2.3 <code>__proto__</code>与prototype</h4>
+
+<p><img src="../images/__proto__-prototype.png" alt="```__proto__```与prototyped的关系图"></p>
+
+<h4 id="toc_6">2.4 Function、Object、prototype、proto</h4>
+
+<pre><code class="language-none">function Animal(){}
+var a = new Animal();   </code></pre>
+
+<p><img src="../images/Object-Function-prototype-proto.png" alt="Function、Object、prototype、proto关系图">
+<a href="http://www.blogjava.net/heavensay/archive/2013/10/20/405440.html">参考链接</a></p>
+
+<h3 id="toc_7">3. 方法</h3>
+
+<h4 id="toc_8">3.1 Object.prototype.hasOwnProperty()</h4>
+
+<ul>
+<li>含义：判断某个对象是否含有特定的<strong>自身属性</strong>，与in方法不同，该方法会忽略掉从原型链上继承的属性   <br/></li>
+<li>语法：<code>obj.hasOwnProperty(prop)</code><br></li>
+<li><p>示例</p>
+
+<ul>
+<li><p>1.hasOwnProperty()方法会忽略从原型链上继承的方法      </p>
+
+<pre><code class="language-none">var person = {
+    name: &#39;hello&#39;
+};
+
+console.log(person.hasOwnProperty(&quot;name&quot;));  //return true
+console.log(person.hasOwnProperty(&quot;toString&quot;));  //return false
+console.log(person.hasOwnProperty(&quot;hasOwnProperty&quot;));  //return false</code></pre></li>
+<li><p>2.如果一个对象拥有自己的hasOwnProperty()方法，那么原型链上的方法会被覆盖。如果需要使用原型链上真正的hasOwnProperty方法，可以使用call方法</p>
+
+<pre><code class="language-none"> var foo = {
+    name: &#39;zhangsan&#39;,
+    hasOwnProperty: function () {
+        return false;
+    }
+}
+foo.hasOwnProperty(&quot;name&quot;);  // return false;
+Object.prototype.hasOwnProperty.call(foo, &quot;name&quot;);  //return true</code></pre></li>
+<li><p>3.hasOwnProperty()与for...in<br>
+for...in用于对数组或者对象的属性进行循环操作，但是for...in循环总会访问对象的原型，看下原型中是否有属性，所以建议不要对数组进行for...in循环。而可以结合hasOwnProperty()方法使用，可以避免不必要的循环</p>
+
+<pre><code class="language-none">var arr1 = [1, 2, 3, 4, 5];
+Array.prototype.age = 13;
+for(var i in arr1){
+    console.log(arr1[i]); //1 2 3 4 5 13
+}
+for(var i in arr1){
+    if(arr1.hasOwnProperty(i)){
+        console.log(arr1[i]); //1 2 3 4 5
+    }
+}</code></pre>
+
+<p><strong>注意：for...in循环不一定按照属性定义顺序输出，所有浏览器的最新版本都按照chrome执行，先把当中的非负整数键提出来，排序好输出，然后其他属性按照定义的顺序输出。所以建议用户在定义对象属性时不要以纯数字</strong>   </p>
+
+<pre><code class="language-none">var obj = {
+    &#39;name&#39;: &#39;zhangsan&#39;,
+    &#39;1&#39;: &#39;123&#39;,
+    &#39;5&#39;: &quot;567&quot;,
+    &#39;age&#39;: 14,
+    3: &#39;345&#39;,
+    &#39;4&#39;: 456,
+    &#39;-1&#39;: &#39;123&#39;
+}
+
+for(var i in obj){
+    console.log(i);  // 1 3 4 5 name age -1
+}</code></pre></li>
+<li><p>4.规范<br>
+在JavaScript 1.5中提供标准实现</p></li>
+<li><p>5.浏览器兼容性
+<img src="../images/hasOwnProperty-browser-support.png" alt="eval浏览器支持情况"></p></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_9">3.2 Object.property.isPropertyOf()</h4>
+
+<ul>
+<li>1 含义<br>
+测试一个对象是否存在于另一个对象的原型链上。<br></li>
+<li>2 语法<br>
+<code>o.isPrototypeOf(obj)</code>  理解为：对象o是否在对象obj的原型链上</li>
+</ul>
+
+<ul>
+<li><p>3 示例     </p>
+
+<pre><code class="language-none">function Foo() {
+
+}
+function Foo2() {
+
+}
+Foo2.prototype = new Foo();
+function Foo3() {
+
+}
+Foo3.prototype = new Foo2();
+
+var f = new Foo3();
+console.log(Foo.prototype.isPrototypeOf(f)); //true</code></pre>
+
+<p><strong>注意：</strong></p></li>
+</ul>
+
+<h3 id="toc_10">3.3 Object.prototype.toSource()</h3>
+
+<ul>
+<li>含义：返回一个对象源代码的字符串表示。</li>
+<li><strong>警告：由于该特性是非标准的，尽量不要在生产环境中使用它</strong></li>
+<li>语法：<code>obj.toSource()</code></li>
+<li>规范：由于该特性是非标准的，所以对于不同的浏览器的支持是不一样的。例如如下代码：<br>
+<code>
+var a = {};  
+console.log(a.toSource());
+</code><br>
+在Chrome下会报错：<code>Uncaught TypeError: a.toSource is not a function</code><br>
+而在Firefox下会显示： <code>({})</code><br>
+在Safari下会报错： <code>TypeError: undefined is not a function (evaluating &#39;a.toSource()&#39;)</code></li>
+</ul>
+
+<h4 id="toc_11">3.4 Object.prototype.toString()</h4>
+
+<ul>
+<li>含义：返回一个代表该对象的字符串<br></li>
+<li>语法： <code>obj.toString()</code></li>
+<li>描述：当对象需要转换为字符串时，会调用它的toString()方法。默认情况下，每个对象都会从Object上继承toString()方法，如果这个方法没有被该对象自身或者更上层的原型上同名方法覆盖，则调用该方法时会返回“[object type]”，type表示对象类型。<br>
+<strong>注意：从ES5开始，在null值上调用toString()方法会返回[object Null]，在undefined上调用toString()方法返回[obeject Undefined]</strong></li>
+<li><p>示例：    </p>
+
+<ul>
+<li>覆盖默认的toString方法<br>
+可以通过自定义prototype的toString方法来覆盖默认的toString方法<br></li>
+<li>使用toString方法检测对象类型<br>
+由于有的对象对toString()方法进行了覆盖，要检测对象类型必须通过Object.prototype.toString()来实现，此时需要通过call或者apply方法。<br></li>
+</ul>
+
+<pre><code class="language-none">var toString = Object.prototype.toString;
+
+toString.call(new Date); // [object Date]
+toString.call(new String); // [object String]
+toString.call(Math); // [object Math]
+
+//Since JavaScript 1.8.5
+toString.call(undefined); // [object Undefined]
+toString.call(null); // [object Null]</code></pre></li>
+<li><p>规范<br>
+<img src="../images/toString.png" alt="toString方法规范">    </p></li>
+</ul>
+
+<h4 id="toc_12">3.5 Object.prototype.toLocaleString()</h4>
+
+<ul>
+<li>含义：返回该对象的一个字符串表示。该方法主要用于被本地化相关对象的覆盖。</li>
+<li>语法：<code>obj.toLocaleString()</code></li>
+<li><p>覆盖了toLocaleString的对象   </p>
+
+<ul>
+<li>Array.prototype.toLocaleString()</li>
+<li>Number.prototype.toLocaleString()</li>
+<li>Date.prototype.toLocaleString()</li>
+</ul>
+
+<p>各浏览器对toLocaleString()方法的支持也不是同的，主要是Safari比较特殊</p></li>
+</ul>
+
+<h4 id="toc_13">3.6 Object.prototype.propertyIsEnumerable</h4>
+
+<ul>
+<li>含义：返回一个布尔值，表明指定的属性名是否是<strong>当前对象</strong>的可枚举属性</li>
+<li>语法：<code>obj.propertyIsEnumerable(prop)</code></li>
+<li>描述：该方法可以判断出指定的属性是否是自身的可枚举属性，也就是说该属性是否可以通过for...in循环遍历到，不过有些属性虽然可以被for...in遍历到，因为不是自身属性，而是从原型链上继承的属性，也会返回false</li>
+<li><p>用法：   </p>
+
+<ul>
+<li>自身属性和继承属性<br></li>
+</ul>
+
+<pre><code class="language-none">function firstConstructor(){
+   this.property = &#39;is not enumerable&#39;;
+}
+function secondConstructor() {
+   this.method = function(){}
+}
+secondConstructor.prototype.newProp = &#39;hello&#39;;
+
+secondConstructor.prototype = new firstConstructor();
+secondConstructor.prototype.constructor = secondConstructor;
+
+var o = new secondConstructor();
+o.ownProperty = &#39;is enumerable&#39;;   
+
+console.log(o.propertyIsEnumerable(&#39;ownProperty&#39;)); //返回true   
+console.log(o.propertyIsEnumerable(&#39;newProp&#39;)); //返回false
+console.log(o.propertyIsEnumerable(&#39;property&#39;)); //返回false，因为是从原型链上继承下来的</code></pre></li>
+<li><p><strong>注意:Gecko核心浏览器，从 JavaScript 1.8.1 (in Firefox 3.6) 开始，propertyIsEnumerable(&quot;prototype&quot;)返回 false，不再是 true；这与 ECMAScript 5 的结果一致</strong></p></li>
+<li><p>hasOwnProperty()与propertyIsEnumerable()区别<br>
+hasOwnProperty方法在属性即使是非enumerable时也会返回true，例如Array的length属性。</p>
+
+<pre><code class="language-none">var a = [];
+snippet.log(a.hasOwnProperty(&#39;length&#39;));       // &quot;true&quot;
+snippet.log(a.propertyIsEnumerable(&#39;length&#39;)); // &quot;false&quot;
+</code></pre>
+
+<p>通过Object.defineProperty()将enumerable值设为false，也会得到不同的返回值 </p>
+
+<pre><code class="language-none">var arr = [];     
+Object.defineProperty(arr, &#39;own&#39;, {enumerable: false});
+console.log(arr.hasOwnProperty(&#39;own&#39;));  // &quot;true&quot;
+console.log(arr.propertyIsEnumerable(&#39;own&#39;)); // &quot;false&quot;</code></pre></li>
+</ul>
+
+<h4 id="toc_14">3.7 Object.property.watch()</h4>
+
+<ul>
+<li>含义：监视一个对象某个属性是否发生变化，在该属性发生变化时立即出发指定的回调函数。</li>
+<li><strong>警告：由于该特性是非标准的，尽量不要在生产环境中使用它。另外，使用 watchpoints 对性能有一系列的副面影响 ，特别是当使用全局对象，如 window. 你应该使用  setters and getters 或 proxies 来替代.</strong> </li>
+<li>语法：<code>obj.watch(prop, handler)</code>   handler表示回调函数</li>
+<li>描述：watch()与unwatch()方法仅在Gecko中实现，并且它们主要为了在调试的时候使用。<a href="https://gist.github.com/eligrey/384583">Pollfill</a>在所有支持ES5的浏览器中提供了watch方法</li>
+<li><p>示例(仅能在Firefox下运行)</p>
+
+<pre><code class="language-none">var o = {p: 1};
+o.watch(&#39;p&#39;, function (prop, oldVal, newVal) {
+   console.log(&#39;o.&#39; + prop + &#39;由&#39; + oldVal + &#39;变为&#39; + newVal);
+   return newVal;
+});
+o.p = 2; // &#39;o.p由1变为2&#39;</code></pre></li>
+</ul>
+
+<h4 id="toc_15">3.8 obejct.prototype.unwatch()</h4>
+
+<ul>
+<li>含义：同watch()方法相反，作用是想要停止监视的对象多属性名</li>
+</ul>
+
+<h4 id="toc_16">3.9 Object.prototype.valueOf()</h4>
+
+<ul>
+<li>含义：返回一个对象的原始值（如果存在）。如果不存在则返回对象自身</li>
+<li>语法：<code>obj.valueOf()</code></li>
+<li>描述：默认情况下，每个对象会从Object上继承valueOf方法，对于一个普通对象，可以覆盖继承的valueOf方法，返回最合适的值。如果没有覆盖则会调用Object的valueOf方法，返回：<code>Object {}</code>。对于类型为Number的对象，valueOf()返回该对象表示的原始数值。同样，对于Boolean对象来说，该方法返回与对象相关的布尔值。对于String对象来说，返回与对象相关的字符串。几乎在所有的环境中，Javascript都可以自动实现原始值和对象之间的转换，几乎没有必要自己调用valueOf()方法。</li>
+</ul>
+
+<h4 id="toc_17">3.10 已经废弃的方法</h4>
+
+<ul>
+<li><code>Object.prototype.eval()</code></li>
+<li><code>Object.prototype.__defineGetter__()</code></li>
+<li><code>Object.prototype.__defineSetter__()</code></li>
+<li><code>Object.prototype.__lookupGetter__()</code></li>
+<li><code>Object.prototype.__lookupsetter__()</code></li>
+</ul>
+
+
+</body>
+
+</html>
