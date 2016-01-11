@@ -1,0 +1,1182 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>Array函数</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Array 构造函数</h1>
+
+<ol>
+<li><p>Array.isArray(obj)</p>
+
+<ul>
+<li>定义:判断传入对象是否未数组，如果是返回true，如果不是返回false</li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">function validate (a){
+    Array.isArray(arguments);  //返回:false
+    Array.isArray(a);  //返回true
+}
+var arr = [1, 2, 3];
+validate(arr);</code></pre></li>
+</ol>
+
+<h1 id="toc_1">Array Prototype Methods</h1>
+
+<ul>
+<li>破坏性的:会改变原来数组</li>
+<li>非破坏性:不会改变操作数组</li>
+</ul>
+
+<h2 id="toc_2">添加或者移除元素(破坏性)</h2>
+
+<ol>
+<li><p>Array.prototype.shift()[ECMAScript 3]</p>
+
+<ul>
+<li>定义:删除数组的第一个元素并将其返回,然后把随后的元素下移一个位置来填补数组头部的空缺.</li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;];
+arr.shift(); // arr:[&#39;b&#39;],返回&#39;a&#39;</code></pre></li>
+<li><p>Array.prototype.unshift(elem1?, elem2?, ...)[ECMAScript 3]</p>
+
+<ul>
+<li>定义:在数组的头部添加一个或多个元素,并将已存在的元素移动到更高索引位置来获得足够的空间,返回数组新长度.</li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;];
+arr.unshift(&#39;c&#39;,[&#39;d&#39;, &#39;e&#39;, &#39;f&#39;]); // arr:[&quot;c&quot;, [&quot;d&quot;, &quot;e&quot;, &quot;f&quot;], &quot;a&quot;, &quot;b&quot;], 返回:4</code></pre>
+
+<ul>
+<li>注意点
+
+<ul>
+<li>如果存在多个参数,则参数是一次性插入的,因此插入数组的元素顺序与他们在参数列表中的顺序一致.</li>
+<li>插入的元素可以是单个元素，也可以是一整个数组.</li>
+</ul></li>
+</ul></li>
+<li><p>Array.prototype.pop()[ECMAScript 3]</p>
+
+<ul>
+<li>定义:删除数组的最后一个元素,减小数组长度并返回它删除的值.</li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;];
+arr.pop(); // arr:[&#39;a&#39;],返回&#39;b&#39;</code></pre></li>
+<li><p>Array.prototype.push([elem1, elem2, ...])[ECMAScript 3]</p>
+
+<ul>
+<li>定义:在数组的尾部添加一个或多个元素,并返回数组新长度.</li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;];
+arr.push(&#39;c&#39;,[&#39;d&#39;, &#39;e&#39;, &#39;f&#39;]); // arr:[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, [&quot;d&quot;, &quot;e&quot;, &quot;f&quot;]], 返回:4</code></pre></li>
+<li><p>Array.prototype.splice(start[, deleteCount, elem1, elem2, ...])[ECMAScript 3]</p>
+
+<ul>
+<li>定义:在数组中插入或者删除元素,最后返回一个由删除元素组成的数组,如果没有删除元素则返回一个空数组.
+
+<ul>
+<li>从start开始，先删除deleteCount个元素，接着插入指定的elem1...元素，最后返回删除的元素.</li>
+</ul></li>
+<li>参数介绍
+
+<ul>
+<li>从start:插入或删除起始位置(必须),可以为0</li>
+<li>deleteCount: 删除元素个数(可以省略),如果省略表示从起始开始到数组结束的所有元素都会被删除.</li>
+<li>elem1,elem2...:第三个参数开始的任意多个参数指定了需要插入到数组中的元素(可以省略)。从第一个参数指定位置开始插入.</li>
+</ul></li>
+<li>注意点:如果需要从某一位置开始插入数据，那么第二位参数不能省略，应该设置为0.</li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;];
+arr.splice(3);   //从第三位开始,不指定第二个参数。 arr:[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], 返回:[&quot;d&quot;, &quot;e&quot;]
+// arr:[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+arr.splice(1, 1, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;); //从第一位开始,删除一个元素,插入三个元素。 arr:[&quot;a&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;c&quot;], 返回[&#39;b&#39;]
+// arr:[&quot;a&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;c&quot;]
+arr.splice(0, 0, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;);  // arr:[&quot;x&quot;, &quot;y&quot;, &quot;z&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;], 返回:[]</code></pre></li>
+</ol>
+
+<h2 id="toc_3">排序与反转(破坏性)</h2>
+
+<ol>
+<li><p>Array.prototype.reverse()[ECMAScript 3]</p>
+
+<ul>
+<li>定义:将数组中元素颠倒顺序，返回逆序的数组</li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+arr.reverse(); //arr:[&#39;c&#39;, &#39;b&#39;, &#39;d&#39;],返回[&#39;c&#39;, &#39;b&#39;, &#39;d&#39;]</code></pre></li>
+<li><p>Array.prototype.sort([compareFunction])[ECMAScript 3]</p>
+
+<ul>
+<li>定义:将数组中的元素排序并返回排序后的数组,如果不传递参数,则数组元素以字母表顺序排序。如果需要按其他方式排序，必须给sort()方法传递一个比较函数.</li>
+<li>注意点
+
+<ul>
+<li>如果不传递参数,所有数组元素被转化成字符串,按照字母表顺序进行排序.</li>
+<li>如果数组包含undefined元素,它们会被排到数组的末尾.</li>
+<li>给sort传递一个比较函数function compareFunction(a, b):函数对a和b进行比较，并返回结果
+
+<ul>
+<li>如果a &lt; b,则返回一个负值(通常返回-1):表示第一个参数(a)在前</li>
+<li>如果a = b,则返回0</li>
+<li>如果a &gt; b,则返回一个正值(通常返回1):表示第一个参数(a)在后</li>
+</ul></li>
+<li>传递的比较函数只使用一次,因此使用匿名表达式</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">// 不传递比较函数
+var arr = [&#39;apple&#39;, &#39;banana&#39;, &#39;pear&#39;, &#39;orange&#39;];
+arr.sort(); //arr:[&quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;, &quot;pear&quot;],返回:[&quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;, &quot;pear&quot;]
+// 不传递比较函数:数字
+var arr = [-1, -20, 50, 7];
+arr.sort();  //arr:[-1, -20, 50, 7],返回:[-1, -20, 50, 7]
+// 传递比较函数</code></pre>
+
+<ul>
+<li><p>几种常见比较
+－ 比较数字</p>
+
+<pre><code class="language-none">function compareCanonically(a, b){
+    return a &lt; b ? -1 : (a &gt; b ? 1 : 0);
+}
+var arr = [-1, -20, 50, 7];
+arr.sort(compareCanonically);  // arr:[-20, -1, 7, 50],返回:[-20, -1, 7, 50]</code></pre>
+
+<p>－ 比较字符串:可以使用String.prototype.localeCompare</p>
+
+<pre><code class="language-none">var arr = [&#39;c&#39;, &#39;a&#39;, &#39;b&#39;];
+arr.sort(function(a , b){ return a.localeCompare(b);});  // arr:[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;],返回:[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</code></pre>
+
+<p>－ 比较对象</p>
+
+<pre><code class="language-none">var arr = [
+    {name: &#39;Tarzan&#39;},
+    {name: &#39;Cheeta&#39;},
+    {name: &#39;Jane&#39;}];
+function compareNames(a, b){
+    return a.name.localeCompare(b.name);
+}
+arr.sort(compareNames); // arr:[{name: &#39;Cheeta&#39;}, {name: &#39;Jane&#39;}, {name: &#39;Tarzan&#39;}].返回同arr</code></pre>
+
+<ul>
+<li>实现降序排列</li>
+</ul>
+
+<pre><code class="language-none">var arr = [
+    {name: &#39;Tarzan&#39;, age: 39},
+    {name: &#39;Cheeta&#39;, age: 79},
+    {name: &#39;Jane&#39;, age: 19}];
+function compareAge(a, b){
+    return a.age &lt; b.age ? 1 : (a.age &gt; b.age ? -1 : 0);
+}
+arr.sort(compareAge); // arr:[{name: &#39;Cheeta&#39;, age: 79}, {name: &#39;Tarzan&#39;, age: 39}, {name: &#39;Jane&#39;, age: 19}].返回同arr</code></pre></li>
+</ul></li>
+</ol>
+
+<h2 id="toc_4">链接与分割(非破坏性)</h2>
+
+<ol>
+<li><p>Array.prototype.concat([arr1, arr2, ...])[ECMAScript 3]</p>
+
+<ul>
+<li>定义:创建并返回一个新数组.它的元素包括调用concat()的原始数组和传入concat()的每个参数.</li>
+<li>注意点
+
+<ul>
+<li>如果concat()传递的参数中的任何一个自身是数组,则链接的是数组元素,而非数组本身.</li>
+<li>如果concat()不传递任何参数则实现数组的复制(浅拷贝).</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;];
+arr.concat(&#39;c&#39;,[&#39;d&#39;, &#39;e&#39;]); // arr:[&quot;a&quot;, &quot;b&quot;],返回:[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]</code></pre></li>
+<li><p>Array.prototype.slice([begin, end])[ECMAScript 3]</p>
+
+<ul>
+<li>定义:返回指定数组的一个片段或子数组.返回的数组包含第一个参数指定的位置和所有到但不包含第二个参数指定位置之前的所有数组元素</li>
+<li>参数
+
+<ul>
+<li>begin:片段的开始位置(包括)</li>
+<li>end:片段的开始位置(不包括)</li>
+</ul></li>
+<li>注意点
+
+<ul>
+<li>如果只指定一个参数,返回的数组将包含从开始位置到数组结尾的所有元素.</li>
+<li>如果参数中出现负数,它表示相对于数组中最后一个元素的位置(任何一个出现负数都可以加上数组长度).-1表示倒数第一个元素(arr.length-1).</li>
+<li>如果两个参数都不指定，则表示复制数组(浅拷贝).</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;];
+arr.slice(1, 3); // 返回[&quot;b&quot;, &quot;c&quot;]
+// 省略结束位置
+arr.slice(1);  // 返回[&quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+// 没有传递参数:实现copy
+arr.slice();  // 返回:[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+// 只使用一个负数(-2+4=2),从index为2开始截取
+arr.slice(-2); // 返回:[&quot;c&quot;, &quot;d&quot;]
+arr.slice(1, -1); // 返回:[&quot;b&quot;, &quot;c&quot;]</code></pre></li>
+<li><p>Array.prototype.join([separator])[ECMAScript 3]</p>
+
+<ul>
+<li>定义:将数组中所有元素都转化为字符串并链接在一起,返回最后生成的字符串.</li>
+<li>参数
+
+<ul>
+<li>separator(可选):字符串,在生成的字符串中来分割数组的各个元素.如果不指定默认为逗号(,)</li>
+</ul></li>
+<li><p>注意点</p>
+
+<ul>
+<li>Array.join()方法是String.split()方法的逆向操作。</li>
+<li>Array.join()方法会将undefined和null转换为空字符串.</li>
+<li><p>Array.join()方法会将数组中的空洞也转化为空字符串。</p>
+
+<ul>
+<li><p>理解空洞:可以有两种方式创建一个hole</p>
+
+<pre><code class="language-none">// 方式一
+var arr = [];
+    arr[0] = &#39;a&#39;;
+    arr[2] = &#39;c&#39;;
+1 in arr;  // false, hole at index 1
+arr.length;  //3
+// 方式二
+var arr = [&#39;a&#39;,,&#39;c&#39;];
+1 in arr;   //false, hole at index 1
+arr.length;   //3
+// 如果最后一位是hole则会被忽略
+var arr = [&#39;a&#39;,];
+arr.length;   // 1
+var arr = [&#39;a&#39;,,];
+arr.length;  // 2</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p>用法</p></li>
+</ul>
+
+<pre><code class="language-none">var arr = [3, 4, 5];
+arr.join();      // 返回:3,4,5
+arr.join(&#39;-&#39;);  // 返回:3-4-5
+arr.join(&#39;&#39;);  //返回:345
+// 包含undefined和null
+var arr = [3, undefined, 5, null, 7];
+arr.join(&#39;-&#39;); // 返回:3--5--7
+// 包含hole
+var arr = [3,, 5];
+arr.join(&#39;-&#39;); // 返回:3--5</code></pre></li>
+</ol>
+
+<h2 id="toc_5">元素查找(非破坏性)</h2>
+
+<ol>
+<li><p>Array.prototype.indexOf(searchValue[, startIndex])[ECMAScript 5]</p>
+
+<ul>
+<li>定义:从给定位置开始向后搜索整个数组中具有给定值的元素,返回找到的第一个元素的索引,如果没找到则返回-1。</li>
+<li>参数
+
+<ul>
+<li>searchValue(必须):需要搜索的值.</li>
+<li>startIndex(可选):指定数组中一个索引,从哪个位置开始搜索.如果省略,则从第一个元素开始搜索。可以为负值,它代表相对数组末尾的偏移量.</li>
+</ul></li>
+<li>注意点:查找过程中使用严格相等(===)进行相等判断.</li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;a&#39;];
+arr.indexOf(&#39;a&#39;,0); //返回:0
+arr.indexOf(&#39;a&#39;,1); //返回:4
+arr.indexOf(&#39;a&#39;,-1); //返回:4
+arr.indexOf(&#39;b&#39;,-1); // 返回:-1
+// true:&#39;1&#39; == 1; false: &#39;1&#39; === 1
+var arr = [&#39;1&#39;, 1, &#39;2&#39;];
+arr.indexOf(1); //返回:1</code></pre></li>
+<li><p>Array.prototype.lastIndexOf(searchElement[, startIndex])[ECMAScript 5]</p>
+
+<ul>
+<li>定义:从给定位置开始向前搜索整个数组中具有给定值的元素,返回找到的第一个元素的索引,如果没找到则返回-1。</li>
+<li>参数
+
+<ul>
+<li>searchValue(必须):需要搜索的值.</li>
+<li>startIndex(可选):指定数组中一个索引,从哪个位置开始搜索(包含该位置).如果省略,则从最后一个元素开始搜索。可以为负值,它代表相对数组末尾的偏移量(-1表示最后一位).</li>
+</ul></li>
+<li>注意点:查找过程中使用严格相等(===)进行相等判断.</li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [&#39;b&#39;, &#39;a&#39;, &#39;c&#39;, &#39;d&#39;, &#39;a&#39;];
+arr.lastIndexOf(&#39;a&#39;,0); //返回:-1
+arr.lastIndexOf(&#39;a&#39;,1); //返回:1
+arr.lastIndexOf(&#39;a&#39;,-1); //返回:4
+arr.lastIndexOf(&#39;c&#39;,-3); // 返回:2</code></pre></li>
+</ol>
+
+<h2 id="toc_6">迭代(非破坏性)</h2>
+
+<ol>
+<li><p>Array.prototype.forEach(callback[, thisValue])[ECMAScript 5]</p>
+
+<ul>
+<li>定义:从头至尾遍历数组,为每个元素调用指定的函数.</li>
+<li>参数
+
+<ul>
+<li>callback(必须):遍历每个元素时调用的函数,不返回数据
+
+<ul>
+<li>function callback(element, index, arr):接收3个参数
+
+<ul>
+<li>element:当前遍历元素</li>
+<li>index: 当前遍历元素索引</li>
+<li>arr: 遍历数组</li>
+</ul></li>
+</ul></li>
+<li>thisValue(选填):用来当作callback函数内this的值的对象</li>
+</ul></li>
+<li>注意点:forEach()无法在所有元素都传递给调用函数之前终止遍历.</li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [1, 2, 3, 4];
+var sum = 0;
+arr.forEach(function(elem){
+    sum += elem;
+});
+sum; //10</code></pre></li>
+<li><p>Array.prototype.every(callback[, thisValue])[ECMAScript 5]</p>
+
+<ul>
+<li>定义:对数组元素应用指定的函数进行判定,返回true或false.当数组中每一个元素调用判定函数返回true,则返回true(可以理解所有元素都要满足)</li>
+<li>参数
+
+<ul>
+<li>callback(必须):遍历每个元素时调用的函数,返回true或false
+
+<ul>
+<li>function callback(element, index, arr):接收3个参数
+
+<ul>
+<li>element:当前遍历元素</li>
+<li>index: 当前遍历元素索引</li>
+<li>arr: 遍历数组</li>
+</ul></li>
+</ul></li>
+<li>thisValue(选填):用来当作callback函数内this的值的对象</li>
+</ul></li>
+<li>注意点:确认返回什么值就会停止遍历数组元素.
+
+<ul>
+<li>every()函数中传递的callback一旦返回false，就停止遍历数组元素.(因为一旦有一个callback返回false,则false()方法就会返回false).</li>
+<li>在空数组上调用时,返回true。</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">function isEven(x){
+   return x % 2 === 0;
+}
+var arr = [1, 3, 4];
+arr.every(isEven); //返回:false
+var evenArr = [2, 4, 6];
+evenArr.every(isEven); //返回:true
+var arr = [];
+arr.every(isEven); //返回:true</code></pre></li>
+<li><p>Array.prototype.some(callback[, thisValue])[ECMAScript 5]</p>
+
+<ul>
+<li>定义:对数组元素应用指定的函数进行判定,返回true或false.当数组中至少有一个元素调用判定函数返回true,则返回true(可以理解为至少有一个满足)</li>
+<li>参数
+
+<ul>
+<li>callback(必须):遍历每个元素时调用的函数,返回true或false
+
+<ul>
+<li>function callback(element, index, arr):接收3个参数
+
+<ul>
+<li>element:当前遍历元素</li>
+<li>index: 当前遍历元素索引</li>
+<li>arr: 遍历数组</li>
+</ul></li>
+</ul></li>
+<li>thisValue(选填):用来当作callback函数内this的值的对象</li>
+</ul></li>
+<li>注意点:确认返回什么值就会停止遍历数组元素.
+
+<ul>
+<li>some()函数中传递的callback一旦返回true，就停止遍历数组元素.(因为一旦有一个callback返回true,则some()方法就会返回true).</li>
+<li>在空数组上调用时,返回false。</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">function isEven(x){
+    return x % 2 === 0;
+}
+var arr = [1, 3, 4];
+arr.some(isEven); //返回:true
+var arr = [];
+arr.some(isEven); //返回:false</code></pre></li>
+<li><p>Array.prototype.map(callback[, thisValue])[ECMAScript 5]</p>
+
+<ul>
+<li>定义:将调用的数组的每个元素传递给指定的函数,并返回一个数组,它包含该函数的返回值.</li>
+<li>参数
+
+<ul>
+<li>callback(必须):遍历每个元素时调用的函数,返回数据
+
+<ul>
+<li>function callback(element, index, arr):接收3个参数
+
+<ul>
+<li>element:当前遍历元素</li>
+<li>index: 当前遍历元素索引</li>
+<li>arr: 遍历数组</li>
+</ul></li>
+</ul></li>
+<li>thisValue(选填):用来当作callback函数内this的值的对象</li>
+</ul></li>
+<li>注意点
+
+<ul>
+<li>map()方法传递的函数返回一个新数组，不修改调用数组.</li>
+<li>如果原数组是一个稀疏数组,则返回一个相同的具有相同长度,相同缺失元素的稀疏数组.</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [1, 2, 3, 4];
+arr.map(function(elem){
+    return 2*elem;
+}); //返回:[2, 4, 6, 8]</code></pre></li>
+<li><p>Array.prototype.filter(callback[, thisValue])[ECMAScript 5]</p>
+
+<ul>
+<li>定义:返回的数组是调用的数组的一个子集(callback返回值==true的元素)</li>
+<li>参数
+
+<ul>
+<li>callback(必须):遍历每个元素时调用的函数,该函数是用来进行逻辑判断的.返回true或false
+
+<ul>
+<li>function callback(element, index, arr):接收3个参数
+
+<ul>
+<li>element:当前遍历元素</li>
+<li>index: 当前遍历元素索引</li>
+<li>arr: 遍历数组</li>
+</ul></li>
+</ul></li>
+<li>thisValue(选填):用来当作callback函数内this的值的对象</li>
+</ul></li>
+<li>注意点:filter()会跳过稀疏数组中缺少的元素,它返回的数组重视稠密的,因此可以用来压缩稀疏数组中的空缺.</li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">// 压缩稀疏数组(arr)的空缺
+var arr = [&#39;a&#39;, ,&#39;c&#39;, &#39;d&#39;]  // [&quot;a&quot;, 2: &quot;c&quot;, 3: &quot;d&quot;]
+arr.filter(function(){
+   return true;
+}); // 返回:[&#39;a&#39;, &#39;c&#39;, &#39;d&#39;]
+// 压缩或者删除undefined和null元素
+var arr = [&#39;a&#39;, &#39;b&#39;, undefined, null];
+arr.filter(function(elem){
+   return elem !== undefined &amp;&amp; elem != null;
+});  // 返回:[&#39;a&#39;, &#39;b&#39;]</code></pre></li>
+</ol>
+
+<h2 id="toc_7">缩减</h2>
+
+<ol>
+<li><p>Array.prototype.reduce(callback[, initialValue])[ECMAScript 5]</p>
+
+<ul>
+<li>定义:使用指定的函数将数组进行组合,生成单个值。</li>
+<li>参数
+
+<ul>
+<li>callback(必须):指定化简操作的函数.其作用是用某种方法把两个值组合或化简为一个值,并返回化简后的值。
+
+<ul>
+<li>function callback(param1, param2, param3, param4)
+
+<ul>
+<li>param1: 到目前为止化简操作累积对的结果,第一次调用函数时，该值为一个初始值(如果reduce有第二个参数，则为第二个参数，如果没有，则为数组的第一个元素)</li>
+<li>param2: 数组元素</li>
+<li>param3: 数组元素索引</li>
+<li>param4: 数组本身</li>
+</ul></li>
+</ul></li>
+<li>initialValue(可选):传递给函数一个初始值。</li>
+</ul></li>
+<li>注意点
+
+<ul>
+<li>当不指定初始值调用reduce()时,它将使用数组的第一个元素作为其初始值。</li>
+<li>在空数组上，不带初始值参数调用reduce()将导致类型错误异常.</li>
+<li>如果在空数组上，传递传递一个初始值，则reduce()返回初始值,而不调用简化函数(callback).</li>
+<li>如果在只有一个元素的数组上不传递初始值，则reduce()返回初始值而不调用简化函数(callback).</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">function add(prev, cur){
+    return prev + cur;
+}
+var arr = [10, 3, -1];
+arr.reduce(add); //返回:12
+var arr = [1];
+arr.reduce(add); // 返回:1
+var arr = [];
+arr.reduce(add, 1); // 返回:1</code></pre></li>
+<li><p>Array.prototype.reduceRight(callback[, initialValue])[ECMAScript 5]</p>
+
+<ul>
+<li>定义:按照数组索引从高到低(从右到左)处理数组。其工作原理同reduce();</li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">function pow(pre, cur){
+    return Math.pow(pre, cur);
+}
+var arr = [1, 2, 3];
+arr.reduce(pow); //返回:1((1^2)^3)
+arr.reduceRight(pow); //返回:9((3^2)^1)</code></pre></li>
+</ol>
+
+<h2 id="toc_8">转换(非破坏性)</h2>
+
+<ol>
+<li><p>Array.prototype.toString()[ECMAScript 3]</p>
+
+<ul>
+<li>定义: 将其每个元素转化为字符串,并且输入用逗号分割的字符串列表。返回转换后字符串。</li>
+<li>注意点
+
+<ul>
+<li>输出不包括方括号和其他任何形式的包裹数组值的分隔符。</li>
+<li>与调用不使用任何参数的join()返回的字符串一样。</li>
+<li>Object.prototype的方法</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;];
+arr.toString(); //返回:a,b,c,d</code></pre></li>
+<li><p>Array.prototype.toLocaleString()[ECMAScript 3]</p>
+
+<ul>
+<li>定义:toString()方法的本地化版本。</li>
+<li>注意点:Object.prototype的方法</li>
+</ul></li>
+</ol>
+
+<h1 id="toc_9">ECMAScript 6</h1>
+
+<h2 id="toc_10">兼容性</h2>
+
+<ul>
+<li>根据在MDN查到的兼容性，感觉不是特别准确，因为在本地chrome浏览器测试，只有values()方法不支持，其他都可以。</li>
+</ul>
+
+<h2 id="toc_11">static方法</h2>
+
+<ol>
+<li><p>Array.from(arrayLike[, mapFunc, thisArg])</p>
+
+<ul>
+<li>定义:用于将两类对象(类数组对象:array-like object;可遍历对象:iterable)转为真正的数组.</li>
+<li>参数:</li>
+<li>注意点
+
+<ul>
+<li>常见类数组对象:DOM操作返回的NodeList集合、arguments对象等。</li>
+<li>类数组对象:具有index和length。</li>
+<li>可遍历对象:Set 和 Map</li>
+</ul></li>
+<li>浏览器兼容性
+
+<ul>
+<li>PC:Chrome(45)、Firefox(32)、IE(未实现)、Opera(未实现)、Safari(9.0)</li>
+<li>mobile:除了FF Mobile(32)其他都未实现</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">&lt;body&gt;
+    &lt;ul&gt;
+        &lt;li&gt;1&lt;/li&gt;
+        &lt;li&gt;2&lt;/li&gt;
+        &lt;li&gt;3&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;script&gt;
+        var liEle = document.getElementsByTagName(&#39;li&#39;);
+        Array.from(liEle).forEach(function(item, index){
+            item.innerHTML = &#39;array-&#39; + (index + 1);
+        });
+    &lt;/script&gt;
+&lt;/body&gt;</code></pre></li>
+<li><p>Array.of(item0, item1, ...)</p>
+
+<ul>
+<li>定义:用于将一组值，转换为数组。</li>
+<li><p>注意点</p>
+
+<ul>
+<li>这个方法主要是弥补数组构造函数Array()的不足，参数个数的不同会导致Array()返回不同结果</li>
+</ul>
+
+<pre><code class="language-none">Array();  // [],length:0
+Array(3);  // [],length:3
+Array(3, 11, 8);  // [3, 11, 8]</code></pre>
+
+<ul>
+<li>Array.of()可以用来替代Array()或new Array().并且布存在由于参数不同而导致的重载.</li>
+<li>Array.of()总是返回参数值组成的数组,如果没有参数就返回一个空数组.</li>
+</ul></li>
+<li><p>浏览器兼容性</p>
+
+<ul>
+<li>PC:Chrome(45)、Firefox(25)、IE(未实现)、Opera(未实现)、Safari(未实现)</li>
+<li>mobile:除了FF Mobile(25)和Chrome for Android(39)其他都未实现</li>
+</ul></li>
+<li><p>用法</p></li>
+</ul>
+
+<pre><code class="language-none">Array.of();  // []
+Array.of(3);  // [3]
+Array.of(3, 11, 8);  // [3, 11, 8]</code></pre></li>
+</ol>
+
+<h2 id="toc_12">prototype方法</h2>
+
+<h3 id="toc_13">迭代(非破坏性)</h3>
+
+<ol>
+<li>定义:三个方法都是用于遍历数组，返回一个遍历器对象(可以使用for..of进行遍历,也可以使用next()方法遍历)</li>
+<li>区别
+
+<ul>
+<li>Array.prototype.entries():对键值对的遍历
+
+<ul>
+<li>浏览器兼容性
+
+<ul>
+<li>PC:Chrome(38)、Firefox(28)、IE(未实现)、Opera(25)、Safari(7.1)</li>
+<li>mobile:除了FF Mobile(28)和 Safari Mobile(iOS 8 )其他都未实现</li>
+</ul></li>
+</ul></li>
+<li>Array.prototype.keys():对键名的遍历
+
+<ul>
+<li>浏览器兼容性
+
+<ul>
+<li>PC:Chrome(38)、Firefox(28)、IE(未实现)、Opera(25)、Safari(7.1)</li>
+<li>mobile:除了FF Mobile(28)和 Safari Mobile(iOS 8 )其他都未实现</li>
+</ul></li>
+</ul></li>
+<li>Array.prototype.values():对键值的遍历。[没有浏览器支持]</li>
+</ul></li>
+<li><p>用法</p>
+
+<pre><code class="language-none">&quot;use strict&quot;;
+
+var indexArr = [&#39;a&#39;, &#39;b&#39;].keys();  // 迭代对象
+indexArr.next().value;  // 0
+indexArr.next().value;   // 1
+let letter = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+let entries = letter.entries();
+entries.next().value; // [0, &#39;a&#39;]
+entries.next().value; // [1, &#39;b&#39;]
+entries.next().value; // [2, &#39;c&#39;]</code></pre></li>
+</ol>
+
+<h3 id="toc_14">查询(非破坏性)</h3>
+
+<ol>
+<li><p>Array.prototype.find(predicate[, thisArg])</p>
+
+<ul>
+<li>定义:找出第一个符合条件的数组成员。所有数组成员调用predicate函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined.</li>
+<li>参数
+
+<ul>
+<li>predicate:回调函数.所有数组成员依次执行该回调函数。
+
+<ul>
+<li>function predicate(value, index, arr)
+
+<ul>
+<li>value:当前数组元素</li>
+<li>index:当前数组元素的index</li>
+<li>arr: 数组本身
+－ thisArg(可选):用来绑定回调函数的this对象</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>注意点:借助Object.is()方法可以查到NaN.</li>
+<li>浏览器兼容性
+
+<ul>
+<li>PC:Chrome(未实现)、Firefox(25)、IE(未实现)、Opera(未实现)、Safari(未实现)[但是我的chrome可以:47+]</li>
+<li>mobile:除了FF Mobile(25)其他都未实现</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [6, -5, 8];
+arr.find(function(value){
+    return value &lt; 0;
+}); //返回-5
+arr.find(function(value){
+ return value &gt; 10;
+}); //返回undefined
+var arr = [6, -5, 8, NaN];
+arr.find(function(value){
+    return Object.is(NaN, value);
+}); //返回NaN</code></pre></li>
+<li><p>Array.prototype.findIndex(predicate[, thisArg])</p>
+
+<ul>
+<li>定义:同find方法类似,只是它返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1.</li>
+<li>注意点:借助Object.is()方法可以查到NaN.</li>
+<li>参数:同find函数</li>
+<li>浏览器兼容性
+
+<ul>
+<li>PC:Chrome(未实现)、Firefox(25)、IE(未实现)、Opera(未实现)、Safari(未实现)[但是我的chrome:47+可以]</li>
+<li>mobile:除了FF Mobile(25)其他都未实现</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [6, -5, 8, NaN];
+arr.findIndex(function(value){
+    return  Object.is(NaN, value);
+}); //返回3
+arr.findIndex(function(value){
+    return  value &gt; 10;
+}); //返回-1</code></pre></li>
+<li><p>Array.prototype.includes(value, start)</p>
+
+<ul>
+<li>定义:判定数组是否包含给定值</li>
+<li>参数
+
+<ul>
+<li>value:指定要查找的值</li>
+<li>start(可选):搜索的起始位置,默认为0。如果为负值,表示相对于最后一位元素。</li>
+</ul></li>
+<li>注意点
+
+<ul>
+<li>如果第二个参数的绝对值(负数情况)大于数组长度，则会重置为0.</li>
+</ul></li>
+<li>兼容性
+
+<ul>
+<li>PC:Chrome(47)、Firefox(43)、IE(未实现)、Opera(34)、Safari(9)</li>
+<li>mobile:Android(未实现)、Android Webview(47)、FF Mobile(43)、IE Mobile(未实现)、Opera Mobile(34)、Safari Mobile(9)、Chrome for Android(47)</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">[1, 2, 3].includes(3,-3);     // 返回:true
+[1, 2, 3].includes(3,-5);     //返回:true
+[1, 2, 3].includes(4);     // 返回:false
+[1, 2, NaN].includes(NaN); // 返回:true</code></pre></li>
+</ol>
+
+<h3 id="toc_15">其它(破坏性)</h3>
+
+<ol>
+<li><p>Array.prototype.copyWithin(target, start, end)</p>
+
+<ul>
+<li>定义: 将指定位置([start, end))的元素复制到其他位置(target开始),然后返回当前数组.</li>
+<li>参数:这三个参数都应该是数值,如果不是,会自动转为数值.
+
+<ul>
+<li>target(必须):从该位置开始替换元素</li>
+<li>start(可选):从该位置开始读取数据,默认为0。如果为负值,表示相对于最后一位元素。</li>
+<li>end(可选):到该位置前停止读取数据,默认等于数组长度.如果为负值,表示相对于最后一位元素.</li>
+</ul></li>
+<li>注意点
+
+<ul>
+<li>如果start大于等于length,或者start大于等于end,则数组不变.</li>
+<li>如果参数为负值，则表示相对于最后一位,index = 参数+length</li>
+</ul></li>
+<li>浏览器兼容性
+
+<ul>
+<li>PC:Chrome(未实现)、Firefox(31)、IE(未实现)、Opera(未实现)、Safari(未实现)</li>
+<li>mobile:除了FF Mobile(31)其他都未实现</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [1, 2, 3, 4, 5];
+// 从index=3开始查找元素，到index=4.则查找元素为4,5.从index为0开始替换
+arr.copyWithin(0, 3, 5);  //返回:[4, 5, 3, 4, 5];arr:[4, 5, 3, 4, 5]</code></pre></li>
+<li><p>Array.prototype.fill(value, start, end)</p>
+
+<ul>
+<li>定义:使用给定值填充数组.</li>
+<li>参数:[start, end)
+
+<ul>
+<li>value(可选):指定要替换的值，如果不传递，则默认为undefined.</li>
+<li>start(可选):从该位置开始填充数据,默认为0,如果为负值,表示相对于最后一位元素。</li>
+<li>end(可选):到该位置前停止填充数据,默认等于数组长度,如果为负值,表示相对于最后一位元素.</li>
+</ul></li>
+<li>注意点
+
+<ul>
+<li>fill方法用于空数组的初始化非常方便，数组中已有的元素会全部被抹去.</li>
+</ul></li>
+<li>用法</li>
+</ul>
+
+<pre><code class="language-none">var arr = [1, 2, 3, 4, 5];
+arr.fill(&#39;*&#39;, 1, 2); //返回:[1, &quot;*&quot;, 3, 4, 5],arr:[1, &quot;*&quot;, 3, 4, 5]
+arr.fill(); //返回:[undefined, undefined, undefined, undefined, undefined],arr一样</code></pre></li>
+</ol>
+
+<h1 id="toc_16">参考资料</h1>
+
+<ol>
+<li>javascript权威指南(犀牛书)</li>
+<li>speaking javascript</li>
+<li><a href="http://es6.ruanyifeng.com/#docs/array">阮一峰:ECMAScript6入门</a></li>
+<li><a href="http://www.2ality.com/2014/05/es6-array-methods.html">ECMAScript6数组新特性</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array">MDN</a></li>
+</ol>
+
+
+</body>
+
+</html>
