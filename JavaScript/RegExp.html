@@ -1,0 +1,462 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>RegExp</title>
+<style type="text/css">
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+ol,
+ul,
+li,
+img {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+html * {
+  font-family: "ff-din-web-pro-1", "ff-din-web-pro-2", sans-serif;
+  font-size: 16px;
+  line-height: 19.2px;
+  color-profile: sRGB;
+}
+body {
+  margin: 40px 200px;
+}
+p {
+  font-weight: lighter;
+  margin-bottom: 20px;
+}
+strong {
+  font-weight: bold;
+}
+ol,
+ul {
+  margin-left: 2em;
+  margin-bottom: 20px;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-top: 10px;
+}
+li {
+  margin-bottom: 10px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: lighter;
+  text-transform: capitalize;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h2 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h3 {
+  font-size: 23.44px;
+  line-height: 28.128px;
+}
+h4 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h5 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h6 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+img {
+  margin-bottom: 20px;
+}
+h1 img,
+h2 img,
+h3 img,
+h4 img,
+h5 img,
+h6 img,
+p img {
+  margin-bottom: 0;
+}
+pre {
+  margin-bottom: 20px;
+}
+pre,
+code {
+  font-family: monospace;
+}
+code {
+  background: #ddd;
+  border-radius: 4px;
+  padding: 0 5px;
+}
+pre code{
+  background: none;
+  border-radius: 0;
+  padding: 0;
+}
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 15px;
+  border-radius: 4px;
+  border-left: 5px solid #558abb;
+}
+blockquote {
+  border-left: 4px solid;
+  padding: 0 15px;
+}
+blockquote > :first-child {
+  margin-top: 0;
+}
+blockquote > :last-child {
+  margin-bottom: 15px;
+}
+h1 {
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+h2 {
+  border-bottom: 1px solid;
+}
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: none;
+}
+html * {
+  color: #657b83;
+}
+html body {
+  background-color: #fdf6e3;
+}
+html h1,
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #586e75;
+  border-color: #ddd;
+}
+html a,
+html a:active,
+html a:visited {
+  color: #586e75;
+}
+html a:hover {
+  background-color: #eee8d5;
+}
+html pre {
+  color: #586e75;
+  background-color: #eee8d5;
+}
+html a,
+html a:active,
+html a:visited,
+html code.url {
+  color: #b58900;
+}
+html h1 {
+  color: #b58900;
+}
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #b58900;
+}
+
+@media print {
+  body {
+    margin: 0;
+  }
+  * {
+    color: #000 !important;
+  }
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">RegExp(Regular Expression)</h1>
+
+<h2 id="toc_1">创建语法</h2>
+
+<pre><code>RegExp(pattern [, flags])
+/pattern/flags</code></pre>
+
+<h3 id="toc_2">参数</h3>
+
+<ul>
+<li>pattern：正则表达式文本</li>
+<li><p>flags：有以下任意组合</p>
+
+<ul>
+<li>i：忽略大小写</li>
+<li>g：全局匹配</li>
+<li><p>m：让开始和结束字符（^ 和 $）工作在多行模式，而不只是整个输入字符串的最开始和最末尾处。</p>
+
+<pre><code>var reg = /^f\wo$/g;
+str = &quot;foo\nfbo\nfco&quot;;
+str.match(reg); // null
+
+reg = /^f\wo$/gm;
+str.match(reg); // [&quot;foo&quot;, &quot;fbo&quot;, &quot;fco&quot;]        </code></pre></li>
+</ul></li>
+</ul>
+
+<h2 id="toc_3">特殊字符</h2>
+
+<h3 id="toc_4">字符类别</h3>
+
+<ul>
+<li><p><code>.</code>：匹配任意字符（<strong>换行符除外</strong>），如果为了匹配换行符，可以使用<code>[^]</code>，这样在多行模式中就可以匹配换行符了。</p>
+
+<pre><code>/.y/匹配&quot;yes my name is Bob.&quot;中的&quot;my&quot;，但是不匹配&quot;yes&quot;</code></pre></li>
+<li><p><code>\d</code>：匹配阿拉伯数字0-9，等价于<code>[0-9]</code></p></li>
+<li><p><code>\D</code>：和<code>\d</code>相反。匹配任何非0-9阿拉伯数字的字符，等价于<code>[^0-9]</code>。</p>
+
+<pre><code>/\d/或/[0-9]/匹配&quot;2b&quot;中的&quot;2&quot;
+/\D/或/[^0-9]/匹配&quot;2b&quot;中的&quot;b&quot;</code></pre></li>
+<li><p><code>\w</code>：匹配任意来自基本拉丁字母表中的字母数字字符，还包括下划线。等价于 [A-Za-z0-9_]。</p></li>
+<li><p><code>\W</code>：和<code>\w</code>相反。匹配任意不是基本拉丁字母表中单词字符的字符。等价于 [^A-Za-z0-9_]。</p>
+
+<pre><code>/\w/g或/[A-Za-z0-9_]/g匹配&quot;$12.5&quot;中的&quot;1&quot;,&quot;2&quot;,&quot;5&quot;
+/\W/g或/[^A-Za-z0-9_]/g匹配&quot;$12.5&quot;中的&quot;$&quot;,&quot;.&quot;</code></pre></li>
+<li><p><code>\s</code>：匹配一个空白符，包括空格、制表符、换页符、换行符和其他 Unicode 空格。</p></li>
+<li><p><code>\S</code>：和<code>\s</code>相反。匹配一个非空白字符。</p>
+
+<pre><code>/\s\w*/ 匹配 &quot;foo bar&quot; 中的 &#39; bar&#39;。
+/\S\w*/ 匹配 &quot;foo bar&quot; 中的 &#39;foo&#39;。</code></pre></li>
+<li><p><code>\t</code>：匹配一个水平制表符（tab）。  </p></li>
+<li><p><code>\r</code>：匹配一个回车符。 </p></li>
+<li><p><code>\n</code>：匹配一个换行符。 </p></li>
+<li><p><code>\v</code>：匹配一个垂直制表符。   </p></li>
+<li><p><code>\f</code>：匹配一个换页符。 </p></li>
+<li><p><code>[\b]</code>：匹配一个退格符，注意区分和<code>\b</code>的区别。</p></li>
+<li><p><code>\0</code>：匹配一个 NUL 字符。不要在此后面跟小数点。[没搞懂 -.-! ]</p></li>
+<li><p><code>\cX</code>：X 是 A - Z 的一个字母。匹配字符串中的一个控制字符。</p>
+
+<pre><code>/\cM/ 匹配字符串中的 control-M。// 实践没有成功，eslint不建议使用 </code></pre></li>
+<li><p><code>\uhhhh</code>：匹配 Unicode 值为 hhhh （四个十六进制数字）的字符。</p></li>
+<li><p><code>\xhh</code>：匹配编码为 hh （两个十六进制数字）的字符。基本等同于<code>\u00hh</code></p>
+
+<pre><code>/\u0057/或/\x57/ 匹配 &quot;World&quot;中的&quot;W&quot;</code></pre></li>
+<li><p><code>\</code>：转义符号。 </p>
+
+<pre><code>/\/w/匹配&quot;q/wert&quot;中的&quot;/w&quot;</code></pre></li>
+</ul>
+
+<h3 id="toc_5">字符合集</h3>
+
+<ul>
+<li><code>[xyz]</code>：一个字符集合，匹配集合中的任意一个字符。可以使用连字符&#39;-&#39;指定一个范围。 </li>
+<li><p><code>[^xyz]</code>：匹配任意不在括号内的字符。也可以通过使用连字符 &#39;-&#39; 指定一个范围内的字符。</p>
+
+<pre><code>/[abcde]/g 等价于 /[a-e]/g，匹配&quot;apple&quot;中的&quot;a&quot;,&quot;e&quot;
+/[^abcde]/g 等价于 /^[a-e]/g，匹配&quot;apple&quot;中的&quot;p&quot;,&quot;p&quot;,&quot;l&quot;</code></pre></li>
+</ul>
+
+<h3 id="toc_6">边界表示符</h3>
+
+<ul>
+<li><code>^</code>：字符串的开始</li>
+<li><p><code>$</code>：字符串的结尾</p>
+
+<pre><code>/^a/ 匹配&quot;apple&quot;中的&quot;a&quot;
+/e$/ 匹配&quot;apple&quot;中的&quot;e&quot;</code></pre></li>
+<li><p><code>\b</code>：匹配一个零宽单词边界，如一个字母与一个空格之间。 </p></li>
+<li><p><code>\B</code>：和<code>\b</code>相反。匹配一个零宽非单词边界。</p>
+
+<pre><code>/\bon/g 匹配&quot;onon onon&quot;中第一个，第三个&quot;on&quot;
+/\Bon/g 匹配&quot;onon onon&quot;中第二个，第四个&quot;on&quot;</code></pre>
+
+<p>【注】：\b指的单词边界表示任何单词边界，即单词和单词之间的非单词的都算是单词边界，如<code>-</code> <code>.</code>等符号。</p>
+
+<pre><code>/\bon/g 匹配&quot;onon-onon&quot;或&quot;onon.onon&quot;或&quot;onon=onon&quot;中第一个，第三个&quot;on&quot;
+但是下划线不可以，/\bon/g只能匹配&quot;onon_onon&quot;的第一个on，我的理解是除\w包括的字符之外，其他的都可以算做单词边界。</code></pre></li>
+</ul>
+
+<h3 id="toc_7">分组</h3>
+
+<ul>
+<li><p><code>(x)</code>：匹配 x 并且捕获匹配项。</p>
+
+<pre><code>/@(\w*)\./ 匹配&quot;yjy@gmail.com&quot;中的&quot;@gmail&quot;，同时会捕获&quot;gmail&quot;
+/(foo|bar|baz)/g 匹配&quot;testfooandbar&quot;中的&quot;foo&quot;,&quot;bar&quot;</code></pre></li>
+<li><p><code>\n</code>：n是正整数，一个反向引用，指向正则表达式中第n个括号（从左开始数）中匹配的子字符串。</p>
+
+<pre><code>/(foo)bar\1/ 匹配&quot;foobarfoo&quot;，同时会捕获第一个&quot;foo&quot;</code></pre></li>
+</ul>
+
+<h3 id="toc_8">字符数量</h3>
+
+<ul>
+<li><code>x*</code>：匹配模式<code>x</code>0或者多次</li>
+<li><p><code>x+</code>：匹配模式<code>x</code>至少一次，等价于 <code>{1,}</code>。</p>
+
+<pre><code>/fo+/无法匹配&quot;f&quot;
+/fo*/匹配 &quot;f&quot;中的&quot;f&quot;</code></pre></li>
+<li><p><code>x*? / x+?</code>：像<code>*</code>和<code>+</code>一样匹配前面的模式<code>x</code>，然而匹配是最小可能匹配。也叫非贪婪模式。 </p>
+
+<pre><code>/&lt;.*&gt;/ 匹配 &quot;&lt;div&gt;&lt;span&gt;&quot;中的&quot;&lt;div&gt;&lt;span&gt;&quot;
+/&lt;.*?&gt;/ 匹配 &quot;&lt;div&gt;&lt;span&gt;&quot;中的&quot;&lt;div&gt;&quot;</code></pre></li>
+<li><p><code>x?</code>：匹配前面的模式<code>x</code>0或1次，也就是<code>x</code>是可选的</p>
+
+<pre><code>/^(?:\w+)@(?:[a-z]+)\.\w+(?:\.\w+)?$/ 匹配 &quot;admin@meituan.com&quot;或匹配&quot;admin@meituan.com.cn&quot;
+但是不匹配 &quot;admin@meituan&quot; 和 &quot;admin@meituan.com.cn.org&quot;</code></pre></li>
+<li><p><code>x|y</code>：匹配x或者y</p>
+
+<pre><code>/green|red/ 匹配&quot;green apple&quot; 中的 ‘green&#39;，&quot;red apple.&quot; 中的 &#39;red&#39;。</code></pre></li>
+<li><p><code>x{n}</code>：n 是一个正整数。前面的模式 x 连续出现 n 次时匹配。</p>
+
+<pre><code>/o{2}/ 匹配 &quot;foo&quot;中的&quot;oo&quot;</code></pre></li>
+<li><p><code>x{n,}</code>：n 是一个正整数。前面的模式 x 连续出现至少 n 次时匹配。当n=1时，等同于<code>x+</code></p>
+
+<pre><code>/a{2,}/ 不匹配 &quot;candy&quot; 中的 &quot;a&quot;，但是匹配 &quot;caandy&quot; 中所有的 &quot;a&quot;。</code></pre></li>
+<li><p><code>x{n,m}</code>：n 和 m 为正整数。前面的模式 x 连续出现至少 n 次，至多 m 次时匹配。</p>
+
+<pre><code>/a{1,3}/ 不匹配 &quot;cndy&quot;，匹配 &quot;candy,&quot; 中的 &quot;a&quot;</code></pre></li>
+</ul>
+
+<h3 id="toc_9">特殊匹配模式</h3>
+
+<p>正向或反向预查都是非获取匹配，javascript不支持反向预查</p>
+
+<h4 id="toc_10">正向预查</h4>
+
+<ul>
+<li><p><code>(?:x)</code>：匹配 x 不会捕获匹配项。（是否属于正向预查有争议）</p>
+
+<pre><code>/^(?:\w+)@(?:[a-z]+)\.\w+$/ 匹配 &quot;admin@meituan.com&quot;，但是不捕获任何字串</code></pre></li>
+<li><p><code>x(?=y)</code>：只有当 x 后面紧跟着 y 时，才匹配 x。又叫<strong>正向肯定预查</strong>。</p></li>
+<li><p><code>x(?!y)</code>：只有当 x 后面不是紧跟着 y 时，才匹配 x。又叫<strong>正向否定预查</strong>。</p>
+
+<pre><code>/foo(?=bar)/ 匹配&quot;foobarfoobaz&quot;中的第一个&quot;foo&quot;
+/foo(?!bar)/ 匹配&quot;foobarfoobaz&quot;中的第二个&quot;foo&quot;</code></pre></li>
+</ul>
+
+<h4 id="toc_11">反向预查</h4>
+
+<ul>
+<li><code>(?&lt;=pattern)</code>：与正向肯定预查类似，只是方向相反。又叫<strong>反向肯定预查</strong>。</li>
+<li><p><code>(?&lt;!pattern)</code>：与正向否定预查类似，又叫<strong>反向否定预查</strong>。</p>
+
+<pre><code>/(?&lt;=95|98)Windows/ 匹配&quot;98Windows&quot;中的&quot;Windows&quot;但是不匹配&quot;2000Windows&quot;
+/(?&lt;!98)Windows/ 则正好相反，匹配&quot;2000Windows&quot;中的&quot;Windows&quot;但是不匹配&quot;98Windows&quot;</code></pre>
+
+<p>JavaScript不支持反向预查，使用python实现</p>
+
+<pre><code>import re
+print(re.search(&#39;(?&lt;=95|98)Windows&#39;, &#39;98Windows&#39;).group(0) == &#39;Windows&#39;)
+print(re.search(&#39;(?&lt;=95|98)Windows&#39;, &#39;2000Windows&#39;) == None)
+
+print(re.search(&#39;(?&lt;!98)Windows&#39;, &#39;95Windows&#39;).group(0) == &#39;Windows&#39;)
+print(re.search(&#39;(?&lt;!98)Windows&#39;, &#39;98windows&#39;) == None)</code></pre></li>
+</ul>
+
+<h2 id="toc_12">RegExp 静态属性</h2>
+
+<ul>
+<li><code>RegExp.$1-$9</code>：$1, $2, $3, $4, $5, $6, $7, $8, $9 是正则表达式括号字符串中的静态只读匹配项。</li>
+<li><code>RegExp.lastMatch ($&amp;)</code>：最后匹配的结果</li>
+<li><code>RegExp.lastParen ($+)</code>：最后一个获取匹配</li>
+<li><code>RegExp.leftContext ($`)</code>：匹配内容左侧是文本</li>
+</ul>
+
+<h2 id="toc_13">RegExp 实例属性</h2>
+
+<ul>
+<li><code>RegExp.prototype.global</code>：是否开启了全局匹配模式，只读，不可枚举，不可配置。</li>
+<li><code>RegExp.prototype.ignoreCase</code>：是否开启忽略大小模式，只读，不可枚举，不可配置。</li>
+<li><code>RegExp.prototype.multiline</code>：是否开启多行模式，只读，不可枚举，不可配置。</li>
+<li><p><code>RegExp.prototype.source</code>：返回一个值为当前正则表达式对象的模式文本的字符串，该字符串不会包含正则字面量两边的斜杠以及任何的标志字符。</p>
+
+<pre><code>var regex = /^(?:\w+)@(?:[a-z]+)\.\w+$/ig;
+console.log(regex.source); // &quot;^(?:\w+)@(?:[a-z]+)\.\w+$&quot;，不包含 /.../ 和 &quot;ig&quot;。</code></pre></li>
+<li><p><code>RegExp.prototype.lastIndex</code>：下次匹配开始的字符串索引位置。详细使用查看<a href="#exec">exec</a>方法。</p></li>
+</ul>
+
+<h2 id="toc_14">RegExp 方法</h2>
+
+<ul>
+<li><code>RegExp.prototype.compile</code>：类似于编译的函数。已弃用，不赘述。</li>
+<li><p><code>RegExp.prototype.test</code>：测试当前正则是否能匹配目标字符串。返回<code>true</code>或<code>false</code>。</p>
+
+<pre><code>/\d{3}/.test(123);  //true
+/\d{3}/.test(1234);  //true
+/\d{3}/.test(12);  //false</code></pre>
+
+<p><code>test</code>方法类似于<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/search"><code>String.search()</code></a>。</p></li>
+<li><p><code id="exec">RegExp.prototype.exec</code>：在目标字符串中执行一次正则匹配操作。它的返回值是一个数组或者<code>null</code>。    </p>
+
+<pre><code>var reg = /^([a-z]*)-[^-]*/ig,
+    str = &quot;angular-ui-router&quot;,
+    result;
+
+result = reg.exec(str);
+
+result[0] = &quot;angular-ui&quot;;   //匹配结果
+result[1] = &quot;angular&quot;;      //捕获结果
+result.input = &quot;angular-ui-router&quot;;  //输入字符串
+result.index = &quot;0&quot;;         // 匹配的开始索引
+reg.lastIndex = 10;         //下一次匹配开始的位置
+
+result = reg.exec(str);  // 再次执行，开始的索引变成10
+result = null;           // 匹配不到结果
+reg.lastIndex = 0;       // 又从头开始执行匹配</code></pre></li>
+</ul>
+
+<h3 id="toc_15">其他和正则有关的方法</h3>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace"><code>String.prototype.replace</code></a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match"><code>String.prototype.match</code></a> </li>
+</ul>
+
+<h2 id="toc_16">常用正则整理</h2>
+
+<ul>
+<li><code>/^[\u4e00-\u9fa5]*$/</code>：匹配汉字</li>
+<li><code>/^(\-)?\d+(\.\d{1,2})?$/</code>：1或者2为小数的正负数</li>
+<li><code>/^1\d{10}/</code>：匹配手机号（粗略）</li>
+<li><code>/^\d{3}-\d{8}|\d{4}-\d{7}$/</code>：匹配座机号码xxx-xxxxxxxx,xxxx-xxxxxxx</li>
+<li><code>/^\d{15}|\d{18}$/</code>：匹配身份证号</li>
+<li><code>/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/</code>：Email地址</li>
+<li><code>/^\d{4}-\d{1,2}-\d{1,2}/</code>：YYYY-MM-DD格式的日期 </li>
+<li><code>/\.xxx$/</code>：匹配后缀名为xxx的文件</li>
+<li><code>/\d+\.\d+\.\d+\.\d+/</code>：匹配IP地址</li>
+<li><code>/^http(s)?:\/\/([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=]*)?$/</code>：匹配URL</li>
+<li><code>/&lt;([a-z]+)&gt;(?:[^]*)&lt;\/\1&gt;|&lt;[a-z]+\/&gt;/g</code>：简单匹配HTML标签</li>
+</ul>
+
+
+</body>
+
+</html>
