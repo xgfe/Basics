@@ -1,0 +1,652 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>generator</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Generator</h1>
+
+<h2 id="toc_1">介绍</h2>
+
+<p>Generator函数是ES6提供的一种异步编程解决方案。可以把它理解成，Generator函数是一个状态机，封装了多个内部状态。执行Generator函数会返回一个遍历器对象，也就是说，Generator函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历Generator函数内部的每一个状态。</p>
+
+<pre><code>function* helloWorldGenerator() {
+  yield &#39;hello&#39;;
+  yield &#39;world&#39;;
+  return &#39;ending&#39;;
+}
+
+var hw = helloWorldGenerator();
+
+hw.next()
+// { value: &#39;hello&#39;, done: false }
+
+hw.next()
+// { value: &#39;world&#39;, done: false }
+
+hw.next()
+// { value: &#39;ending&#39;, done: true }
+
+hw.next()
+// { value: undefined, done: true }
+</code></pre>
+
+<p>执行helloWorldGenerator返回一个迭代器对象:{value:&#39;xx&#39;,done:false}。当执行完毕后返回{value:undefined,done:true}。继续执行也会返回相同的值。</p>
+
+<h3 id="toc_2">yield</h3>
+
+<p>yield其实是一个暂停标志，当引擎执行到yield这句话时generator函数暂停执行，将执行权限交给调用hw.next()的函数，yield 后面的值会作为{value,done}中的value一起返回给hw.next();</p>
+
+<pre><code>console.log(&#39;Hello&#39; + yield 123); // SyntaxError
+console.log(&#39;Hello&#39; + (yield 123)); // OK</code></pre>
+
+<h3 id="toc_3">next</h3>
+
+<pre><code>function* add(start){
+    var end = yield start+1;
+    return end-1;
+}
+
+var a = add(1); //返回一个迭代器
+a.next(); //{value:2,done:false}
+a.next(4); //{value:3,done:true}</code></pre>
+
+<ol>
+<li>执行add(1),和普通函数一样参入参数</li>
+<li>a.next() 触发generator函数执行，到yield start+1停住，并返回{value:2,done:false}</li>
+<li>a.next(4) 将4传入generator函数，相当于 var end = 4；现在后面并没有yield所以一直会执行到return end-1;所以 a.next(4)返回值是3</li>
+</ol>
+
+<h3 id="toc_4">for-of</h3>
+
+<p>其实for-of迭代的是Symbol.iterator属性，而Symbol.iterator本质上来说就是一个generator函数,所以generator函数也可以通过for-of进行循环迭代.</p>
+
+<pre><code>function *foo() {
+  yield 1;
+  yield 2;
+  yield 3;
+  yield 4;
+  yield 5;
+  return 6;
+}
+
+for (let v of foo()) {
+  console.log(v);
+}
+// 1 2 3 4 5</code></pre>
+
+<p>当然，往任何对象上添加Symbol.iterator属性，都可以通过for-of遍历</p>
+
+<pre><code>var obj={
+    a:&#39;a&#39;,
+    b:&#39;b&#39;,
+    c:&#39;c&#39;
+}
+
+obj[Symbol.iterator]=function*(){
+    yield this.a;
+    yield this.b;
+    yield this.c;
+    return 1;
+}
+
+for(var v of obj){
+    console.log(v);
+}</code></pre>
+
+<p><code>注意</code>for-of循环generator函数会丢失return部分的值</p>
+
+<h3 id="toc_5">Generator.prototype.throw()</h3>
+
+<p>Generator函数返回的遍历器对象，都有一个throw方法，可以在函数体外抛出错误，然后在Generator函数体内捕获。</p>
+
+<pre><code>var g = function* () {
+  try {
+    yield;
+  } catch (e) {
+    console.log(&#39;内部捕获&#39;, e);
+  }
+};
+
+var i = g();
+i.next();
+
+try {
+  i.throw(&#39;a&#39;);
+  i.throw(&#39;b&#39;);
+} catch (e) {
+  console.log(&#39;外部捕获&#39;, e);
+}
+// 内部捕获 a
+// 外部捕获 b
+</code></pre>
+
+<p>上面代码中，遍历器对象i连续抛出两个错误。第一个错误被Generator函数体内的catch语句捕获。i第二次抛出错误，由于Generator函数内部的catch语句已经执行过了，不会再捕捉到这个错误了，所以这个错误就被抛出了Generator函数体，被函数体外的catch语句捕获。</p>
+
+<pre><code>//一个回调函数处理错误的例子
+foo(&#39;a&#39;, function (a) {
+  if (a.error) {
+    throw new Error(a.error);
+  }
+
+  foo(&#39;b&#39;, function (b) {
+    if (b.error) {
+      throw new Error(b.error);
+    }
+
+    foo(&#39;c&#39;, function (c) {
+      if (c.error) {
+        throw new Error(c.error);
+      }
+
+      console.log(a, b, c);
+    });
+  });
+});</code></pre>
+
+<pre><code>//用generator改写
+function* g(){
+  try {
+    var a = yield foo(&#39;a&#39;);
+    var b = yield foo(&#39;b&#39;);
+    var c = yield foo(&#39;c&#39;);
+  } catch (e) {
+    console.log(e);
+  }
+
+  console.log(a, b, c);
+}s</code></pre>
+
+<h3 id="toc_6">Generator.prototype.return()</h3>
+
+<p>Generator函数返回的遍历器对象，还有一个return方法，可以返回给定的值，并且终结遍历Generator函数。</p>
+
+<pre><code>function* gen() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+var g = gen();
+
+g.next()        // { value: 1, done: false }
+g.return(&quot;foo&quot;) // { value: &quot;foo&quot;, done: true }
+g.next()        // { value: undefined, done: true }</code></pre>
+
+<p>如果Generator函数内部有try...finally代码块，那么return方法会推迟到finally代码块执行完再执行。</p>
+
+<pre><code>function* numbers () {
+  yield 1;
+  try {
+    yield 2;
+    yield 3;
+  } finally {
+    yield 4;
+    yield 5;
+  }
+  yield 6;
+}
+var g = numbers()
+g.next() // { done: false, value: 1 }
+g.next() // { done: false, value: 2 }
+g.return(7) // { done: false, value: 4 }
+g.next() // { done: false, value: 5 }
+g.next() // { done: true, value: 7 }</code></pre>
+
+<h3 id="toc_7">yield*</h3>
+
+<p>如果在Generater函数内部，调用另一个Generator函数，默认情况下是没有效果的。</p>
+
+<pre><code>function* inner() {
+  yield &#39;hello!&#39;;
+}
+
+function* outer1() {
+  yield &#39;open&#39;;
+  yield inner();
+  yield &#39;close&#39;;
+}
+
+var gen = outer1()
+gen.next().value // &quot;open&quot;
+gen.next().value // 返回一个遍历器对象
+gen.next().value // &quot;close&quot;
+
+function* outer2() {
+  yield &#39;open&#39;
+  yield* inner()
+  yield &#39;close&#39;
+}
+
+var gen = outer2()
+gen.next().value // &quot;open&quot;
+gen.next().value // &quot;hello!&quot;
+gen.next().value // &quot;close&quot;</code></pre>
+
+<p>其实yield*可以看做是for-of的语法糖,当然这种语法糖也会丢失return的返回值</p>
+
+<pre><code>function* outer2() {
+  yield &#39;open&#39;
+  yield* inner()
+  yield &#39;close&#39;
+}
+
+function* outer2() {
+  yield &#39;open&#39;
+  for(let v in inner())
+    yield v;
+  yield &#39;close&#39;
+}
+</code></pre>
+
+<h3 id="toc_8">this</h3>
+
+<p>generator的this指针和普通函数类似，不过是以执行generator函数为准，与next方法的位置无关</p>
+
+<pre><code>function* gen() {
+    console.log(this);
+    yield 1;
+}
+
+var g = gen();
+g.next();
+// window
+
+var obj={
+    gen:gen
+}
+var g = obj.gen();
+g.next();
+// obj</code></pre>
+
+<h2 id="toc_9">generator函数的作用</h2>
+
+<h3 id="toc_10">转异步为同步</h3>
+
+<pre><code>function* loadUI() {
+  showLoadingScreen();
+  yield loadUIDataAsynchronously();
+  hideLoadingScreen();
+}
+var loader = loadUI();
+// 加载UI
+loader.next()
+
+// 卸载UI
+loader.next()
+
+//回调写法
+function loadUI() {
+  showLoadingScreen();
+  loadUIDataAsynchronously(function(){
+     hideLoadingScreen();
+  });
+}</code></pre>
+
+<h3 id="toc_11">流程控制</h3>
+
+<p>如果有一个多步操作非常耗时，采用回调函数，可能会写成下面这样。</p>
+
+<pre><code>step1(function (value1) {
+  step2(value1, function(value2) {
+    step3(value2, function(value3) {
+      step4(value3, function(value4) {
+        // Do something with value4
+      });
+    });
+  });
+});</code></pre>
+
+<p>采用Promise改写上面的代码。</p>
+
+<pre><code>Q.fcall(step1)
+  .then(step2)
+  .then(step3)
+  .then(step4)
+  .then(function (value4) {
+    // Do something with value4
+  }, function (error) {
+    // Handle any error from step1 through step4
+  })
+  .done();</code></pre>
+
+<p>上面代码已经把回调函数，改成了直线执行的形式，但是加入了大量Promise的语法。Generator函数可以进一步改善代码运行流程。</p>
+
+<pre><code>function* longRunningTask() {
+  try {
+    var value1 = yield step1();
+    var value2 = yield step2(value1);
+    var value3 = yield step3(value2);
+    var value4 = yield step4(value3);
+    // Do something with value4
+  } catch (e) {
+    // Handle any error from step1 through step4
+  }
+}
+</code></pre>
+
+<h3 id="toc_12">使任意对象可使用iterator</h3>
+
+<p>对象拥有 Symbol.iterator属性，即拥有了可以被迭代的能力</p>
+
+<pre><code>var obj={
+    a:&#39;a&#39;,
+    b:&#39;b&#39;,
+    c:&#39;c&#39;
+}
+
+obj[Symbol.iterator]=function*(){
+    yield this.a;
+    yield this.b;
+    yield this.c;
+    return 1;
+}
+
+for(var v of obj){
+    console.log(v);
+}</code></pre>
+
+
+</body>
+
+</html>
