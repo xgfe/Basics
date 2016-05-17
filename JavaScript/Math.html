@@ -1,0 +1,574 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>Math</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Math</h1>
+
+<h2 id="toc_1">背景</h2>
+
+<p>Math对象是JavaScript的内置对象，提供一系列数学常数和数学方法。该对象不是构造函数，所以不能生成实例，所有的属性和方法都必须在Math对象上调用</p>
+
+<pre><code class="language-none">new Math()
+// TypeError: object is not a function</code></pre>
+
+<h2 id="toc_2">属性</h2>
+
+<p>Math对象有一些只读的数学常数。</p>
+
+<ul>
+<li>E：常数e。</li>
+<li>LN2：2的自然对数。</li>
+<li>LN10：10的自然对数。</li>
+<li>LOG2E：以2为底的e的对数。</li>
+<li>LOG10E：以10为底的e的对数。</li>
+<li>PI：常数Pi。</li>
+<li>SQRT1_2：0.5的平方根。</li>
+<li>SQRT2：2的平方根。</li>
+</ul>
+
+<p>取值如下：</p>
+
+<pre><code class="language-none">Math.E // 2.718281828459045
+Math.LN2 // 0.6931471805599453
+Math.LN10 // 2.302585092994046
+Math.LOG2E // 1.4426950408889634
+Math.LOG10E // 0.4342944819032518
+Math.PI // 3.141592653589793
+Math.SQRT1_2 // 0.7071067811865476
+Math.SQRT2 // 1.4142135623730951</code></pre>
+
+<h2 id="toc_3">方法</h2>
+
+<p>Math对象提供了一些数学方法。</p>
+
+<h3 id="toc_4">Math.round()</h3>
+
+<p><code>Math.round()</code>用作四舍五入。需要注意对负值的0.5部分的处理。</p>
+
+<pre><code class="language-none">//正值部分
+Math.round(0.1) // 0
+Math.round(0.5) // 1
+//负值部分
+Math.round(-1.1) // -1
+Math.round(-1.5) // -1</code></pre>
+
+<h3 id="toc_5">Math.abs(),Math.max(),Math.min()</h3>
+
+<p><code>Math.abs()</code>方法返回参数的绝对值。</p>
+
+<pre><code class="language-none">Math.abs(1) // 1
+Math.abs(-1) // 1</code></pre>
+
+<p><code>Math.max()</code>方法返回参数的最大值。<code>Math.min()</code>方法返回最小的参数。</p>
+
+<pre><code class="language-none">Math.max(2, -1, 5) // 5
+Math.min(2, -1, 5) // -1</code></pre>
+
+<h3 id="toc_6">Math.floor()，Math.ceil()</h3>
+
+<p><code>Math.floor()</code>方法返回小于参数值的最大整数。</p>
+
+<pre><code class="language-none">Math.floor(3.2) // 3
+Math.floor(-3.2) // -4</code></pre>
+
+<p><code>Math.cell()</code>方法返回大于参数值的最小整数。</p>
+
+<pre><code class="language-none">Math.ceil(3.2) // 4
+Math.ceil(-3.2) // -3</code></pre>
+
+<h3 id="toc_7">Math.pow(),Math.sqrt()</h3>
+
+<p><code>Math.pow()</code>方法返回以第一个参数为底数、第二个参数为幂的指数值。</p>
+
+<pre><code class="language-none">Math.pow(2, 2) // 4
+Math.pow(2, 3) // 8</code></pre>
+
+<p><code>Math.sqrt()</code>方法返回参数值的平方根。如果参数是一个负值，则返回NaN。</p>
+
+<pre><code class="language-none">Math.sqrt(4) // 2
+Math.sqrt(-4) // NaN</code></pre>
+
+<h3 id="toc_8">Math.log(),Math.exp()</h3>
+
+<p><code>Math.log()</code>方法返回以e为底的自然对数值</p>
+
+<pre><code class="language-none">Math.log(Math.E) // 1
+Math.log(10) // 2.302585092994046</code></pre>
+
+<p>求以10为底的对数，可以除以<code>Math.LN10</code>；求以2为底的对数，可以除以<code>Math.LN2</code>。</p>
+
+<pre><code class="language-none">Math.log(100)/Math.LN10 // 2
+Math.log(8)/Math.LN2 // 3</code></pre>
+
+<p>exp方法返回常数e的参数次方。</p>
+
+<pre><code class="language-none">Math.exp(1) // 2.718281828459045
+Math.exp(3) // 20.085536923187668</code></pre>
+
+<h3 id="toc_9">Math.random()</h3>
+
+<p>该方法返回0到1之间的一个伪随机数，可能等于0，但是一定小于1。</p>
+
+<pre><code class="language-none">Math.random() // 0.7151307314634323
+
+// 返回给定范围内的随机数
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+// 返回给定范围内的随机整数
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}</code></pre>
+
+<p>下面的代码中，<code>random_base64</code>可以在给定范围<code>ALPHABET</code>中返回一个随机字符。</p>
+
+<pre><code class="language-none">var ALPHABET = &#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_&#39;;
+
+random_base64 = function random_base64(length) {
+  var str = &quot;&quot;;
+  for (var i=0; i &lt; length; ++i) {
+    var rand = Math.floor(Math.random() * ALPHABET.length);
+    str += ALPHABET.substring(rand, rand+1);
+  }
+  return str;
+}</code></pre>
+
+<h3 id="toc_10">三角函数</h3>
+
+<p><code>sin</code>方法返回参数的正弦，<code>cos</code>方法返回参数的余弦，<code>tan</code>方法返回参数的正切。</p>
+
+<pre><code class="language-none">Math.sin(0) // 0
+Math.cos(0) // 1
+Math.tan(0) // 0</code></pre>
+
+<p><code>asin</code>方法返回参数的反正弦，<code>acos</code>方法返回参数的反余弦，<code>atan</code>方法返回参数的反正切。这个三个方法的返回值都是弧度值。</p>
+
+<pre><code class="language-none">Math.asin(1) // 1.5707963267948966
+Math.acos(1) // 0
+Math.atan(1) // 0.7853981633974483</code></pre>
+
+<p><code>cosh</code>方法返回参数的双曲余弦值，<code>sinh</code>方法返回参数的双曲正弦，<code>tanh</code>方法返回参数的双曲正切。<strong>如果x为NaN，则结果为NaN。</strong>
+<code>
+Math.sinh(1) // 1.1752011936438014
+Math.cosh(1) // 1.5430806348152437
+Math.tanh(1) // 0.7615941559557649
+</code></p>
+
+<p><code>acosh</code>方法返回参数的双曲反余弦值，<code>asinh</code>方法返回参数的反双曲正弦，<code>atanh</code>方法返回参数的反双曲正切。<strong>如果x为NaN，则结果为NaN。</strong>
+<code>
+Math.asinh(1) // 0.8813735870195429
+Math.acosh(1) // 0
+Math.atanh(1) // Infinity
+</code></p>
+
+<p><code>atan2</code>方法返回从X轴到（y,x）点的角度（以弧度为单位）。
+<code>
+Math.atan2(y, x)
+</code></p>
+
+<h2 id="toc_11">扩展</h2>
+
+<h3 id="toc_12">Math.log2()</h3>
+
+<p>返回数字以 2 为底的对数。</p>
+
+<pre><code class="language-none">Math.log2(x)  </code></pre>
+
+<p><strong>如果 number 为 NaN，则结果将为 NaN。如果 x 小于零 (0)，则此函数返回 NaN。</strong></p>
+
+<h3 id="toc_13">Math.log10()</h3>
+
+<p>返回数字以 10 为底的对数。</p>
+
+<pre><code class="language-none">Math.log10(x) </code></pre>
+
+<p><strong>如果 number 为 NaN，则结果将为 NaN</strong></p>
+
+<h3 id="toc_14">Math.trunc()</h3>
+
+<p>返回数字的整数部分，删除任何小数数字。</p>
+
+<pre><code class="language-none">Math.trunc(number)</code></pre>
+
+<p><strong>所需 number 参数是一个数值表达式，它需要被截断的整数。如果 number 为 NaN，则结果将为 NaN</strong></p>
+
+<h3 id="toc_15">Math.sign()</h3>
+
+<p>返回数字符号，指示数字为正数、负数还是0。</p>
+
+<pre><code class="language-none">Math.sign(number)</code></pre>
+
+<p>返回值为下列之一：</p>
+
+<ul>
+<li>如果 number 是 NaN，则为 NaN。</li>
+<li>如果 number 是 −0，则为 -0。</li>
+<li>如果 number 是 +0，则为 +0。</li>
+<li>如果 number 是负数且不为 −0，则为 -1。</li>
+<li>如果 number 是正数且不为 +0，则为 +1。</li>
+</ul>
+
+<h3 id="toc_16">Math.cbrt()</h3>
+
+<p>返回数字的立方根。</p>
+
+<pre><code class="language-none">Math.cbrt(8)  //2</code></pre>
+
+<p><strong>如果 number 为 NaN，则结果将为 NaN</strong></p>
+
+<h3 id="toc_17">Math.fround()</h3>
+
+<p>返回最近的单精度浮点格式的数字。</p>
+
+<pre><code class="language-none">Math.fround(1.56465465456465345646546454)  //1.5646547079086304</code></pre>
+
+<h3 id="toc_18">Math.hypot()</h3>
+
+<p>返回参数平方和的平方根。</p>
+
+<pre><code class="language-none">Math.hypot(3, 4);
+// Returns 5</code></pre>
+
+<h3 id="toc_19">Math.log1p()</h3>
+
+<p>返回 1 加上一个数字的的自然对数。</p>
+
+<pre><code class="language-none">Math.log1p(x) </code></pre>
+
+<p><strong>如果 x 为 NaN，则此函数返回 NaN。如果 x 小于零 (0)，则此函数返回 NaN。</strong></p>
+
+<h3 id="toc_20">Math.imul()</h3>
+
+<p>返回被视为 32 位带符号整数的两个数字的积。</p>
+
+<pre><code class="language-none">var result1 = Math.imul(2, 5);
+// result1 == 10
+</code></pre>
+
+<p><strong>如果 number 为 0，则结果将为 32。如果 number 的 32 位二进制编码的最高有效位为 1，则结果将为 0。（估计这辈子都不会用这个方法</strong></p>
+
+<h3 id="toc_21">Math.clz32()</h3>
+
+<p>返回数字的 32 位二进制表示形式中的前导零位数。</p>
+
+<pre><code class="language-none">Math.clz32(98989898989)  //4</code></pre>
+
+<p><strong>如果 number 为 0，则结果将为 32。如果 number 的 32 位二进制编码的最高有效位为 1，则结果将为 0。（估计这辈子都不会用这个方法</strong></p>
+
+<h3 id="toc_22">Math.expm1()</h3>
+
+<p>返回 e（自然对数的底）的乘幂数减去 1 的结果。</p>
+
+<pre><code class="language-none">Math.expm1(2)  //6.38905609893065</code></pre>
+
+<p><strong>所需 number 参数是一个数值表达式，表示 e 的幂（这特么又是什么东西</strong></p>
+
+<p><a href="http://mathjs.org/">mathjs</a></p>
+
+
+</body>
+
+</html>
