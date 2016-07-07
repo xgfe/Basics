@@ -2,7 +2,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>generator</title>
+<title>generator2</title>
 <style type="text/css">
 body {
   font-family: Helvetica, arial, sans-serif;
@@ -306,97 +306,137 @@ sup {
 <body>
 <h1 id="toc_0">Generator</h1>
 
-<h2 id="toc_1">介绍</h2>
+<h2 id="toc_1">JS异步</h2>
+
+<h3 id="toc_2">函数回调</h3>
+
+<p>当我们进行异步嵌套时，就会写出如下代码。这类代码会随着嵌套层数的增长，维护难度几何上升。</p>
+
+<pre><code>step1(function (value1) {
+  step2(value1, function(value2) {
+    step3(value2, function(value3) {
+      step4(value3, function(value4) {
+        // Do something with value4
+      });
+    });
+  });
+});</code></pre>
+
+<h3 id="toc_3">Promise</h3>
+
+<p>为了解决异步嵌套的问题，机智的人们推出了Promise方案，实质上也只是将嵌套碾平，并没有解决异步带来的难以捕获错误问题。</p>
+
+<pre><code>Q.fcall(step1)
+  .then(step2)
+  .then(step3)
+  .then(step4)
+  .then(function (value4) {
+    // Do something with value4
+  }, function (error) {
+    // Handle any error from step1 through step4
+  })
+  .done();</code></pre>
+
+<h3 id="toc_4">错误处理</h3>
+
+<p>传统语言的错误处理</p>
+
+<pre><code>public static boolean catchTest() {
+        try {
+            // 远程获取数据 
+        } catch (Exception e) {
+            System.out.println(&quot; -- Exception --&quot;);
+            return catchMethod();    
+        }
+    }
+</code></pre>
+
+<p>JS的错误处理</p>
+
+<pre><code>    try{
+        $.get(&#39;http://0.0.0.0:8082&#39;)
+    }catch (error){
+        // 并不能捕获到异步的异常
+        console.error(error)
+    }
+</code></pre>
+
+<p>为了解决上述的异步问题，诞生了generator</p>
+
+<h2 id="toc_5">介绍generator</h2>
 
 <p>Generator函数是ES6提供的一种异步编程解决方案。可以把它理解成，Generator函数是一个状态机，封装了多个内部状态。执行Generator函数会返回一个遍历器对象，也就是说，Generator函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历Generator函数内部的每一个状态。</p>
 
-<pre><code>function* helloWorldGenerator() {
+<h2 id="toc_6">如何使用generator</h2>
+
+<h3 id="toc_7">创建generator函数</h3>
+
+<p>形式上，Generator函数是一个普通函数，但是有两个特征。一是，function关键字与函数名之间有一个星号；二是，函数体内部使用yield语句，定义不同的内部状态</p>
+
+<pre><code>// *必须跟在function在后面，至于空格有没有有几个都不关心
+function* helloWorldGenerator() {
   yield &#39;hello&#39;;
   yield &#39;world&#39;;
   return &#39;ending&#39;;
 }
-
-var hw = helloWorldGenerator();
-
-hw.next()
-// { value: &#39;hello&#39;, done: false }
-
-hw.next()
-// { value: &#39;world&#39;, done: false }
-
-hw.next()
-// { value: &#39;ending&#39;, done: true }
-
-hw.next()
-// { value: undefined, done: true }
 </code></pre>
 
-<p>执行helloWorldGenerator返回一个迭代器对象:{value:&#39;xx&#39;,done:false}。当执行完毕后返回{value:undefined,done:true}。继续执行也会返回相同的值。</p>
+<h3 id="toc_8">使用generator函数</h3>
 
-<h3 id="toc_2">yield</h3>
-
-<p>yield其实是一个暂停标志，当引擎执行到yield这句话时generator函数暂停执行，将执行权限交给调用hw.next()的函数，yield 后面的值会作为{value,done}中的value一起返回给hw.next();</p>
-
-<pre><code>console.log(&#39;Hello&#39; + yield 123); // SyntaxError
-console.log(&#39;Hello&#39; + (yield 123)); // OK</code></pre>
-
-<h3 id="toc_3">next</h3>
-
-<pre><code>function* add(start){
-    var end = yield start+1;
-    return end-1;
+<pre><code>function *gen(name){
+    var yieldName = yield name;
+    console.log(&#39;name:&#39;+name);
+    console.log(&#39;yieldName:&#39;+yieldName);
+    return yieldName;
 }
 
-var a = add(1); //返回一个迭代器
-a.next(); //{value:2,done:false}
-a.next(4); //{value:3,done:true}</code></pre>
+var g = gen(&#39;lili&#39;);
+
+// Object {value: &quot;lili&quot;, done: false}
+var first = g.next();
+
+// Object {value: &quot;sandy&quot;, done: true}
+var second = g.next(&#39;sandy&#39;);</code></pre>
+
+<h3 id="toc_9">yield</h3>
+
+<p>yield其实是一个暂停标志，当引擎执行到yield这句话时generator函数暂停执行，将执行权限交给调用g.next()的函数，yield 后面的值会作为{value,done}中的value一起返回给g.next();</p>
+
+<h3 id="toc_10">next</h3>
 
 <ol>
-<li>执行add(1),和普通函数一样参入参数</li>
-<li>a.next() 触发generator函数执行，到yield start+1停住，并返回{value:2,done:false}</li>
-<li>a.next(4) 将4传入generator函数，相当于 var end = 4；现在后面并没有yield所以一直会执行到return end-1;所以 a.next(4)返回值是3</li>
+<li>像普通函数一样执行gen(&#39;lili&#39;),传入&#39;lili&#39;参数</li>
+<li>g.next(); 触发generator函数执行，碰到yield name停住，并返回<code>{value: &quot;lili&quot;, done: false}</code></li>
+<li>g.next(&#39;sandy&#39;) 将&#39;sandy&#39;传入generator函数，相当于<code>var yieldName = &#39;sandy&#39;</code>;后面没有yield函数，所以一直执行到return yildName;所以g.next(&#39;sandy&#39;)返回<code>{value: &quot;sandy&quot;, done: true}</code>执行结束</li>
 </ol>
 
-<h3 id="toc_4">for-of</h3>
+<h3 id="toc_11">this</h3>
 
-<p>其实for-of迭代的是Symbol.iterator属性，而Symbol.iterator本质上来说就是一个generator函数,所以generator函数也可以通过for-of进行循环迭代.</p>
+<p>取决于generator执行位置，跟next执行的位置无关</p>
 
-<pre><code>function *foo() {
-  yield 1;
-  yield 2;
-  yield 3;
-  yield 4;
-  yield 5;
-  return 6;
+<pre><code>function *genThis(){
+    // true
+    console.log(this === window);
 }
 
-for (let v of foo()) {
-  console.log(v);
-}
-// 1 2 3 4 5</code></pre>
+var g = genThis();
+g.next();
+</code></pre>
 
-<p>当然，往任何对象上添加Symbol.iterator属性，都可以通过for-of遍历</p>
-
-<pre><code>var obj={
-    a:&#39;a&#39;,
-    b:&#39;b&#39;,
-    c:&#39;c&#39;
-}
-
-obj[Symbol.iterator]=function*(){
-    yield this.a;
-    yield this.b;
-    yield this.c;
-    return 1;
+<pre><code>var obj = {
+    a:1,
+    b:2,
+    gen: function*(){
+        // 1 2
+        console.log(this.a,this.b);
+    }
 }
 
-for(var v of obj){
-    console.log(v);
-}</code></pre>
+var g = obj.gen();
+g.next();
+</code></pre>
 
-<p><code>注意</code>for-of循环generator函数会丢失return部分的值</p>
-
-<h3 id="toc_5">Generator.prototype.throw()</h3>
+<h2 id="toc_12">Generator.prototype.throw()</h2>
 
 <p>Generator函数返回的遍历器对象，都有一个throw方法，可以在函数体外抛出错误，然后在Generator函数体内捕获。</p>
 
@@ -455,9 +495,9 @@ function* g(){
   }
 
   console.log(a, b, c);
-}s</code></pre>
+}</code></pre>
 
-<h3 id="toc_6">Generator.prototype.return()</h3>
+<h2 id="toc_13">Generator.prototype.return()</h2>
 
 <p>Generator函数返回的遍历器对象，还有一个return方法，可以返回给定的值，并且终结遍历Generator函数。</p>
 
@@ -493,7 +533,7 @@ g.return(7) // { done: false, value: 4 }
 g.next() // { done: false, value: 5 }
 g.next() // { done: true, value: 7 }</code></pre>
 
-<h3 id="toc_7">yield*</h3>
+<h2 id="toc_14">yield*</h2>
 
 <p>如果在Generater函数内部，调用另一个Generator函数，默认情况下是没有效果的。</p>
 
@@ -536,115 +576,33 @@ function* outer2() {
   for(let v in inner())
     yield v;
   yield &#39;close&#39;
-}
-</code></pre>
-
-<h3 id="toc_8">this</h3>
-
-<p>generator的this指针和普通函数类似，不过是以执行generator函数为准，与next方法的位置无关</p>
-
-<pre><code>function* gen() {
-    console.log(this);
-    yield 1;
-}
-
-var g = gen();
-g.next();
-// window
-
-var obj={
-    gen:gen
-}
-var g = obj.gen();
-g.next();
-// obj</code></pre>
-
-<h2 id="toc_9">generator函数的作用</h2>
-
-<h3 id="toc_10">转异步为同步</h3>
-
-<pre><code>function* loadUI() {
-  showLoadingScreen();
-  yield loadUIDataAsynchronously();
-  hideLoadingScreen();
-}
-var loader = loadUI();
-// 加载UI
-loader.next()
-
-// 卸载UI
-loader.next()
-
-//回调写法
-function loadUI() {
-  showLoadingScreen();
-  loadUIDataAsynchronously(function(){
-     hideLoadingScreen();
-  });
 }</code></pre>
 
-<h3 id="toc_11">流程控制</h3>
+<h2 id="toc_15">async/await</h2>
 
-<p>如果有一个多步操作非常耗时，采用回调函数，可能会写成下面这样。</p>
+<p>async 可以声明一个异步函数，此函数需要返回一个 Promise 对象。await 可以等待一个 Promise 对象 resolve，并拿到结果。</p>
 
-<pre><code>step1(function (value1) {
-  step2(value1, function(value2) {
-    step3(value2, function(value3) {
-      step4(value3, function(value4) {
-        // Do something with value4
-      });
-    });
+<pre><code>function sleep(timeout) {  
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(function() {
+      resolve();
+    }, timeout);
   });
-});</code></pre>
-
-<p>采用Promise改写上面的代码。</p>
-
-<pre><code>Q.fcall(step1)
-  .then(step2)
-  .then(step3)
-  .then(step4)
-  .then(function (value4) {
-    // Do something with value4
-  }, function (error) {
-    // Handle any error from step1 through step4
-  })
-  .done();</code></pre>
-
-<p>上面代码已经把回调函数，改成了直线执行的形式，但是加入了大量Promise的语法。Generator函数可以进一步改善代码运行流程。</p>
-
-<pre><code>function* longRunningTask() {
-  try {
-    var value1 = yield step1();
-    var value2 = yield step2(value1);
-    var value3 = yield step3(value2);
-    var value4 = yield step4(value3);
-    // Do something with value4
-  } catch (e) {
-    // Handle any error from step1 through step4
-  }
-}
-</code></pre>
-
-<h3 id="toc_12">使任意对象可使用iterator</h3>
-
-<p>对象拥有 Symbol.iterator属性，即拥有了可以被迭代的能力</p>
-
-<pre><code>var obj={
-    a:&#39;a&#39;,
-    b:&#39;b&#39;,
-    c:&#39;c&#39;
 }
 
-obj[Symbol.iterator]=function*(){
-    yield this.a;
-    yield this.b;
-    yield this.c;
-    return 1;
-}
+(async function() {
+  console.log(&#39;Do some thing, &#39; + new Date());
+  await sleep(3000);
+  console.log(&#39;Do other things, &#39; + new Date());
+})();</code></pre>
 
-for(var v of obj){
-    console.log(v);
-}</code></pre>
+<h2 id="toc_16">作用域链</h2>
+
+<p><img src="file:///Users/liuyang/Documents/javascript%E5%9F%BA%E7%A1%80/1.jpg" alt="作用域"></p>
+
+<h2 id="toc_17">深入generator原理</h2>
+
+<p><a href="http://www.alloyteam.com/2016/02/generators-in-depth/">深入generator原理</a></p>
 
 
 </body>
