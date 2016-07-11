@@ -1,0 +1,1046 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>Date</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Date知识分享</h1>
+
+<h2 id="toc_1">起源</h2>
+
+<p>java中java.util.Date类基础上构建的。</p>
+
+<h2 id="toc_2">定义</h2>
+
+<p>Date类型使用自UTC(Coordinated Universal Time,国际协调时间)1970年1月1日午夜(零时)开始经过的毫秒数来保存日期.</p>
+
+<ul>
+<li>整个地球分为二十四时区，每个时区都有自己的本地时间。在国际无线电通信场合，为了统一起见，使用一个统一的时间，称为通用协调时(UTC, Universal Time Coordinated)。UTC与格林尼治平均时(GMT, Greenwich Mean Time)一样，都与英国伦敦的本地时相同。但是GMT是一个时区，UTC是一个时间标准.</li>
+</ul>
+
+<h2 id="toc_3">方法</h2>
+
+<h3 id="toc_4">创建</h3>
+
+<ul>
+<li>Date.parse
+
+<ul>
+<li>定义: 接收一个表示日期的字符串参数，然后尝试根据这个字符串返回相应的日期的毫秒数。</li>
+<li>语法: Date.parse(datestring)
+
+<ul>
+<li>datestring:必需,表示日期和时间的字符串。</li>
+</ul></li>
+<li>备注
+
+<ul>
+<li>Date.parse()是Date对象的静态方法。</li>
+<li>如果传入Date.parse()方法的字符串不能表示日期,那么它会返回NaN. </li>
+</ul></li>
+</ul></li>
+<li><p>Date.UTC</p>
+
+<ul>
+<li>定义: 根据世界时返回1970年1月1日到指定日期的毫秒数。 </li>
+<li>语法: Date.UTC(year,month,day,hours,minutes,seconds,ms)
+
+<ul>
+<li>year: 必需。表示年份的四位数字。</li>
+<li>month: 必需。表示月份的整数，介于0~11。</li>
+<li>day: 必需。表示日期的整数，介于1~31。</li>
+<li>hours: 可选。表示小时的整数，介于0~23。</li>
+<li>minutes: 可选。表示分钟的整数，介于0 ~ 59。</li>
+<li>seconds: 可选。表示秒的整数，介于0 ~ 59。</li>
+<li>ms: 可选。表示毫秒的整数，介于0 ~ 999。</li>
+</ul></li>
+<li>备注
+
+<ul>
+<li>返回指定的时间距 GMT 时间1970年1月1日午夜的毫秒数。</li>
+<li>Date.UTC()是一种静态方法，因为需要使用构造函数Date来调用它</li>
+<li>Date.UTC()方法的参数指定日期和时间，它们都是UTC时间</li>
+</ul></li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var minutes = 1000 * 60;
+var hours = minutes * 60;
+var days = hours * 24;
+var years = days * 365;
+var t = Date.UTC(2005,7,8);
+var y = t/years;
+document.write(&quot;It&#39;s been: &quot; + y + &quot; years from 1970/01/01&quot;);
+document.write(&quot; to 2005/07/08!&quot;);</code></pre></li>
+<li><p>Date</p>
+
+<ul>
+<li>定义: 用于处理日期和时间</li>
+<li><p>语法: new Date(dateStr)</p>
+
+<ul>
+<li>dateStr非必需 </li>
+<li>dateStr为空，则创建的对象自动获取当前时间和日期</li>
+<li><p>dateStr格式</p>
+
+<ul>
+<li>&#39;月/日／年&#39;，如7/8/2016 </li>
+</ul>
+
+<pre><code class="language-none">// &quot;2016/7/8 上午12:00:00&quot;
+new Date(&#39;7/8/2016 &#39;).toLocaleString();</code></pre>
+
+<ul>
+<li>&#39;英文月名 日,年&#39;，如July 8,2016</li>
+</ul>
+
+<pre><code class="language-none">// &quot;2016/7/8 上午12:00:00&quot;
+new Date(&#39;July 8,2016&#39;).toLocaleString();</code></pre>
+
+<ul>
+<li>&#39;英文星期几 英文月名 日 年 时:分:秒 时区&#39;,如Fri July 8 2016 11:00:00</li>
+</ul>
+
+<pre><code class="language-none">// &quot;2016/7/8 上午11:00:00&quot;
+new Date(&#39;Friday July 8 2016 11:00:00&#39;).toLocaleString();
+// &quot;2016/7/8 上午12:00:00&quot;
+new Date(&#39;Friday July 8 2016&#39;).toLocaleString();
+// &quot;2016/7/8 上午11:00:00&quot;
+new Date(&#39;Friday July 8 2016 11:00&#39;).toLocaleString();
+// &quot;2001/7/8 上午12:00:00&quot;
+new Date(&#39;Friday July 8&#39;).toLocaleString();
+// &quot;2016/7/8 上午11:00:00&quot;
+new Date(&#39;July 8 2016 11:00&#39;).toLocaleString();</code></pre>
+
+<ul>
+<li>ISO 8601扩展格式YYYY-MM-DDTHH:mm:ss.sssZ(例如2004-05-25T00:00:00)
+
+<ul>
+<li>只有兼容es5的实现格式支持.</li>
+</ul></li>
+</ul></li>
+<li><p>备注</p>
+
+<ul>
+<li>如果直接将表示日期的字符串传递给Date构造函数，也会在后台调用Date.parse()</li>
+<li>日期对象在不同浏览器中的实现有许多奇怪的行为.
+
+<ul>
+<li>chrome对于&#39;-&#39;和&#39;/&#39;分割日期的形式都是支持的，能够返回正确的毫秒数或者时间格式;safari仅对&#39;/&#39;分割日期的形式支持，对&#39;-&#39;分割日期的形式并不支持。</li>
+</ul></li>
+<li>所有日期都是基于系统设置的本地时间创建的.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h3 id="toc_5">Date原型方法</h3>
+
+<ul>
+<li>Date.prototype.tolSOString
+
+<ul>
+<li>定义: 返回一个ISO格式的字符串:YYYY-MM-DDTHH:mm:ss.sssZ.时区总是UTC(协调世界时)，加一个后缀“Z”标识。</li>
+<li>语法: dateObj.toISOString()</li>
+<li>Demo
+<code>
+var d = new Date();
+d.toISOString();
+</code></li>
+</ul></li>
+<li>Date.prototype.toJSON
+
+<ul>
+<li>定义: 返回Date对象的字符串形式。</li>
+<li>语法: 调用toJSON()返回一个JSON格式字符串(使用toISOString())，表示该日期对象的值。</li>
+<li>备注: Date.prototype.toJSON.call(new Date(NaN))返回null</li>
+</ul></li>
+<li><p>Date.prototype.now</p>
+
+<ul>
+<li>定义: 返回表示调用这个方法时的日期和时间的毫秒数 </li>
+<li>语法: Date.now()</li>
+<li>备注</li>
+<li>now()是Date的一个静态函数</li>
+<li><p>兼容性处理</p>
+
+<pre><code class="language-none">if (!Date.now) {
+  Date.now = function now() {
+    return new Date().getTime();
+  };
+}</code></pre></li>
+</ul></li>
+</ul>
+
+<h3 id="toc_6">日期格式化方法</h3>
+
+<p>将日期格式化为字符串的方法:</p>
+
+<ul>
+<li><p>toDateString</p>
+
+<ul>
+<li>定义: 以特定于实现的格式显示星期几、月、日和年(把Date对象的日期部分转换为字符串)</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date()
+document.write(d.toDateString());</code></pre></li>
+<li><p>toTimeString</p>
+
+<ul>
+<li>定义: 以特定于实现的格式显示时、分、秒和时区(把Date对象的时间部分转换为字符串，并返回结果)</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date()
+document.write(d.toTimeString());</code></pre></li>
+<li><p>toLocaleDateString</p>
+
+<ul>
+<li>定义: 以特定于地区的格式显示星期几、月、日和年(可根据本地时间把Date对象的日期部分转换为字符串，并返回结果)</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date()
+document.write(d.toLocaleDateString());</code></pre></li>
+<li><p>toLocaleTimeString</p>
+
+<ul>
+<li>定义: 以特定于地区的格式显示时、分、秒和时区(可根据本地时间把Date对象的时间部分转换为字符串，并返回结果)</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date()
+document.write(d.toLocaleTimeString());</code></pre></li>
+<li><p>toUTCString</p>
+
+<ul>
+<li>定义: 以特定于实现的格式完整的UTC日期(可根据世界时UTC把Date对象转换为字符串，并返回结果)</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date()
+document.write(d.toLocaleTimeString());</code></pre></li>
+<li><p>toLocaleString和toString方法一样
+<strong>以上这些字符串格式方法的输出也是因浏览器而异的</strong></p>
+
+<h3 id="toc_7">Date对象方法</h3></li>
+<li><p>getTime</p>
+
+<ul>
+<li>定义: 返回表示日期的毫秒数，与valueOf()方法返回值相同</li>
+<li>语法: dateObject.getTime()</li>
+<li>注意点: 返回的毫秒数是距1970年1月1日午夜(GMT 时间)之间的毫秒数</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var minutes = 1000*60;
+var hours = minutes*60;
+var days = hours*24;    
+var years = days*365;
+var d = new Date(); 
+var t = d.getTime();
+var y = t/years;
+document.write(&quot;It&#39;s been: &quot; + y + &quot; years since 1970/01/01!&quot;);</code></pre></li>
+<li><p>setTime</p>
+
+<ul>
+<li>定义: 以毫秒设置日期会改变整个日期.</li>
+<li>语法: dateObject.setTime(millisec)
+
+<ul>
+<li>millisec: 必须，要设置的日期和时间据GMT时间1970年1月1日午夜之间的毫秒数</li>
+</ul></li>
+<li>备注: 返回参数 millisec</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var date = new Date(&#39;7/6/2016&#39;);
+date.setTime(&#39;1467948764748&#39;);
+// &quot;2016/7/8&quot;
+date.toLocaleDateString();</code></pre></li>
+<li><p>getFullYear</p>
+
+<ul>
+<li>定义: 取得4位数的年份(如2016而不是16)</li>
+<li>语法: dateObject.getFullYear()</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+document.write(d.getFullYear());</code></pre></li>
+<li><p>getUTCFullYear</p>
+
+<ul>
+<li>定义: 返回UTC(世界时)日期的4位年份</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+document.write(d.getUTCFullYear());</code></pre></li>
+<li><p>setFullYear</p>
+
+<ul>
+<li>定义: 设置日期的年份</li>
+<li>语法: dateObject.setFullYear(year,month,day)
+
+<ul>
+<li>year,必须,传入的年份数字必须是四位(如2016而不是16)。</li>
+<li>month,可选,表示月份的数值,介于0～11之间</li>
+<li>day,可选,表示月中某一天的数值,介于1～31之间</li>
+</ul></li>
+<li>备注: 调整过的日期的毫秒表示</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var date = new Date(&#39;7/8/2016&#39;);
+date.setFullYear(&#39;2017&#39;);
+// &quot;2017/7/8&quot;
+date.toLocaleDateString();
+date.setFullYear(2018);
+// &quot;2018/7/8&quot;
+date.toLocaleDateString();
+var d = new Date();
+d.setFullYear(1992,10,3);
+document.write(d);</code></pre>
+
+<ul>
+<li>注意点: 传入参数可以是number型也可以是string型(可转换为有效数字);</li>
+</ul></li>
+<li><p>setUTCFullYear</p>
+
+<ul>
+<li>定义: 设置UTC日期的年份</li>
+<li>语法: dateObject.setUTCFullYear(year,month,day)
+
+<ul>
+<li>year,必须,传入的年份数字必须是四位(如2016而不是16)。</li>
+<li>month,可选,表示月份的数值,介于0～11之间</li>
+<li>day,可选,表示月中某一天的数值,介于1～31之间 </li>
+</ul></li>
+<li>参数: 年(数字),传入的年份数字必须是四位(如2016而不是16)</li>
+<li>备注: 调整过的日期的毫秒表示</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var date = new Date(&#39;7/6/2016&#39;);
+date.setUTCFullYear(&#39;2017&#39;);
+// &quot;2017/7/6&quot;
+date.toLocaleDateString();
+date.setUTCFullYear(2018);
+// &quot;2018/7/6&quot;
+date.toLocaleDateString();
+var d = new Date();
+d.setUTCFullYear(1992,10,3);
+document.write(d);</code></pre></li>
+<li><p>getMonth</p>
+
+<ul>
+<li>定义: 返回日期中的月份数字，其中0表示一月，11表示十二月</li>
+<li>语法: dateObject.getMonth()</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d=new Date();
+var month=new Array(12);
+month[0]=&quot;January&quot;;
+month[1]=&quot;February&quot;;
+month[2]=&quot;March&quot;;
+month[3]=&quot;April&quot;;
+month[4]=&quot;May&quot;;
+month[5]=&quot;June&quot;;
+month[6]=&quot;July&quot;;
+month[7]=&quot;August&quot;;
+month[8]=&quot;September&quot;;
+month[9]=&quot;October&quot;;
+month[10]=&quot;November&quot;;
+month[11]=&quot;December&quot;;
+document.write(&quot;The month is &quot; + month[d.getMonth()]);</code></pre></li>
+<li><p>getUTCMonth</p>
+
+<ul>
+<li>定义: 返回UTC日期中的月份数字，其中0表示一月，11表示十二月</li>
+<li>语法: dateObject.getUTCMonth()</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d=new Date();
+var month=new Array(12);
+month[0]=&quot;January&quot;;
+month[1]=&quot;February&quot;;
+month[2]=&quot;March&quot;;
+month[3]=&quot;April&quot;;
+month[4]=&quot;May&quot;;
+month[5]=&quot;June&quot;;
+month[6]=&quot;July&quot;;
+month[7]=&quot;August&quot;;
+month[8]=&quot;September&quot;;
+month[9]=&quot;October&quot;;
+month[10]=&quot;November&quot;;
+month[11]=&quot;December&quot;;
+document.write(&quot;The month is &quot; + month[d.getUTCMonth()]);</code></pre></li>
+<li><p>setMonth</p>
+
+<ul>
+<li>定义: 设置日期的月份，传入的月份值必须大于等于0，超过11则增加年份。</li>
+<li>语法: dateObject.setMonth(month,day)
+
+<ul>
+<li>month: 必须,一个表示月份的数值.介于0～11之间</li>
+<li>day: 可选, 一个表示月的某一天的数值,该值介于1~31之间。</li>
+</ul></li>
+<li>备注: 返回调整过的日期的毫秒表示。</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d=new Date();
+d.setMonth(0);
+document.write(d);</code></pre></li>
+<li><p>setUTCMonth</p>
+
+<ul>
+<li>定义: 设置UTC日期的月份,传入的月份值必须大于等于0，超过11则增加年份。</li>
+<li>语法: dateObject.setUTCMonth(month,day)
+
+<ul>
+<li>month: 必须,该参数是0(一月)~11(十二月)之间的整数</li>
+<li>day: 可选,在1 ~ 31之间的整数。</li>
+</ul></li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d=new Date();
+d.setUTCMonth(0);
+document.write(d);</code></pre></li>
+<li><p>getDate</p>
+
+<ul>
+<li>定义: 返回日期月份中的天数(1～31)</li>
+<li>语法: dateObject.getDate()</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+document.write(d.getDate());</code></pre></li>
+<li><p>getUTCDate</p>
+
+<ul>
+<li>定义: 返回UTC日期月份中的天数(1～31)</li>
+<li>语法: dateObject.getUTCDate()</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+document.write(d.getUTCDate());</code></pre></li>
+<li><p>setDate</p>
+
+<ul>
+<li>定义: 设置日期月份中的天数。如果传入的值超过了该月中应有的天数，则增加月份.</li>
+<li>语法: dateObject.setDate(day)
+
+<ul>
+<li>day: 必需。表示一个月中的一天的一个数值(1~31); </li>
+</ul></li>
+<li>备注: 返回调整过的日期的毫秒</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+d.setDate(15);
+document.write(d);</code></pre></li>
+<li><p>setUTCDate</p>
+
+<ul>
+<li>定义: 设置UTC日期月份中的天数。如果传入的值超过了该月中应有的天数，则增加月份</li>
+<li>语法: dateObject.setUTCDate(day)
+
+<ul>
+<li>day: 必需。表示一个月中的一天的一个数值(1~31); </li>
+</ul></li>
+<li>Demo
+<code>
+var d = new Date();
+d.setDate(15);
+document.write(d);
+</code></li>
+</ul></li>
+<li><p>getDay</p>
+
+<ul>
+<li>定义: 返回日期中星期的星期几.其中0表示星期日,6表示星期六</li>
+<li>语法: dateObject.getDay()</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d=new Date();
+var weekday=new Array(7);
+weekday[0]=&quot;Sunday&quot;;
+weekday[1]=&quot;Monday&quot;;
+weekday[2]=&quot;Tuesday&quot;;
+weekday[3]=&quot;Wednesday&quot;;
+weekday[4]=&quot;Thursday&quot;;
+weekday[5]=&quot;Friday&quot;;
+weekday[6]=&quot;Saturday&quot;;
+document.write(&quot;Today it is &quot; + weekday[d.getDay()]);</code></pre></li>
+<li><p>getUTCDay</p>
+
+<ul>
+<li>定义: 返回UTC日期中星期的星期几.其中0表示星期日,6表示星期六</li>
+<li>语法: dateObject.getUTCDay()</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d=new Date();
+document.write(d.getUTCDay());</code></pre></li>
+<li><p>getHours</p>
+
+<ul>
+<li>定义: 返回日期中的小时数(0~23)</li>
+<li>语法: dateObject.getHours()</li>
+<li>备注:返回值是0(午夜)到23(晚上11点)之间的一个整数。</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+document.write(d.getHours());</code></pre></li>
+<li><p>getUTCHours</p>
+
+<ul>
+<li>定义: 返回UTC日期中的小时数(0~23)</li>
+<li>语法: dateObject.getUTCHours()</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+document.write(d.getUTCHours());</code></pre></li>
+<li><p>setHours</p>
+
+<ul>
+<li>定义: 设置日期中的小时数。传入的值超过23则增加月份中的天数</li>
+<li>参数: dateObject.setHours(hour,min,sec,millisec)
+
+<ul>
+<li>hour: 必需。表示小时的数值，介于0(午夜)~23(晚上11点)之间</li>
+<li>min: 可选。表示分钟的数值，介于0~59之间。</li>
+<li>sec: 可选。表示秒的数值，介于0~59之间。</li>
+<li>millisec: 可选。表示毫秒的数值，介于0~999之间。</li>
+</ul></li>
+<li>备注: 如果上面的参数之一使用一位的数字来规定，那么 JavaScript 会在结果中加一或两个前置0</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+d.setHours(15,35,1);
+document.write(d);</code></pre></li>
+<li><p>setUTCHours</p>
+
+<ul>
+<li>定义: 设置UTC日期中的小时数。传入的值超过23则增加月份中的天数</li>
+<li>语法: dateObject.setUTCHours(hour,min,sec,millisec)
+
+<ul>
+<li>hour: 必需。表示小时的数值，介于0(午夜)~23(晚上11点)之间</li>
+<li>min: 可选。表示分钟的数值，介于0~59之间。</li>
+<li>sec: 可选。表示秒的数值，介于0~59之间。</li>
+<li>millisec: 可选。表示毫秒的数值，介于0~999之间。</li>
+</ul></li>
+<li>备注
+
+<ul>
+<li>如果没有规定min,sec以及millisec参数，则使用从 getUTCMinutes, getUTCSeconds以及getUTCMilliseconds方法返回的值;</li>
+<li>如果您规定的参数在指定范围之外，则setUTCHours尝试据此来更新Date对象中的日期信息。例如，如果sec参数的值是100，则增加1分钟(min + 1)，而秒数为40。</li>
+</ul></li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+d.setUTCHours(23,15,6);
+document.write(d);</code></pre></li>
+<li><p>getMinutes</p>
+
+<ul>
+<li>定义: 返回日期中的分钟数(0到59)</li>
+<li>语法: dateObject.getMinutes()</li>
+<li>备注: 由getMinutes()返回的值是一个两位的数字。不过返回值不总是两位的，如果该值小于10，则仅返回一位数字</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+document.write(d.getMinutes());</code></pre></li>
+<li><p>getUTCMinutes</p>
+
+<ul>
+<li>定义: 返回日期中的分钟数(0到59)</li>
+<li>语法: dateObject.getUTCMinutes()</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var born = new Date(&quot;July 21, 1983 01:15:00&quot;);
+document.write(born.getUTCMinutes());</code></pre></li>
+<li><p>setMinutes</p>
+
+<ul>
+<li>定义: 设置日期中的分钟数。传入的值超过59则增加小时数</li>
+<li>语法: dateObject.setMinutes(min,sec,millisec)
+
+<ul>
+<li>min: 必需。表示分钟的数值，介于0 ~ 59之间</li>
+<li>sec: 可选。表示秒的数值，介于0 ~ 59之间</li>
+<li>millisec: 可选。表示毫秒的数值，介于0 ~ 999之间</li>
+</ul></li>
+<li>备注: 如果上面的参数之一使用一位的数字来规定，那么JavaScript会在结果中加一或两个前置0。</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+d.setMinutes(1);
+document.write(d);</code></pre></li>
+<li><p>setUTCMinutes</p>
+
+<ul>
+<li>定义: 设置UTC日期中的分钟数。传入的值超过59则增加小时数</li>
+<li>语法: dateObject.setUTCMinutes(min,sec,millisec)
+
+<ul>
+<li>min: 必需。表示分钟的数值，介于0 ~ 59之间</li>
+<li>sec: 可选。表示秒的数值，介于0 ~ 59之间</li>
+<li>millisec: 可选。表示毫秒的数值，介于0 ~ 999之间 </li>
+</ul></li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+d.setUTCMinutes(1);
+document.write(d);</code></pre></li>
+<li><p>getSeconds</p>
+
+<ul>
+<li>定义: 返回日期中的秒数(0~59)</li>
+<li>语法: dateObject.getSeconds()</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+document.write(d.getSeconds());</code></pre></li>
+<li><p>getUTCSeconds</p>
+
+<ul>
+<li>定义: 返回UTC日期中的秒数(0~59)</li>
+<li>参数: dateObject.getUTCSeconds()</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var Birthday = new Date(&quot;July 21, 1983 01:15:00&quot;);
+document.write(Birthday.getUTCSeconds());</code></pre></li>
+<li><p>setSeconds</p>
+
+<ul>
+<li>定义: 设置日期中的秒数.传入的值超过59会增加分钟数</li>
+<li>语法: dateObject.setSeconds(sec,millisec)
+
+<ul>
+<li>sec: 必需。表示秒的数值.</li>
+<li>millisec: 可选。表示毫秒的数值，介于0 ~ 999之间<br></li>
+</ul></li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date()
+d.setSeconds(1)
+document.write(d)</code></pre></li>
+<li><p>setUTCSeconds</p>
+
+<ul>
+<li>定义: 设置UTC日期中的秒数.传入的值超过59会增加分钟数</li>
+<li>语法: dateObject.setUTCSeconds(sec,millisec)</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date()
+d.setSeconds(1)
+document.write(d)</code></pre></li>
+<li><p>getMilliseconds</p>
+
+<ul>
+<li>定义: 返回日期中的毫秒数</li>
+<li>语法: dateObject.getMilliseconds()</li>
+<li>备注: 由getMilliseconds()返回的值是一个三位的数字。不过返回值不总是三位的，如果该值小于 100，则仅返回两位数字，如果该值小于10，则仅返回一位数字。</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date();
+document.write(d.getMilliseconds());</code></pre></li>
+<li><p>getUTCMilliseconds</p>
+
+<ul>
+<li>定义: 返回UTC日期中的毫秒数</li>
+<li>语法: dateObject.getUTCMilliseconds()</li>
+<li>备注: 由getMilliseconds()返回的值是一个三位的数字。不过返回值不总是三位的，如果该值小于 100，则仅返回两位数字，如果该值小于10，则仅返回一位数字。</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date()
+document.write(d.getUTCMilliseconds())</code></pre></li>
+<li><p>setMilliseconds</p>
+
+<ul>
+<li>定义: 设置日期中的毫秒数</li>
+<li>语法: dateObject.setMilliseconds(millisec)
+
+<ul>
+<li>millisec: 必需。用于设置 dateObject 毫秒字段，该参数是介于 0 ~ 999 之间的整数。</li>
+</ul></li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date()
+d.setMilliseconds(1)
+document.write(d)</code></pre></li>
+<li><p>setUTCMilliseconds</p>
+
+<ul>
+<li>定义: 设置UTC日期中的毫秒数</li>
+<li>语法: dateObject.setUTCMilliseconds(millisec)
+
+<ul>
+<li>millisec: 必需。要给dateObject设置的毫秒字段的值.该参数是 0 ~ 999 之间的整数</li>
+</ul></li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var d = new Date()
+d.setUTCMilliseconds(1)
+document.write(d)</code></pre></li>
+<li><p>getTimezoneOffset</p>
+
+<ul>
+<li>定义: 返回本地时间与UTC时间相差的分钟数.在某地进入夏令时的情况下，这个值会有所变化。</li>
+<li>语法: dateObject.getTimezoneOffset()</li>
+<li>备注: 由于使用夏令时的惯例，该方法的返回值不是一个常量</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var gmtHours = d.getTimezoneOffset()/60
+document.write(&quot;The local time zone is: GMT &quot; + gmtHours)</code></pre></li>
+</ul>
+
+<h2 id="toc_8">ECMAScript6</h2>
+
+<ul>
+<li>Invalid Date</li>
+</ul>
+
+<pre><code class="language-none">return new Date(NaN) + &quot;&quot; === &quot;Invalid Date&quot;;</code></pre>
+
+<h1 id="toc_9">参考文章</h1>
+
+<ol>
+<li><a href="http://www.w3school.com.cn/jsref/jsref_obj_date.asp">W3C</a></li>
+<li><a href="http://vdisk.weibo.com/s/ubioot-jTQHGD">Js高级程序设计</a></li>
+</ol>
+
+
+</body>
+
+</html>

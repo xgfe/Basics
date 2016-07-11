@@ -1,0 +1,623 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>Map</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">let</h1>
+
+<h2 id="toc_1">let命令</h2>
+
+<h3 id="toc_2">基本用法</h3>
+
+<ul>
+<li>ES6新增命令，用于声明变量。用法类似var，但是其声明变量只在let命令所在代码块有效。</li>
+</ul>
+
+<pre><code class="language-none">{
+    let aLet = 1;
+    var bVar = 2;
+}
+console.log(aLet);  // Uncaught ReferenceError: aLet is not defined(…)
+console.log(bVar);  // 2</code></pre>
+
+<ul>
+<li>for循环计数器很适合let命令</li>
+</ul>
+
+<pre><code class="language-none">for (let i = 0; i &lt; 3; i++) {}
+console.log(i);  // Uncaught ReferenceError: i is not defined(…)</code></pre>
+
+<ul>
+<li>考考你?</li>
+</ul>
+
+<pre><code class="language-none">// 使用var变量
+var a = [];
+for (var i = 0; i &lt; 10; i++) {
+  a[i] = function () {
+    console.log(i);
+  };
+}
+a[6]();    // ?结果
+
+// 使用let变量
+var a = [];
+for (let ii = 0; ii &lt; 10; ii++) {
+  a[ii] = function () {
+    console.log(ii);
+  };
+}
+a[6]();    // ?结果 </code></pre>
+
+<h3 id="toc_3">不存在变量提升</h3>
+
+<ul>
+<li>变量提升:javascript是解释型语言，执行基本分为两个阶段，编译期(预编译)与运行期。在预编译阶段，它是用函数来划分作用域，然后逐层为其以var声明的变量(var变量)与函数定义开辟内存空间，再然后对var变量进行特殊处理，统统赋初始值为undefined。</li>
+</ul>
+
+<pre><code class="language-none">(function(){
+  var str1 = &quot;1&quot;;
+  var fun1 = function(){};
+  var str2 = &quot;2&quot;;
+  var str3 = &quot;3&quot;;
+})();
+// 同上代码
+(function(){
+  var str1,fun1,str2,str3;
+  str1 = &quot;1&quot;;
+  fun1 = function(){};
+  str2 = &quot;2&quot;;
+  str3 = &quot;3&quot;;
+})();</code></pre>
+
+<ul>
+<li>let会发生&#39;变量提升&#39;，因此，变量一定要在声明后使用，否则报错。</li>
+</ul>
+
+<pre><code class="language-none">console.log(foo); // undefined
+console.log(bar); // Uncaught ReferenceError: bar is not defined(…)
+var foo = 2;
+let bar = 2;</code></pre>
+
+<h3 id="toc_4">暂时性死区</h3>
+
+<ul>
+<li>考考你?</li>
+</ul>
+
+<pre><code class="language-none">// 使用var
+var tmp = 123;
+if (true) {
+  console.log(tmp);
+  var tmp;
+}
+// 使用let,运行结果
+var tmp = 123;
+if (true) {
+  console.log(tmp);
+  let tmp;
+}</code></pre>
+
+<ul>
+<li>在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”(temporal dead zone，简称TDZ).</li>
+<li>ES6明确规定，区块中使用let和const声明变量，则会形成封闭作用域，在声明之前使用变量会报错。</li>
+<li>考考你?</li>
+</ul>
+
+<pre><code class="language-none">// 未使用let语句
+typeof myData;  
+    
+// 使用let语句
+{
+    typeof myData;
+    let myData = &#39;myData&#39;;
+}</code></pre>
+
+<h3 id="toc_5">不允许重复声明</h3>
+
+<ul>
+<li>let不允许在相同作用域内，重复声明同一个变量</li>
+</ul>
+
+<pre><code class="language-none">// Uncaught SyntaxError: Unexpected token
+function () {
+    let num1 = 10;
+    var num1 = 1;
+}
+// Uncaught SyntaxError: Unexpected token
+function () {
+    let num2 = 10;
+    let num2 = 1;
+}</code></pre>
+
+<ul>
+<li>不能在函数内部重新声明参数</li>
+</ul>
+
+<pre><code class="language-none">function func(arg) {
+  let arg; // 报错
+}
+function func(arg) {
+  {
+    let arg; // 不报错
+  }
+}</code></pre>
+
+<h2 id="toc_6">块级作用域</h2>
+
+<h3 id="toc_7">ES5全局作用域和函数作用域</h3>
+
+<ul>
+<li>考考你?</li>
+</ul>
+
+<pre><code class="language-none">// 场景一
+var date = new Date();
+function fun() {
+  console.log(date);
+  if (false) {
+    var date = &quot;hello world&quot;;
+  }
+}
+fun();
+    
+// 场景二
+var str = &#39;hello&#39;;
+for (var j = 0; j &lt; str.length; j++) {
+  console.log(str[j]);
+}
+console.log(j);</code></pre>
+
+<ul>
+<li>问题总结:ES5只有全局作用域和函数作用域，没有块级作用域
+
+<ul>
+<li>内层变量可能会覆盖外层变量</li>
+<li>用来计数的循环变量泄露为全局变量
+### ES6块级作用域</li>
+</ul></li>
+<li>let实际上为JavaScript新增了块级作用域.</li>
+<li>ES6允许块级作用域的任意嵌套,外层作用域无法读取内层作用域的变量</li>
+</ul>
+
+<pre><code class="language-none">{{{{
+  {let insane = &#39;Hello World&#39;}
+  console.log(insane); // Uncaught ReferenceError: insane is not defined
+}}}};</code></pre>
+
+<ul>
+<li>内层作用域可以定义外层作用域的同名变量</li>
+</ul>
+
+<pre><code class="language-none">{{{{
+  let insane = &#39;Hello World&#39;;
+  {let insane = &#39;Hello World&#39;}
+}}}};</code></pre>
+
+<ul>
+<li>块级作用域的出现，使得获得立即执行匿名函数（IIFE）不再必要.</li>
+</ul>
+
+<pre><code class="language-none">// IIFE写法
+(function () {
+  var tmp = ...;
+  ...
+}());
+    
+// 块级作用域写法
+{
+  let tmp = ...;
+  ...
+}</code></pre>
+
+<h3 id="toc_8">块级作用域与函数声明</h3>
+
+<ul>
+<li>ES5规定，函数只能在顶层作用域和函数作用域之中声明，不能在块级作用域声明
+
+<ul>
+<li>浏览器支持在块级作用域中声明函数,因此上面代码可以正常运行,但是在‘严格模式’下会报错 </li>
+</ul></li>
+</ul>
+
+<pre><code class="language-none">// 情况一
+if (true) {
+  function fun() {}
+}
+    
+// 情况二
+try {
+  function fun() {}
+} catch(e) {
+}</code></pre>
+
+<ul>
+<li>ES6引入了块级作用域，明确允许在块级作用域之中声明函数,并且函数声明语句的行为类似于let，在块级作用域之外不可引用。</li>
+</ul>
+
+<pre><code class="language-none">// ES6严格模式
+&#39;use strict&#39;;
+if (true) {
+  function f() {}
+}</code></pre>
+
+<h1 id="toc_9">Const</h1>
+
+<ul>
+<li>定义: 声明一个只读常量，一旦声明，常量的值就不可能改变.</li>
+<li><p>注意点</p>
+
+<ul>
+<li>const一旦声明变量，就必须立即初始化，不能留到以后赋值；</li>
+</ul>
+
+<p><code>const COLOR;  //Uncaught SyntaxError: Missing initializer in const declaration</code></p>
+
+<ul>
+<li><p>const与let相同特性</p>
+
+<ul>
+<li>只在声明所在的块级作用域内有效</li>
+</ul>
+
+<pre><code class="language-none">if (true) {
+    const MAX = 5;
+}
+console.log(MAX);  // Uncaught ReferenceError: MAX is not defined</code></pre>
+
+<ul>
+<li>变量不提升</li>
+<li>存在暂时性死区，只能在声明的位置后面使用</li>
+<li>不能重复声明</li>
+</ul></li>
+<li><p>复合类型(Object，Array等)的变量，可对其值进行修改，即const的定义保证了变量名指向地址不变。</p>
+
+<pre><code class="language-none">// Array
+const foo = {};
+foo.prop = 123;
+console.log(foo);
+foo = {}; //Uncaught TypeError: Assignment to constant variable.
+
+// Object
+const arr = [];
+arr.push(&#39;Hello&#39;); 
+arr.length = 0;    
+arr = [&#39;World&#39;];  // Uncaught TypeError: Assignment to constant variable  </code></pre></li>
+<li><p>使用const定义复合型变量达到真正的对象不可变，可以使用Object.freeze()方法冻结对象。</p>
+
+<pre><code class="language-none">// 冻结对象和属性
+var constantize = (obj) =&gt; {
+  Object.freeze(obj);
+  Object.keys(obj).forEach( (key, value) =&gt; {
+    if ( typeof obj[key] === &#39;object&#39; ) {
+      constantize( obj[key] );
+    }
+  });
+};</code></pre></li>
+<li><p>let命令、const命令、class命令声明的全局变量，不属于全局对象的属性</p>
+
+<ul>
+<li>ES5之中，全局对象的属性与全局变量是等价的。</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<ul>
+<li><p>实例</p>
+
+<pre><code class="language-none">const PI = 3.1415926;
+PI = 123;  // Uncaught TypeError: Assignment to constant variable</code></pre></li>
+</ul>
+
+<h1 id="toc_10">参考文章</h1>
+
+<ol>
+<li><a href="http://m.cnblogs.com/57731/1551270.html?full=1">变量作用域</a></li>
+<li><a href="http://es6.ruanyifeng.com/?search=generator&amp;x=0&amp;y=0#docs/let">ES6入门</a></li>
+</ol>
+
+
+</body>
+
+</html>
