@@ -605,7 +605,7 @@ constantize(person);
 person.name = &#39;lee&#39;; //无法修改，但是不会报错
 const arr = [&#39;one&#39;, &#39;two&#39;];
 constantize(arr);
-arr.push(&#39;three&#39;);  // Uncaught TypeError: Can&#39;t add property 2, object is not extensible</code></pre></li>
+arr.push(&#39;three&#39;);  // Uncaught TypeError: Can&#39;t add property three, object is not extensible</code></pre></li>
 <li><p>let命令、const命令、class命令声明的全局变量，不属于全局对象的属性</p>
 
 <ul>
