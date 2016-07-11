@@ -372,7 +372,7 @@ a[6]();    // ?结果 </code></pre>
 })();</code></pre>
 
 <ul>
-<li>let会发生&#39;变量提升&#39;，因此，变量一定要在声明后使用，否则报错。</li>
+<li>let不会发生&#39;变量提升&#39;，因此，变量一定要在声明后使用，否则报错。</li>
 </ul>
 
 <pre><code class="language-none">console.log(foo); // undefined
@@ -421,12 +421,12 @@ typeof myData;
 </ul>
 
 <pre><code class="language-none">// Uncaught SyntaxError: Unexpected token
-function () {
+function fun1() {
     let num1 = 10;
     var num1 = 1;
 }
 // Uncaught SyntaxError: Unexpected token
-function () {
+function fun2() {
     let num2 = 10;
     let num2 = 1;
 }</code></pre>
@@ -474,9 +474,13 @@ console.log(j);</code></pre>
 
 <ul>
 <li>内层变量可能会覆盖外层变量</li>
-<li>用来计数的循环变量泄露为全局变量
-### ES6块级作用域</li>
+<li>用来计数的循环变量泄露为全局变量</li>
 </ul></li>
+</ul>
+
+<h3 id="toc_8">ES6块级作用域</h3>
+
+<ul>
 <li>let实际上为JavaScript新增了块级作用域.</li>
 <li>ES6允许块级作用域的任意嵌套,外层作用域无法读取内层作用域的变量</li>
 </ul>
@@ -511,7 +515,7 @@ console.log(j);</code></pre>
   ...
 }</code></pre>
 
-<h3 id="toc_8">块级作用域与函数声明</h3>
+<h3 id="toc_9">块级作用域与函数声明</h3>
 
 <ul>
 <li>ES5规定，函数只能在顶层作用域和函数作用域之中声明，不能在块级作用域声明
@@ -542,7 +546,7 @@ if (true) {
   function f() {}
 }</code></pre>
 
-<h1 id="toc_9">Const</h1>
+<h1 id="toc_10">Const</h1>
 
 <ul>
 <li>定义: 声明一个只读常量，一旦声明，常量的值就不可能改变.</li>
@@ -594,7 +598,14 @@ var constantize = (obj) =&gt; {
       constantize( obj[key] );
     }
   });
-};</code></pre></li>
+};
+
+const person = {name: &#39;penglu&#39;, age: 27};
+constantize(person);
+person.name = &#39;lee&#39;; //无法修改，但是不会报错
+const arr = [&#39;one&#39;, &#39;two&#39;];
+constantize(arr);
+arr.push(&#39;three&#39;);  // Uncaught TypeError: Can&#39;t add property three, object is not extensible</code></pre></li>
 <li><p>let命令、const命令、class命令声明的全局变量，不属于全局对象的属性</p>
 
 <ul>
@@ -610,7 +621,7 @@ var constantize = (obj) =&gt; {
 PI = 123;  // Uncaught TypeError: Assignment to constant variable</code></pre></li>
 </ul>
 
-<h1 id="toc_10">参考文章</h1>
+<h1 id="toc_11">参考文章</h1>
 
 <ol>
 <li><a href="http://m.cnblogs.com/57731/1551270.html?full=1">变量作用域</a></li>

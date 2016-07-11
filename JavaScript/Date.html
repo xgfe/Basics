@@ -336,7 +336,7 @@ sup {
 
 <ul>
 <li>Date.parse()是Date对象的静态方法。</li>
-<li>如果传入Date.parse()方法的字符串不能表示日期,那么它会返回NaN. </li>
+<li>如果传入Date.parse()方法的字符串不能表示日期,那么它会返回NaN。</li>
 </ul></li>
 </ul></li>
 <li><p>Date.UTC</p>
@@ -384,7 +384,7 @@ document.write(&quot; to 2005/07/08!&quot;);</code></pre></li>
 <li><p>dateStr格式</p>
 
 <ul>
-<li>&#39;月/日／年&#39;，如7/8/2016 </li>
+<li>&#39;月/日/年&#39;，如7/8/2016 </li>
 </ul>
 
 <pre><code class="language-none">// &quot;2016/7/8 上午12:00:00&quot;
@@ -426,11 +426,29 @@ new Date(&#39;July 8 2016 11:00&#39;).toLocaleString();</code></pre>
 <li>日期对象在不同浏览器中的实现有许多奇怪的行为.
 
 <ul>
-<li>chrome对于&#39;-&#39;和&#39;/&#39;分割日期的形式都是支持的，能够返回正确的毫秒数或者时间格式;safari仅对&#39;/&#39;分割日期的形式支持，对&#39;-&#39;分割日期的形式并不支持。</li>
+<li>chrome对于&#39;-&#39;和&#39;/&#39;分割日期的形式都是支持的，能够返回正确的毫秒数或者时间格式;safari仅对&#39;/&#39;分割日期的形式支持，对&#39;-&#39;分割日期的形式并不支持(低版本)。</li>
 </ul></li>
 <li>所有日期都是基于系统设置的本地时间创建的.</li>
 </ul></li>
 </ul></li>
+</ul></li>
+<li><p>Date.now</p>
+
+<ul>
+<li>定义: 返回表示调用这个方法时的日期和时间的毫秒数 </li>
+<li>语法: Date.now()</li>
+<li><p>备注</p>
+
+<ul>
+<li>now是Date的一个静态函数</li>
+<li>兼容性处理</li>
+</ul>
+
+<pre><code class="language-none">if (!Date.now) {
+  Date.now = function now() {
+    return new Date().getTime();
+  };
+}</code></pre></li>
 </ul></li>
 </ul>
 
@@ -454,21 +472,6 @@ d.toISOString();
 <li>定义: 返回Date对象的字符串形式。</li>
 <li>语法: 调用toJSON()返回一个JSON格式字符串(使用toISOString())，表示该日期对象的值。</li>
 <li>备注: Date.prototype.toJSON.call(new Date(NaN))返回null</li>
-</ul></li>
-<li><p>Date.prototype.now</p>
-
-<ul>
-<li>定义: 返回表示调用这个方法时的日期和时间的毫秒数 </li>
-<li>语法: Date.now()</li>
-<li>备注</li>
-<li>now()是Date的一个静态函数</li>
-<li><p>兼容性处理</p>
-
-<pre><code class="language-none">if (!Date.now) {
-  Date.now = function now() {
-    return new Date().getTime();
-  };
-}</code></pre></li>
 </ul></li>
 </ul>
 
@@ -521,7 +524,7 @@ document.write(d.toLocaleTimeString());</code></pre></li>
 </ul>
 
 <pre><code class="language-none">var d = new Date()
-document.write(d.toLocaleTimeString());</code></pre></li>
+document.write(d.toUTCString());</code></pre></li>
 <li><p>toLocaleString和toString方法一样
 <strong>以上这些字符串格式方法的输出也是因浏览器而异的</strong></p>
 
@@ -826,7 +829,12 @@ document.write(d.getUTCHours());</code></pre></li>
 <li>sec: 可选。表示秒的数值，介于0~59之间。</li>
 <li>millisec: 可选。表示毫秒的数值，介于0~999之间。</li>
 </ul></li>
-<li>备注: 如果上面的参数之一使用一位的数字来规定，那么 JavaScript 会在结果中加一或两个前置0</li>
+<li>备注
+
+<ul>
+<li>如果上面的参数之一使用一位的数字来规定，那么 JavaScript 会在结果中加一或两个前置0</li>
+<li>果您规定的参数在指定范围之外，则setHours尝试据此来更新Date对象中的日期信息。例如，如果sec参数的值是100，则增加1分钟(min + 1)，而秒数为40</li>
+</ul></li>
 <li>Demo</li>
 </ul>
 
