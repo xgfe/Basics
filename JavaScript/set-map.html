@@ -1,0 +1,889 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>set-map</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Set</h1>
+
+<h2 id="toc_1">基本用法</h2>
+
+<ul>
+<li>定义: ES6新增数据结构,其本身是一个构造函数，可以用来生成Set数据结构</li>
+<li>Demo</li>
+</ul>
+
+<pre><code class="language-none">var s = new Set();
+[2, 3, 5, 4, 5, 2, 2].map(x =&gt; s.add(x));
+for (let i of s) {
+  console.log(i);
+}</code></pre>
+
+<ul>
+<li><p>备注</p>
+
+<ul>
+<li>Set类似于数组，但是成员的值都是唯一的，没有重复的值。</li>
+<li>Set函数可以接受一个数组（或类似数组的对象）作为参数，用来初始化。</li>
+<li>去除重复数组</li>
+</ul>
+
+<pre><code class="language-none">// 例一
+var set = new Set([1, 2, 3, 4, 4]);
+[...set]  // 用...(展开操作符)操作符将Set转换为Array
+
+// [1, 2, 3, 4]
+
+// 例二
+var items = new Set([1, 2, 3, 4, 5, 5, 5, 5]);
+items.size // 5
+
+// 例三
+function divs () {
+  return [...document.querySelectorAll(&#39;div&#39;)];
+}
+
+var set = new Set(divs());
+set.size // 56
+
+// 类似于
+divs().forEach(div =&gt; set.add(div));
+set.size // 56</code></pre>
+
+<ul>
+<li>去除数组的重复成员</li>
+</ul>
+
+<pre><code class="language-none">// 去除数组的重复成员array
+[...new Set(array)]</code></pre>
+
+<ul>
+<li>Array.from可以将Set结构转为数组</li>
+</ul>
+
+<pre><code class="language-none">var items = new Set([1, 2, 3, 4, 5]);
+var array = Array.from(items);
+
+// 数组去重
+function dedupe(array) {
+  return Array.from(new Set(array));
+}
+dedupe([1, 1, 2, 3]);   // [1,2,3]</code></pre>
+
+<ul>
+<li>向Set加入值的时候,不会发生类型转换,Set内部使用&quot;Same-value equality&quot;的算法判断两个值是否不同，类似于(===)，其区别是NaN等于自身。</li>
+</ul>
+
+<pre><code class="language-none">let set = new Set();
+let a = NaN;
+let b = NaN;
+set.add(a);
+set.add(b);
+set // Set {NaN}</code></pre>
+
+<ul>
+<li>set添加对象时,两个对象总是不相等的</li>
+</ul>
+
+<pre><code class="language-none">let set = new Set();
+set.add({});
+set.size // 1
+set.add({});
+set.size // 2</code></pre>
+
+<ul>
+<li>Set可继承</li>
+</ul>
+
+<pre><code class="language-none">var obj = {};
+class S extends Set {}
+var set = new S();
+set.add(123);
+set.add(123);
+console.log(set instanceof S &amp;&amp; set.has(123));</code></pre>
+
+<h2 id="toc_2">Set实例的属性和方法</h2>
+
+<h3 id="toc_3">实例属性</h3></li>
+<li><p>Set.prototype.constructor: 构造函数，默认就是Set函数.</p></li>
+<li><p>Set.prototype.size: 返回Set实例的成员总数.</p>
+
+<h3 id="toc_4">实例方法</h3></li>
+<li><p>操作方法(用于操作数据)</p>
+
+<ul>
+<li>add(value): 添加某个值,返回Set结构本身.</li>
+<li>delete(value): 删除某个值,返回一个布尔值,表示删除是否成功.</li>
+<li>has(value): 返回一个布尔值，表示该值(value)是否为Set的成员.</li>
+<li>clear(): 清除所有成员,没有返回值.</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-none">let set = new Set();
+set.add(&#39;pl&#39;);
+set.add(&#39;pl&#39;);
+console.log(set.size);
+console.log(set.has(&#39;pl&#39;));
+set.add(&#39;xg&#39;);
+console.log(set.size);
+set.delete(&#39;xg&#39;);
+console.log(set.size);
+set.add(&#39;xg&#39;);
+console.log(set.size);
+set.clear();
+console.log(set.size);</code></pre>
+
+<ul>
+<li><p>遍历方法(用于遍历成员)</p>
+
+<ul>
+<li>方法
+
+<ul>
+<li>keys(): 返回键名的遍历器。</li>
+<li>values(): 返回键值的遍历器。</li>
+<li>entries(): 返回键值对的遍历器。</li>
+<li>forEach(): 使用回调函数遍历每个成员。 </li>
+</ul></li>
+</ul>
+
+<pre><code class="language-none">let set = new Set([&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]);
+console.log(set.values());
+console.log(set.keys());
+console.log(set.entries());
+// 键值、键名、集合本身
+function fun(value1, value2, set){
+ console.log(&quot;s[&quot; + value1 + &quot;] = &quot; + value2);
+ console.log(set);
+}
+set.forEach(fun);</code></pre>
+
+<ul>
+<li><p>备注</p>
+
+<ul>
+<li>key方法、value方法、entries方法返回的都是遍历器对象。</li>
+<li>Set结构没有键名，只有键值.因此key方法和value方法的行为完全一致。</li>
+<li>entries方法返回的遍历器,同时包括键名和键值,而Set结构键值和键名相同，因此该方法返回的数组两个成员完全相等。</li>
+<li>Set结构的实例默认可遍历，它的默认遍历器生成函数就是它的values方法。<code>Set.prototype[Symbol.iterator] === Set.prototype.values</code></li>
+<li>可以省略values方法直接使用for...of循环遍历Set</li>
+</ul>
+
+<pre><code class="language-none">let set = new Set([&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]);
+for (let x of set) {
+  console.log(x);
+}</code></pre></li>
+<li><p>遍历的应用</p>
+
+<ul>
+<li>扩展运算符（...）内部使用for...of循环，因此也可用于Set结构</li>
+</ul>
+
+<pre><code class="language-none">let set = new Set([&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]);
+let arr = [...set];
+console.log(arr);</code></pre>
+
+<ul>
+<li>filter和map方法也可以用于Set</li>
+</ul>
+
+<pre><code class="language-none">let set = new Set([1, 2, 3]);
+set = new Set([...set].map(x =&gt; x * 2));
+console.log(set);  // {2, 4, 6}
+
+let set = new Set([1, 2, 3, 4, 5]);
+set = new Set([...set].filter(x =&gt; (x % 2) == 0));  // {2, 4}</code></pre>
+
+<ul>
+<li>Set容易实现并集(Union)、交集(Intersect)、差集(Difference)</li>
+</ul>
+
+<pre><code class="language-none">let a = new Set([1, 2, 3]);
+let b = new Set([4, 3, 2]);
+// 并集
+let union = new Set([...a, ...b]);
+console.log(union);  // Set {1, 2, 3, 4}
+// 交集
+let intersect = new Set([...a].filter(x =&gt; b.has(x)));
+console.log(intersect);   // Set {2, 3}
+// 差集
+let difference = new Set([...a].filter(x =&gt; !b.has(x)));  
+console.log(difference);  // [1]</code></pre>
+
+<ul>
+<li><p>通过变通方法实现遍历操作中改变原来的Set结构</p>
+
+<ul>
+<li>利用原Set结构映射出一个新的结构，然后赋值给原来的Set结构</li>
+</ul>
+
+<pre><code class="language-none">let set = new Set([1, 2, 3]);
+set = new Set([...set].map(val =&gt; val * 2));
+console.log(set);  // Set {2, 4, 6}</code></pre>
+
+<ul>
+<li>利用Array.from</li>
+</ul>
+
+<pre><code class="language-none">let set = new Set([1, 2, 3]);
+set = new Set(Array.from(set, val =&gt; val * 2));
+console.log(set);  // Set {2, 4, 6}</code></pre></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h1 id="toc_5">Map</h1>
+
+<h2 id="toc_6">Map结构产生背景</h2>
+
+<ul>
+<li>JavaScript的对象（Object），本质上是键值对的集合（Hash结构），但是只能用字符串当作键.</li>
+</ul>
+
+<pre><code class="language-none">var data = {};
+var element = document.getElementsByTagName(&quot;div&quot;)[0];
+data[element] = &#39;hello world&#39;;
+console.log(data[&quot;[object HTMLDivElement]&quot;]);  //hello world</code></pre>
+
+<ul>
+<li>ES6的Map数据结构是键值对的集合，其&quot;键&quot;可以是各种类型的值(包括对象).</li>
+<li>Object结构提供&quot;字符串--值&quot;的对应，Map结构提供&quot;值--值&quot;的对应.</li>
+</ul>
+
+<h2 id="toc_7">Map的基本用法</h2>
+
+<ul>
+<li>作为构造函数，Map可以接受数组(元素是表示键值对数组)作为参数.</li>
+</ul>
+
+<pre><code class="language-none">var map = new Map([[&#39;name&#39;, &#39;张三&#39;], [&#39;title&#39;, &#39;Author&#39;]]);
+console.log(map);  //Map {&quot;name&quot; =&gt; &quot;张三&quot;, &quot;title&quot; =&gt; &quot;Author&quot;</code></pre>
+
+<ul>
+<li>对同一个键多次赋值，则后面的值将覆盖前面的值.</li>
+</ul>
+
+<pre><code class="language-none">let map = new Map();
+map.set(1, &#39;aaa&#39;).set(1, &#39;bbb&#39;);
+console.log(map.get(1)); // &quot;bbb&quot;</code></pre>
+
+<ul>
+<li>读取未知键，则返回undefined</li>
+</ul>
+
+<pre><code class="language-none">console.log(new Map().get(&#39;asfddfsasadf&#39;));</code></pre>
+
+<ul>
+<li>只有对同一个对象的引用，Map结构才将其视为同一个键</li>
+</ul>
+
+<pre><code class="language-none">var map = new Map();
+map.set([&#39;a&#39;], 555);
+console.log(map.get([&#39;a&#39;])) // undefined
+
+var map = new Map();
+var k1 = [&#39;a&#39;];
+var k2 = [&#39;a&#39;];
+map
+.set(k1, 111)
+.set(k2, 222);
+console.log(map.get(k1)); // 111
+console.log(map.get(k2));  // 222
+
+var obj = {name: &#39;pl&#39;};
+map.set(obj, &#39;lulu&#39;)
+console.log(map.get(obj)); //lulu</code></pre>
+
+<ul>
+<li>如果Map的键是一个简单类型的值（数字、字符串、布尔值），则只要两个值严格相等，Map将其视为一个键，包括0和-0.虽然NaN不严格相等于自身，但Map将其视为同一个键</li>
+</ul>
+
+<pre><code class="language-none">let map = new Map();
+map.set(NaN, 123);
+console.log(map.get(NaN)); // 123
+map.set(-0, 123);
+console.log(map.get(+0)); // 123</code></pre>
+
+<ul>
+<li>Map可被继承</li>
+</ul>
+
+<pre><code class="language-none">var key = {};
+class M extends Map {}
+var map = new M();
+map.set(key, 123);
+console.log(map instanceof M &amp;&amp; map.has(key) &amp;&amp; map.get(key) === 123);  // true</code></pre>
+
+<h2 id="toc_8">实例的属性和操作方法</h2>
+
+<h3 id="toc_9">实例的属性</h3>
+
+<ul>
+<li>size: 返回Map结构的成员数。</li>
+</ul>
+
+<pre><code class="language-none">let map = new Map();
+map.set(&#39;foo&#39;, true);
+map.set(&#39;bar&#39;, false);
+console.log(map.size); // 2</code></pre>
+
+<h3 id="toc_10">操作方法</h3>
+
+<ul>
+<li>set(key, value): 设置key所对应的键值，返回整个Map结构。</li>
+</ul>
+
+<pre><code class="language-none">var m = new Map();
+m.set(&quot;edition&quot;, 6);       // 键是字符串
+m.set(262, &quot;standard&quot;);     // 键是数值
+cosnole.log(m.set(undefined, &quot;nah&quot;));   // 键是undefined</code></pre>
+
+<pre><code class="language-none">- set方法返回的是Map本身，因此可以采用链式写法。
+
+```
+let map1 = new Map()</code></pre>
+
+<p>.set(1, &#39;a&#39;)
+  .set(2, &#39;b&#39;)
+  .set(3, &#39;c&#39;);
+  console.log(map1);
+    ```
+- get(key):读取key对应的键值，如果找不到key，则返回undefined.</p>
+
+<pre><code class="language-none">var m = new Map();
+var hello = function() {console.log(&quot;hello&quot;);}
+m.set(hello, &quot;Hello ES6!&quot;) // 键是函数
+console.log(m.get(hello)); // Hello ES6!
+console.log(m.get(&#39;name&#39;));   // undefined</code></pre>
+
+<ul>
+<li>has(key): 返回一个布尔值，表示某个键是否在Map数据结构中.</li>
+</ul>
+
+<pre><code class="language-none">var m = new Map();
+m.set(&quot;edition&quot;, 6);
+m.set(262, &quot;standard&quot;);
+m.set(undefined, &quot;nah&quot;);
+console.log(m.has(&quot;edition&quot;));  // true
+console.log(m.has(&quot;years&quot;));  // false
+console.log(m.has(262));   // true
+console.log(m.has(undefined));  // true</code></pre>
+
+<ul>
+<li>delete(key): 删除某个键值，返回true，如果删除失败，返回false.</li>
+</ul>
+
+<pre><code class="language-none">var m = new Map();
+m.set(undefined, &quot;nah&quot;);
+console.log(m.has(undefined));     // true
+console.log(m.delete(undefined));  // true
+console.log(m.has(undefined));       // false
+console.log(m.delete(undefined));  // false</code></pre>
+
+<ul>
+<li>clear(): 清除所有成员，没有返回值</li>
+</ul>
+
+<pre><code class="language-none">let map = new Map();
+map.set(&#39;foo&#39;, true);
+map.set(&#39;bar&#39;, false);
+console.log(map.size); // 2
+map.clear()
+console.log(map.size);  // 0</code></pre>
+
+<h3 id="toc_11">遍历方法(Map的遍历顺序就是插入顺序)</h3>
+
+<ul>
+<li>keys()：返回键名的遍历器。</li>
+<li>values()：返回键值的遍历器。</li>
+<li>entries()：返回所有成员的遍历器。</li>
+<li>forEach()：遍历Map的所有成员。</li>
+</ul>
+
+<pre><code class="language-none">let map = new Map([
+  [&#39;F&#39;, &#39;no&#39;],
+  [&#39;T&#39;,  &#39;yes&#39;],
+]);
+console.log(map.keys());   // MapIterator {&quot;F&quot;, &quot;T&quot;}
+for (let key of map.keys()) {
+  console.log(key);
+}
+
+console.log(map.values());  //MapIterator {&quot;no&quot;, &quot;yes&quot;}
+for (let value of map.values()) {
+  console.log(value);
+}
+
+// console.log(map.entries());  // MapIterator {[&quot;F&quot;, &quot;no&quot;], [&quot;T&quot;, &quot;yes&quot;]}
+for (let item of map.entries()) {
+  console.log(item[0], item[1]);
+}
+
+// 或者
+for (let [key, value] of map.entries()) {
+  console.log(key, value);
+}
+
+// 等同于使用map.entries()
+for (let [key, value] of map) {
+  console.log(key, value);
+}
+
+map.forEach(function(value, key, map){
+    console.log(&quot;Key: &quot; + key + &quot; Value:&quot; + value);
+})</code></pre>
+
+<ul>
+<li>Map结构的默认遍历器接口（Symbol.iterator属性），就是entries方法  <code>Map.prototype[Symbol.iterator] === Map.prototype.entries</code></li>
+</ul>
+
+<h3 id="toc_12">补充</h3>
+
+<ul>
+<li>Map结构转为数组结构，比较快速的方法是结合使用扩展运算符（...）</li>
+</ul>
+
+<pre><code class="language-none">let map = new Map([
+  [1, &#39;one&#39;],
+  [2, &#39;two&#39;],
+  [3, &#39;three&#39;],
+]);
+console.log([...map.keys()]);   // [1, 2, 3]
+console.log([...map.values()]);   // [&#39;one&#39;, &#39;two&#39;, &#39;three&#39;]
+console.log([...map.entries()]);  // [[1,&#39;one&#39;], [2, &#39;two&#39;], [3, &#39;three&#39;]]
+console.log([...map]);  // [[1,&#39;one&#39;], [2, &#39;two&#39;], [3, &#39;three&#39;]]</code></pre>
+
+<ul>
+<li>结合数组的map和filter方法实现Map的遍历和过滤(Map本身没有filter和map方法)</li>
+</ul>
+
+<pre><code class="language-none">let map0 = new Map()
+  .set(1, &#39;a&#39;)
+  .set(2, &#39;b&#39;)
+  .set(3, &#39;c&#39;);
+
+let map1 = new Map(
+  [...map0].filter(([k, v]) =&gt; k &lt; 3)
+);
+console.log(map1);  // Map {1 =&gt; &quot;a&quot;, 2 =&gt; &quot;b&quot;}
+let map2 = new Map(
+  [...map0].map(([k, v]) =&gt; [k * 2, &#39;_&#39; + v])
+);
+console.log(map2);  // Map {2 =&gt; &quot;_a&quot;, 4 =&gt; &quot;_b&quot;, 6 =&gt; &quot;_c&quot;}</code></pre>
+
+<h2 id="toc_13">与其它数据结构的互相转换</h2>
+
+<ul>
+<li>Map转为数组: 使用扩展运算符(...)</li>
+</ul>
+
+<pre><code class="language-none">let myMap = new Map().set(true, 7).set({foo: 3}, [&#39;abc&#39;]);
+console.log([...myMap]);   //[[true,7],[{foo: 3},{0: &#39;abc&#39;}]]</code></pre>
+
+<ul>
+<li>数组转为Map: 使用Map构造函数</li>
+</ul>
+
+<pre><code class="language-none">console.log(new Map([[true, 7], [{foo: 3}, [&#39;abc&#39;]]]));  //Map {true =&gt; 7, Object {foo: 3} =&gt; Object {0: &quot;abc&quot;}}</code></pre>
+
+<ul>
+<li>Map转为对象: 如果所有Map的键都是字符串，它可以转为对象</li>
+</ul>
+
+<pre><code class="language-none">function strMapToObj(strMap) {
+  let obj = Object.create(null);
+  for (let [k,v] of strMap) {
+    obj[k] = v;
+  }
+  return obj;
+}
+let myMap = new Map().set(&#39;yes&#39;, true).set(&#39;no&#39;, false);
+console.log(strMapToObj(myMap)) ;  // Object {yes: true, no: false}</code></pre>
+
+<ul>
+<li>对象转为Map</li>
+</ul>
+
+<pre><code class="language-none">function objToStrMap(obj) {
+  let strMap = new Map();
+  for (let k of Object.keys(obj)) {
+    strMap.set(k, obj[k]);
+  }
+  return strMap;
+}
+console.log(objToStrMap({yes: true, no: false}));  // Map {&quot;yes&quot; =&gt; true, &quot;no&quot; =&gt; false}</code></pre>
+
+<ul>
+<li><p>Map转为JSON</p>
+
+<ul>
+<li>Map的键名都是字符串，转为对象JSON </li>
+</ul>
+
+<pre><code class="language-none">function strMapToObj(strMap) {
+  let obj = Object.create(null);
+  for (let [k,v] of strMap) {
+    obj[k] = v;
+  }
+  return obj;
+}
+
+function strMapToJson(strMap) {
+  return JSON.stringify(strMapToObj(strMap));
+}
+let myMap = new Map().set(&#39;yes&#39;, true).set(&#39;no&#39;, false);
+console.log(strMapToJson(myMap));   //{&quot;yes&quot;:true,&quot;no&quot;:false}</code></pre>
+
+<ul>
+<li>Map的键名有非字符串，转为数组JSON</li>
+</ul>
+
+<pre><code class="language-none">function mapToArrayJson(map) {
+  return JSON.stringify([...map]);
+}
+let myMap = new Map().set(true, 7).set({foo: 3}, [&#39;abc&#39;]);
+console.log(mapToArrayJson(myMap));  // [[true,7],[{&quot;foo&quot;:3},[&quot;abc&quot;]]]</code></pre>
+
+<ul>
+<li><p>JSON转为Map</p>
+
+<ul>
+<li>正常情况下,所有键名都是字符串</li>
+</ul>
+
+<pre><code class="language-none">function objToStrMap(obj) {
+  let strMap = new Map();
+  for (let k of Object.keys(obj)) {
+    strMap.set(k, obj[k]);
+  }
+  return strMap;
+}
+function jsonToStrMap(jsonStr) {
+  return objToStrMap(JSON.parse(jsonStr));
+}
+console.log(jsonToStrMap(&#39;{&quot;yes&quot;:true,&quot;no&quot;:false}&#39;));  // Map {&quot;yes&quot; =&gt; true, &quot;no&quot; =&gt; false}</code></pre>
+
+<ul>
+<li>整个JSON是一个数组,且每个数组元素又是一个包含两个元素的数组(eg:[[true,7],[{&quot;foo&quot;:3},[&quot;abc&quot;]]])</li>
+</ul>
+
+<pre><code class="language-none">function jsonToMap(jsonStr) {
+  return new Map(JSON.parse(jsonStr));
+}
+console.log(jsonToMap(&#39;[[true,7],[{&quot;foo&quot;:3},[&quot;abc&quot;]]]&#39;)); //Map {true =&gt; 7, Object {foo: 3} =&gt; [&quot;abc&quot;]}</code></pre></li>
+</ul></li>
+</ul>
+
+<h1 id="toc_14">参考文章</h1>
+
+<ol>
+<li><a href="http://es6.ruanyifeng.com/?search=%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6&amp;x=0&amp;y=0#docs/set-map">set-map</a></li>
+<li><a href="http://www.infoq.com/cn/articles/es6-in-depth-destructuring">解构</a></li>
+<li><a href="http://www.infoq.com/cn/articles/es6-in-depth-rest-parameters-and-defaults">不定参数</a></li>
+<li><a href="http://www.cnblogs.com/chrischjh/p/4848934.html">扩展运算符</a></li>
+</ol>
+
+
+</body>
+
+</html>
