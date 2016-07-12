@@ -639,16 +639,15 @@ m.set(262, &quot;standard&quot;);     // 键是数值
 cosnole.log(m.set(undefined, &quot;nah&quot;));   // 键是undefined</code></pre>
 
 <pre><code class="language-none">- set方法返回的是Map本身，因此可以采用链式写法。
-
-```
-let map1 = new Map()</code></pre>
-
-<p>.set(1, &#39;a&#39;)
+let map1 = new Map()
+  .set(1, &#39;a&#39;)
   .set(2, &#39;b&#39;)
   .set(3, &#39;c&#39;);
-  console.log(map1);
-    ```
-- get(key):读取key对应的键值，如果找不到key，则返回undefined.</p>
+  console.log(map1);</code></pre>
+
+<ul>
+<li>get(key):读取key对应的键值，如果找不到key，则返回undefined.</li>
+</ul>
 
 <pre><code class="language-none">var m = new Map();
 var hello = function() {console.log(&quot;hello&quot;);}
@@ -842,9 +841,7 @@ console.log(strMapToJson(myMap));   //{&quot;yes&quot;:true,&quot;no&quot;:false
   return JSON.stringify([...map]);
 }
 let myMap = new Map().set(true, 7).set({foo: 3}, [&#39;abc&#39;]);
-console.log(mapToArrayJson(myMap));  // [[true,7],[{&quot;foo&quot;:3},[&quot;abc&quot;]]]</code></pre>
-
-<ul>
+console.log(mapToArrayJson(myMap));  // [[true,7],[{&quot;foo&quot;:3},[&quot;abc&quot;]]]</code></pre></li>
 <li><p>JSON转为Map</p>
 
 <ul>
@@ -871,7 +868,6 @@ console.log(jsonToStrMap(&#39;{&quot;yes&quot;:true,&quot;no&quot;:false}&#39;))
   return new Map(JSON.parse(jsonStr));
 }
 console.log(jsonToMap(&#39;[[true,7],[{&quot;foo&quot;:3},[&quot;abc&quot;]]]&#39;)); //Map {true =&gt; 7, Object {foo: 3} =&gt; [&quot;abc&quot;]}</code></pre></li>
-</ul></li>
 </ul>
 
 <h1 id="toc_14">参考文章</h1>
