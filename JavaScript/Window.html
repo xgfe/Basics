@@ -1,0 +1,621 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>Window对象</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h2 id="toc_0">Window对象</h2>
+
+<p>window对象表示浏览器中打开的窗口。其document属性指向窗口中载入的DOM文档。</p>
+
+<p>每个标签都有自己的window对象，如果文档包含框架（iframe标签），浏览器会为HTML文档创建一个window对象，并为每个框架创建一个额外的window对象。</p>
+
+<h3 id="toc_1">Window对象属性</h3>
+
+<h4 id="toc_2">closed</h4>
+
+<p>返回一个布尔值，表示窗口是否已经被关闭。</p>
+
+<p>当浏览器窗口关闭时，该窗口的windows对象并不会消失，会继续存在，不过它的closed属性将设置为true。</p>
+
+<pre><code class="language-none">myWindow=window.open(&#39;&#39;,&#39;&#39;,&#39;width=200,height=100&#39;)
+myWindow.document.write(&quot;This is &#39;myWindow&#39;&quot;)</code></pre>
+
+<h4 id="toc_3">innerHeight和innerWidth</h4>
+
+<p>返回窗口的文档显示区的高度和宽度（包含水平和垂直滚动条）。</p>
+
+<p>任何窗口对象，如<code>window</code>,<code>frame</code>,<code>frameset</code>,<code>secondary window</code>都支持<code>innerHeight</code>属性。</p>
+
+<pre><code class="language-none">// 返回视口的宽度和高度
+var intFrameHeight = window.innerHeight; 
+var intFrameWidth = window.innerWidth;
+
+
+var intFrameHeight = self.innerHeight;
+// 返回frameset里面的frame视口的高度
+
+var intFramesetHeight = parent.innerHeight;
+// 返回上一级frameset的视口的高度
+
+var intOuterFramesetHeight = top.innerHeight;
+// 返回最外部frameset的视口的高度</code></pre>
+
+<h4 id="toc_4">outerHeight和outerWidth</h4>
+
+<p>获得整个浏览器窗口的高度和宽度（包含侧边栏等）。</p>
+
+<p>任何窗口对象，如<code>window</code>,<code>frame</code>,<code>frameset</code>,<code>secondary window</code>都支持<code>innerHeight</code>属性。</p>
+
+<p><img src="https://developer.mozilla.org/@api/deki/files/213/=FirefoxInnerVsOuterHeight2.png" alt="outer和inner的区别"></p>
+
+<h4 id="toc_5">length</h4>
+
+<p>返回当前窗口中包含的框架数量（包括frame和iframe两种元素）</p>
+
+<p><a href="http://www.w3school.com.cn/jsref/dom_obj_window.asp">点我参观iframe</a></p>
+
+<h3 id="toc_6">name</h3>
+
+<p>返回存放窗口的名称的一个字符串。</p>
+
+<p>该名称是由<code>open()</code>方法创建窗口时制定的或使用<code>&lt;frame&gt;</code>标记的name属性指定的。</p>
+
+<pre><code class="language-none">myWindow=window.open(&#39;&#39;,&#39;MyName&#39;,&#39;width=200,height=100&#39;)
+myWindow.name</code></pre>
+
+<h3 id="toc_7">opener</h3>
+
+<p>opener属性是一个可读写的属性，可返回对创建该窗口的Window对象的引用。</p>
+
+<p>opener属性非常有用，创建的窗口可以引用创建它的窗口所定义的属性和函数。</p>
+
+<pre><code class="language-none">myWindow=window.open(&#39;&#39;,&#39;&#39;,&#39;width=200,height=100&#39;)
+myWindow.document.write(&quot;This is &#39;myWindow&#39;&quot;)
+myWindow.focus()
+myWindow.opener.document.write(&quot;This is the parent window&quot;)</code></pre>
+
+<h3 id="toc_8">pageXOffset,pageYOffset</h3>
+
+<p>设置或返回当前页面相对于窗口显示区左上角的X或Y位置。
+<strong>相当于scrollX和scrollY</strong></p>
+
+<pre><code class="language-none">// 如果滑动到页面下方，恢复到左上角
+if (window.scrollY &gt; 400) {
+  window.scroll(0,0);
+}</code></pre>
+
+<h3 id="toc_9">self</h3>
+
+<p>返回对当前窗口的只读引用，等价于Window属性。</p>
+
+<h3 id="toc_10">top</h3>
+
+<p>返回最顶层的先辈窗口。</p>
+
+<p>该属性返回对一个顶级窗口的只读引用，如果窗口本身就是一个顶级窗口，则存放对窗口自身的引用。</p>
+
+<p><a href="http://www.w3school.com.cn/jsref/prop_win_top.asp">window.top应用</a></p>
+
+<h3 id="toc_11">parent</h3>
+
+<p>返回当前窗口的父窗口对象。</p>
+
+<p>如果一个窗口没有父窗口，则返回它本身的引用。</p>
+
+<pre><code class="language-none">if (window.parent != window.top) {
+  // 至少有三层窗口
+}</code></pre>
+
+<h3 id="toc_12">frameElement</h3>
+
+<p>返回嵌入当前window对象的元素（例如iframe等），如果当前的window对象已经是顶层窗口，则返回null。</p>
+
+<pre><code class="language-none">var frameEl = window.frameElement;
+// 如果当前窗口被包含在一个框架里面,则将该框架的地址跳到&#39;http://mozilla.org/&#39;
+if (frameEl)
+  frameEl.src = &#39;http://mozilla.org/&#39;;</code></pre>
+
+<h3 id="toc_13">screen</h3>
+
+<p>返回一个screen对象的引用， 包含有关客户端显示屏幕的信息。
+<strong>没有应用于 screen 对象的公开标准，不过所有浏览器都支持该对象。</strong></p>
+
+<p>具体内容等介绍到screen对象时再详细说明。</p>
+
+<h3 id="toc_14">navigator</h3>
+
+<p>返回一个navigator对象的引用，可以用它来查询一些关于当前脚本的应用程序的相关信息。</p>
+
+<p><strong>没有应用于 navigator 对象的公开标准，不过所有浏览器都支持该对象。</strong></p>
+
+<p>具体内容等介绍到navigator对象时再详细说明。详情参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/navigator">navigator对象</a></p>
+
+<pre><code class="language-none">console.log(window.navigator.appName);</code></pre>
+
+<h3 id="toc_15">document</h3>
+
+<p>指向该窗口的文档节点，对document对象的只读引用。</p>
+
+<p>具体内容等介绍到document对象时再详细说明。详情参考<a href="https://developer.mozilla.org/en-US/docs/Web/API/document">document对象</a></p>
+
+<pre><code class="language-none">var doc = window.document;
+alert( doc.title); </code></pre>
+
+<h3 id="toc_16">history</h3>
+
+<p>对history对象的只读引用。提供了对浏览器会话历史的相关接口。</p>
+
+<p>具体内容等介绍到history对象时再详细说明。详情参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/history">history对象</a></p>
+
+<pre><code class="language-none">var his = window.history;
+his.back();</code></pre>
+
+<h3 id="toc_17">location</h3>
+
+<p>只读属性，返回一个Location对象，包含文档当前地址的相关信息。</p>
+
+<p>尽管是一个只读属性，仍然可以通过赋值进行路由跳转。</p>
+
+<p>具体内容等介绍到location对象时再详细说明。详情参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location">location对象</a></p>
+
+<pre><code class="language-none">console.log(window.location);</code></pre>
+
+<h3 id="toc_18">Window对象方法</h3>
+
+<h4 id="toc_19">alert()</h4>
+
+<p>alert()方法用于显示带有一条制定消息和一个OK按钮的警告框。</p>
+
+<p><strong>这里显示的对话框是一个模态窗口,它能阻止用户对浏览器窗口界面的其他部位进行操作,你不应该过多的使用这种模态窗口.</strong></p>
+
+<pre><code class="language-none">alert(&quot;我是一个警告信息&quot; + &quot;\n&quot; + &quot;我有折行比较高端&quot;)</code></pre>
+
+<h4 id="toc_20">confirm()</h4>
+
+<p>confirm() 方法用于显示一个带有指定消息和 OK 及取消按钮的对话框。</p>
+
+<p>如果用户点击确定按钮，则 confirm() 返回 true。如果点击取消按钮，则 confirm() 返回 false。</p>
+
+<p>在用户点击确定按钮或取消按钮把对话框关闭之前，它将阻止用户对浏览器的所有输入。在调用 confirm() 时，将暂停对 JavaScript 代码的执行，在用户作出响应之前，不会执行下一条语句。</p>
+
+<pre><code class="language-none">var r=confirm(&quot;我是alert的哥哥&quot;)
+  if (r==true)
+    {
+    document.write(&quot;yeah!&quot;)
+    }
+  else
+    {
+    document.write(&quot;Nope!&quot;)
+    }</code></pre>
+
+<h4 id="toc_21">prompt()</h4>
+
+<p>prompt() 方法用于显示可提示用户进行输入的对话框。</p>
+
+<p>可以传递两个参数，text表示对用户显示的纯文本，defaultText表示默认的输入文本。</p>
+
+<p><strong>如果用户单击提示框的取消按钮，则返回 null。如果用户单击确认按钮，则返回输入字段当前显示的文本。</strong></p>
+
+<pre><code class="language-none">var name=prompt(&quot;Please enter your name&quot;,&quot;&quot;)
+  if (name!=null &amp;&amp; name!=&quot;&quot;)
+    {
+    document.write(&quot;Hello &quot; + name + &quot;!&quot;)
+    }</code></pre>
+
+<h4 id="toc_22">blur()</h4>
+
+<p>blur() 方法可以把键盘焦点从顶层窗口移开。</p>
+
+<h4 id="toc_23">focus()</h4>
+
+<p>focus() 把键盘焦点给予一个窗口。</p>
+
+<h4 id="toc_24">close()</h4>
+
+<p>close() 关闭当前窗口或某个指定的窗口。</p>
+
+<pre><code class="language-none">var openedWindow;
+
+function openWindow()
+{
+  openedWindow = window.open(&#39;moreinfo.htm&#39;);
+}
+function closeOpenedWindow()
+{
+  openedWindow.close();
+}</code></pre>
+
+<h4 id="toc_25">moveBy()</h4>
+
+<p>moveBy()方法可相对窗口的当前坐标把它移动指定的像素。</p>
+
+<p><code>window.moveBy(x,y)</code></p>
+
+<p>x和y为将窗口右移和下移的像素数，可以为负数。</p>
+
+<pre><code class="language-none">myWindow=window.open(&#39;&#39;,&#39;&#39;,&#39;width=200,height=100&#39;)
+myWindow.document.write(&quot;This is &#39;myWindow&#39;&quot;)
+myWindow.moveBy(50,50)
+myWindow.focus()  </code></pre>
+
+<h4 id="toc_26">moveTo()</h4>
+
+<p>可以将窗口的左上角移动到一个指定的坐标。</p>
+
+<p>用法同上。</p>
+
+<h4 id="toc_27">open()</h4>
+
+<p>open()方法用于打开一个新的浏览器窗口或查找一个已命名的窗口。</p>
+
+<pre><code class="language-none">window.open(URL,name,features,replace)</code></pre>
+
+<p>字段含义：</p>
+
+<ul>
+<li>URL：一个可选的字符串，声明了要在新窗口中显示的文档的 URL。如果省略了这个参数，或者它的值是空字符串，那么新窗口就不会显示任何文档。</li>
+<li>name：一个可选的字符串，该字符串是一个由逗号分隔的特征列表，其中包括数字、字母和下划线，该字符声明了新窗口的名称。这个名称可以用作标记 <code>&lt;a&gt;</code> 和<code>&lt;form&gt;</code> 的属性 target 的值。如果该参数指定了一个已经存在的窗口，那么<code>open()</code>方法就不再创建一个新窗口，而只是返回对指定窗口的引用。在这种情况下，<code>features</code>将被忽略。</li>
+<li>features：一个可选的字符串，声明了新窗口要显示的标准浏览器的特征。如果省略该参数，新窗口将具有所有标准特征。在窗口特征这个表格中，我们对该字符串的格式进行了详细的说明。</li>
+<li>replace：一个可选的布尔值。规定了装载到新窗口的URL是创建一个新条目，还是替换浏览历史中的当前条目。</li>
+</ul>
+
+<pre><code class="language-none">window.open(
+&quot;http://www.w3school.com.cn&quot;,
+&quot;_blank&quot;,
+&quot;toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400&quot;
+)</code></pre>
+
+<h4 id="toc_28">print()</h4>
+
+<p>print()方法用于打印当前窗口的内容。其实就是相当于点击浏览器的打印按钮。产生一个对话框。</p>
+
+<pre><code class="language-none">window.print()</code></pre>
+
+<h4 id="toc_29">resizeBy()</h4>
+
+<p>resizeBy()方法用于根据指定的像素来调整窗口的大小。</p>
+
+<pre><code class="language-none">window.resizeBy(-100,-100)</code></pre>
+
+<h4 id="toc_30">resizeTo()</h4>
+
+<p>resizeTo()方法用于把窗口大小调整为指定的宽度和高度。</p>
+
+<pre><code class="language-none">window.resizeTo(500,300)</code></pre>
+
+<h4 id="toc_31">scrollBy()</h4>
+
+<p>scrollBy()方法可内容滚动指定的像素数。</p>
+
+<pre><code class="language-none">window.scrollBy(100,100)</code></pre>
+
+<h4 id="toc_32">setTimeout()</h4>
+
+<p>setTimeout()方法用于在指定的毫秒数后调用函数或计算表达式。</p>
+
+<pre><code class="language-none">setTimeout(code,millisec)</code></pre>
+
+<p><strong>setTimeout只执行code一次，如果需要多次调用，请使用setInterval或者让code自身再次调用setTimeout</strong></p>
+
+<pre><code class="language-none">setTimeout(&quot;alert(&#39;5 seconds!&#39;)&quot;,5000)</code></pre>
+
+<h4 id="toc_33">setInterval()</h4>
+
+<p>setInterval()方法可按照指定的周期（以毫秒计）来调用函数或计算表达式。</p>
+
+<p>setInterval() 方法会不停地调用函数，直到 clearInterval() 被调用或窗口被关闭。由 setInterval() 返回的 ID 值可用作 clearInterval() 方法的参数。</p>
+
+<pre><code class="language-none">var int=self.setInterval(&quot;clock()&quot;,1000)
+function clock()
+  {
+  var t=new Date()
+  document.getElementById(&quot;clock&quot;).value=t
+  }</code></pre>
+
+<p><a href="http://www.w3school.com.cn/tiy/t.asp?f=hdom_setinterval">跳转链接</a></p>
+
+
+</body>
+
+</html>
