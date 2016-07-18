@@ -502,7 +502,7 @@ export default es6;</code></pre></li>
 <li>除了指定加载某个输出值，可以使用整体加载，即用星号(*)指定一个对象，所有输出值都加载在这个对象上面</li>
 </ul>
 
-<pre><code class="language-none">// file1.js,导出方法
+<pre><code class="language-none">// circle.js,导出方法
 export function area(radius) {
   return Math.PI * radius * radius;
 }
@@ -526,12 +526,12 @@ console.log(&#39;圆周长：&#39; + circle.circumference(14));</code></pre>
 <li>export default命令为模块指定默认输出，不用阅读文档就能加载模块;其他模块加载时,import命令可为该匿名函数指定任意名字。</li>
 </ul>
 
-<pre><code class="language-none">// 默认输出一个函数
+<pre><code class="language-none">// file.js 默认输出一个函数
 export default function(){
     console.log(&#39;default export&#39;);
 }
 // 加载默认export文件
-import customName from &#39;./export-default&#39;;
+import customName from &#39;./file&#39;;
 customName(); // &#39;foo&#39;</code></pre>
 
 <ul>
@@ -644,21 +644,36 @@ console.log(mod.counter); // 3</code></pre>
 
 <ul>
 <li>以上test模块加载后，它的内部变化就影响不到输出的counter了。这是因为counter是一个原始类型的值，会被缓存。除非写成一个函数，才能得到内部变动后的值。</li>
+</ul></li>
 </ul>
 
 <pre><code class="language-none">// lib.js
-var counter = 3;        function incCounter() {             counter++;      }       module.exports = {          get counter() {                 return counter          },          incCounter: incCounter      }
+var counter = 3;
+function incCounter(){
+    counter++;
+};
+modle.exports = {
+    get counter(){
+        return counter;
+    },
+    incCounter: incCounter
+};
 // main.js
 var mod = require(&#39;./lib&#39;);
 console.log(mod.counter);  // 3
 mod.incCounter();
-console.log(mod.counter); // 4</code></pre></li>
-<li><p>ES6模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块</p></li>
+console.log(mod.counter); // 4</code></pre>
+
+<ul>
+<li>ES6模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块</li>
 </ul>
 
 <pre><code class="language-none">// 实例一
 // lib.js
-export let counter = 3;     export function incCounter() {      counter++;  }
+var counter = 3;
+function incCounter(){
+    counter++;
+};
 // main.js
 import { counter, incCounter } from &#39;./lib&#39;;
 console.log(counter); // 3
@@ -780,8 +795,8 @@ in main, a.done=true, b.done=true</code></pre>
 <p>ES6模块是动态引用，如果使用import从一个模块加载变量，那些变量不会被缓存，而是成为一个指向被加载模块的引用</p>
 
 <pre><code class="language-none">// a.js如下
-import {bar} from &#39;./b.js&#39;;  //加载b，所以先执行b.js
-console.log(&#39;a.js&#39;);  // 加载a，但是a已经在执行了，所以不会重复执行，因此继续往下执行b.js
+import {bar} from &#39;./b.js&#39;;  
+console.log(&#39;a.js&#39;); 
 console.log(bar);
 export let foo = &#39;foo&#39;;
 
