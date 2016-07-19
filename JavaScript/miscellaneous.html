@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>ES6</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h2 id="toc_0">JSON(JavaScript Object Notation)</h2>
+
+<ul>
+<li>能展示四种基本类型(strings, number, booleans, null)和两种结构类型(object, arrays)</li>
+<li>A JSON text is a sequence of tokens./A JSON text is a serialized object or array.</li>
+<li>six structural characters: [{]}:,</li>
+<li>A JSON value MUST be an object, array, number, or string, or one of the three literal names: false, null, true(必须小写)</li>
+<li>默认编码为UTF-8</li>
+</ul>
+
+<h3 id="toc_1">规范里的</h3>
+
+<ul>
+<li>顶级JSONText由JSONValue构成( JSONNullLiteral JSONBooleanLiteral JSONObject JSONArray JSONString JSONNumber)</li>
+<li>JSON 对象内部属性 [[Prototype]] 的值是标准内建的 Object 原型对象。内部属性 [[Class]] 的值是 &quot;JSON&quot;。内部属性 [[Extensible]] 的值设置为 true。</li>
+<li>JSON 对象没有内部属性 [[Construct]]；不能把 JSON 对象当作构造器来使用 new 操作符。</li>
+<li>JSON 对象没有内部属性 [[Call]]；不能把 JSON 对象当作函数来调用。</li>
+<li>JSON.stringify 会产生一个符合 JSON 语法的字符串。JSON.parse 接受的是一个符合 JSON 语法的字符串。</li>
+<li>parse ( text [ , reviver ] ):可选参数 reviver 是一个接受两个参数的函数（key 和 value）。它可以过滤和转换结果。它在每个 key/value 对产生时被调用，它的返回值可以用于替代原本的值。如果它原样返回接收到的，那么结构不会被改变。如果它返回 undefined，那么属性会被从结果中删除。JSON.parse() 不允许用逗号作为结尾。</li>
+</ul>
+
+<div><pre><code class="language-none">JSON.parse(&#39;{&quot;p&quot;: 5}&#39;, function (k, v) {
+    if(k === &#39;&#39;) return v;     // 如果到了最顶层，则直接返回属性值，
+    return v * 2;              // 否则将属性值变为原来的 2 倍。
+});                            // { p: 10 }</code></pre></div>
+
+<ul>
+<li>stringify ( value [ , replacer [ , space ] ] ):可选的 replacer 参数要么是个可以修改对象和数组字符串化的方式的函数，要么是个扮演选择对象字符串化的属性的白名单这样的角色的 String 和 Number 组成的数组。可选的 space 参数是一个 String 或者 Number，可以允许结果中插入空白符以改善人类可读性,如果是一个数字, 则在字符串化时每一级别会比上一级别缩进多这个数字值的空格（最多10个空格）；如果是一个字符串，则每一级别会比上一级别多缩进用该字符串（或该字符串的前十个字符）。</li>
+</ul>
+
+<div><pre><code class="language-none">function censor(key, value) {
+  if (typeof(value) == &quot;string&quot;) {
+    return undefined;
+  }
+  return value;
+}
+
+var foo = {foundation: &quot;Mozilla&quot;, model: &quot;box&quot;, week: 45, transport: &quot;car&quot;, month: 7};
+var jsonString = JSON.stringify(foo, censor);</code></pre></div>
+
+<div><pre><code class="language-none">JSON.stringify({ uno: 1, dos : 2 }, null, &#39;\t&#39;)</code></pre></div>
+
+<ul>
+<li>如果一个被序列化的对象拥有 toJSON 方法，那么该 toJSON 方法就会覆盖该对象默认的序列化行为</li>
+</ul>
+
+<div><pre><code class="language-none">var obj = {
+  foo: &#39;foo&#39;,
+  toJSON: function () {
+    return &#39;bar&#39;;
+  }
+};
+JSON.stringify(obj);      // &#39;&quot;bar&quot;&#39;
+JSON.stringify({x: obj}); // &#39;{&quot;x&quot;:&quot;bar&quot;}&#39;</code></pre></div>
+
+<ul>
+<li>null 值在 JSON 文本中表示为 String null。undefined 值不出现。true 值在 JSON 文本中表示为 String true。false 值在 JSON 文本中表示为 String false。NaN 和不论正负的 Infinity 都表示为字符串 null。没有 JSON 表示的值（如 undefined 和函数）不会产生字符串。而是会产生 undefined 值。</li>
+</ul>
+
+<h2 id="toc_2">object literal extensions(对象字面量的扩展)</h2>
+
+<ul>
+<li><p>shorthand properties(属性的简写)</p>
+
+<ul>
+<li><p>ES6允许在对象之中，只写属性名，不写属性值。这时，属性值等于属性名所代表的变量</p>
+
+<div><pre><code class="language-none">var firstName = &#39;Edward&#39;;
+var lastName = &#39;Ann&#39;;
+var personA = {firstName: firstName, lastName: lastName};
+var personB = {firstName, lastName};
+personA //Object {firstName: &quot;Edward&quot;, lastName: &quot;Ann&quot;}
+personB //Object {firstName: &quot;Edward&quot;, lastName: &quot;Ann&quot;}</code></pre></div></li>
+<li><p>除了属性简写，方法也可以简写(注意，简洁写法的属性名总是字符串)</p>
+
+<div><pre><code class="language-none">var personC = {
+    name: &#39;edward&#39;,
+    sayHello() {
+        console.log(this.name + &#39; hello&#39;);}}
+personC.sayHello(); //edward hello</code></pre></div></li>
+<li><p>ES6允许字面量定义对象时，用表达式作为对象的属性名，即把表达式放在方括号内</p>
+
+<div><pre><code class="language-none">var person1 = {
+firstName: &#39;Teddy&#39;,
+    lastName: &#39;John&#39;
+};
+let propKey1 = &#39;firstName&#39;;
+let propKey2 = &#39;lastName&#39;;
+let person2 = {
+    [propKey1]: &#39;Ann&#39;,
+    [propKey2 + &#39;test&#39;]: &#39;Lynn&#39;
+}
+person1 //Object {firstName: &quot;Teddy&quot;, lastName: &quot;John&quot;}
+person2 //Object {firstName: &quot;Ann&quot;, lastNametest: &quot;Lynn&quot;}</code></pre></div></li>
+<li><p>表达式还可以用于定义方法名</p>
+
+<div><pre><code class="language-none">let salut = {
+    [&#39;say&#39; + &#39;hi&#39;]() {
+    console.log(&quot;hi&quot;);
+    }
+}
+salut.sayhi() // hi</code></pre></div></li>
+<li><p>字符串也可以作为对象中方法名的key</p>
+
+<div><pre><code class="language-none">let animal1 = {
+    &quot;say hi&quot;() {console.log(&#39;hi&#39;)}
+}
+animal1[&quot;say hi&quot;]() //hi</code></pre></div></li>
+<li><p>用表达式作为属性访问器(getter,setter)的定义(实际使用中很少使用)</p>
+
+<div><pre><code class="language-none"> function getCar(make, model, value) {
+   let x = &quot;value&quot;;
+    return {
+        make,
+        model,
+
+        _value: value,
+
+        get [x]() {
+            return this._value;
+        },
+        set [x](value) {
+            if (value &lt; 0)
+                throw new Error(&#39;invalid value&#39;);
+
+            this._value = value;
+        }
+    };
+}
+let car = getCar(&#39;Kia&#39;, &#39;Sorento&#39;, 40000);
+console.log(car.value);//40000
+car.value = 30000;//3000
+car.value = -100;//Uncaught Error: invalid value(…)</code></pre></div></li>
+<li><p>注意，属性名表达式与简洁表示法，不能同时使用，否则会报错</p>
+
+<div><pre><code class="language-none">let Rayn = &#39;Bill&#39;;
+let newPerson = {
+    [Rayn]: &#39;Bill&#39;
+}
+let newPerson1 = {
+    Rayn
+}
+//下面的写法会报错
+let newPerson2 = {
+    [Rayn]
+}</code></pre></div></li>
+</ul></li>
+</ul>
+
+<h2 id="toc_3">non-strict function semantics</h2>
+
+<ul>
+<li><p>hoisted lock-level function declaration</p>
+
+<ul>
+<li><p>在ECMAScript3和更早之前，在块级作用域内声明函数会直接报错，但是很多的浏览器依然支持这个特性，当然在实现上稍有不一。为了解决这种兼容性问题，ECMAScript5的严格模式下定义，当在块级作用里面定义了一个函数时，就会报错。</p>
+
+<div><pre><code class="language-none">&quot;use strict&quot;;
+    if (true) {
+
+    // Throws a syntax error in ES5, not so in ES6
+    function doSomething() {
+        // ...
+    }
+}</code></pre></div></li>
+<li><p>在ECMAScript 6中，上面的doSomething()函数被认为是被认为是块级层面的声明并且能够在同一个块级作用域内被访问到。即事实上它的声明被提升到了同样块级的顶部。</p>
+
+<div><pre><code class="language-none">&quot;use strict&quot;;
+
+if (true) { 
+    console.log(typeof doSomething);        // &quot;function&quot;
+    function doSomething() {
+        // ...
+    }
+    doSomething();
+}
+
+console.log(typeof doSomething);            // &quot;undefined&quot;</code></pre></div></li>
+<li><p>A function is declared and only referenced within a single block</p></li>
+<li><p>A function is declared and possibly used within a single Block but also referenced by an inner function definition that is not contained within that same Block.</p></li>
+<li><p>A function is declared and possibly used within a single block but also referenced within subsequent blocks</p></li>
+</ul></li>
+<li><p>Labelled Function Declarations</p>
+
+<ul>
+<li><p>标记语句（labeled statement）可以和 break 或 continue 语句一起使用。标记就是在一条语句前面加个可以引用的标识符（identifier)</p>
+
+<div><pre><code class="language-none">    var i, j;
+    loop1:
+    for (i = 0; i &lt; 3; i++) {      //The first for statement is labeled &quot;loop1&quot;
+       loop2:
+       for (j = 0; j &lt; 3; j++) {   //The second for statement is labeled &quot;loop2&quot;
+          if (i == 1 &amp;&amp; j == 1) {
+             continue loop1;
+          }
+          console.log(&quot;i = &quot; + i + &quot;, j = &quot; + j);
+       }
+    }</code></pre></div></li>
+<li><p>但是在ECMAScript 2015之前，标记语句是不允许用于函数定义的，但是，被标记的函数定义在非严格模式下是允许扩展的，同时很多浏览器也提供了不一的实现。所以在ES6中，对这部分提供了支持。(注意如果是严格模式下依然会报语法错误)</p>
+
+<div><pre><code class="language-none">LabelledItem : FunctionDeclaration</code></pre></div></li>
+</ul></li>
+<li><p>function statements in if-statement clauses</p>
+
+<ul>
+<li><p>分成了四种类型</p>
+
+<div><pre><code class="language-none">if ( Expression) FunctionDeclaration else Statement
+if ( Expression) Statement else FunctionDeclaration
+if ( Expression ) FunctionDeclaration else FunctionDeclaration
+if ( Expression) FunctionDeclaration
+
+if(true) function y(){return 1} else function yy(){return 2}
+yy() //VM3511:1 Uncaught TypeError: yy is not a function(…)
+y() //1</code></pre></div></li>
+<li><p>只能在非严格模式下使用</p></li>
+</ul></li>
+</ul>
+
+<h2 id="toc_4">HTML-style comments</h2>
+
+<ul>
+<li><p>之前这个一直只是浏览器端独有的扩展，在其它ECMAScript的实现中是不支持的。</p>
+
+<div><pre><code class="language-none">&lt;!-- Another comment
+var tt = 3; &lt;!-- Another comment
+var ty = 4;</code></pre></div></li>
+</ul>
+
+<h2 id="toc_5">Proxy, internal &#39;getOwnPropertyDescriptor&#39; calls</h2>
+
+<ul>
+<li>其作为Handler Method对应Internal Method的GetOwnProperty</li>
+<li><p>此方法能够拦截Object.getOwnPropertyDescriptor()操作，返回值是对象或者undefined</p>
+
+<div><pre><code class="language-none">var p = new Proxy(target, {
+  getOwnPropertyDescriptor: function (target, prop) {
+    //code
+  }
+})</code></pre></div>
+
+<ul>
+<li>1). target:可选，被代理的目标对象。</li>
+<li>2). prop:可选，要获取特性描述的属性名称。</li>
+<li>3). 如果返回值不是对象或者undefined会报错。</li>
+<li>4). 如果target对象自有属性是不可配置，那么返回值不能是undefined，否则会报错。</li>
+<li>5). 如果target对象是不可扩展的，那么返回值不能是undefined，否则会报错。</li>
+<li>6). 如果对象是不可扩展且指定属性不是对象自有，那么返回值必须是undefined，否则会报错。</li>
+<li><p>7). 如果属性不是对象的自有属性，或者此属性是对象可配置自有属性，那么返回属性描述对象configurable属性值必须为true，否则报错。</p>
+
+<div><pre><code class="language-none">let antzone = {
+  webName: &quot;testBefore&quot;,
+  url:&quot;test&quot;
+};
+var p = new Proxy(antzone, {
+  getOwnPropertyDescriptor: function(target, prop) {
+    return { configurable: true, enumerable: true, value: &quot;testAfter&quot; };
+  }
+});
+Object.getOwnPropertyDescriptor(antzone, &quot;webName&quot;);
+Object.getOwnPropertyDescriptor(p, &quot;webName&quot;);
+
+//此时如果返回是undefined则会报错
+Object.defineProperty(antzone, &quot;webName&quot;, {
+  writable: true,
+  enumerable: true,
+  configurable: false
+})</code></pre></div></li>
+</ul></li>
+</ul>
+
+<h2 id="toc_6">Proxy, internal &#39;ownKeys&#39; calls</h2>
+
+<ul>
+<li>其作为Handler Method对应Internal Method的OwnPropertyKeys</li>
+<li><p>此方法可以拦截Object.getOwnPropertyNames(),Object.getOwnPropertySymbols(),Object.keys(),Reflect.ownKeys操作,返回值是一个数组</p>
+
+<div><pre><code class="language-none">var p = new Proxy(target, {
+  ownKeys: function (target) {
+    //code
+  }
+});</code></pre></div>
+
+<ul>
+<li>1). target:可选，被代理的目标对象。</li>
+<li>2). 返回值通常是一个包含属性名称数组。</li>
+<li>3). 返回数组的元素的类型是字符串类型或者Symbol类型。</li>
+<li>4). 返回数组必须包含所有target对象自有不可配置的属性名称。</li>
+<li><p>5). 如果target对象是不可扩展的，那么返回数组必须且只包含target对象所有的自有属性名称。</p>
+
+<div><pre><code class="language-none">var antzone = {
+  webName: &quot;test&quot;,
+  url: &quot;test1&quot;,
+}
+var p = new Proxy(antzone, {
+  ownKeys: function(target) {
+    return [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;];
+  }
+});
+Object.getOwnPropertyNames(p);
+
+//下面的会报错，因为返回数组必须包含所有target对象自有不可配置的属性名称
+var antzone = {
+  webName: &quot;test&quot;,
+  url: &quot;test1&quot;,
+}
+Object.defineProperty(antzone, &quot;webName&quot;, {
+  configurable: false
+})
+var p = new Proxy(antzone, {
+  ownKeys: function(target) {
+    return [&quot;url&quot;];
+  }
+});
+Object.getOwnPropertyNames(p);
+
+//下面会报错，因为antzone是不可扩展的，所以返回数组必须且只包含target对象所有的自有属性名称
+var antzone = {
+  webName: &quot;test&quot;,
+  url: &quot;test1&quot;,
+}
+Object.preventExtensions(antzone);
+var p = new Proxy(antzone, {
+  ownKeys: function(target) {
+    return [&quot;url&quot;];
+  }
+});
+Object.getOwnPropertyNames(p);</code></pre></div></li>
+</ul></li>
+</ul>
+
+<h3 id="toc_7">参考</h3>
+
+<ul>
+<li><a href="http://www.ietf.org/rfc/rfc4627.txt">RFC4627</a></li>
+<li><a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.12.3">ECMAScript 5.1 (ECMA-262)</a></li>
+<li><a href="http://www.ecma-international.org/ecma-262/6.0/#sec-property-descriptor-specification-type">ECMAScript 2015 Language Specification – ECMA-262 6th Edition</a></li>
+<li><a href="https://leanpub.com/understandinges6/read#leanpub-auto-object-literal-syntax-extensions">Understanding ECMAScript 6</a></li>
+<li><a href="https://ponyfoo.com/articles/es6-object-literal-features-in-depth">es6-object-literal-features-in-depth</a></li>
+</ul>
+
+
+
+
+</body>
+
+</html>
