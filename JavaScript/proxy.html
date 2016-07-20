@@ -2,7 +2,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>proxy&reflect</title>
+<title>proxy</title>
 <style type="text/css">
 body {
   font-family: Helvetica, arial, sans-serif;
@@ -302,146 +302,9 @@ sup {
 	}
 }
 </style>
-<style type="text/css">
-/**
- * prism.js default theme for JavaScript, CSS and HTML
- * Based on dabblet (http://dabblet.com)
- * @author Lea Verou
- */
-
-code[class*="language-"],
-pre[class*="language-"] {
-	color: black;
-	text-shadow: 0 1px white;
-	font-family: Consolas, Monaco, 'Andale Mono', monospace;
-	direction: ltr;
-	text-align: left;
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-	line-height: 1.5;
-
-	-moz-tab-size: 4;
-	-o-tab-size: 4;
-	tab-size: 4;
-
-	-webkit-hyphens: none;
-	-moz-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
-}
-
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-	text-shadow: none;
-	background: #b3d4fc;
-}
-
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
-	text-shadow: none;
-	background: #b3d4fc;
-}
-
-@media print {
-	code[class*="language-"],
-	pre[class*="language-"] {
-		text-shadow: none;
-	}
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-	padding: 1em;
-	margin: .5em 0;
-	overflow: auto;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-	background: #f5f2f0;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-	padding: .1em;
-	border-radius: .3em;
-}
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-	color: slategray;
-}
-
-.token.punctuation {
-	color: #999;
-}
-
-.namespace {
-	opacity: .7;
-}
-
-.token.property,
-.token.tag,
-.token.boolean,
-.token.number,
-.token.constant,
-.token.symbol,
-.token.deleted {
-	color: #905;
-}
-
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-	color: #690;
-}
-
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string {
-	color: #a67f59;
-	background: hsla(0, 0%, 100%, .5);
-}
-
-.token.atrule,
-.token.attr-value,
-.token.keyword {
-	color: #07a;
-}
-
-.token.function {
-	color: #DD4A68;
-}
-
-.token.regex,
-.token.important,
-.token.variable {
-	color: #e90;
-}
-
-.token.important,
-.token.bold {
-	font-weight: bold;
-}
-.token.italic {
-	font-style: italic;
-}
-
-.token.entity {
-	cursor: help;
-}
-</style>
 </head>
 <body>
-<h1 id="toc_0">proxy&amp;reflect</h1>
+<h1 id="toc_0">proxy</h1>
 
 <p>Proxy用于修改某些操作的默认行为，等同于在语言层面做出修改。Proxy可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。行为类似于set,get函数</p>
 
@@ -469,62 +332,96 @@ obj.count = 1
 
 <p>get方法用于拦截某个属性的读取操作</p>
 
-<pre><code>var person = {
-  name: &quot;张三&quot;
-};
-
-var proxy = new Proxy(person, {
-  get: function(target, property) {
-    if (property in target) {
-      return target[property];
-    } else {
-      throw new ReferenceError(&quot;Property \&quot;&quot; + property + &quot;\&quot; does not exist.&quot;);
-    }
+<pre><code>var p = new Proxy(target, {
+  get: function(target, property, receiver) {
   }
-});
+});</code></pre>
 
-proxy.name // &quot;张三&quot;
-proxy.age // 抛出一个错误</code></pre>
+<ul>
+<li>target 目标对象</li>
+<li>property 被获取的属性名</li>
+<li>receiver Proxy或者继承Proxy的对象</li>
+</ul>
 
-<p>上面代码表示，如果访问目标对象不存在的属性，会抛出一个错误。如果没有这个拦截函数，访问不存在的属性，只会返回undefined。</p>
+<p>demo1: recevier指向</p>
 
-<h3 id="toc_3">set()</h3>
+<pre><code>var p = new Proxy({a:1}, {
+        get: function(target, prop, receiver) {
+            return 10;
+        }
+    });
+    p.a; // 10
+    var b = {};
+    b.__proto__ = p;
+    b.a; // 10</code></pre>
+
+<p>通过p.a访问对象，则recevier === p，通过b.a访问对象 recevier === b; </p>
+
+<h4 id="toc_3">如果违背了以下的不变量，proxy会抛出 TypeError:</h4>
+
+<ul>
+<li>如果要访问的目标属性是不可写以及不可配置的，则返回的值必须与该目标属性的值相同。</li>
+<li>如果要访问的目标属性没有配置访问方法，即get方法是undefined的，则返回值必须为undefined。</li>
+</ul>
+
+<h3 id="toc_4">set()</h3>
 
 <p>set方法用来拦截某个属性的赋值操作</p>
 
 <p>假定Person对象有一个age属性，该属性应该是一个不大于200的整数，那么可以使用Proxy保证age的属性值符合要求。</p>
 
-<pre><code>let validator = {
-  set: function(obj, prop, value) {
-    if (prop === &#39;age&#39;) {
-      if (!Number.isInteger(value)) {
-        throw new TypeError(&#39;The age is not an integer&#39;);
-      }
-      if (value &gt; 200) {
-        throw new RangeError(&#39;The age seems invalid&#39;);
-      }
-    }
-
-    // 对于age以外的属性，直接保存
-    obj[prop] = value;
+<pre><code>var p = new Proxy(target, {
+  set: function(target, property, value, receiver) {
   }
-};
+});</code></pre>
 
-let person = new Proxy({}, validator);
+<ul>
+<li>target 目标对象</li>
+<li>property 被设置的属性名</li>
+<li>value 被设置的新值</li>
+<li>receiver Proxy或者继承Proxy的对象</li>
+</ul>
 
-person.age = 100;
+<p>demo</p>
 
-person.age // 100
-person.age = &#39;young&#39; // 报错
-person.age = 300 // 报错</code></pre>
+<pre><code>var validator = {
+        set: function(target, property, value, receiver) {
+            if (property === &#39;age&#39;) {
+                if (!Number.isInteger(value)) {
+                    throw new TypeError(&#39;The age is not an integer&#39;);
+                }
+                if (value &gt; 200) {
+                    throw new RangeError(&#39;The age seems invalid&#39;);
+                }
+            }
 
-<p>上面代码中，只要读写的属性名的第一个字符是下划线，一律抛错，从而达到禁止读写内部属性的目的。</p>
+            // 对于age以外的属性，直接保存
+            target[property] = value;
+        }
+    };
 
-<h3 id="toc_4">apply()</h3>
+    var person = new Proxy({}, validator);
+
+    person.age = 100;
+
+    person.age // 100
+    person.age = &#39;young&#39; // 报错
+    person.age = 300 // 报错</code></pre>
+
+<h3 id="toc_5">apply()</h3>
 
 <p>apply方法拦截函数的调用、call和apply操作.</p>
 
-<p>apply方法可以接受三个参数，分别是目标对象、目标对象的上下文对象（this）和目标对象的参数数组。</p>
+<pre><code>var p = new Proxy(target, {
+  apply: function(target, thisArg, argumentsList) {
+  }
+});</code></pre>
+
+<ul>
+<li>target 目标对象（函数）</li>
+<li>thisArg 被调用时的上下文对象</li>
+<li>argumentsList 被调用时的参数数组</li>
+</ul>
 
 <pre><code>var twice = {
   apply (target, ctx, args) {
@@ -539,9 +436,21 @@ proxy(1, 2) // 6
 proxy.call(null, 5, 6) // 22
 proxy.apply(null, [7, 8]) // 30</code></pre>
 
-<h3 id="toc_5">has()</h3>
+<h3 id="toc_6">has()</h3>
 
 <p>has方法可以隐藏某些属性，不被in操作符发现</p>
+
+<pre><code>var p = new Proxy(target, {
+  has: function(target, prop) {
+  }
+});</code></pre>
+
+<ul>
+<li>target 目标对象</li>
+<li>prop 需要判断是否存在的属性</li>
+</ul>
+
+<p>demo</p>
 
 <pre><code>var handler = {
   has (target, key) {
@@ -569,26 +478,52 @@ var p = new Proxy(obj, {
 
 &quot;a&quot; in p; // TypeError is thrown</code></pre>
 
-<h3 id="toc_6">construct()</h3>
+<h3 id="toc_7">construct()</h3>
 
 <p>construct方法用于拦截new命令。如果construct方法返回的不是对象，就会抛出错误。</p>
 
-<pre><code>var p = new Proxy(function() {}, {
-  construct: function(target, args) {
-    console.log(&#39;called: &#39; + args.join(&#39;, &#39;));
-    return { value: args[0] * 10 };
+<pre><code>var p = new Proxy(target, {
+  construct: function(target, argumentsList, newTarget) {
   }
-});
+});</code></pre>
 
-new p(1).value
-// &quot;called: 1&quot;
-// 10</code></pre>
+<ul>
+<li>target 目标对象</li>
+<li>argumentsList 传入的参数列表</li>
+<li>newTarget contruct函数最初被调用的对象</li>
+<li>return 必须返回一个对象</li>
+</ul>
 
-<h3 id="toc_7">deleteProperty()</h3>
+<pre><code>function test(){
+        return 123;
+    }
+
+    var p = new Proxy(test, {
+        construct: function(target, args, newTarget) {
+            console.log(&#39;called: &#39; + args.join(&#39;, &#39;));
+            return { value: args[0] * 10 };
+        }
+    });
+    
+    new p(1).value</code></pre>
+
+<h3 id="toc_8">deleteProperty()</h3>
 
 <p>deleteProperty方法用于拦截delete操作，如果这个方法抛出错误或者返回false，当前属性就无法被delete命令删除。</p>
 
-<pre><code>var handler = {
+<pre><code>var p = new Proxy(target, {
+  deleteProperty: function(target, property) {
+  }
+});</code></pre>
+
+<ul>
+<li>target 目标对象</li>
+<li>property 被删除属性的key</li>
+</ul>
+
+<p>demo
+``<code>
+var handler = {
   deleteProperty (target, key) {
     invariant(key, &#39;delete&#39;);
     return true;
@@ -596,61 +531,65 @@ new p(1).value
 }
 function invariant (key, action) {
   if (key[0] === &#39;_&#39;) {
-    throw new Error(`Invalid attempt to ${action} private &quot;${key}&quot; property`);
+    throw new Error(</code>Invalid attempt to ${action} private &quot;${key}&quot; property`);
   }
-}
+}</p>
 
-var target = { _prop: &#39;foo&#39; }
+<p>var target = { <em>prop: &#39;foo&#39; }
 var proxy = new Proxy(target, handler)
-delete proxy._prop
-// Error: Invalid attempt to delete private &quot;_prop&quot; property</code></pre>
+delete proxy.</em>prop
+// Error: Invalid attempt to delete private &quot;_prop&quot; property
+```
+上面代码中，deleteProperty方法拦截了delete操作符，删除第一个字符为下划线的属性会报错。</p>
 
-<p>上面代码中，deleteProperty方法拦截了delete操作符，删除第一个字符为下划线的属性会报错。</p>
-
-<h3 id="toc_8">defineProperty()</h3>
+<h3 id="toc_9">defineProperty()</h3>
 
 <p>defineProperty方法拦截了Object.defineProperty操作。</p>
 
-<pre><code>var handler = {
-  defineProperty (target, key, descriptor) {
-    return false
+<pre><code>var p = new Proxy(target, {
+  defineProperty: function(target, property, descriptor) {
   }
-}
-var target = {}
-var proxy = new Proxy(target, handler)
-proxy.foo = &#39;bar&#39;
-// TypeError: proxy defineProperty handler returned false for property &#39;&quot;foo&quot;&#39;</code></pre>
+});</code></pre>
+
+<ul>
+<li>target 目标对象</li>
+<li>property 需要设置的属性</li>
+<li>descriptor 描述 等同于Object.defineProperty的描述</li>
+</ul>
+
+<pre><code>var p = new Proxy({}, {
+  defineProperty: function(target, prop, descriptor) {
+    console.log(&quot;called: &quot; + prop);
+    return false;
+  }
+});
+
+var desc = { configurable: true, enumerable: true, value: 10 };
+Object.defineProperty(p, &quot;a&quot;, desc); // &quot;called: a&quot;</code></pre>
 
 <p>上面代码中，defineProperty方法返回false，导致添加新属性会抛出错误。</p>
-
-<h3 id="toc_9">enumerate()</h3>
-
-<p>enumerate方法用来拦截for...in循环。注意与Proxy对象的has方法区分，后者用来拦截in操作符，对for...in循环无效。</p>
-
-<pre><code>var handler = {
-  enumerate (target) {
-    return Object.keys(target).filter(key =&gt; key[0] !== &#39;_&#39;)[Symbol.iterator]();
-  }
-}
-var target = { prop: &#39;foo&#39;, _bar: &#39;baz&#39;, _prop: &#39;foo&#39; }
-var proxy = new Proxy(target, handler)
-for (let key in proxy) {
-  console.log(key);
-  // &quot;prop&quot;
-}</code></pre>
-
-<p>上面代码中，enumerate方法取出原对象的所有属性名，将其中第一个字符等于下划线的都过滤掉，然后返回这些符合条件的属性名的一个遍历器对象，供for...in循环消费。</p>
 
 <h3 id="toc_10">getOwnPropertyDescriptor()</h3>
 
 <p>getOwnPropertyDescriptor方法拦截Object.getOwnPropertyDescriptor，返回一个属性描述对象或者undefined。</p>
+
+<pre><code>var p = new Proxy(target, {
+  getOwnPropertyDescriptor: function(target, prop) {
+  }
+});</code></pre>
+
+<ul>
+<li>target 目标对象</li>
+<li>prop 对象的属性</li>
+<li>return 必须返回一个对象或者undefined</li>
+</ul>
 
 <pre><code>var handler = {
   getOwnPropertyDescriptor (target, key) {
     if (key[0] === &#39;_&#39;) {
       return
     }
-    return Object.getOwnPropertyDescriptor(target, key)
+    return Reflect.getOwnPropertyDescriptor(target, key);
   }
 }
 var target = { _foo: &#39;bar&#39;, baz: &#39;tar&#39; };
@@ -674,19 +613,33 @@ Object.getOwnPropertyDescriptor(proxy, &#39;baz&#39;)
 <li>instanceof运算符</li>
 </ul>
 
-<pre><code>var proto = {};
-var p = new Proxy({}, {
-  getPrototypeOf(target) {
-    return proto;
-  }
+<pre><code>var obj = {};
+var p = new Proxy(obj, {
+    getPrototypeOf(target) {
+        return Array.prototype;
+    }
 });
-Object.getPrototypeOf(p) === proto // true</code></pre>
-
-<p>上面代码中，getPrototypeOf方法拦截Object.getPrototypeOf()，返回proto对象。</p>
+console.log(
+    Object.getPrototypeOf(p) === Array.prototype,  // true
+    Reflect.getPrototypeOf(p) === Array.prototype, // true
+    p.__proto__ === Array.prototype,               // true
+    Array.prototype.isPrototypeOf(p),              // true
+    p instanceof Array                             // true
+);</code></pre>
 
 <h3 id="toc_12">setPrototypeOf()</h3>
 
 <p>setPrototypeOf方法主要用来拦截Object.setPrototypeOf方法。</p>
+
+<pre><code>var p = new Proxy(target, {
+  setPrototypeOf: function(target, prototype) {
+  }
+});</code></pre>
+
+<ul>
+<li>target 目标对象</li>
+<li>protoype 新的prototype</li>
+</ul>
 
 <pre><code>var handler = {
   setPrototypeOf (target, proto) {
@@ -696,7 +649,7 @@ Object.getPrototypeOf(p) === proto // true</code></pre>
 var proto = {};
 var target = function () {};
 var proxy = new Proxy(target, handler);
-proxy.setPrototypeOf(proxy, proto);
+Object.setPrototypeOf(proxy, proto);
 // Error: Changing the prototype is forbidden</code></pre>
 
 <p>上面代码中，只要修改target的原型对象，就会报错。</p>
@@ -831,28 +784,7 @@ return success;
 });</code></pre></li>
 </ol>
 
-<h3 id="toc_19">方法列表</h3>
 
-<ul>
-<li>Reflect.apply(target,thisArg,args)</li>
-<li>Reflect.construct(target,args)</li>
-<li>Reflect.get(target,name,receiver)</li>
-<li>Reflect.set(target,name,value,receiver)</li>
-<li>Reflect.defineProperty(target,name,desc)</li>
-<li>Reflect.deleteProperty(target,name)</li>
-<li>Reflect.has(target,name)</li>
-<li>Reflect.ownKeys(target)</li>
-<li>Reflect.enumerate(target)</li>
-<li>Reflect.isExtensible(target)</li>
-<li>Reflect.preventExtensions(target)</li>
-<li>Reflect.getOwnPropertyDescriptor(target, name)</li>
-<li>Reflect.getPrototypeOf(target)</li>
-<li>Reflect.setPrototypeOf(target, prototype)</li>
-</ul>
-
-<script type="text/javascript">
-self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{};var Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var i=r[e];if(2==arguments.length){a=arguments[1];for(var l in a)a.hasOwnProperty(l)&&(i[l]=a[l]);return i}var s={};for(var o in i)if(i.hasOwnProperty(o)){if(o==n)for(var l in a)a.hasOwnProperty(l)&&(s[l]=a[l]);s[o]=i[o]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=s)}),r[e]=s},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),i=0;a=r[i++];)t.highlightElement(a,e===!0,n)},highlightElement:function(a,r,i){for(var l,s,o=a;o&&!e.test(o.className);)o=o.parentNode;if(o&&(l=(o.className.match(e)||[,""])[1],s=t.languages[l]),s){a.className=a.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=a.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var u=a.textContent;if(u){u=u.replace(/^(?:\r?\n|\r)/,"");var g={element:a,language:l,grammar:s,code:u};if(t.hooks.run("before-highlight",g),r&&self.Worker){var c=new Worker(t.filename);c.onmessage=function(e){g.highlightedCode=n.stringify(JSON.parse(e.data),l),t.hooks.run("before-insert",g),g.element.innerHTML=g.highlightedCode,i&&i.call(g.element),t.hooks.run("after-highlight",g)},c.postMessage(JSON.stringify({language:g.language,code:g.code}))}else g.highlightedCode=t.highlight(g.code,g.grammar,g.language),t.hooks.run("before-insert",g),g.element.innerHTML=g.highlightedCode,i&&i.call(a),t.hooks.run("after-highlight",g)}}},highlight:function(e,a,r){var i=t.tokenize(e,a);return n.stringify(t.util.encode(i),r)},tokenize:function(e,n){var a=t.Token,r=[e],i=n.rest;if(i){for(var l in i)n[l]=i[l];delete n.rest}e:for(var l in n)if(n.hasOwnProperty(l)&&n[l]){var s=n[l];s="Array"===t.util.type(s)?s:[s];for(var o=0;o<s.length;++o){var u=s[o],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),N=[p,1];b&&N.push(b);var O=new a(l,g?t.tokenize(m,g):m,h);N.push(O),w&&N.push(w),Array.prototype.splice.apply(r,N)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,i=0;r=a[i++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var i={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==i.type&&(i.attributes.spellcheck="true"),e.alias){var l="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(i.classes,l)}t.hooks.run("wrap",i);var s="";for(var o in i.attributes)s+=o+'="'+(i.attributes[o]||"")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'" '+s+">"+i.content+"</"+i.tag+">"},!self.document)return self.addEventListener?(self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code;self.postMessage(JSON.stringify(t.util.encode(t.tokenize(r,t.languages[a])))),self.close()},!1),self.Prism):self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism);
-</script>
 </body>
 
 </html>
