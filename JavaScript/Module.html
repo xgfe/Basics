@@ -1,0 +1,957 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>Module</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Module</h1>
+
+<h2 id="toc_1">背景</h2>
+
+<ul>
+<li>ES6的Class只是面向对象编程的语法糖，升级了ES5构造函数原型继承的写法，并没有解决模块化的问题。</li>
+<li>Js一直没有模块体系，无法将一个大程序拆分成互相依赖的小文件，再用简单方法拼装起来，因此对开发大型的、复杂项目形成障碍。</li>
+<li>es6之前，模块化加载方案，主要有CommonJS(用于服务器)和AMD(用于浏览器)两种.</li>
+</ul>
+
+<h2 id="toc_2">产生</h2>
+
+<h3 id="toc_3">基本概念</h3>
+
+<ul>
+<li>运行时加载: 整体加载一个模块(即加载所有方法)，生成一个对象，然后从对象上读取方法。</li>
+<li>编译时加载: 从模块中加载需要使用的方法，其它方法都不加载。</li>
+</ul>
+
+<h3 id="toc_4">与传统模块化方法的区别</h3>
+
+<ul>
+<li>es6实现的模块功能完全取代了现有的CommonJS和AMD,成为通用的模块解决方案。</li>
+<li>es6设计思想是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量，而CommonJS和AMD只能在运行的时候确定。</li>
+<li>es6模块不是对象，而是通过export命令显示指定输出的代码，输入时也采用静态命令的形式。</li>
+</ul>
+
+<pre><code class="language-none">// ES6模块,实质是从fs模块加载3个方法，其他方法不加载
+import { stat, exists, readFile } from &#39;fs&#39;;</code></pre>
+
+<ul>
+<li>es6在编译时完成模块加载，效率比CommonJS模块的加载方式高，这也导致无法引用ES6模块本身，因为它不是对象。</li>
+<li>es6在编译时加载，使得静态分析成为可能。</li>
+</ul>
+
+<h3 id="toc_5">模块的优点</h3>
+
+<ul>
+<li>静态加载；</li>
+<li>不再需要UMD模块格式(将来浏览器都会支持ES6模块格式)</li>
+<li>将来浏览器的新API就能用模块格式提供，不必再做成全局变量或navigator对象的属性</li>
+<li>不再需要对象作为命名空间(比如Math对象)，未来这些功能可以通过模块提供</li>
+</ul>
+
+<h3 id="toc_6">基本用法</h3>
+
+<ul>
+<li>浏览器使用es6模块的语法:    <code>&lt;script type=&quot;module&quot; src=&quot;XX.js&quot;&gt;&lt;/script&gt;</code>
+
+<ul>
+<li>由于type属性为module， 所以浏览器知道这是一个es6模块。</li>
+</ul></li>
+<li>备注
+
+<ul>
+<li>Node的默认模块格式是CommonJS，目前还没决定怎么支持ES6模块，因此只能用babel这样的转码器在Node中使用ES6模块。</li>
+</ul></li>
+</ul>
+
+<h2 id="toc_7">特性</h2>
+
+<h3 id="toc_8">严格模式</h3>
+
+<ul>
+<li>ES6模块自动采用严格模式，不管头部有没有加&#39;use strict&#39;</li>
+<li><a href="http://xgfe.github.io/Basics/JavaScript/strictMode.html">严格模式主要限制</a></li>
+</ul>
+
+<h3 id="toc_9">export命令</h3>
+
+<ul>
+<li>模块功能主要由两个命令构成:export和import。
+
+<ul>
+<li>export命令用于规定模块的对外接口。</li>
+<li>import命令用于输入其他模块提供的功能。</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_10">export</h4>
+
+<ul>
+<li>作用:一个模块就是一个独立的文件。该文件内部的所有变量，外部无法获取。如果希望外部能够读取模块内部的某个变量，就必须使用export关键字输出该变量。</li>
+<li><p>使用</p>
+
+<ul>
+<li>使用大括号指定所要输出的一组变量</li>
+</ul>
+
+<pre><code class="language-none">// 方法一:直接export
+export var firstName = &#39;Michael&#39;;
+export var lastName = &#39;Jackson&#39;;
+export var year = 1958;
+
+// 方法二: 使用{}export
+var firstName = &#39;Michael&#39;;
+var lastName = &#39;Jackson&#39;;
+var year = 1958;
+export {firstName, lastName, year};</code></pre>
+
+<ul>
+<li>export除了输出变量，还可以输出函数或类</li>
+</ul>
+
+<pre><code class="language-none">// 对外输出了multiply
+export function multiply(x, y) {
+  return x * y;
+};</code></pre>
+
+<ul>
+<li>一般情况下export输出的变量就是本来的名字，但可以使用as关键字重命名，并且重命名后可以使用不同的名字输出两次。</li>
+</ul>
+
+<pre><code class="language-none">function v1() { ... }
+function v2() { ... }
+export {
+  v1 as streamV1,
+  v2 as streamV2,
+  v2 as streamLatestVersion
+};</code></pre></li>
+<li><p>备注</p>
+
+<ul>
+<li>export命令规定的是对外的接口，必须与模块内部的变量建立一一对应关系。
+
+<ul>
+<li>它们的实质是，在接口名与模块内部变量之间，建立了一一对应的关系 </li>
+</ul></li>
+</ul>
+
+<pre><code class="language-none">// 报错
+export 1;   
+// 报错
+var m = 1;
+export m;
+
+// 正确写法
+// 写法一
+export var m = 1;
+
+// 写法二
+var m = 1;
+export {m};
+
+// 写法三
+var n = 1;
+export {n as m};</code></pre>
+
+<ul>
+<li>export语句输出的接口，与其对应的值是动态绑定关系，即通过该接口，可以取到模块内部实时的值</li>
+</ul>
+
+<pre><code class="language-none">export var foo = &#39;bar&#39;;
+setTimeout(() =&gt; foo = &#39;baz&#39;, 500);</code></pre>
+
+<ul>
+<li>export命令可以出现在模块的任何位置。如果处于块级作用域内就会报错，因为处于条件代码块之中，就没法做静态优化了，违背了ES6模块的设计初衷。</li>
+</ul></li>
+</ul>
+
+<h3 id="toc_11">import命令</h3>
+
+<ul>
+<li>作用:使用export命令定义模块的对外接口后，其他JS文件可以通过import命令加载这个模块(文件)</li>
+</ul>
+
+<pre><code class="language-none">import {firstName, lastName, year} from &#39;./profile&#39;;
+function setName(element) {
+  element.textContent = firstName + &#39; &#39; + lastName;
+}</code></pre>
+
+<ul>
+<li><p>备注</p>
+
+<ul>
+<li>import的{}里面的变量名必须与被导入模块对外接口(export)的名称相同</li>
+<li>如果想为输入的变量重新取一个名字，import命令要使用as关键字，将输入的变量重命名</li>
+</ul>
+
+<pre><code class="language-none">import { lastName as surname } from &#39;./profile&#39;;</code></pre>
+
+<ul>
+<li>import命令具有提升效果，会提升到整个模块的头部，首先执行。</li>
+<li>如果在一个模块中，先输入后输出同一个模块，import语句可以与export语句写在一起.但从可读性考虑，不建议这种写法。</li>
+</ul>
+
+<pre><code class="language-none">export { es6 as default } from &#39;./someModule&#39;;
+// 等同于
+import { es6 } from &#39;./someModule&#39;;
+export default es6;</code></pre></li>
+</ul>
+
+<h3 id="toc_12">模块的整体加载</h3>
+
+<ul>
+<li>除了指定加载某个输出值，可以使用整体加载，即用星号(*)指定一个对象，所有输出值都加载在这个对象上面</li>
+</ul>
+
+<pre><code class="language-none">// circle.js,导出方法
+export function area(radius) {
+  return Math.PI * radius * radius;
+}
+export function circumference(radius) {
+  return 2 * Math.PI * radius;
+}
+// file2.js,加载方法
+// 指定加载
+import { area, circumference } from &#39;./circle&#39;;
+console.log(&#39;圆面积：&#39; + area(4));
+console.log(&#39;圆周长：&#39; + circumference(14));
+// 整体加载
+import * as circle from &#39;./circle&#39;;
+console.log(&#39;圆面积：&#39; + circle.area(4));
+console.log(&#39;圆周长：&#39; + circle.circumference(14));</code></pre>
+
+<h3 id="toc_13">export default命令</h3>
+
+<ul>
+<li>以上内容使用import命令的时候，用户需要知道所有加载的变量名或函数名，否则无法加载。</li>
+<li>export default命令为模块指定默认输出，不用阅读文档就能加载模块;其他模块加载时,import命令可为该匿名函数指定任意名字。</li>
+</ul>
+
+<pre><code class="language-none">// file.js 默认输出一个函数
+export default function(){
+    console.log(&#39;default export&#39;);
+}
+// 加载默认export文件
+import customName from &#39;./file&#39;;
+customName(); // &#39;foo&#39;</code></pre>
+
+<ul>
+<li>export default命令用在非匿名函数前，也是可以的。</li>
+<li>export * 命令会忽略导入模块中通过export default导出内容</li>
+<li>使用default，注意import后面不要使用{}。即使用export default时，对应的import语句不需要使用大括号；不使用export default时，对应的import语句需要使用大括号。</li>
+</ul>
+
+<pre><code class="language-none">// 输出
+export default function defaultFn() {
+  // ...
+}
+// 输入
+import defaultFn from &#39;defaultFn&#39;;
+
+// 输出
+export function defaultFn() {
+  // ...
+};
+// 输入
+import {defaultFn} from &#39;defaultFn&#39;;</code></pre>
+
+<ul>
+<li>export default命令用于指定模块的默认输出，一个模块只能有一个默认输出（如果设置两个，则在导入的时候后一个会覆盖前一个）。</li>
+<li>本质上export default是输出一个叫做default的变量或方法，然后系统允许可以取任意名字</li>
+</ul>
+
+<pre><code class="language-none">function add(x, y) {
+  return x * y;
+}
+export {add as default};  // 等同于  export default add;
+
+// app.js
+import { default as xxx } from &#39;modules&#39;; // 等同于 import xxx from &#39;modules&#39;;</code></pre>
+
+<ul>
+<li>export default命令其事输出一个default的变量，因此其后不能跟变量声明语句</li>
+</ul>
+
+<pre><code class="language-none">// 正确
+export var a = 1;
+// 正确
+var a = 1;
+export default a;
+// 错误
+export default var a = 1;</code></pre>
+
+<ul>
+<li>一条import语句中，可以同时输入默认方法和其他变量</li>
+</ul>
+
+<pre><code class="language-none">import customName, { otherMethod } from &#39;./export-default&#39;;</code></pre>
+
+<ul>
+<li>如果要输出默认的值，只需将值跟在export default之后即可</li>
+</ul>
+
+<pre><code class="language-none">export default 42;</code></pre>
+
+<ul>
+<li>export default也可以用来输出类</li>
+</ul>
+
+<pre><code class="language-none">// MyClass.js
+export default class { ... }
+// main.js
+import MyClass from &#39;MyClass&#39;;
+let o = new MyClass();</code></pre>
+
+<h3 id="toc_14">模块的继承</h3>
+
+<ul>
+<li>模块之间也可以继承</li>
+</ul>
+
+<pre><code class="language-none">// circleplus.js(假设circleplus模块继承circle模块)
+// 方法一
+export * from &#39;circle&#39;;  // 输出继承来的所有circle模块的属性和方法，忽略default方法
+export var e = 2.71828182846;
+export default function(x) {
+  return Math.exp(x);
+}
+// 方法二
+export { area as circleArea } from &#39;circle&#39;; // 将circle的属性或方法改名后再输出
+
+// 加载上面circleplus模块
+// main.js
+import * as math from &#39;circleplus&#39;;  // 加载所有属性和方法
+import exp from &#39;circleplus&#39;;  // 加载默认方法为exp
+console.log(exp(math.e));</code></pre>
+
+<h3 id="toc_15">ES6模块加载的实质</h3>
+
+<ul>
+<li>CommonJS模块输出的是一个值的拷贝，而ES6模块输出的是值的引用</li>
+<li>CommonJS模块一旦输出一个值，模块内部的变化就影响不到这个值。</li>
+<li>ES6模块的运行机制是遇到模块加载命令import时，不会去执行模块，而是只生成一个动态的只读引用。等到真的需要用到时，再到模块里面去取值。</li>
+<li><p>ES6模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。</p>
+
+<pre><code class="language-none">// lib.js
+export let counter = 3;
+export function incCounter() {
+  counter++;
+}
+// main.js
+var mod = require(&#39;./lib&#39;);
+console.log(mod.counter);  // 3
+mod.incCounter();
+console.log(mod.counter); // 3</code></pre>
+
+<ul>
+<li>以上test模块加载后，它的内部变化就影响不到输出的counter了。这是因为counter是一个原始类型的值，会被缓存。除非写成一个函数，才能得到内部变动后的值。</li>
+</ul></li>
+</ul>
+
+<pre><code class="language-none">// lib.js
+var counter = 3;
+function incCounter(){
+    counter++;
+};
+modle.exports = {
+    get counter(){
+        return counter;
+    },
+    incCounter: incCounter
+};
+// main.js
+var mod = require(&#39;./lib&#39;);
+console.log(mod.counter);  // 3
+mod.incCounter();
+console.log(mod.counter); // 4</code></pre>
+
+<ul>
+<li>ES6模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块</li>
+</ul>
+
+<pre><code class="language-none">// 实例一
+// lib.js
+var counter = 3;
+function incCounter(){
+    counter++;
+};
+// main.js
+import { counter, incCounter } from &#39;./lib&#39;;
+console.log(counter); // 3
+incCounter();
+console.log(counter); // 4
+
+// 实例二
+// m1.js
+export var foo = &#39;bar&#39;;
+setTimeout(() =&gt; foo = &#39;baz&#39;, 500);
+// m2.js
+import {foo} from &#39;./m1.js&#39;;
+console.log(foo);
+setTimeout(() =&gt; console.log(foo), 500);</code></pre>
+
+<ul>
+<li>由于ES6输入的模块变量，只是一个“符号连接”，所以这个变量是只读的，对它进行重新赋值会报错。</li>
+</ul>
+
+<pre><code class="language-none">// lib.js
+export let obj = {};
+// main.js
+import { obj } from &#39;./lib&#39;;
+obj.prop = 123; // OK
+obj = {}; // TypeError:babel-compile都不会通过</code></pre>
+
+<ul>
+<li>export通过接口，输出的是同一个值。不同的脚本加载这个接口，得到的都是同样的实例</li>
+</ul>
+
+<pre><code class="language-none">// mod.js
+function C() {
+  this.sum = 0;
+  this.add = function () {
+    this.sum += 1;
+  };
+  this.show = function () {
+    console.log(this.sum);
+  };
+}
+export let c = new C();
+// x.js
+import {c} from &#39;./mod&#39;;
+c.add();    
+// y.js
+import {c} from &#39;./mod&#39;;
+c.show();
+// main.js
+import &#39;./x&#39;;
+import &#39;./y&#39;;</code></pre>
+
+<h3 id="toc_16">循环加载</h3>
+
+<ul>
+<li>&quot;循环加载&quot;（circular dependency）指的是，a脚本的执行依赖b脚本，而b脚本的执行又依赖a脚本。<br></li>
+<li><p>&quot;循环加载&quot;表示存在强耦合，如果处理不好，还可能导致递归加载，使得程序无法执行，因此应该避免出现。</p>
+
+<p>目前最常见的两种模块格式CommonJS和ES6，处理&quot;循环加载&quot;的方法是不一样的，返回的结果也不一样。</p></li>
+</ul>
+
+<h4 id="toc_17">CommonJS模块的加载原理</h4>
+
+<p>CommonJS的一个模块，就是一个脚本文件。require命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象。之后即使再次执行require命令，也不会再次执行该模块，而是到缓存之中取值。</p>
+
+<pre><code class="language-none"> // Node内部加载模块后生成的一个对象
+ {
+      id: &#39;...&#39;,   // 加载模块名
+      exports: { ... },  // 模块输出的各个接口
+      loaded: true,  // 布尔值，表示该模块的脚本是否执行完毕
+      ...
+ }</code></pre>
+
+<ul>
+<li>CommonJS模块无论加载多少次，都只会在第一次加载时运行一次，以后再加载，就返回第一次运行的结果，除非手动清除系统缓存。</li>
+</ul>
+
+<h4 id="toc_18">CommonJS模块的循环加载</h4>
+
+<p>CommonJS模块的重要特性是加载时执行，即脚本代码在require的时候，就会全部执行。一旦出现某个模块被&quot;循环加载&quot;，就只输出已经执行的部分，未执行的部分不会输出。</p>
+
+<pre><code class="language-none">// a.js
+console.log(&#39;a starting&#39;);
+exports.done = false;
+const b = require(&#39;./b.js&#39;);
+console.log(&#39;in a, b.done = %j&#39;, b.done);
+exports.done = true;
+console.log(&#39;a done&#39;);
+    
+//b.js
+console.log(&#39;b starting&#39;);
+exports.done = false;
+const a = require(&#39;./a.js&#39;);  //此时只执行a.js的第一行，发生循环加载，系统会去a.js模块对应对象的exports取值，但还没执行完，因此只能取部分值(一旦require就会生成对象，然后一步步执行，同时往对象加值)。
+console.log(&#39;in b, a.done = %j&#39;, a.done);
+exports.done = true;
+console.log(&#39;b done&#39;);
+    
+// main.js
+console.log(&#39;main starting&#39;);
+const a = require(&#39;./a.js&#39;);
+const b = require(&#39;./b.js&#39;);  // 已经加载，只会从缓存中取值
+console.log(&#39;in main, a.done=%j, b.done=%j&#39;, a.done, b.done);
+    
+// 执行结果
+main starting
+a starting
+b starting
+in b, a.done = false
+b done
+in a, b.done = true
+a done
+in main, a.done=true, b.done=true</code></pre>
+
+<ul>
+<li>备注:由于CommonJS模块遇到循环加载时，返回的是当前已经执行的部分的值，而不是代码全部执行后的值，两者可能会有差异 </li>
+</ul>
+
+<h4 id="toc_19">ES6模块的循环加载</h4>
+
+<p>ES6模块是动态引用，如果使用import从一个模块加载变量，那些变量不会被缓存，而是成为一个指向被加载模块的引用</p>
+
+<pre><code class="language-none">// a.js如下
+import {bar} from &#39;./b.js&#39;;  
+console.log(&#39;a.js&#39;); 
+console.log(bar);
+export let foo = &#39;foo&#39;;
+
+// b.js
+import {foo} from &#39;./a.js&#39;;
+console.log(&#39;b.js&#39;);
+console.log(foo);
+export let bar = &#39;bar&#39;;
+    
+// 执行结果
+b.js
+undefined
+a.js
+bar</code></pre>
+
+<ul>
+<li>考考你</li>
+</ul>
+
+<pre><code class="language-none">// a.js
+import {bar} from &#39;./b.js&#39;;  // 建立引用，从b.js引用‘bar’
+export function foo() {
+  console.log(&#39;foo&#39;);
+  bar();  // 到b.js执行bar
+  console.log(&#39;执行完毕&#39;);
+}
+foo();  // 执行时，引用都已完全建立
+
+// b.js
+import {foo} from &#39;./a.js&#39;;  // 建立引用，从a.js引用foo
+export function bar() {
+  console.log(&#39;bar&#39;);
+  if (Math.random() &gt; 0.5) { // 递归执行foo，一旦随机数小于等于0.5就停止执行
+    foo();
+  }
+}
+    
+// 执行结果
+// Math.random() &lt;= 0.5
+foo
+bar
+执行完毕
+    
+// Math.random() &gt; 0.5
+foo
+bar
+foo
+bar
+执行完毕
+执行完毕</code></pre>
+
+<h3 id="toc_20">跨模块常量</h3>
+
+<p>const声明的常量只在当前代码块有效。如果想设置跨模块的常量（即跨多个文件），可讲常量设置为一个单独的模块，可用以下代码实现</p>
+
+<pre><code class="language-none">// constants.js 模块
+export const A = 1;
+export const B = 3;
+export const C = 4;
+    
+// test1.js 模块
+import * as constants from &#39;./constants&#39;;
+console.log(constants.A); // 1
+console.log(constants.B); // 3
+    
+// test2.js 模块
+import {A, B} from &#39;./constants&#39;;
+console.log(A); // 1
+console.log(B); // 3</code></pre>
+
+<h3 id="toc_21">ES6模块的转码</h3>
+
+<p>浏览器目前还不支持ES6模块，现在要使用需要将其转换为ES5写法，有三种方法：</p>
+
+<ul>
+<li>使用Babel</li>
+<li><p>ES6 module transpiler</p>
+
+<ul>
+<li>定义:square公司开源的一个转码器，可以将ES6模块转为CommonJS模块或AMD模块的写法，从而在浏览器中使用。</li>
+<li><p>使用</p>
+
+<ul>
+<li>安装这个转码器:  npm install -g es6-module-transpiler</li>
+<li>文件转码: 使用compile-modules convert命令转码，-o参数可以指定转码后文件名<br></li>
+</ul>
+
+<pre><code class="language-none">// 其中file1.js和file2.js是需要转换的es6文件
+compile-modules convert file1.js file2.js 
+// -o指定转码后的文件名，如果不指定，则默认在命令行输出转换后代码。out1.js如果不存在则会自动生成
+$ compile-modules convert file1.js file2.js -o out1.js out2.js</code></pre></li>
+</ul></li>
+</ul>
+
+<ul>
+<li>SystemJS
+
+<ul>
+<li>定义: 它是一个垫片库（polyfill），可以在浏览器内加载ES6模块、AMD模块和CommonJS模块，将其转为ES5格式。它在后台调用的是Google的Traceur转码器。</li>
+<li>使用
+
+<ul>
+<li>首先在网页内载入system.js文件</li>
+<li>接着使用System.import方法加载模块文件</li>
+</ul></li>
+<li>备注
+
+<ul>
+<li>System.import使用异步加载，返回一个Promise对象，可以针对这个对象编程 </li>
+<li>在使用System.import之前需要在页面引入Google的Traceur转码器 </li>
+<li>加载的时候js文件要有后缀</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<pre><code class="language-none">// a.js
+export function foo() {
+    console.log(&#39;foo&#39;);
+}
+
+// test.html
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+    &lt;!--加载Google的traceur转码器--&gt;
+    &lt;script src=&quot;http://google.github.io/traceur-compiler/bin/traceur.js&quot;  type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;!--加载system.js文件-&gt;
+    &lt;script src=&quot;system.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+         // import a.js
+        System.import(&#39;a.js&#39;).then(function(m) {
+           console.log(m.foo());
+        });
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<h1 id="toc_22">阅读书籍</h1>
+
+<ol>
+<li><a href="http://web.jobbole.com/82238/">UMD</a></li>
+<li><a href="https://github.com/ModuleLoader/es6-module-loader/issues/95">script type=module</a></li>
+<li><a href="https://nodejs.org/api/modules.html#modules_cycles">Node官方加载文档-使用CommonJs</a></li>
+<li><a href="https://github.com/ModuleLoader/es6-module-loader/blob/master/docs/circular-references-bindings.md">Es6-symbol加载-使用Module</a></li>
+<li><a href="https://github.com/esnext/es6-module-transpiler">module-transpiler</a></li>
+<li><a href="https://github.com/systemjs/systemjs">SystemJS</a></li>
+<li><a href="https://blog.gaoqixhb.com/p/55783789cef7e0a008d5d6ef">Google Traceur</a></li>
+<li><a href="http://es6.ruanyifeng.com/#docs/module">Module</a></li>
+</ol>
+
+
+</body>
+
+</html>
