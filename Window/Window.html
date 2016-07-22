@@ -306,22 +306,27 @@ sup {
 <body>
 <h2 id="toc_0">Window对象</h2>
 
+<h3 id="toc_1">Window对象介绍</h3>
+
 <p>window对象表示浏览器中打开的窗口。其document属性指向窗口中载入的DOM文档。</p>
+
+<p>javascript的所有对象都存在一个运行环境之中，这个运行环境本身也是对象，成为“顶层对象”。同时，javascript的所有对象都是“顶层对象”的下属。不同的运行环境中有不同的“顶层对象”，在浏览器环境中就是window对象。</p>
+
+<p><strong>所有浏览器环境的全局变量，都是window对象的属性。</strong></p>
 
 <p>每个标签都有自己的window对象，如果文档包含框架（iframe标签），浏览器会为HTML文档创建一个window对象，并为每个框架创建一个额外的window对象。</p>
 
-<h3 id="toc_1">Window对象属性</h3>
+<h3 id="toc_2">Window对象属性</h3>
 
-<h4 id="toc_2">closed</h4>
+<h4 id="toc_3">GlobalEventHandlers</h4>
 
-<p>返回一个布尔值，表示窗口是否已经被关闭。</p>
+<p>window上挂载的全局事件处理包含了例如onclick、onabord等一些常见的接口，处理相应的事件回调。</p>
 
-<p>当浏览器窗口关闭时，该窗口的windows对象并不会消失，会继续存在，不过它的closed属性将设置为true。</p>
+<h4 id="toc_4">screenX和screenY</h4>
 
-<pre><code class="language-none">myWindow=window.open(&#39;&#39;,&#39;&#39;,&#39;width=200,height=100&#39;)
-myWindow.document.write(&quot;This is &#39;myWindow&#39;&quot;)</code></pre>
+<p>返回浏览器窗口左上角相对于屏幕左上角（0，0）的水平距离和垂直距离，单位为像素。</p>
 
-<h4 id="toc_3">innerHeight和innerWidth</h4>
+<h4 id="toc_5">innerHeight和innerWidth</h4>
 
 <p>返回窗口的文档显示区的高度和宽度（包含水平和垂直滚动条）。</p>
 
@@ -341,7 +346,7 @@ var intFramesetHeight = parent.innerHeight;
 var intOuterFramesetHeight = top.innerHeight;
 // 返回最外部frameset的视口的高度</code></pre>
 
-<h4 id="toc_4">outerHeight和outerWidth</h4>
+<h4 id="toc_6">outerHeight和outerWidth</h4>
 
 <p>获得整个浏览器窗口的高度和宽度（包含侧边栏等）。</p>
 
@@ -349,33 +354,7 @@ var intOuterFramesetHeight = top.innerHeight;
 
 <p><img src="https://developer.mozilla.org/@api/deki/files/213/=FirefoxInnerVsOuterHeight2.png" alt="outer和inner的区别"></p>
 
-<h4 id="toc_5">length</h4>
-
-<p>返回当前窗口中包含的框架数量（包括frame和iframe两种元素）</p>
-
-<p><a href="http://www.w3school.com.cn/jsref/dom_obj_window.asp">点我参观iframe</a></p>
-
-<h3 id="toc_6">name</h3>
-
-<p>返回存放窗口的名称的一个字符串。</p>
-
-<p>该名称是由<code>open()</code>方法创建窗口时制定的或使用<code>&lt;frame&gt;</code>标记的name属性指定的。</p>
-
-<pre><code class="language-none">myWindow=window.open(&#39;&#39;,&#39;MyName&#39;,&#39;width=200,height=100&#39;)
-myWindow.name</code></pre>
-
-<h3 id="toc_7">opener</h3>
-
-<p>opener属性是一个可读写的属性，可返回对创建该窗口的Window对象的引用。</p>
-
-<p>opener属性非常有用，创建的窗口可以引用创建它的窗口所定义的属性和函数。</p>
-
-<pre><code class="language-none">myWindow=window.open(&#39;&#39;,&#39;&#39;,&#39;width=200,height=100&#39;)
-myWindow.document.write(&quot;This is &#39;myWindow&#39;&quot;)
-myWindow.focus()
-myWindow.opener.document.write(&quot;This is the parent window&quot;)</code></pre>
-
-<h3 id="toc_8">pageXOffset,pageYOffset</h3>
+<h4 id="toc_7">pageXOffset,pageYOffset</h4>
 
 <p>设置或返回当前页面相对于窗口显示区左上角的X或Y位置。
 <strong>相当于scrollX和scrollY</strong></p>
@@ -385,11 +364,45 @@ if (window.scrollY &gt; 400) {
   window.scroll(0,0);
 }</code></pre>
 
-<h3 id="toc_9">self</h3>
+<h4 id="toc_8">closed</h4>
+
+<p>返回一个布尔值，表示窗口是否已经被关闭。</p>
+
+<p>当浏览器窗口关闭时，该窗口的windows对象并不会消失，会继续存在，不过它的closed属性将设置为true。</p>
+
+<pre><code class="language-none">myWindow=window.open(&#39;&#39;,&#39;&#39;,&#39;width=200,height=100&#39;)
+myWindow.document.write(&quot;This is &#39;myWindow&#39;&quot;)</code></pre>
+
+<h4 id="toc_9">name</h4>
+
+<p>返回存放窗口的名称的一个字符串。</p>
+
+<p>该名称是由<code>open()</code>方法创建窗口时制定的或使用<code>&lt;frame&gt;</code>标记的name属性指定的。</p>
+
+<pre><code class="language-none">myWindow=window.open(&#39;&#39;,&#39;MyName&#39;,&#39;width=200,height=100&#39;)
+myWindow.name</code></pre>
+
+<p>tips:
+<strong>各个浏览器对这个值的储存容量有所不同，但是一般来说，可以高达几MB。该属性只能保存字符串，且当浏览器窗口关闭后，所保存的值就会消失。因此局限性比较大，但是与iframe窗口通信时，非常有用。</strong></p>
+
+<h4 id="toc_10">opener</h4>
+
+<p>opener属性是一个可读写的属性，可返回对创建该窗口的Window对象的引用。</p>
+
+<p><strong>如果当前窗口没有父窗口，则返回<code>null</code></strong></p>
+
+<p>opener属性非常有用，创建的窗口可以引用创建它的窗口所定义的属性和函数。</p>
+
+<pre><code class="language-none">myWindow=window.open(&#39;&#39;,&#39;&#39;,&#39;width=200,height=100&#39;)
+myWindow.document.write(&quot;This is &#39;myWindow&#39;&quot;)
+myWindow.focus()
+myWindow.opener.document.write(&quot;This is the parent window&quot;)</code></pre>
+
+<h4 id="toc_11">self</h4>
 
 <p>返回对当前窗口的只读引用，等价于Window属性。</p>
 
-<h3 id="toc_10">top</h3>
+<h4 id="toc_12">top</h4>
 
 <p>返回最顶层的先辈窗口。</p>
 
@@ -397,7 +410,7 @@ if (window.scrollY &gt; 400) {
 
 <p><a href="http://www.w3school.com.cn/jsref/prop_win_top.asp">window.top应用</a></p>
 
-<h3 id="toc_11">parent</h3>
+<h4 id="toc_13">parent</h4>
 
 <p>返回当前窗口的父窗口对象。</p>
 
@@ -407,7 +420,7 @@ if (window.scrollY &gt; 400) {
   // 至少有三层窗口
 }</code></pre>
 
-<h3 id="toc_12">frameElement</h3>
+<h4 id="toc_14">frameElement</h4>
 
 <p>返回嵌入当前window对象的元素（例如iframe等），如果当前的window对象已经是顶层窗口，则返回null。</p>
 
@@ -416,14 +429,37 @@ if (window.scrollY &gt; 400) {
 if (frameEl)
   frameEl.src = &#39;http://mozilla.org/&#39;;</code></pre>
 
-<h3 id="toc_13">screen</h3>
+<h4 id="toc_15">frames</h4>
+
+<p>frames是一个对象集合，返回窗口中所有命名的框架。</p>
+
+<p>该集合是Window对象的数组，每个Window对象在窗口中含有一个框架或<code>&lt;iframe&gt;</code>，其中frames.length存放数组中含有的元素个数。</p>
+
+<p><strong>可以根据window.frames[&#39;someName&#39;]直接控制name的值。</strong></p>
+
+<pre><code class="language-none">var frames = window.frames; 
+for (var i = 0; i &lt; frames.length; i++) { 
+  frames[i].document.body.style.display = &quot;none&quot;;
+}</code></pre>
+
+<p><a href="http://www.w3school.com.cn/jsref/dom_obj_window.asp">实践地址</a></p>
+
+<h4 id="toc_16">length</h4>
+
+<p>返回当前窗口中包含的框架数量（包括frame和iframe两种元素）</p>
+
+<pre><code class="language-none">window.frames.length === window.length // true</code></pre>
+
+<p><a href="http://www.w3school.com.cn/jsref/dom_obj_window.asp">点我参观iframe</a></p>
+
+<h4 id="toc_17">screen</h4>
 
 <p>返回一个screen对象的引用， 包含有关客户端显示屏幕的信息。
 <strong>没有应用于 screen 对象的公开标准，不过所有浏览器都支持该对象。</strong></p>
 
 <p>具体内容等介绍到screen对象时再详细说明。</p>
 
-<h3 id="toc_14">navigator</h3>
+<h4 id="toc_18">navigator</h4>
 
 <p>返回一个navigator对象的引用，可以用它来查询一些关于当前脚本的应用程序的相关信息。</p>
 
@@ -433,7 +469,7 @@ if (frameEl)
 
 <pre><code class="language-none">console.log(window.navigator.appName);</code></pre>
 
-<h3 id="toc_15">document</h3>
+<h4 id="toc_19">document</h4>
 
 <p>指向该窗口的文档节点，对document对象的只读引用。</p>
 
@@ -442,7 +478,7 @@ if (frameEl)
 <pre><code class="language-none">var doc = window.document;
 alert( doc.title); </code></pre>
 
-<h3 id="toc_16">history</h3>
+<h4 id="toc_20">history</h4>
 
 <p>对history对象的只读引用。提供了对浏览器会话历史的相关接口。</p>
 
@@ -451,7 +487,7 @@ alert( doc.title); </code></pre>
 <pre><code class="language-none">var his = window.history;
 his.back();</code></pre>
 
-<h3 id="toc_17">location</h3>
+<h4 id="toc_21">location</h4>
 
 <p>只读属性，返回一个Location对象，包含文档当前地址的相关信息。</p>
 
@@ -461,9 +497,9 @@ his.back();</code></pre>
 
 <pre><code class="language-none">console.log(window.location);</code></pre>
 
-<h3 id="toc_18">Window对象方法</h3>
+<h3 id="toc_22">Window对象方法</h3>
 
-<h4 id="toc_19">alert()</h4>
+<h4 id="toc_23">alert()</h4>
 
 <p>alert()方法用于显示带有一条制定消息和一个OK按钮的警告框。</p>
 
@@ -471,7 +507,7 @@ his.back();</code></pre>
 
 <pre><code class="language-none">alert(&quot;我是一个警告信息&quot; + &quot;\n&quot; + &quot;我有折行比较高端&quot;)</code></pre>
 
-<h4 id="toc_20">confirm()</h4>
+<h4 id="toc_24">confirm()</h4>
 
 <p>confirm() 方法用于显示一个带有指定消息和 OK 及取消按钮的对话框。</p>
 
@@ -489,7 +525,7 @@ his.back();</code></pre>
     document.write(&quot;Nope!&quot;)
     }</code></pre>
 
-<h4 id="toc_21">prompt()</h4>
+<h4 id="toc_25">prompt()</h4>
 
 <p>prompt() 方法用于显示可提示用户进行输入的对话框。</p>
 
@@ -503,15 +539,15 @@ his.back();</code></pre>
     document.write(&quot;Hello &quot; + name + &quot;!&quot;)
     }</code></pre>
 
-<h4 id="toc_22">blur()</h4>
+<h4 id="toc_26">blur()</h4>
 
 <p>blur() 方法可以把键盘焦点从顶层窗口移开。</p>
 
-<h4 id="toc_23">focus()</h4>
+<h4 id="toc_27">focus()</h4>
 
 <p>focus() 把键盘焦点给予一个窗口。</p>
 
-<h4 id="toc_24">close()</h4>
+<h4 id="toc_28">close()</h4>
 
 <p>close() 关闭当前窗口或某个指定的窗口。</p>
 
@@ -526,7 +562,7 @@ function closeOpenedWindow()
   openedWindow.close();
 }</code></pre>
 
-<h4 id="toc_25">moveBy()</h4>
+<h4 id="toc_29">moveBy()</h4>
 
 <p>moveBy()方法可相对窗口的当前坐标把它移动指定的像素。</p>
 
@@ -539,13 +575,13 @@ myWindow.document.write(&quot;This is &#39;myWindow&#39;&quot;)
 myWindow.moveBy(50,50)
 myWindow.focus()  </code></pre>
 
-<h4 id="toc_26">moveTo()</h4>
+<h4 id="toc_30">moveTo()</h4>
 
 <p>可以将窗口的左上角移动到一个指定的坐标。</p>
 
 <p>用法同上。</p>
 
-<h4 id="toc_27">open()</h4>
+<h4 id="toc_31">open()</h4>
 
 <p>open()方法用于打开一个新的浏览器窗口或查找一个已命名的窗口。</p>
 
@@ -566,31 +602,64 @@ myWindow.focus()  </code></pre>
 &quot;toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400&quot;
 )</code></pre>
 
-<h4 id="toc_28">print()</h4>
+<p>扩展：</p>
+
+<p>窗口风格有以下选项，这些选项可以多选，如果多选，各选项之间用逗号分隔：</p>
+
+<ul>
+<li>toolbar：指定窗口是否有标准工具栏。当该选项的值为1或yes时，表示有标准工具栏，当该选项的值为0或no时，表示没有标准工具栏；</li>
+<li>location：指定窗口是否有地址工具栏，选项的值及含义与toolbar相同；</li>
+<li>directories：指定窗口是否有链接工具栏，选项的值及含义与toolbar相同；</li>
+<li>status：指定窗口是否有状态栏，选项的值及含义与toolbar相同；</li>
+<li>menubar：指定窗口是否有菜单，选项的值及含义与toolbar相同；</li>
+<li>scrollbar：指定当前窗口文档大于窗口时是否有滚动条，选项的值及含义与toolbar相同；</li>
+<li>resizable：指定窗口是否可改变大小，选项的值及含义与toolbar相同；</li>
+<li>width：以像素为单位指定窗口的宽度，已被innerWidth取代；</li>
+<li>height：以像素为单位指定窗口的高度，已被innerHeight取代；</li>
+<li>outerWidth：以像素为单位指定窗口的外部宽度；</li>
+<li>outerHeight：以像素为单位指定窗口的外部高度；</li>
+<li>left：以像素为单位指定窗口距屏幕左边的位置；</li>
+<li>top：以像素为单位指定窗口距屏幕顶端的位置；</li>
+<li>alwaysLowered：指定窗口隐藏在所有窗口之后，选项的值及含义与toolbar相同；</li>
+<li>alwaysRaised：指定窗口浮在所有窗口之上，选项的值及含义与toolbar相同；</li>
+<li>dependent：指定打开的窗口为当前窗口的一个子窗口，并随着父窗口的关闭而关闭，选项- 的值及含义与toolbar相同；</li>
+<li>hotkeys：在没有菜单栏的新窗口中设置安全退出的热键，选项的值及含义与toolbar相同；</li>
+<li>innerHeight：设定窗口中文档的像素高度；</li>
+<li>innerWidth：设定窗口中文档的像素宽度；</li>
+<li>screenX：设定窗口距离屏幕左边界的像素长度；</li>
+<li>screenY：设定窗口距离屏幕上边界的像素长度；</li>
+<li>titleBar：指明标题栏是否在新窗口中可见，选项的值及含义与toolbar相同；</li>
+<li>z-look：指明当窗口被激活时，不能浮在其它窗口之上，选项的值及含义与toolbar相同。</li>
+</ul>
+
+<p>open方法返回的是该窗口的引用。
+小技巧： 该方法经常用于在打开一个网页时自动打开另一个窗口。</p>
+
+<h4 id="toc_32">print()</h4>
 
 <p>print()方法用于打印当前窗口的内容。其实就是相当于点击浏览器的打印按钮。产生一个对话框。</p>
 
 <pre><code class="language-none">window.print()</code></pre>
 
-<h4 id="toc_29">resizeBy()</h4>
+<h4 id="toc_33">resizeBy()</h4>
 
 <p>resizeBy()方法用于根据指定的像素来调整窗口的大小。</p>
 
 <pre><code class="language-none">window.resizeBy(-100,-100)</code></pre>
 
-<h4 id="toc_30">resizeTo()</h4>
+<h4 id="toc_34">resizeTo()</h4>
 
 <p>resizeTo()方法用于把窗口大小调整为指定的宽度和高度。</p>
 
 <pre><code class="language-none">window.resizeTo(500,300)</code></pre>
 
-<h4 id="toc_31">scrollBy()</h4>
+<h4 id="toc_35">scrollBy()</h4>
 
 <p>scrollBy()方法可内容滚动指定的像素数。</p>
 
 <pre><code class="language-none">window.scrollBy(100,100)</code></pre>
 
-<h4 id="toc_32">setTimeout()</h4>
+<h4 id="toc_36">setTimeout()</h4>
 
 <p>setTimeout()方法用于在指定的毫秒数后调用函数或计算表达式。</p>
 
@@ -600,7 +669,7 @@ myWindow.focus()  </code></pre>
 
 <pre><code class="language-none">setTimeout(&quot;alert(&#39;5 seconds!&#39;)&quot;,5000)</code></pre>
 
-<h4 id="toc_33">setInterval()</h4>
+<h4 id="toc_37">setInterval()</h4>
 
 <p>setInterval()方法可按照指定的周期（以毫秒计）来调用函数或计算表达式。</p>
 
@@ -614,6 +683,31 @@ function clock()
   }</code></pre>
 
 <p><a href="http://www.w3school.com.cn/tiy/t.asp?f=hdom_setinterval">跳转链接</a></p>
+
+<h4 id="toc_38">atob()</h4>
+
+<p>WindowBase64.atob()函数用来解码一个被base-64编码过的数据。同时可以用btoa()进行编码。</p>
+
+<pre><code class="language-none">window.atob(window.btoa(&quot;hello world&quot;)) === &quot;hello world&quot;</code></pre>
+
+<h4 id="toc_39">getComputedStyle()</h4>
+
+<p>该方法得出所有在应用有效的样式和分解任何可能会包含之的基础计算后的元素的CSS属性值。</p>
+
+<p><strong>getComputedStyle 返回的对象跟 element 调用 style 属性返回的对象是同一种类型，可以称为 CSSStyleDeclaration. 但两个对象有不同的用处， getComplutedSytle返回的对象是只读对象， 用于检测元素的样式（包括在<code>&lt;style&gt;</code> 和 外部的样式，即浏览器计算后的样式）。 <code>elt.style</code> 对象用于设置元素上的内联样式.</strong></p>
+
+<pre><code class="language-none">var elem1 = document.getElementById(&quot;elemId&quot;);
+var style = window.getComputedStyle(elem1, null);
+
+// 它等价于
+// var style = document.defaultView.getComputedStyle(elem1, null);</code></pre>
+
+<h4 id="toc_40">getSelection()</h4>
+
+<p>返回用户选择的文本，这是一个Selection对象。如果想转换为字符串的话，可以使用<code>toString()</code>方法。</p>
+
+<pre><code class="language-none">var selObj = window.getSelection(); 
+    alert(selObj);</code></pre>
 
 
 </body>

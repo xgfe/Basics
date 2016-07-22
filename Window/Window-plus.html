@@ -1,0 +1,568 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>Window扩展</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<p>Window对象扩展</p>
+
+<pre><code class="language-none">external,chrome,rea,Registry,test,speechSynthesis,caches,ondeviceorientationabsolute,localStorage,sessionStorage,webkitStorageInfo,indexedDB,webkitIndexedDB,ondeviceorientation,ondevicemotion,who,postMessage,blur,focus,close,onautocompleteerror,onautocomplete,onunhandledrejection,onrejectionhandled,applicationCache,performance,onunload,onstorage,onpopstate,onpageshow,onpagehide,ononline,onoffline,onmessage,onlanguagechange,onhashchange,onbeforeunload,onwaiting,onvolumechange,ontoggle,ontimeupdate,onsuspend,onsubmit,onstalled,onshow,onselect,onseeking,onseeked,onscroll,onresize,onreset,onratechange,onprogress,onplaying,onplay,onpause,onmousewheel,onmouseup,onmouseover,onmouseout,onmousemove,onmouseleave,onmouseenter,onmousedown,onloadstart,onloadedmetadata,onloadeddata,onload,onkeyup,onkeypress,onkeydown,oninvalid,oninput,onfocus,onerror,onended,onemptied,ondurationchange,ondrop,ondragstart,ondragover,ondragleave,ondragenter,ondragend,ondrag,ondblclick,oncuechange,oncontextmenu,onclose,onclick,onchange,oncanplaythrough,oncanplay,oncancel,onblur,onabort,isSecureContext,onwheel,onwebkittransitionend,onwebkitanimationstart,onwebkitanimationiteration,onwebkitanimationend,ontransitionend,onsearch,onanimationstart,onanimationiteration,onanimationend,styleMedia,defaultstatus,defaultStatus,screenTop,screenLeft,clientInformation,console,devicePixelRatio,outerHeight,outerWidth,screenY,screenX,pageYOffset,scrollY,pageXOffset,scrollX,innerHeight,innerWidth,screen,navigator,frameElement,parent,opener,top,length,frames,closed,status,toolbar,statusbar,scrollbars,personalbar,menubar,locationbar,history,location,name,document,self,window,stop,open,alert,confirm,prompt,print,requestAnimationFrame,cancelAnimationFrame,captureEvents,releaseEvents,getComputedStyle,matchMedia,moveTo,moveBy,resizeTo,resizeBy,getSelection,find,getMatchedCSSRules,webkitRequestAnimationFrame,webkitCancelAnimationFrame,webkitCancelRequestAnimationFrame,btoa,atob,setTimeout,clearTimeout,setInterval,clearInterval,createImageBitmap,requestIdleCallback,cancelIdleCallback,scroll,scrollTo,scrollBy,fetch,webkitRequestFileSystem,webkitResolveLocalFileSystemURL,openDatabase,TEMPORARY,PERSISTENT,addEventListener,removeEventListener,dispatchEvent</code></pre>
+
+<h2 id="toc_0">只读引用对象相关</h2>
+
+<h3 id="toc_1">localStorage</h3>
+
+<p>localStorage 属性允许你访问一个 local Storage 对象。localStorage 与 sessionStorage 相似。不同之处在于，存储在 localStorage 里面的数据没有过期时间（expiration time），而存储在 sessionStorage 里面的数据会在浏览器会话（browsing session）结束时被清除，即浏览器关闭时。</p>
+
+<h3 id="toc_2">sessionStorage</h3>
+
+<p>sessionStorage 属性允许你访问一个 session Storage 对象。它与 localStorage 相似，不同之处在于 localStorage 里面存储的数据没有过期时间设置，而存储在 sessionStorage 里面的数据在页面会话结束时会被清除。页面会话在浏览器打开期间一直保持，并且重新加载或恢复页面仍会保持原来的页面会话。在新标签或窗口打开一个页面会初始化一个新的会话，这点和 session cookie 的运行方式不同。</p>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API">Web Storage API介绍</a></p>
+
+<h3 id="toc_3">applicationCache</h3>
+
+<p>applicationCache返回window中应用缓存对象的一个引用。开发者可以使用 <code>Application Cache</code>接口设定浏览器缓存的数据并使得数据离线有效。</p>
+
+<p>处于离线状态时，及时用户点击刷新按钮，应用也能正常加载和工作。</p>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Using_the_application_cache">使用应用缓存</a></p>
+
+<h3 id="toc_4">performance</h3>
+
+<p>performance API用于精确度量、控制、增强浏览器的性能表现。这个API为测量网站性能，提供以前没有办法做到的精度。</p>
+
+<p><a href="http://javascript.ruanyifeng.com/bom/performance.html">Performance API</a></p>
+
+<h3 id="toc_5">console</h3>
+
+<p>console对象是Javascript的原生对象，可以输出各种信息用来调试程序，而且还提供了很多额外的方法，供开发者调用。主要用途有两个：</p>
+
+<ul>
+<li>显示网页代码运行时的错误信息</li>
+<li>提供了一个命令行接口，用来与网页代码互动。</li>
+</ul>
+
+<p><a href="http://javascript.ruanyifeng.com/tool/console.html">console对象</a></p>
+
+<h3 id="toc_6">matchMedia</h3>
+
+<p>matchMedia返回一个新的<code>MediaQueryList</code>对象，表示指定的媒体查询字符串解析后的结果。</p>
+
+<pre><code class="language-none">if (window.matchMedia(&quot;(min-width: 400px)&quot;).matches) {
+  /* the view port is at least 400 pixels wide */
+} else {
+  /* the view port is less than 400 pixels wide */
+}</code></pre>
+
+<p><a href="https://drafts.csswg.org/cssom-view/#the-mediaquerylist-interface">媒体查询接口</a></p>
+
+<h3 id="toc_7">navigator</h3>
+
+<p>返回一个navigator对象的引用，可以用它来查询一些关于运行当前脚本的应用程序的相关信息。</p>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/navigator">window.navigator</a></p>
+
+<h3 id="toc_8">document</h3>
+
+<p>Document接口代表在浏览器及服务器中加载任意web页面，也作为web页面内容的入口。</p>
+
+<p>支持所有文档类型的属性和方法，根据文档的类型不同，对文档对象的操作的API也会不一样。</p>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/document">Document类型</a></p>
+
+<h3 id="toc_9">history</h3>
+
+<p>history是一个只读属性，用来获取<code>History</code>对象的引用。</p>
+
+<p><code>History</code>对象提供了操作浏览器会话历史的相关接口。</p>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/History">History</a></p>
+
+<p><a href="https://msdn.microsoft.com/en-us/library/ms535864(VS.85).aspx">history object</a></p>
+
+<p><a href="http://www.w3school.com.cn/jsref/dom_obj_history.asp">History对象</a></p>
+
+<h3 id="toc_10">Location</h3>
+
+<p>location是一个只读属性，返回一个Location对象，包含文档当前地址的相关信息。</p>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location">Location</a></p>
+
+<h2 id="toc_11">其他属性及方法</h2>
+
+<h3 id="toc_12">external</h3>
+
+<p>可以在js中通过window.external.myfunc()来调用浏览器提供的外部方法myfunc。可以让网页内的js脚本中能调用C++代码。</p>
+
+<p>在嵌入了浏览器的工程中，除了IE默认提供的外部方法之外，需要网页的脚本中能调用C++代码，要实现这种交互，就必须实现脚本扩展。实现脚本扩展就是在程序中实现一个IDispatch接口，通过CHtmlView类的OnGetExternal虚函数返回此接口指针,这样就可以在脚本中通过window.external.XXX(关键字window可以省略)来 引用接口暴露的方法或属性(XXX为方法或属性名)。</p>
+
+<p>相关阅读：<a href="http://bbs.csdn.net/topics/200027576">实现脚本扩展</a></p>
+
+<p>tips：Firefox和Chrome也提供了external对象，例如都实现了opensearch的两个外部方法：<code>AddSearchProvider</code>和<code>isSearchProviderInstalled</code>。</p>
+
+<h3 id="toc_13">chrome</h3>
+
+<p>chrome是浏览器提供的一个chrome对象，其中包括app、loadTimes和runtime等相关信息。</p>
+
+<h3 id="toc_14">speechSynthesis</h3>
+
+<p>speechSynthesis()该方法返回一个语音合成对象，这是提供的语音合成功能的相关API。</p>
+
+<h3 id="toc_15">cache</h3>
+
+<p>该只读属性返回与当前的起源相关的<code>CacheStorage</code>对象，允许使用者调用存储资源进行离线使用，并产生请求自定义的相应。</p>
+
+<h3 id="toc_16">indexedDB</h3>
+
+<p>在<code>IDBEnvironment</code>接口的<code>IndexedDB</code>属性为应用程序提供了异步访问索引数据库的功能。</p>
+
+<pre><code class="language-none">var DBOpenRequest = self.indexedDB.open(&quot;toDoList&quot;);</code></pre>
+
+<h3 id="toc_17">postMessage</h3>
+
+<p>window.postMessage是一个用于安全的使用跨源通信的方法，通常在不同页面上的脚本只在这种情况下被允许互相访问，当且仅当他们的页面所处的位置使用相同的协议、端口和主机。</p>
+
+<p>在正确使用的情况下，window.postMessage提供了一个受控的机制来安全地绕过这一限制，用法如下：</p>
+
+<pre><code class="language-none">otherWindow.postMessage(message, targetOrigin);</code></pre>
+
+<h3 id="toc_18">defaultStatus</h3>
+
+<p>defaultStatus属性可设置或返回窗口状态栏中的默认文本。该属性可读可写。</p>
+
+<pre><code class="language-none">window.defaultStatus=sometext</code></pre>
+
+<h3 id="toc_19">clientInformation</h3>
+
+<p>是一个Navigator对象，返回当前浏览器的一些信息。</p>
+
+<h3 id="toc_20">devicePixelRadio</h3>
+
+<p>是一个只读属性，返回的是一个物理像素在当前显示的设备（垂直）上的一个独立像素的比例。</p>
+
+<p><strong>兼容性未知，不推荐使用</strong></p>
+
+<h3 id="toc_21">toolbar</h3>
+
+<p>返回工具栏对象，可以在window中进行切换是否可见。</p>
+
+<h3 id="toc_22">statusbar</h3>
+
+<p>返回状态栏对象，可以在window中进行切换是否可见。</p>
+
+<h3 id="toc_23">scrollbars</h3>
+
+<p>返回滚动条对象。</p>
+
+<h3 id="toc_24">locationbar</h3>
+
+<p>返回地址栏对象。</p>
+
+<h3 id="toc_25">menubar</h3>
+
+<p>返回菜单栏对象。</p>
+
+<h3 id="toc_26">requestAnimationFrame</h3>
+
+<p>window.requestAnimationFrame()这个方法是用来在页面重绘之前，通知浏览器调用一个指定的函数，以满足开发者操作动画的需求。</p>
+
+<p>该方法接收一个函数作为参数，在重绘前进行调用。</p>
+
+<pre><code class="language-none">requestID = window.requestAnimationFrame(callback);               // Firefox 23 / IE10 / Chrome / Safari 7 (incl. iOS)</code></pre>
+
+<p>该函数返回值requestID是一个长整形非零值，作为一个唯一标识符，可以用<code>window.cancelAnimationFrame</code>来取消这个回调函数。</p>
+
+<h3 id="toc_27">captureEvents</h3>
+
+<p>注册窗口捕捉到的指定类型的所有事件。</p>
+
+<p>事件种类包括以下取值：Event.ABORT, Event.BLUR, Event.CLICK, Event.CHANGE, Event.DBLCLICK, Event.DRAGDDROP, Event.ERROR, Event.FOCUS, Event.KEYDOWN, Event.KEYPRESS, Event.KEYUP, Event.LOAD, Event.MOUSEDOWN, Event.MOUSEMOVE, Event.MOUSEOUT, Event.MOUSEOVER, Event.MOUSEUP, Event.MOVE, Event.RESET, Event.RESIZE, Event.SELECT, Event.SUBMIT, Event.UNLOAD.</p>
+
+<pre><code class="language-none">function reg() {
+  window.captureEvents(Event.CLICK);
+  window.onclick = page_click;
+}
+reg();
+function page_click() {
+  alert(&#39;page click event detected!&#39;);
+}</code></pre>
+
+<h3 id="toc_28">releaseEvent</h3>
+
+<p>释放从捕获的特定类型的事件的窗口，用法与captureEvents相同。</p>
+
+<h3 id="toc_29">find</h3>
+
+<p>在页面中搜索制定的字符串。</p>
+
+<pre><code class="language-none">window.find(&quot;字符串&quot;)</code></pre>
+
+<p>语法为：
+<code>
+window.find(aString, aCaseSensitive, aBackwards, aWrapAround,
+            aWholeWord, aSearchInFrames, aShowDialog);
+</code><br>
+其中：</p>
+
+<ul>
+<li>aString：将要搜索的字符串</li>
+<li>aCaseSensitive：布尔值,如果为true,表示搜索是区分大小写的.</li>
+<li>aBackwards：布尔值.如果为true, 表示搜索方向为向上搜索.</li>
+<li>aWrapAround：布尔值.如果为true, 表示为循环搜索.</li>
+<li>aSearchInFrames：布尔值.如果为true, 表示会搜索框架内的文本.</li>
+<li>aShowDialog：布尔值.如果为true, 则会弹出一个搜索对话框.</li>
+</ul>
+
+<p>返回值为一个布尔值，如果搜索到制定的字符串，则返回true，否则返回false。</p>
+
+<h3 id="toc_30">createImageBitmap</h3>
+
+<p>createImageBitmap方法接收各种不同的图像源，并返回其解析为ImageBitmap的promise。 可选源被裁减为源自（SX,SY）与宽度SW和高度SH像素的矩形。</p>
+
+<pre><code class="language-none">createImageBitmap(image, sx, sy, sw, sh[, options]).then(function(response) { ... });</code></pre>
+
+<h3 id="toc_31">requestIdleCallback</h3>
+
+<p>requestIdleCallback方法排队在一个浏览器的空闲期间被调用的函数。</p>
+
+<pre><code class="language-none">var handle = window.requestIdleCallback(callback[, options])</code></pre>
+
+<p>返回值handle是一个无符号整形，可以用<code>window.cancelIdleCallback</code>方法取消。</p>
+
+<h3 id="toc_32">fetch</h3>
+
+<p>fetch方法提供了能够用于操作一部分HTTP管道的javascript接口，例如<code>requests</code>和<code>responses</code>，可以简单的异步的获取资源。</p>
+
+<p>如发起一个fetch的异步请求：</p>
+
+<pre><code class="language-none">var myImage = document.querySelector(&#39;img&#39;);
+
+fetch(&#39;flowers.jpg&#39;)
+.then(function(response) {
+  return response.blob();
+})
+.then(function(myBlob) {
+  var objectURL = URL.createObjectURL(myBlob);
+  myImage.src = objectURL;
+});</code></pre>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch">fetch API</a></p>
+
+<h3 id="toc_33">webkitRequestFileSystem</h3>
+
+<p>文件系统API的接口LocalFileSystem让你访问沙盒文件系统。该方法分由Window和Worker对象来实现的。</p>
+
+<pre><code class="language-none">var requestedBytes = 1024*1024*10; // 10MB
+
+navigator.webkitPersistentStorage.requestQuota (
+    requestedBytes, function(grantedBytes) {  
+        window.requestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler);
+
+    }, function(e) { console.log(&#39;Error&#39;, e); }
+);</code></pre>
+
+
+</body>
+
+</html>
