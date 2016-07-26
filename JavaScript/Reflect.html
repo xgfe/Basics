@@ -1,0 +1,543 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>Reflect</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Reflect</h1>
+
+<p>Reflect 对象提供了若干个能对任意对象进行某种特定的可拦截操作（interceptable operation）的方法。</p>
+
+<h2 id="toc_1">描述</h2>
+
+<p>一个全局的对象，虽然首字母是大写的，但是并不表示它是一个构造函数，所以不能用new运算符来初始化“Reflect对象”，它的所有方法都是静态的。有点类似于Math。</p>
+
+<h2 id="toc_2">方法</h2>
+
+<h3 id="toc_3">Reflect.apply</h3>
+
+<p>对一个函数进行调用操作，关键在于其指定了特定的this对象。使用方法为：</p>
+
+<pre><code>Reflect.apply(fun, target, argvs);</code></pre>
+
+<p>和我们熟知的<code>fun.apply(target,argvs)</code>效果是一样的，使用Reflect更加简洁易懂。
+注意：<code>argvs</code>必须是数组或者类似数组的对象。</p>
+
+<h3 id="toc_4">Reflect.construct</h3>
+
+<p>对构造函数进行初始化，类似于<code>new Xxx()</code>的操作。</p>
+
+<pre><code>var date = Reflect.construct(Date,[2016,7,17]);
+等同于
+var date = new Date(2016,7,17);</code></pre>
+
+<p>该方法有第三个参数，用于修改<code>new.target</code></p>
+
+<pre><code>function someConstructor() {}
+var result = Reflect.construct(Array, [], someConstructor);
+
+Reflect.getPrototypeOf(result); // 输出：someConstructor.prototype
+Array.isArray(result); // true
+可以理解把对象的prototype修改成第三个参数的prototype
+
+function Foo(arg){this.name = arg+&#39;foo&#39;;}
+function Bar(arg){this.age = arg+&#39;bar&#39;;}
+Bar.prototype.show = function(){
+    console.log(this.age);
+}
+var result = Reflect.construct(Foo, [&#39;test&#39;], Bar);
+result.age // ?
+result.name // ?
+result.show() // ?
+result.constructor // ?</code></pre>
+
+<h3 id="toc_5">Reflect.defineProperty</h3>
+
+<p>为对象定义属性和值</p>
+
+<pre><code>var obj = {};
+Reflect.defineProperty(obj, &quot;x&quot;, {value: 7}); // true
+obj.x; // 7
+Reflect.defineProperty(obj, &quot;x&quot;, {value: 8}); // false</code></pre>
+
+<p>类似于<code>Object.defineProperty()</code>，但是会有一个<code>boolean</code>的返回值，表示该值是否被成功定义，而<code>Object.defineProperty()</code>会返回对象或报错</p>
+
+<h3 id="toc_6">Reflect.deleteProperty</h3>
+
+<p>删除对象的某个属性</p>
+
+<pre><code>var obj = { x: 1, y: 2 };
+Reflect.deleteProperty(obj, &quot;x&quot;); // true
+obj; // { y: 2 }</code></pre>
+
+<p>类似于<code>delete obj[xx]</code>，返回<code>boolean</code>值表示是否删除成功</p>
+
+<h3 id="toc_7">Reflect.enumerate</h3>
+
+<p>该方法会返回一个包含有目标对象身上所有可枚举的自身字符串属性以及继承字符串属性的迭代器，for...in 操作遍历到的正是这些属性。</p>
+
+<pre><code>var obj = { x: 1, y: 2 };
+
+for (var name of Reflect.enumerate(obj)) {
+  console.log(name);
+}</code></pre>
+
+<p><span style="color:red"><strong>注意:已弃用</strong></span></p>
+
+<h3 id="toc_8">Reflect.get</h3>
+
+<p>获取对象身上某个属性的值。</p>
+
+<pre><code>// Object
+var obj = { x: 1, y: 2 };
+Reflect.get(obj, &quot;x&quot;); // 1
+// Array
+Reflect.get([&quot;zero&quot;, &quot;one&quot;], 1); // &quot;one&quot;</code></pre>
+
+<p>类似于我们经常使用的获取对象属性的<code>target[name]</code></p>
+
+<h3 id="toc_9">Reflect.set</h3>
+
+<p>设置对象身上某个属性的值。</p>
+
+<pre><code>// Object
+var obj = {};
+Reflect.set(obj, &quot;prop&quot;, &quot;value&quot;); // true
+obj.prop; // &quot;value&quot;
+
+// Array
+var arr = [&quot;duck&quot;, &quot;duck&quot;, &quot;duck&quot;];
+Reflect.set(arr, 2, &quot;goose&quot;); // true
+arr[2]; // &quot;goose&quot;
+
+// 参数只有一个的时候，并不会报错，但是key和value都是undefined
+var obj = {};
+Reflect.set(obj); // true
+Reflect.getOwnPropertyDescriptor(obj, &quot;undefined&quot;);
+// { value: undefined, writable: true, enumerable: true, configurable: true }</code></pre>
+
+<p>类似于<code>target.name = xxx;</code></p>
+
+<h3 id="toc_10">Reflect.getOwnPropertyDescriptor</h3>
+
+<p>返回对象中属性的描述，如果对象中不存在该属性的话，返回<code>undefined</code></p>
+
+<pre><code>Reflect.getOwnPropertyDescriptor({x: &quot;hello&quot;}, &quot;x&quot;);
+// {value: &quot;hello&quot;, writable: true, enumerable: true, configurable: true}</code></pre>
+
+<p>类似于<code>Object.getOwnPropertyDescriptor()</code></p>
+
+<h3 id="toc_11">Reflect.getPrototypeOf</h3>
+
+<p>获取一个对象原型上的属性</p>
+
+<pre><code>Reflect.getPrototypeOf({}); // Object.prototype
+var date = new Date();
+Reflect.getPrototypeOf(date) === Date.prototype; // true</code></pre>
+
+<p>类似于<code>Object.getPrototypeOf()</code></p>
+
+<h3 id="toc_12">Reflect.setPrototypeOf</h3>
+
+<p>设置对象的原型属性或置空</p>
+
+<pre><code>Reflect.setPrototypeOf({}, Object.prototype); // true
+
+// Returns false if target is not extensible.
+Reflect.setPrototypeOf(Object.freeze({}), null); // false</code></pre>
+
+<p>类似于<code>Object.setPrototypeOf()</code></p>
+
+<h3 id="toc_13">Reflect.has</h3>
+
+<p>判断一个对象是否存在某个属性，和 <code>in</code> 运算符 的功能完全相同。</p>
+
+<pre><code>Reflect.has({x: 0}, &quot;x&quot;); // true
+Reflect.has({x: 0}, &quot;y&quot;); // false</code></pre>
+
+<h3 id="toc_14">Reflect.isExtensible</h3>
+
+<p>判断一个对象是否是可扩展的，即是否可以增加新的属性。</p>
+
+<pre><code>var empty = {};
+Reflect.isExtensible(empty); // === true 
+
+Reflect.preventExtensions(empty); 
+Reflect.isExtensible(empty); // === false 
+
+var sealed = Object.seal({}); 
+Reflect.isExtensible(sealed); // === false 
+
+var frozen = Object.freeze({}); 
+Reflect.isExtensible(frozen); // === false</code></pre>
+
+<p>类似于<code>Object.isExtensible()</code>，但是有一点点不同，<code>Reflect.isExtensible</code>的第一个参数必须是对象，否则会报错，而<code>Object.isExtensible()</code>并没有这个限制。</p>
+
+<pre><code>Reflect.isExtensible(1);
+// TypeError: 1 is not an object
+
+Object.isExtensible(1);
+// false</code></pre>
+
+<h3 id="toc_15">Reflect.preventExtensions</h3>
+
+<p>不允许再在对象上新增属性值。用法见<code>Reflect.isExtensible</code>。
+类似于<code>Object.preventExtensions</code>，但是也有不同点，即必须传递对象参数。</p>
+
+<h3 id="toc_16">Reflect.ownKeys</h3>
+
+<p>返回一个包含所有自身属性（<strong>不包含继承属性</strong>）的数组。</p>
+
+<pre><code>Reflect.ownKeys({z: 3, y: 2, x: 1}); 
+// [ &quot;z&quot;, &quot;y&quot;, &quot;x&quot; ]
+
+Reflect.ownKeys([]); // [&quot;length&quot;]
+
+var sym = Symbol.for(&quot;comet&quot;);
+var sym2 = Symbol.for(&quot;meteor&quot;);
+var obj = {[sym]: 0, &quot;str&quot;: 0, &quot;773&quot;: 0, &quot;0&quot;: 0,
+           [sym2]: 0, &quot;-1&quot;: 0, &quot;8&quot;: 0, &quot;second str&quot;: 0};
+Reflect.ownKeys(obj);
+// [ &quot;0&quot;, &quot;8&quot;, &quot;773&quot;, &quot;str&quot;, &quot;-1&quot;, &quot;second str&quot;, Symbol(comet), Symbol(meteor) ]</code></pre>
+
+<p>类似于<code>Object.getOwnPropertyNames</code>，但是更加强大，相当于</p>
+
+<pre><code>Object.getOwnPropertyNames(target).concat(Object.getOwnPropertySymbols(target)).</code></pre>
+
+<h2 id="toc_17">总结</h2>
+
+<p>Reflect比较简单，并没有特别新的东西，只是对原来就有的内容做了些修改（貌似是的）。这样设计的目的是什么？</p>
+
+<ul>
+<li>将<code>Object</code>对象的一些明显属于语言内部的方法（比如<code>Object.defineProperty</code>），放到<code>Reflect</code>对象上。现阶段，某些方法同时在<code>Object</code>和<code>Reflect</code>对象上部署，未来的新方法将只部署在<code>Reflect</code>对象上。</li>
+<li><p>修改某些<code>Object</code>方法的返回结果，让其变得更合理。比如，<code>Object.defineProperty(obj, name, desc)</code>在无法定义属性时，会抛出一个错误，而<code>Reflect.defineProperty(obj, name, desc)</code>则会返回<code>false</code>。</p>
+
+<pre><code>// 老写法
+try {
+    Object.defineProperty(target, property, attributes);
+    // success
+} catch (e) {
+    // failure
+}
+
+// 新写法
+if (Reflect.defineProperty(target, property, attributes)) {
+    // success
+} else {
+    // failure
+}</code></pre></li>
+<li><p>函数化。让<code>Object</code>操作都变成函数行为。某些<code>Object</code>操作是命令式，比如<code>name in obj</code>和<code>delete obj[name]</code>，而<code>Reflect.has(obj, name)</code>和<code>Reflect.deleteProperty(obj, name)</code>让它们变成了函数行为。</p></li>
+<li><p><code>Reflect</code>对象的方法与<code>Proxy</code>对象的方法一一对应，只要是<code>Proxy</code>对象的方法，就能在<code>Reflect</code>对象上找到对应的方法。这就让<code>Proxy</code>对象可以方便地调用对应的<code>Reflect</code>方法，完成默认行为，作为修改行为的基础。也就是说，不管<code>Proxy</code>怎么修改默认行为，你总可以在<code>Reflect</code>上获取默认行为。</p></li>
+<li><p>有了<code>Reflect</code>对象以后，很多操作会更易读。</p>
+
+<pre><code>// 老写法
+Function.prototype.apply.call(Math.floor, undefined, [1.75]) // 1
+
+// 新写法
+Reflect.apply(Math.floor, undefined, [1.75]) // 1</code></pre></li>
+</ul>
+
+
+</body>
+
+</html>
