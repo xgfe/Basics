@@ -1,0 +1,482 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>destructuring</title>
+<style type="text/css">
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+ol,
+ul,
+li,
+img {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+html * {
+  font-family: "ff-din-web-pro-1", "ff-din-web-pro-2", sans-serif;
+  font-size: 16px;
+  line-height: 19.2px;
+  color-profile: sRGB;
+}
+body {
+  margin: 40px 70px;
+}
+p {
+  font-weight: lighter;
+  margin-bottom: 20px;
+}
+strong {
+  font-weight: bold;
+}
+ol,
+ul {
+  margin-left: 2em;
+  margin-bottom: 20px;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-top: 10px;
+}
+li {
+  margin-bottom: 10px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: lighter;
+  text-transform: capitalize;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h2 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h3 {
+  font-size: 23.44px;
+  line-height: 28.128px;
+}
+h4 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h5 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h6 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+img {
+  margin-bottom: 20px;
+}
+h1 img,
+h2 img,
+h3 img,
+h4 img,
+h5 img,
+h6 img,
+p img {
+  margin-bottom: 0;
+}
+pre {
+  margin-bottom: 20px;
+}
+pre,
+code {
+  font-family: monospace;
+}
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 15px;
+}
+blockquote {
+  border-left: 4px solid;
+  padding: 0 15px;
+}
+blockquote > :first-child {
+  margin-top: 0;
+}
+blockquote > :last-child {
+  margin-bottom: 15px;
+}
+h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+h2 {
+  border-bottom: 1px solid;
+}
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: none;
+}
+html * {
+  color: #657b83;
+}
+html body {
+  background-color: #fdf6e3;
+}
+html h1,
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #586e75;
+  border-color: #657b83;
+}
+html a,
+html a:active,
+html a:visited {
+  color: #586e75;
+}
+html a:hover {
+  background-color: #eee8d5;
+}
+html pre {
+  color: #586e75;
+  background-color: #eee8d5;
+}
+html a,
+html a:active,
+html a:visited,
+html code.url {
+  color: #b58900;
+}
+html h1 {
+  color: #b58900;
+}
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #b58900;
+}
+
+@media print {
+  body {
+    margin: 0;
+  }
+  * {
+    color: #000 !important;
+  }
+}
+</style>
+<style type="text/css">
+/**
+ * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
+ * Based on https://github.com/chriskempson/tomorrow-theme
+ * @author Rose Pritchard
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #ccc;
+	font-family: Consolas, Monaco, 'Andale Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #2d2d2d;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+}
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #999;
+}
+
+.token.punctuation {
+	color: #ccc;
+}
+
+.token.tag,
+.token.attr-name,
+.token.namespace,
+.token.deleted {
+	color: #e2777a;
+}
+
+.token.function-name {
+	color: #6196cc;
+}
+
+.token.boolean,
+.token.number,
+.token.function {
+	color: #f08d49;
+}
+
+.token.property,
+.token.class-name,
+.token.constant,
+.token.symbol {
+	color: #f8c555;
+}
+
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword,
+.token.builtin {
+	color: #cc99cd;
+}
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.variable {
+	color: #7ec699;
+}
+
+.token.operator,
+.token.entity,
+.token.url {
+	color: #67cdcc;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+
+.token.inserted {
+	color: green;
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Destructuring</h1>
+
+<p>ES6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。</p>
+
+<h2 id="toc_1">arrays</h2>
+
+<ul>
+<li><p>arrays</p>
+
+<pre><code class="language-javascript">var [a, , , [b], c] = [5, ,null, [6]]; // a: 5, b: 6, c: undefined
+var [a, [[b], c]] = [1, [[2], 3]];  // 可以嵌套： a: 1, b: 2, c: 3</code></pre></li>
+<li><p>string</p>
+
+<pre><code class="language-javascript">var [a, b, c] = &#39;ab&#39;;   //a: &#39;a&#39;, b: &#39;b&#39;, c: undefined
+// 对4个字节存储字符的支持
+var [a, b, c] = &#39;𠮷𠮶&#39;; // a: &#39;𠮷&#39;, b: &#39;𠮶&#39;, c: undefined</code></pre></li>
+<li><p>generator</p>
+
+<pre><code class="language-javascript">var [a, b, c] = (function*() {yield 1; yield 2;}());  // a: 1, b: 2, c: undefined
+
+// generic iterables
+function __createIterableObject(arr, methods) {
+    methods = methods || {};
+    if (typeof Symbol !== &#39;function&#39; || !Symbol.iterator) {
+        return {};
+    }
+    arr.length++;
+    var iterator = {
+        next: function() {
+            return { value: arr.shift(), done: arr.length &lt;= 0 };
+        },
+        &#39;return&#39;: methods[&#39;return&#39;],
+        &#39;throw&#39;: methods[&#39;throw&#39;]
+    };
+    var iterable = {};
+    iterable[Symbol.iterator] = function(){ return iterator; }
+    return iterable;
+}
+var [a, b, c] = __createIterableObject([1, 2]);   // a: 1, b: 2, c: undefined
+var [a, b, c] = Object.create(__createIterableObject([1, 2]));   // a: 1, b: 2, c: undefined</code></pre></li>
+<li><p>解构完成时如果解构对象还未迭代完成, 则会自动调用iterator.return()方法;</p>
+
+<pre><code class="language-javascript">var iter = __createIterableObject([1, 2, 3], {
+    &#39;return&#39;: function(){ console.log(&#39;return called!&#39;); return {}; }
+});
+var [a, b] = iter;</code></pre></li>
+<li><p>末尾的一个逗号会被忽略</p>
+
+<pre><code class="language-javascript">var iter = __createIterableObject([1, 2, 3], {
+    &#39;return&#39;: function(){ console.log(&#39;return called!&#39;); return {}; }
+});
+var [a, b,,] = iter;    // return called!
+
+var iter = __createIterableObject([1, 2, 3], {
+    &#39;return&#39;: function(){ console.log(&#39;return called!&#39;); return {}; }
+});
+var [a, b,,,] = iter;</code></pre></li>
+<li><p>默认值</p>
+
+<pre><code class="language-javascript">var [a, b, c = 3] = [1, 2];                 // a: 1, b: 2, c: 3
+var [a, b, c = a] = [1, 2, undefined];      // a: 1, b: 2, c: 1</code></pre>
+
+<p><strong>解构的值为undefined也会使用默认值</strong></p></li>
+<li><p>数组解构时：解构对象【转化后的对象】不具备Iterator接口，就会报错。eg. 1, false, NaN, undefined, null, {}</p></li>
+</ul>
+
+<h2 id="toc_2">object</h2>
+
+<pre><code class="language-javascript">// object
+var {c, x: d, e} = {c: 7, x: 8};</code></pre>
+
+<ul>
+<li><p>default</p>
+
+<pre><code class="language-javascript">var {a, b = 2, c = 3} = {a: 1, b: undefined};    // a: 1, b: 2, c: 3</code></pre></li>
+<li><p>简单类型会先被装箱</p>
+
+<pre><code class="language-javascript">var {toFixed} = 2;
+var {slice} = &#39;&#39;;
+toFixed === Number.prototype.toFixed;   // true
+slice === String.prototype.slice;       // true</code></pre></li>
+<li><p>可以解析原型链上的属性</p>
+
+<pre><code class="language-javascript">var {a} = Object.create({a: 1});    // a: 1</code></pre></li>
+<li><p>末尾的逗号会被忽略 </p>
+
+<pre><code class="language-javascript">var {a,} = {a:1}; // a: 1</code></pre></li>
+<li><p>解构对象为null和undefined时会报类型错误</p>
+
+<pre><code class="language-javascript">var {a} = null;     // Uncaught TypeError: Cannot match against &#39;undefined&#39; or &#39;null&#39;.
+var {b} = undefined; </code></pre></li>
+<li><p>Computed propertiesc</p>
+
+<pre><code class="language-javascript">var qux = &quot;corge&quot;;
+var { [qux]: grault } = { corge: &quot;garply&quot; };
+grault === &quot;garply&quot;;</code></pre></li>
+</ul>
+
+<h2 id="toc_3">ohters</h2>
+
+<ul>
+<li><p>array和object可相互嵌套</p>
+
+<pre><code class="language-javascript">var [e, {x:f, g}] = [9, {x:10}];
+var {h, x:[i]} = {h:11, x:[12]};
+e === 9 &amp;&amp; f === 10 &amp;&amp; g === undefined &amp;&amp; h === 11 &amp;&amp; i === 12;</code></pre></li>
+</ul>
+
+<h2 id="toc_4">解构触发点</h2>
+
+<ul>
+<li><p>声明</p>
+
+<pre><code class="language-javascript">var [a, b, c] = [1, 2, 3];</code></pre></li>
+<li><p>赋值</p>
+
+<pre><code class="language-javascript">var a, b, c;
+[a, b, c] = [1, 2, 3];</code></pre></li>
+<li><p>for-in循环</p>
+
+<pre><code class="language-javascript">// var [i, j, k] = &#39;qux&#39;
+for(var [i, j, k] in { qux: 1 }) {
+    console.log(i === &quot;q&quot; &amp;&amp; j === &quot;u&quot; &amp;&amp; k === &quot;x&quot;);
+}</code></pre></li>
+<li><p>for-of循环</p>
+
+<pre><code class="language-javascript">// var [i, j, k] = [1, 2, 3];
+for(var [i, j, k] of [[1,2,3]]) {   
+    console.log(i === 1 &amp;&amp; j === 2 &amp;&amp; k === 3);
+}</code></pre></li>
+<li><p>catch语句</p>
+
+<pre><code class="language-javascript">try {
+    throw [1,2];
+} catch([i,j]) {
+    try {
+        throw { k: 3, l: 4 };
+    } catch({k, l}) {
+        console.log(i === 1 &amp;&amp; j === 2 &amp;&amp; k === 3 &amp;&amp; l === 4);
+    }
+}</code></pre></li>
+<li><p>函数调用</p>
+
+<pre><code class="language-javascript">(function({a, x:b, y:e}, [c, d]) {
+    return arguments[0].a === 1 &amp;&amp; arguments[0].x === 2
+        &amp;&amp; !(&quot;y&quot; in arguments[0]) &amp;&amp; arguments[1] + &#39;&#39; === &quot;3,4&quot;;
+}({a:1, x:2}, [3, 4]));
+
+new Function(&quot;{a, x:b, y:e}&quot;, &quot;[c, d]&quot;,
+    &quot;return a === 1 &amp;&amp; b === 2 &amp;&amp; c === 3 &amp;&amp; &quot;
+        + &quot;d === 4 &amp;&amp; e === undefined;&quot;
+)({a:1, x:2}, [3, 4]);</code></pre></li>
+</ul>
+
+<script type="text/javascript">
+self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{};var Prism=function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=self.Prism={util:{encode:function(e){return e instanceof n?new n(e.type,t.util.encode(e.content),e.alias):"Array"===t.util.type(e)?e.map(t.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=t.util.clone(e[r]));return a;case"Array":return e.map(function(e){return t.util.clone(e)})}return e}},languages:{extend:function(e,n){var a=t.util.clone(t.languages[e]);for(var r in n)a[r]=n[r];return a},insertBefore:function(e,n,a,r){r=r||t.languages;var i=r[e];if(2==arguments.length){a=arguments[1];for(var l in a)a.hasOwnProperty(l)&&(i[l]=a[l]);return i}var s={};for(var o in i)if(i.hasOwnProperty(o)){if(o==n)for(var l in a)a.hasOwnProperty(l)&&(s[l]=a[l]);s[o]=i[o]}return t.languages.DFS(t.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=s)}),r[e]=s},DFS:function(e,n,a){for(var r in e)e.hasOwnProperty(r)&&(n.call(e,r,e[r],a||r),"Object"===t.util.type(e[r])?t.languages.DFS(e[r],n):"Array"===t.util.type(e[r])&&t.languages.DFS(e[r],n,r))}},highlightAll:function(e,n){for(var a,r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'),i=0;a=r[i++];)t.highlightElement(a,e===!0,n)},highlightElement:function(a,r,i){for(var l,s,o=a;o&&!e.test(o.className);)o=o.parentNode;if(o&&(l=(o.className.match(e)||[,""])[1],s=t.languages[l]),s){a.className=a.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=a.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var u=a.textContent;if(u){u=u.replace(/^(?:\r?\n|\r)/,"");var g={element:a,language:l,grammar:s,code:u};if(t.hooks.run("before-highlight",g),r&&self.Worker){var c=new Worker(t.filename);c.onmessage=function(e){g.highlightedCode=n.stringify(JSON.parse(e.data),l),t.hooks.run("before-insert",g),g.element.innerHTML=g.highlightedCode,i&&i.call(g.element),t.hooks.run("after-highlight",g)},c.postMessage(JSON.stringify({language:g.language,code:g.code}))}else g.highlightedCode=t.highlight(g.code,g.grammar,g.language),t.hooks.run("before-insert",g),g.element.innerHTML=g.highlightedCode,i&&i.call(a),t.hooks.run("after-highlight",g)}}},highlight:function(e,a,r){var i=t.tokenize(e,a);return n.stringify(t.util.encode(i),r)},tokenize:function(e,n){var a=t.Token,r=[e],i=n.rest;if(i){for(var l in i)n[l]=i[l];delete n.rest}e:for(var l in n)if(n.hasOwnProperty(l)&&n[l]){var s=n[l];s="Array"===t.util.type(s)?s:[s];for(var o=0;o<s.length;++o){var u=s[o],g=u.inside,c=!!u.lookbehind,f=0,h=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var d=r[p];if(r.length>e.length)break e;if(!(d instanceof a)){u.lastIndex=0;var m=u.exec(d);if(m){c&&(f=m[1].length);var y=m.index-1+f,m=m[0].slice(f),v=m.length,k=y+v,b=d.slice(0,y+1),w=d.slice(k+1),N=[p,1];b&&N.push(b);var O=new a(l,g?t.tokenize(m,g):m,h);N.push(O),w&&N.push(w),Array.prototype.splice.apply(r,N)}}}}}return r},hooks:{all:{},add:function(e,n){var a=t.hooks.all;a[e]=a[e]||[],a[e].push(n)},run:function(e,n){var a=t.hooks.all[e];if(a&&a.length)for(var r,i=0;r=a[i++];)r(n)}}},n=t.Token=function(e,t,n){this.type=e,this.content=t,this.alias=n};if(n.stringify=function(e,a,r){if("string"==typeof e)return e;if("Array"===t.util.type(e))return e.map(function(t){return n.stringify(t,a,e)}).join("");var i={type:e.type,content:n.stringify(e.content,a,r),tag:"span",classes:["token",e.type],attributes:{},language:a,parent:r};if("comment"==i.type&&(i.attributes.spellcheck="true"),e.alias){var l="Array"===t.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(i.classes,l)}t.hooks.run("wrap",i);var s="";for(var o in i.attributes)s+=o+'="'+(i.attributes[o]||"")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'" '+s+">"+i.content+"</"+i.tag+">"},!self.document)return self.addEventListener?(self.addEventListener("message",function(e){var n=JSON.parse(e.data),a=n.language,r=n.code;self.postMessage(JSON.stringify(t.util.encode(t.tokenize(r,t.languages[a])))),self.close()},!1),self.Prism):self.Prism;var a=document.getElementsByTagName("script");return a=a[a.length-1],a&&(t.filename=a.src,document.addEventListener&&!a.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)),self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism);
+</script>
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.+/,lookbehind:!0}],string:/("|')(\\\n|\\?.)*?\1/,"class-name":{pattern:/((?:(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":{pattern:/[a-z0-9_]+\(/i,inside:{punctuation:/\(/}},number:/\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,operator:/[-+]{1,2}|!|<=?|>=?|={1,3}|&{1,2}|\|?\||\?|\*|\/|~|\^|%/,ignore:/&(lt|gt|amp);/i,punctuation:/[{}[\];(),.:]/};
+</script>
+<script type="text/javascript">
+Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|false|finally|for|function|get|if|implements|import|in|instanceof|interface|let|new|null|package|private|protected|public|return|set|static|super|switch|this|throw|true|try|typeof|var|void|while|with|yield)\b/,number:/\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|-?Infinity)\b/,"function":/(?!\d)[a-z0-9_$]+(?=\()/i}),Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/,lookbehind:!0}}),Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/<script[\w\W]*?>[\w\W]*?<\/script>/i,inside:{tag:{pattern:/<script[\w\W]*?>|<\/script>/i,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.javascript},alias:"language-javascript"}});
+</script>
+</body>
+
+</html>
