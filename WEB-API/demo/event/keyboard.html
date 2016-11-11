@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+    <script src="../../js/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="col-md-3 form-group">
+    <input type="text" class="form-control input-sm" id="input"/>
+</div>
+<div class="col-md-3 form-group" id="div">
+    <input type="text" class="form-control input-sm" id="text"/>
+
+    <button id="btn">btn keyboard</button>
+    <span id="span" contenteditable="true">this is a span</span>
+
+    <a href="" id="linka">链接</a>
+
+    <div id="id2" style="border: 1px solid #e3e3e3; width: 100px; height: 100px;" tabindex="-2" disabled="true"></div>
+    <div id="id3" style="border: 1px solid #e3e3e3; width: 100px; height: 100px;" contenteditable="true"></div>
+
+</div>
+
+<script>
+    var input = document.getElementById('input');
+    var text = document.getElementById('text');
+
+    input.addEventListener('keydown', function (event) {
+        console.log('keydown');
+        console.log(event.keyCode);
+//        if (event.keyCode == 90 && event.ctrlKey) {
+//            console.log('save');
+//        }
+    });
+
+    input.addEventListener('keypress', function (event) {
+        console.log('keypress');
+        console.log(event.keyCode);
+    });
+
+    input.addEventListener('keyup', function (event) {
+        console.log('keyup');
+        console.log(event.keyCode);
+        if (event.keyCode == 90 && event.ctrlKey) {
+            console.log('save');
+        }
+    });
+
+    text.addEventListener('textInput', function () {
+        console.log('text input');
+    });
+
+    text.addEventListener('change', function () {
+        console.log('change');
+    });
+
+    window.addEventListener('keyup', function (e) {
+        console.log('window keyup');
+    }, true);
+
+    window.addEventListener('keydown', function (e) {
+        console.log('window keydown');
+    }, true);
+
+    window.addEventListener('keypress', function (e) {
+        console.log('window keypress');
+    }, true);
+
+    document.addEventListener('keyup', function (e) {
+        console.log('document keyup');
+    });
+
+    document.addEventListener('keydown', function (e) {
+        console.log('document keydown');
+    });
+
+    document.addEventListener('keypress', function (e) {
+        console.log('document keypress');
+    });
+
+    var div = document.getElementById('div');
+    var btn = document.getElementById('btn');
+    var a = document.getElementById('linka');
+    var span = document.getElementById('span');
+    var id2 = document.getElementById('id2');
+    var id3 = document.getElementById('id3');
+
+    btn.addEventListener('keyup', function (e) {
+        console.log('btn keyup');
+    });
+
+    btn.addEventListener('keydown', function (e) {
+        console.log('btn keydown');
+    });
+
+    btn.addEventListener('keypress', function (e) {
+        console.log('btn keypress');
+    });
+
+    a.addEventListener('keyup', function (e) {
+        console.log('a keyup');
+    });
+
+    a.addEventListener('keydown', function (e) {
+        console.log('a keydown');
+    });
+
+    a.addEventListener('keypress', function (e) {
+        console.log('a keypress');
+    });
+
+    a.addEventListener('focus', function () {
+        console.log('a focus');
+    });
+
+    div.addEventListener('keydown', function (e) {
+        console.log('div keydown');
+    });
+
+    div.addEventListener('keypress', function (e) {
+        console.log('div keypress');
+    });
+
+    div.addEventListener('keyup', function () {
+        console.log('div keyup');
+    });
+
+    span.addEventListener('keydown', function (e) {
+        console.log('span keydown');
+    });
+
+    span.addEventListener('keypress', function (e) {
+        console.log('span keypress');
+    });
+
+    span.addEventListener('keyup', function () {
+        console.log('span keyup');
+    });
+
+    id2.addEventListener('keydown', function (e) {
+        console.log('id2 keydown');
+    });
+
+    id2.addEventListener('keypress', function (e) {
+        console.log('id2 keypress');
+    });
+
+    id2.addEventListener('keyup', function () {
+        console.log('id2 keyup');
+    });
+
+    id2.addEventListener('focus', function () {
+        console.log('id2 focus');
+    });
+
+    id3.addEventListener('keydown', function (e) {
+        console.log('id3 keydown');
+    });
+
+    id3.addEventListener('keypress', function (e) {
+        console.log('id3 keypress');
+    });
+
+    id3.addEventListener('keyup', function () {
+        console.log('id3 keyup');
+    });
+
+    id3.addEventListener('focus', function () {
+        console.log('id3 focus');
+    });
+
+</script>
+</body>
+</html>

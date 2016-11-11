@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>event</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">Event</h1>
+
+<p>Event模型主要包括Event接口本身的描述以及在DOM节点上注册的事件</p>
+
+<h2 id="toc_1">事件流</h2>
+
+<ul>
+<li>事件流描述的是从页面中接收事件的顺序，也可以理解为事件在页面中传播的顺序。事件在整个执行过程中分为三个阶段：事件捕获阶段 =&gt; 事件目标阶段 =&gt; 事件冒泡阶段
+<img src="http://p0.meituan.net/dpnewvc/6e33943e2dfd643b9dc72ed4b9daad0f339829.png" alt="事件流过程"></li>
+</ul>
+
+<h3 id="toc_2">事件捕获</h3>
+
+<ul>
+<li>事件捕获是由Netscape团队提出的一种事件流机制，主要思想是不具体的节点更早接收事件，然后逐级向下传播，最具体的节点最后接收到事件。根据图中的指示就是Window =&gt; Document =&gt; html =&gt; body =&gt; table =&gt; tbody =&gt; tr =&gt; td</li>
+</ul>
+
+<h3 id="toc_3">事件冒泡</h3>
+
+<ul>
+<li>事件冒泡是由微软提出的一种事件流机制，主要思想是由最具体的元素先接收事件，然后逐级向上传播，不具体的节点最后接收事件，根据图中的指示就是td =&gt; tr =&gt; tbody =&gt; table =&gt; body =&gt; html =&gt; Document =&gt; Window</li>
+</ul>
+
+<h3 id="toc_4">事件目标阶段</h3>
+
+<ul>
+<li>事件目标阶段是对事件进行处理，不管是事件捕获和事件冒泡都会经过的阶段。</li>
+</ul>
+
+<h2 id="toc_5">事件处理程序</h2>
+
+<ul>
+<li>响应某个事件的函数就是事件处理程序。W3C DOM标准可以分为DOM0，DOM2，DOM3，由于在DOM1中并没有定义事件的相关内容，所以没有所谓的DOM1事件模型</li>
+</ul>
+
+<h3 id="toc_6">DOM0级事件处理方式</h3>
+
+<ul>
+<li><p>一开始浏览器处理事件的时候只有原始事件模型，通过javascript指定事件处理程序的传统方式，就是将一个函数赋值给一个事件处理属性。在DOM0级事件处理程序中只支持事件冒泡的过程。</p>
+
+<div><pre><code class="language-none">var btn = document.getElementById(&quot;btn&quot;); 
+btn.onclick = function(){}
+btn.onclick = null;   //删除事件，直接设置为null即可</code></pre></div>
+
+<div><pre><code class="language-none">&lt;a href=&quot;http://google.com&quot; onclick=&quot;alert(&#39;123&#39;);&quot;&gt;&lt;/a&gt;</code></pre></div>
+
+<p>以上两种方式同时存在时，上一种在js中定义事件处理程序会覆盖掉后面在html标签定义的事件处理程序</p></li>
+<li><p>优点：简单且具有跨浏览器的优势</p></li>
+<li><p>缺点：一个事件处理程序只能绑定一个函数。</p></li>
+<li><p>实例：</p>
+
+<div><pre><code class="language-none">&lt;!--  由于DOM0级事件只能绑定一个函数，最后的结果是alert出123 --&gt;
+&lt;button class=&quot;btn&quot; id=&quot;btn&quot; onclick=&quot;doClick()&quot;&gt;click me&lt;/button&gt;
+var btn = document.getElementById(&quot;btn&quot;);
+btn.onclick = function(){
+    alert(&#39;123&#39;);
+};
+function doClick() {
+    alert(&#39;456&#39;);
+}</code></pre></div></li>
+</ul>
+
+<h3 id="toc_7">DOM2级事件处理程序</h3>
+
+<ul>
+<li>在DOM2中，当事件发生在节点时，目标元素的事件处理函数就会触发，而且目标元素的每个祖先节点也会有机会处理事件。DOM2级事件处理方式规定了，添加事件处理程序和删除事件处理程序的方法</li>
+</ul>
+
+<h4 id="toc_8">浏览器差异</h4>
+
+<ul>
+<li>IE浏览器</li>
+</ul>
+
+<p>在IE10及以下版本中，只支持事件冒泡，在IE11中同时支持事件捕获与事件冒泡。在IE10及以下版本中，通过以下方法添加和删除事件。</p>
+
+<div><pre><code class="language-none">  element.attachEvent(&quot;on&quot;+ eventName, handler);  //添加事件处理程序
+  element.detachEvent(&quot;on&quot;+ eventName, handler);  //删除事件处理程序</code></pre></div>
+
+<ul>
+<li>非IE浏览器</li>
+</ul>
+
+<p>在IE11及其他非IE浏览器中，同时支持事件捕获和事件冒泡两个过程，通过以下方法添加和删除事件</p>
+
+<div><pre><code class="language-none">  addEventListener(eventName, handler, useCapture);       //添加事件处理程序
+  removeEventListener(eventName, handler, useCapture);    //删除事件处理程序</code></pre></div>
+
+<p>其中的useCapture参数表示是否支持事件捕获，true表示支持事件捕获，false表示支持事件冒泡。默认状态为false</p>
+
+<h4 id="toc_9">共性与不同处以及兼容性处理</h4>
+
+<ul>
+<li>共性</li>
+</ul>
+
+<p>（1）在DOM2级事件处理程序中，不管是IE浏览器还是非IE浏览器都支持对同一个事件绑定多个处理函数</p>
+
+<div><pre><code class="language-none">var handler1 = function (){}
+var handler2 = function (){}
+---------------IE10及以下------------------
+btn.attachEvent(&#39;onclick&#39;, handler1);
+btn.attachEvent(&#39;onclick&#39;, handler2);
+  
+---------------IE11及非IE-----------------
+btn.addEventListener(&#39;click&#39;, handler1);
+btn.addEventListener(&#39;click&#39;, handler2);
+</code></pre></div>
+
+<div><pre><code class="language-none">&lt;!-- 在id为wrap元素上点击会先后alert出123和456 --&gt;
+var wrap = document.getElementById(&#39;wrap&#39;);
+
+wrap.addEventListener(&#39;click&#39;, function() {
+    alert(&#39;123&#39;);
+}, false);
+
+wrap.addEventListener(&#39;click&#39;, function () {
+    alert(&#39;456&#39;);
+}, false);</code></pre></div>
+
+<p>（2）在需要删除绑定的事件时，不能删除掉匿名函数。意思是说添加和删除的必须是同一个函数。</p>
+
+<div><pre><code class="language-none">var wrap = document.getElementById(&#39;wrap&#39;);
+var outer = document.getElementById(&#39;outer&#39;);
+var inner = document.getElementById(&#39;inner&#39;);
+
+var handler = function () {
+    alert(&#39;789&#39;);
+};
+
+// 第一中方式绑定和取消的是同一个函数，因此可以取消绑定的事件
+wrap.addEventListener(&#39;click&#39;, handler, false);
+
+wrap.removeEventListener(&#39;click&#39;, handler);
+
+//第二种方式采取的是匿名函数的形式，则不会取消其绑定的click事件
+wrap.addEventListener(&#39;click&#39;, function () {
+    alert(&#39;123&#39;);
+}, false);
+
+wrap.removeEventListener(&#39;click&#39;, function () {
+
+});</code></pre></div>
+
+<ul>
+<li>区别</li>
+</ul>
+
+<p>（1）在使用attachEvent为同一个事件添加多个事件处理函数时，按照添加的相反顺序执行</p>
+
+<div><pre><code class="language-none">  //以下代码先alert出hello world，后alert出clicked
+  var btn=document.getElementById(&quot;mybtn&quot;);   
+  btn.attachEvent(&quot;onclick&quot;,function(){   
+       alert(&quot;clicked&quot;);   
+  });   
+  btn.attachEvent(&quot;onclick&quot;,function(){  
+       alert(&quot;hello world!&quot;);   
+  }); </code></pre></div>
+
+<p>（2）在使用attachEvent添加的事件处理程序会在全局作用域中运行，因此this指向全局作用域window。而通过addEventListener添加的事件处理程序在指定的元素内部执行，this指向绑定的元素。</p>
+
+<ul>
+<li>兼容性处理</li>
+</ul>
+
+<div><pre><code class="language-none">var EventUtil = {
+    addEventHandler: function(element, type, handler){
+        if(element.addEventListener){
+            element.addEventListener(type, handler);
+        }else if(element.attachEvent){
+            element.attachEvent(&quot;on&quot; + type, handler);
+        }else{
+            element[&quot;on&quot; + type] = handler;
+        }
+    },
+    removeEventHandler:function(element, type, handler){
+        if(element.addEventListener){
+            element.removeEventListener(type, handler);
+        }else if(element.detachEvent){
+            element.detachEvent(&quot;on&quot; + type, handler);
+        }else{
+            element[&quot;on&quot;+type] = null;
+        }
+    }
+}</code></pre></div>
+
+<h4 id="toc_10">事件捕获和事件冒泡处理过程</h4>
+
+<p>根据定义事件的规则不同，事件处理过程也将会不同。如果同时定义了事件捕获和事件冒泡，则会按照先捕获后冒泡的顺序，在目标阶段则按照事件定义的先后顺序执行。</p>
+
+<p>实例：<a href="./demo/event/eventFlow.html">DOM2Event.html</a></p>
+
+<h3 id="toc_11">DOM3级事件处理程序</h3>
+
+<p>DOM3级事件处理程序是在DOM2级事件的基础上重新定义了事件，也添加了一些新的事件。最重要的区别是DOM3允许自定义事件，自定义事件可以由<code>createEvent(&quot;CustomEvent&quot;)</code>方法创建，返回的对象有一个<code>initCustomEvent()</code>。</p>
+
+<p>方法接收如下四个参数。</p>
+
+<ul>
+<li>type：字符串，触发的事件类型，自定义。例如 “keyDown”，“selectedChange”;</li>
+<li>bubble（布尔值）：标示事件是否应该冒泡；</li>
+<li>cancelable(布尔值)：标示事件是否可以取消；</li>
+<li>detail（对象）：任意值，保存在event对象的detail属性中；</li>
+</ul>
+
+<p>可以像分配其他事件一样在DOM中分派创建的自定义事件对象。如：</p>
+
+<div><pre><code class="language-none">var  div = document.getElementById(&quot;myDiv&quot;);
+EventUtil.addEventHandler(div,&quot;myEvent&quot;, function () {
+    alert(&quot;div myEvent!&quot;);
+});
+EventUtil.addEventHandler(document,&quot;myEvent&quot;,function(){
+    alert(&quot;document myEvent!&quot;);
+});
+if(document.implementation.hasFeature(&quot;CustomEvents&quot;,&quot;3.0&quot;)){
+    var e = document.createEvent(&quot;CustomEvent&quot;);
+    e.initCustomEvent(&quot;myEvent&quot;,true,false,&quot;hello world!&quot;);
+    div.dispatchEvent(e);
+}</code></pre></div>
+
+<p>这个例子中创建了一个冒泡事件“myEvent”。而event.detail的值被设置成了一个简单的字符串，然后在div和document上侦听该事件，因为在initCustomEvent中设置了事件冒泡。所以当div激发该事件时，浏览器会将该事件冒泡到document。</p>
+
+<p>实例：</p>
+
+<div><pre><code class="language-none">var myDiv = document.getElementById(&#39;myDiv&#39;);
+EventUtil.addEventHandler(myDiv, &#39;myEvent&#39;, function () {
+    alert(&#39;myDiv clicked&#39;);
+});
+
+EventUtil.addEventHandler(document, &#39;myEvent&#39;, function (e) {
+    alert(&#39;document clicked&#39;);
+    console.log(e);
+});
+
+if(document.implementation.hasFeature(&#39;CustomEvent&#39;, &#39;3.0&#39;)) {
+    var e = document.createEvent(&#39;CustomEvent&#39;);
+    e.initCustomEvent(&#39;myEvent&#39;, true, false, {name: &#39;13&#39;});
+    myDiv.dispatchEvent(e);
+    console.log(e.detail);  // {name: &#39;13&#39;}
+}</code></pre></div>
+
+<h3 id="toc_12">参考资料：</h3>
+
+<p><a href="https://segmentfault.com/a/1190000003497939">https://segmentfault.com/a/1190000003497939</a></p>
+
+<p><a href="http://www.cnblogs.com/zichi/p/4713038.html">http://www.cnblogs.com/zichi/p/4713038.html</a></p>
+
+<h2 id="toc_13">Event本身的属性和方法</h2>
+
+<h3 id="toc_14">构造方法</h3>
+
+<h4 id="toc_15">定义</h4>
+
+<ul>
+<li><p><code>event = new Event(typeArg, eventInit);</code>  </p></li>
+<li><p>其中typeArg表示创建事件的名称，eventInit中有两个参数bubbles，cancelable分别代表是否冒泡，能否被取消</p></li>
+</ul>
+
+<h4 id="toc_16">示例</h4>
+
+<ul>
+<li><p>给document对象添加上新创建的look事件，并自动触发look事件</p>
+
+<div><pre><code class="language-none">&lt;script&gt;
+    var ev = new Event(&#39;look&#39;, {
+        &#39;bubbles&#39;: true,
+        &#39;cancelable&#39;: false
+    });
+
+    document.addEventListener(&#39;look&#39;, function () {
+        console.log(&#39;look event invoke!&#39;);
+    });
+
+    document.dispatchEvent(ev);
+
+&lt;/script&gt;</code></pre></div></li>
+</ul>
+
+<h3 id="toc_17">标准属性</h3>
+
+<h4 id="toc_18">bubbles</h4>
+
+<ul>
+<li><p>bubbles属性返回一个布尔值，代表当前事件是否会向上层DOM元素冒泡.</p></li>
+<li><p>实例：</p>
+
+<div><pre><code class="language-none">&lt;body onload=&quot;load(event)&quot; onkeypress=&quot;load(event)&quot; onkeydown=&quot;load(event)&quot;&gt;
+&lt;button onclick=&quot;doClick(event)&quot;&gt;click me&lt;/button&gt;
+&lt;script&gt;
+    function load(e) {
+        console.log(e.bubbles);   //body的onload事件返回false，表明不能冒泡
+    }
+
+    function doClick(e) {
+        console.log(e.bubbles);   //true
+    }
+&lt;/script&gt;
+&lt;/body&gt;</code></pre></div></li>
+</ul>
+
+<h4 id="toc_19">cancelable</h4>
+
+<ul>
+<li><p>cancelable属性返回一个布尔值，表明事件是否可以被取消。一个事件的默认动作是否被取消，是在该事件初始化时规定的</p></li>
+<li><p>实例：</p>
+
+<div><pre><code class="language-none">var ev = new Event(&#39;look&#39;, {
+    bubbles: true,
+    cancelable: false
+});
+
+var a = document.getElementById(&#39;cancelableA&#39;);
+a.addEventListener(&#39;look&#39;, function (e) {
+    console.log(e.cancelable);   //false
+    e.preventDefault();
+});
+a.dispatchEvent(ev);</code></pre></div></li>
+</ul>
+
+<h4 id="toc_20">target与currentTarget</h4>
+
+<ul>
+<li>event.target总是指向触发事件的元素；event.currentTarget总是指向被绑定事件的句柄元素</li>
+<li><p>target在事件的目标阶段，currentTarget在事件的捕获、冒泡和目标阶段。只有当事件流同时处在目标阶段，target与currentTarget才会同时指向同一个对象。而在捕获和冒泡阶段，target指向当前元素，currentTarget指向当前元素的父级</p></li>
+<li><p>实例：<a href="./demo/event/currentTarget.html">currentTarget.html</a></p></li>
+</ul>
+
+<h4 id="toc_21">defaultPrevented</h4>
+
+<ul>
+<li><p>该属性返回一个布尔值，表明当前事件的默认动作是否取消，也就是是否执行了event.preventDefault()方法</p></li>
+<li><p>实例：</p>
+
+<div><pre><code class="language-none">&lt;a href=&quot;http://www.google.com&quot; onclick=&quot;doPreventDefault(event);&quot;&gt;点击我&lt;/a&gt;
+
+&lt;script&gt;
+    function doPreventDefault(e) {
+        console.log(e.defaultPrevented);   //false
+        e.preventDefault(); 
+        console.log(e.defaultPrevented);  //true
+    }
+
+&lt;/script&gt;</code></pre></div></li>
+</ul>
+
+<h4 id="toc_22">eventPhase</h4>
+
+<ul>
+<li><p>该属性返回一个数字，表示当前事件所处在的整个事件流过程中的某一阶段。根据定义事件的不同</p>
+
+<table>
+<thead>
+<tr>
+<th>常量</th>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Event.NONE</td>
+<td>0</td>
+<td>没有事件处理</td>
+</tr>
+<tr>
+<td>Event.CAPTURING_PHAS</td>
+<td>1</td>
+<td>在事件流的捕获阶段</td>
+</tr>
+<tr>
+<td>Event.AT_TARGET</td>
+<td>2</td>
+<td>在目标阶段</td>
+</tr>
+<tr>
+<td>Event.BUBBLING_PHASE</td>
+<td>3</td>
+<td>在冒泡阶段</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+
+<h4 id="toc_23">isTrusted</h4>
+
+<ul>
+<li><p>返回一个布尔值，表明当前事件是否是由用户行为触发（比如真实的鼠标点击触发的一个click事件），还是由一个脚本生成的。</p></li>
+<li><p>实例：</p>
+
+<div><pre><code class="language-none">&lt;!-- 在outer点击一次时，会产生outer true，wrap true，
+     然后会有outer false和wrap false  --&gt;
+&lt;div id=&quot;wrap&quot;&gt;
+    &lt;div id=&quot;outer&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    wrap.addEventListener(&#39;click&#39;, function (event) {
+        console.log(&#39;wrap &#39; + event.isTrusted);
+        outer.click();
+    });
+
+    outer.addEventListener(&#39;click&#39;, function (event) {
+        console.log(&#39;outer &#39; + event.isTrusted);
+    });
+
+&lt;/script&gt;</code></pre></div></li>
+</ul>
+
+<h4 id="toc_24">type</h4>
+
+<ul>
+<li><p>返回一个字符串，表示该事件对象的事件类型</p></li>
+<li><p>实例：</p>
+
+<div><pre><code class="language-none">&lt;body
+    onkeydown=&quot;getEvtType(event)&quot;
+    onkeyup=&quot;getEvtType(event)&quot;
+    onkeypress=&quot;getEvtType(event)&quot;
+    onmousedown=&quot;getEvtType(event)&quot;
+    onmouseup=&quot;getEvtType(event)&quot;&gt;
+
+&lt;!-- 会随着按键和鼠标按下显示出对应的事件类型名称 --&gt;
+function getEvtType(evt) {
+    currEvent = evt.type;
+    var text = document.getElementById(&quot;Etype&quot;).innerText;
+    document.getElementById(&quot;Etype&quot;).innerHTML = text + currEvent + &#39; | &#39;;
+}</code></pre></div></li>
+</ul>
+
+<h3 id="toc_25">非标准属性</h3>
+
+<p>以下属性都是非标准属性，不建议在生产环境中使用</p>
+
+<h4 id="toc_26">explicitOriginalTarget</h4>
+
+<ul>
+<li>最原始的事件发生节点，有可能是文本节点。（只支持Firefox浏览器）</li>
+</ul>
+
+<h4 id="toc_27">originalTarget</h4>
+
+<ul>
+<li>原始的事件发生节点，可能作为explicitOriginalTarget的父节点。（只支持Firefox浏览器）</li>
+</ul>
+
+<h4 id="toc_28">srcElement</h4>
+
+<ul>
+<li>返回事件触发时的目标元素，用target属性去代替使用。（在Firefox浏览器下不支持）</li>
+</ul>
+
+<h4 id="toc_29">timeStamp</h4>
+
+<ul>
+<li><p>返回从1970年1月1日到事件发生时的时间戳。经过测试后，在Safari下可以返回正确的时间戳。而在Chrome浏览器下返回的是打开页面到首次触发事件的时间间隔。</p></li>
+<li><p>实例：</p>
+
+<div><pre><code class="language-none">&lt;body onkeypress=&quot;getTime(event)&quot;&gt;&lt;/body&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    function getTime(event) {
+        document.getElementById(&quot;time&quot;).firstChild.nodeValue = event.timeStamp;
+    }
+&lt;/script&gt;</code></pre></div></li>
+</ul>
+
+<h3 id="toc_30">方法</h3>
+
+<h4 id="toc_31">createEvent()</h4>
+
+<ul>
+<li><p>创建一个新的事件，随之必须调用自身的initEvent方法进行初始化</p></li>
+<li><p>语法： <code>document.createEvent()</code>，返回一个event对象</p></li>
+</ul>
+
+<h4 id="toc_32">initEvent()</h4>
+
+<ul>
+<li>用来初始化<code>document.createEvent()</code>创建的event对象。已经在web标准中移除，不建议在生产环境中使用，推荐使用Event的构造方法</li>
+</ul>
+
+<h4 id="toc_33">preventDefault()</h4>
+
+<ul>
+<li>如果对象的cancelable属性为true，则该方法可以取消事件的默认动作，但并不能取消冒泡行为；如果cancelable属性为false，则该方法不会有任何效果。 决定一个事件能否被取消是在一个事件被初始化的时候。在事件处理过程中对event的cancelable属性的更改不会起到作用。</li>
+<li><p>实例：</p>
+
+<div><pre><code class="language-none">var myCheckbox = document.getElementById(&#39;myCheckbox&#39;);
+myCheckbox.addEventListener(&#39;click&#39;, function (e) {
+    console.log(e.cancelable);
+    Object.defineProperty(e, &#39;cancelable&#39;, {
+        writable: true
+    });
+    e.cancelable = false;
+    console.log(e.cancelable);
+    e.preventDefault();
+}, false);</code></pre></div></li>
+<li><p>keyCode与charCode参考资料： <a href="http://blog.csdn.net/xqg666666/article/details/41308809">http://blog.csdn.net/xqg666666/article/details/41308809</a></p></li>
+</ul>
+
+<h4 id="toc_34">stopImmediatePropagation</h4>
+
+<ul>
+<li>一个元素的同一个类型的事件可能绑定了多个事件处理程序，根据绑定的顺序先后触发。如果在某个事件处理程序中调用了<code>event. stopImmediatePropagation()</code>方法，则后续的事件处理程序不会被调用</li>
+<li><p>实例：</p>
+
+<div><pre><code class="language-none">&lt;!-- 点击button的时候，控制台打印出first和second，但不会打印出third --&gt;
+var btn = document.getElementById(&#39;btn&#39;);
+
+btn.addEventListener(&#39;click&#39;, function (e) {
+    console.log(&#39;first&#39;);
+});
+
+btn.addEventListener(&#39;click&#39;, function (e) {
+    console.log(&#39;second&#39;);
+    e.stopImmediatePropagation();
+});
+
+btn.addEventListener(&#39;click&#39;, function (e) {
+    console.log(&#39;third&#39;);
+});</code></pre></div></li>
+</ul>
+
+<h4 id="toc_35">stopPropagation</h4>
+
+<ul>
+<li>阻止事件在捕获或者冒泡过程中的传播</li>
+<li>实例：<a href="./demo/event/stopPropagation.html">stopPropagation.html</a></li>
+</ul>
+
+<h3 id="toc_36">常用事件类型</h3>
+
+<h4 id="toc_37">Focus事件</h4>
+
+<h5 id="toc_38">focus事件</h5>
+
+<ul>
+<li>focus事件是一个元素聚焦时被触发（通过点击或者tab键），该事件不冒泡。在document和body上都能进行绑定。在document或者body上绑定focus事件时，并不是点击页面就可以触发而是要页面中的元素获得焦点后才触发。</li>
+<li><p>注意：在document上绑定focus事件时，需要通过以下语法，后面的true不能省略。</p>
+
+<p><code>document.addEventListener(&#39;focus&#39;, function () {}, true);</code></p></li>
+</ul>
+
+<h5 id="toc_39">blur事件</h5>
+
+<ul>
+<li>blur事件是一个元素失去焦点时触发（通过点击或者tab键），该事件不冒泡。与focus具有相同的特性。</li>
+</ul>
+
+<h5 id="toc_40">focusin与focusout</h5>
+
+<ul>
+<li>focusin与focusout事件类似于focus与blur事件，不同的是focusin与focusout支持事件冒泡，这两个方法的出现很好的解决了IE浏览器关于focus与blur事件不支持事件冒泡的问题。</li>
+<li>浏览器支持：Firefox中不支持focusin和focusout事件；chrome和safari中只有通过addEventListener方式绑定事件才能正常使用，其他方式绑定都不行</li>
+<li>实例： <a href="./demo/event/focusinout.html">focusinout.html</a></li>
+</ul>
+
+<h5 id="toc_41">事件执行顺序</h5>
+
+<ul>
+<li>由于Firefox不支持focusin和focusout事件，因此并不在讨论的行列。</li>
+<li>在原声的javascript中，执行顺序是focus &gt; focusin &gt; blur &gt; focusout</li>
+<li>在jquery中，执行的顺序是focusin &gt; focus &gt; focusout &gt; blur</li>
+</ul>
+
+<h5 id="toc_42">focusable 元素</h5>
+
+<ul>
+<li>window,document,document.body等全局元素</li>
+<li>表单元素(form)：input/option/textarea/button</li>
+<li>链接元素(links)：a标签、area标签（必须要带 href 属性，包括 href 属性为空）</li>
+<li>设置了 tabindex 属性</li>
+<li>设置了contenteditable = &quot;true&quot;属性的元素</li>
+</ul>
+
+<h4 id="toc_43">Mouse事件</h4>
+
+<h5 id="toc_44">点击相关</h5>
+
+<ul>
+<li><p>click事件</p>
+
+<ul>
+<li>鼠标点击事件，在click之前还会触发mousedown和mouseup事件。</li>
+<li>关于a标签的click事件，如果想取消a标签的默认行为，在DOM0事件类型下，使用<code>return false</code>，DOM0级推荐使用js下绑定事件的方法；如果在DOM2事件类型下，使用<code>event.preventDefault()</code></li>
+</ul></li>
+<li><p>dblclick事件</p>
+
+<ul>
+<li>鼠标双击事件，如果在同一个元素上同时绑定了click和dblclick事件，则会在dblclick事件触发之前触发click事件。根据浏览器的不同，有些会触发两次click，有些会触发一次click。所以不推荐在同一个元素上同时绑定click与dblclick事件。</li>
+<li>实例： <a href="./demo/event/dbclick.html">dblclick.html</a></li>
+</ul></li>
+<li><p>mousedown和mouseup事件</p>
+
+<ul>
+<li>鼠标按下和释放时触发</li>
+</ul></li>
+<li><p>事件触发顺序</p>
+
+<ul>
+<li> 如果给一个元素同时绑定了四个事件，则触发顺序为：mousedown &gt; mouseup &gt; click &gt; mousedown &gt; mouseup &gt; click &gt; dblclick</li>
+</ul></li>
+</ul>
+
+<h5 id="toc_45">鼠标移动相关</h5>
+
+<ul>
+<li><p>mouseover</p>
+
+<ul>
+<li>鼠标移动到元素之上或者其子元素上</li>
+</ul></li>
+<li><p>mouseout</p>
+
+<ul>
+<li>鼠标移出元素或者移动到其子元素内部</li>
+</ul></li>
+<li><p>mouseenter</p>
+
+<ul>
+<li> 鼠标移动到元素之上，不支持冒泡</li>
+</ul></li>
+<li><p>mouseleave</p>
+
+<ul>
+<li>鼠标移出元素，不支持冒泡</li>
+</ul></li>
+<li><p>mousemove</p>
+
+<ul>
+<li>鼠标在元素内部移动，如果某个元素和其子元素同时绑定了mousemove事件，则在子元素内部移动时会同时触发两个mousemove事件</li>
+</ul></li>
+<li><p>执行顺序</p>
+
+<ul>
+<li>mouseover &gt; mouseenter &gt; mouseout &gt; mouseleave</li>
+<li>当在父子元素中切换时会触发父元素的mouseover和mouseout事件，不会触发mouseenter和mouseleave事件</li>
+</ul></li>
+<li><p>实例： <a href="./demo/event/mouseMove.html">mouseMove.html</a></p></li>
+</ul>
+
+<h5 id="toc_46">滚轮相关</h5>
+
+<ul>
+<li><p>wheel</p>
+
+<ul>
+<li>鼠标滚轮事件，鼠标滚轮朝任何方向滑动都会触发，支持冒泡。</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_47">键盘事件</h4>
+
+<ul>
+<li><p>keydown</p>
+
+<ul>
+<li>键盘按下的事件，支持事件捕获和事件冒泡</li>
+</ul></li>
+<li><p>keypress</p>
+
+<ul>
+<li>针对不同的浏览器处理不同，在Chrome下功能键F1，Ctrl等不会触发keypress；在Firefox下功能键F1，Ctrl等会触发keypress；在Safari下只支持字母键和回车键的keypress事件。支持事件捕获和事件冒泡</li>
+</ul></li>
+<li><p>keyup</p>
+
+<ul>
+<li>键盘按键释放，支持事件捕获和事件冒泡</li>
+</ul></li>
+<li><p>开启输入法后，输入框文本输入问题</p>
+
+<ul>
+<li><p>Chrome浏览器下</p>
+
+<p>在Chrome浏览器下，中文输入法不支持keypress事件，在整个中文输入乃至最后字符进入输入框的过程中都不会触发keypress事件。要想在输入过程中采用keypress监听输入是不可取的。但是在项目中的回车保存的uixInputEdit指令采用keypress比较可行。keydown在中文输入过程中keyCode始终为229</p></li>
+<li><p>Firefox浏览器</p>
+
+<p>在Firefox浏览器下，开启中文输入法后，在整个输入过程中只会触发一次keydown事件，在输入结束后触发一次keyup事件。</p></li>
+<li><p>Safari浏览器下</p>
+
+<p>在Safari浏览器下，同Chrome浏览器是相同的效果，不同的是其对字母键也不支持keypress事件。</p></li>
+</ul></li>
+<li><p>keyCode</p>
+
+<ul>
+<li>在输入过程中，我们经常需要监听输入结果，这个可以通过keyCode来获取，在监听单个按键时通常的建议是在keypress事件上使用keyCode，可以识别字母的大小写，尽量不要在keydown和keyup上使用keyCode；而在进行组合键监听时需要使用keydown或者keyup的keyCode</li>
+</ul></li>
+<li><p>组合键  </p>
+
+<ul>
+<li><p>采用keyup事件，通过keyCode和ctrlKey，shiftKey，altKey来进行组合</p>
+
+<div><pre><code class="language-none">if (event.keyCode == 90 &amp;&amp; event.ctrlKey) {
+    console.log(&#39;save&#39;);
+}</code></pre></div></li>
+</ul></li>
+<li><p>textInput事件</p>
+
+<ul>
+<li>textInput事件是DOM3后支持的，主要用来替换keypress，与keypress的差别是其添加了对中文输入法的支持，每次输入完成后会触发一次textInput事件。但是textInput事件只在可编辑区域内才能触发例如text，textarea等，目前也只在Chrome和Safari下和IE9以上的浏览器才支持。 </li>
+</ul></li>
+<li><p>实例：<a href="./demo/event/keyboard.html">keyboard.html</a></p></li>
+<li><p>支持键盘事件的元素</p>
+
+<ul>
+<li>window,document,document.body等全局元素</li>
+<li>表单元素(form)：input/option/textarea/button</li>
+<li>链接元素(links)：a标签、area标签（必须要带 href 属性，并且href 属性不能为空）</li>
+<li>子元素获得焦点的父元素，比如一个div内部的input元素，获得焦点后，键盘事件会冒泡到父元素上</li>
+<li>设置了 tabindex 属性</li>
+<li>设置了contenteditable = &quot;true&quot;属性的元素</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_48">拖拽事件</h4>
+
+<h5 id="toc_49">拖放基础</h5>
+
+<p>在一个web页面中，有一些默认的可拖拽元素，包括选中的文本，image图片和超链接。除了这些元素外，其他元素默认是不可拖拽的，为了能让其他元素也能拖拽，必须进行以下三步：</p>
+
+<ul>
+<li>设置元素的draggable属性为true</li>
+<li>为dragstart事件添加侦听</li>
+<li>在侦听中添加侦听数据</li>
+</ul>
+
+<p>在拖拽过程中发生的事件：</p>
+
+<ul>
+<li><p>发生于拖拽目标的事件</p>
+
+<ul>
+<li>dragstart：用户开始拖拽目标元素，一般在这个阶段会设置与拖拽相关的信息，此时使用<code>dataTransfer.setData</code>方法存储拖拽数据</li>
+<li>drag：在拖拽过程中触发的事件</li>
+<li>dragend：拖动完毕后触发的事件，不管成功与否都会执行。例如按下ESC键后拖拽结束同样会触发此事件</li>
+</ul></li>
+<li><p>发生于放置目标的事件</p>
+
+<ul>
+<li>dragenter：拖拽的元素进入可放置范围内触发，只会在进入区域时执行一次</li>
+<li>dragover：拖动元素在可放置区域上面触发</li>
+<li>dragleave：拖动元素离开可放置区域范围时触发</li>
+<li>drop：拖动元素放置后触发。当用户取消了拖拽操作时将不触发，例如按下了ESC键或者在非可放置区域内释放了鼠标</li>
+</ul></li>
+</ul>
+
+<p>拖拽通常有以下几个步骤：</p>
+
+<ul>
+<li><p>定义可拖动的目标。将希望拖动的元素的draggable属性设为true</p>
+
+<div><pre><code class="language-none">&lt;div draggable=&quot;true&quot; ondragstart=&quot;dragStart(event)&quot;&gt;
+    This text &lt;strong&gt;may&lt;/strong&gt; be dragged.
+&lt;/div&gt;</code></pre></div></li>
+<li><p>定义被拖动的数据，可能会有多种不同的格式，例如文本、图片、URL链接等。使用setData()方法在dataTransfer中设置数据。需要提供两个参数：数据类型和数据值。例如</p>
+
+<div><pre><code class="language-none">var dt = event.dataTransfer;
+dt.setData(&quot;application/x-bookmark&quot;, bookmarkString);
+dt.setData(&quot;text/uri-list&quot;, &quot;http://www.mozilla.org&quot;);
+dt.setData(&quot;text/plain&quot;, &quot;http://www.mozilla.org&quot;);</code></pre></div>
+
+<p>也可以通过clearData()方法清除存储的数据，如果没有传递参数则清除所有存储的数据。那么后续的拖拽行为也不会触发</p>
+
+<div><pre><code class="language-none">event.dataTransfer.clearData(&quot;text/uri-list&quot;);</code></pre></div></li>
+<li><p>允许设置的拖放效果</p>
+
+<p>在拖拽行为发生时，会从拖拽的目标处产生一个半透明的图片。该图片在拖拽过程中会随着鼠标指针移动。默认情况下图片的内容就是拖动内容在页面上的显示状态。我们也可以通过<code>setDragImage</code>方法自定义拖拽时的效果。以下例子就是自定义拖拽时的图片</p>
+
+<div><pre><code class="language-none">var img = document.createElement(&#39;img&#39;);
+img.src = &#39;http://pic2.52pk.com/files/120908/1288606_103339_1_lit.jpg;
+e.dataTransfer.setDragImage(img, 0, 0);</code></pre></div></li>
+<li><p>定义拖放结束后放置的区域。默认情况下，浏览器会组织任何向HTML元素的拖拽行文，所以要使一个元素成为可放置区域，必须组织浏览器的默认行为，这需要在dragenter和dragover事件中进行监听</p>
+
+<div><pre><code class="language-none">placeElement.addEventListener(&#39;dargenter&#39;, function(event){
+    event.preventDeafult();
+});
+
+dragElement.addEventListener(&#39;dragover&#39;, function(event){
+    event.preventDefault();
+});</code></pre></div></li>
+<li><p>在drop时进行一些数据处理</p>
+
+<div><pre><code class="language-none">var text = e.dataTransfer.getData(&#39;text/plain&#39;);
+e.target.textContent = text;</code></pre></div></li>
+</ul>
+
+<p>实现将列表内容拖拽进垃圾箱的一次完整演示</p>
+
+<ul>
+<li><p>创建一个可拖拽对象，这里为一个列表</p>
+
+<div><pre><code class="language-none">  &lt;div class=&quot;dragbox&quot;&gt;
+     &lt;div class=&quot;draglist&quot; title=&quot;拖拽我&quot; draggable=&quot;true&quot;&gt;列表1&lt;/div&gt;
+     &lt;div class=&quot;draglist&quot; title=&quot;拖拽我&quot; draggable=&quot;true&quot;&gt;列表2&lt;/div&gt;
+     &lt;div class=&quot;draglist&quot; title=&quot;拖拽我&quot; draggable=&quot;true&quot;&gt;列表3&lt;/div&gt;
+     &lt;div class=&quot;draglist&quot; title=&quot;拖拽我&quot; draggable=&quot;true&quot;&gt;列表4&lt;/div&gt;
+     &lt;div class=&quot;draglist&quot; title=&quot;拖拽我&quot; draggable=&quot;true&quot;&gt;列表5&lt;/div&gt;
+     &lt;div class=&quot;draglist&quot; title=&quot;拖拽我&quot; draggable=&quot;true&quot;&gt;列表6&lt;/div&gt;
+  &lt;/div&gt;</code></pre></div></li>
+<li><p>给dragstart设置事件监听器来存储拖拽数据</p>
+
+<div><pre><code class="language-none">  eleDrags[i].ondragstart = function (ev) {
+     /*拖拽开始*/
+     //拖拽效果
+     ev.dataTransfer.effectAllowed = &quot;move&quot;;
+     ev.dataTransfer.setData(&quot;text&quot;, ev.target.innerHTML);
+     ev.dataTransfer.setDragImage(ev.target, 0, 0);
+     eleDrag = ev.target;
+     return true;
+  }; </code></pre></div></li>
+<li><p>给dragenter设置事件监听程序，设置拖拽目标进入时的行为</p>
+
+<div><pre><code class="language-none">eleDustbin.ondragenter = function (ev) {
+    /*拖拽元素进入目标元素头上的时候*/
+    this.style.color = &quot;#ffffff&quot;;
+    return true;
+};</code></pre></div></li>
+<li><p>给dragover设置事件箭筒程序，用来确定给用户的反馈信息，如果需要drop事件触发，则必须event.preventDefault()</p>
+
+<div><pre><code class="language-none">eleDustbin.ondragover = function (ev) {
+    /*拖拽元素在目标元素头上移动的时候*/
+    ev.preventDefault();
+}        </code></pre></div></li>
+<li><p>drop事件监听程序</p>
+
+<div><pre><code class="language-none">eleDustbin.ondrop = function (ev) {
+    /*拖拽元素进入目标元素头上，同时鼠标松开的时候*/
+    if (eleDrag) {
+        var text = document.createElement(&#39;text&#39;);
+        text.innerHTML = &#39;&lt;strong&gt;&quot;&#39; + eleDrag.innerHTML + &#39;&quot;&lt;/strong&gt;被扔进了垃圾箱 &lt;br/&gt;&#39;;
+        eleRemind.appendChild(text);
+        eleDrag.parentNode.removeChild(eleDrag);
+    }
+    this.style.color = &quot;#000000&quot;;
+    return false;
+};</code></pre></div></li>
+<li><p>dragend事件监听程序</p>
+
+<div><pre><code class="language-none">eleDrags[i].ondragend = function (ev) {
+    /*拖拽结束，清空存储的拖拽数据*/
+    ev.dataTransfer.clearData(&quot;text&quot;);
+    eleDrag = null;
+    return false
+};</code></pre></div></li>
+</ul>
+
+<h4 id="toc_50">移动端事件</h4>
+
+<p>移动端事件主要指的是TouchEvent，这类事件用来响应用户对触摸屏或者触摸板的操作。每个touch对象代表一个触点，每个触点都由其位置，大小，形状，压力大小和目标element描述。</p>
+
+<h5 id="toc_51">接口</h5>
+
+<ul>
+<li><p>TouchEvent</p>
+
+<p>代表当触摸行为在触摸平面发生变化的事件</p></li>
+<li><p>Touch</p>
+
+<p>代表用户与触摸平面的一个触点</p>
+
+<div><pre><code class="language-none">{
+    screenX: 511, 
+    screenY: 400,//触点相对于屏幕左边沿的Y坐标
+    clientX: 244.37899780273438, 
+    clientY: 189.3820037841797,//相对于可视区域
+    pageX: 244.37, 
+    pageY: 189.37,//相对于HTML文档顶部，当页面有滚动的时候与clientX=Y 不等
+    force: 1,//压力大小，是从0.0(没有压力)到1.0(最大压力)的浮点数
+    identifier: 1036403715,//一次触摸动作的唯一标识符
+    radiusX: 37.565673828125, //能够包围用户和触摸平面的接触面的最小椭圆的水平轴(X轴)半径
+    radiusY: 37.565673828125,
+    rotationAngle: 0,//它是这样一个角度值：由radiusX 和 radiusY 描述的正方向的椭圆，需要通过顺时针旋转这个角度值，才能最精确地覆盖住用户和触摸平面的接触面
+    target: {} // 此次触摸事件的目标element
+}</code></pre></div></li>
+<li><p>TouchList</p>
+
+<p>代表一系列的Touch；因为用户可能同时会有多个手指触摸平面。例如<code>event.changedTouches</code>的结果返回的就是<code>TouchList</code>。针对不同事件类型，<code>event.changedTouches</code>返回的结果不同，如下所示：</p>
+
+<ul>
+<li>在touchstart事件上，结果是将要成为触摸点的集合</li>
+<li>在touchmove事件上，结果是自从上次move事件后已经改变的触摸点的集合</li>
+<li>在touchend事件上，结果是已经从屏幕上删除的触摸点的集合</li>
+</ul></li>
+<li><p>DocumentTouch</p>
+
+<p>包含一些创建Touch对象和TouchList对象的便捷方法</p></li>
+</ul>
+
+<h5 id="toc_52">触摸事件TouchEvent</h5>
+
+<ul>
+<li><p>touchstart</p>
+
+<p>用户在触摸屏上放置一个触点时触发。事件的目标element就是触点位置上的目标element。</p></li>
+<li><p>touchend</p>
+
+<p>一个触点被用户从触摸屏删除时触发。当触点移除屏幕外面时也将触发，例如用户手指划出屏幕边缘。事件的目标element和这个touchend对应的touchstart的目标element相同，哪怕touchend事件触发时，触点已经移除了该element。</p></li>
+<li><p>touchmove</p>
+
+<p>用户在触摸平面上移动时触发。事件的目标element和对应的touchstart对应的目标元素相同，哪怕当touchmove事件触发时已经移除了该element</p></li>
+<li><p>touchcancel</p>
+
+<p>触点由于某些原因被中断触发，有以下几种可能：</p>
+
+<ul>
+<li>由于某个事件取消了触摸，例如在触摸过程中弹出了模态框</li>
+<li>触点离开了文档窗口，进入了浏览器界面元素、插件或者其他外部内容区域</li>
+<li>当用户产生的触点个数超过设备支持的个数，会导致TouchList中最早的Touch对象被取消</li>
+</ul></li>
+<li><p>如果同时绑定了touch事件和鼠标事件，则在touch事件后会触发鼠标事件，为了消除鼠标事件带来的影响一般会使用<code>event.preventDefault()</code>来取消鼠标的默认事件</p></li>
+</ul>
+
+<h5 id="toc_53">完整的触摸事件的例子-使用canvas进行画图</h5>
+
+<ul>
+<li><p>实例： <a href="./demo/event/touchCanvas.html">touchCanvas.html</a></p></li>
+<li><p>创建一个canvas画布</p>
+
+<div><pre><code class="language-none">&lt;canvas id=&quot;canvas&quot; width=&quot;600&quot; height=&quot;600&quot; style=&quot;border: 1px solid black;&quot;&gt;
+你的浏览器不支持canvas
+&lt;/canvas&gt;</code></pre></div></li>
+<li><p>设置事件监听器</p>
+
+<p>在页面加载时，给canvas注册触摸事件</p>
+
+<div><pre><code class="language-none">function startup() {
+    var canvas = document.getElementById(&#39;canvas&#39;);
+    canvas.addEventListener(&#39;touchstart&#39;, touchStart, false);
+    canvas.addEventListener(&#39;touchmove&#39;, touchMove, false);
+    canvas.addEventListener(&#39;touchend&#39;, touchEnd, false);
+    canvas.addEventListener(&#39;touchleave&#39;, touchLeave, false);
+    console.log(&#39;initialize&#39;);
+}</code></pre></div></li>
+<li><p>跟踪新的触摸行为</p>
+
+<p>由于在触摸过程中，触摸点会频繁的变换，使用一个数组来存放当前触摸点的集合</p>
+
+<div><pre><code class="language-none">//跟踪正在进行的触摸点
+var ongoingTouches = new Array();</code></pre></div>
+
+<p>给canvas绑定touchstart事件，当用户触摸屏幕时，触发touchstart事件，增加一个触摸点至ongoingTouches中</p>
+
+<div><pre><code class="language-none">function touchStart(event) {
+    event.preventDefault();
+    var canvas = document.getElementById(&#39;canvas&#39;);
+    var ctx = canvas.getContext(&#39;2d&#39;);
+
+    var touches = event.changedTouches;
+    for (var i = 0; i &lt; touches.length; i++) {
+        ongoingTouches.push(touches[i]);
+        var color = &#39;#0000ff&#39;;
+        ctx.strokeStyle = color;
+        ctx.fillRect(touches[i].pageX - 2, touches[i].pageY - 2, 1, 1);
+    }
+}</code></pre></div></li>
+<li><p>触摸移动时绘制图形</p>
+
+<div><pre><code class="language-none">function touchMove(event) {
+    event.preventDefault();
+    var canvas = document.getElementById(&#39;canvas&#39;);
+    var ctx = canvas.getContext(&#39;2d&#39;);
+    var touches = event.changedTouches;
+    ctx.lineWidth = 4;
+
+    for (var i = 0; i &lt; touches.length; i++) {
+        var color = &#39;#00ffff&#39;;
+        var idx = ongoingTouchIndexById(touches[i].identifier);
+
+        ctx.strokeStyle = color;
+        // beginPath开始一条路径或者重置当前路径
+        ctx.beginPath();
+        // moveTo将一个新的子路径的起始点移动到(x,y)坐标
+        ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
+        // lineTo使用直线连接子路径到(x,y)坐标,这个方法并不会真正绘制
+        ctx.lineTo(touches[i].pageX, touches[i].pageY);
+        // 绘制当前的路径
+        ctx.stroke();
+        //改变当前的触摸点的位置
+        ongoingTouches.splice(idx, 1, touches[i]);
+    }
+}</code></pre></div></li>
+<li><p>触摸行为结束时</p>
+
+<p>当触摸行为结束时，绘制最后一条线段，然后删除行为结束的触摸点</p>
+
+<div><pre><code class="language-none">function touchEnd(event) {
+    event.preventDefault();
+    var canvas = document.getElementById(&#39;canvas&#39;);
+    var ctx = canvas.getContext(&#39;2d&#39;);
+    var touches = event.changedTouches;
+
+    ctx.lineWidth = 4;
+
+    for (var i = 0; i &lt; touches.length; i++) {
+        var color = &#39;#00ffff&#39;;
+        var idx = ongoingTouchIndexById(touches[i].indentifier);
+
+        ctx.strokeStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(ongoingTouches[i].pageX, ongoingTouches[i].pageY);
+        ctx.lineTo(touches[i].pageX, touches[i].pageY);
+        // 删除掉行为结束的触摸点
+        ongoingTouches.splice(idx, 1);
+    }
+}</code></pre></div></li>
+</ul>
+
+
+
+
+</body>
+
+</html>

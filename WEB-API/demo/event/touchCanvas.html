@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="startup()">
+
+<canvas id="canvas" width="600" height="600" style="border: 1px solid black;">
+    你的浏览器不支持canvas
+</canvas>
+
+<script>
+    function startup() {
+        var canvas = document.getElementById('canvas');
+        canvas.addEventListener('touchstart', touchStart, false);
+        canvas.addEventListener('touchmove', touchMove, false);
+        canvas.addEventListener('touchend', touchEnd, false);
+        canvas.addEventListener('touchleave', touchLeave, false);
+        console.log('initialize');
+    }
+
+    //跟踪正在进行的触摸点
+    var ongoingTouches = new Array();
+
+    function touchStart(event) {
+        event.preventDefault();
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        var touches = event.changedTouches;
+        for (var i = 0; i < touches.length; i++) {
+            ongoingTouches.push(touches[i]);
+            var color = '#0000ff';
+            ctx.strokeStyle = color;
+            ctx.fillRect(touches[i].pageX - 2, touches[i].pageY - 2, 1, 1);
+        }
+    }
+
+    function touchMove(event) {
+        event.preventDefault();
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var touches = event.changedTouches;
+        ctx.lineWidth = 4;
+
+        for (var i = 0; i < touches.length; i++) {
+            var color = '#00ffff';
+            var idx = ongoingTouchIndexById(touches[i].identifier);
+
+            ctx.strokeStyle = color;
+            //beginPath开始一条路径或者重置当前路径
+            ctx.beginPath();
+            // moveTo将一个新的子路径的起始点移动到(x,y)坐标
+            ctx.moveTo(ongoingTouches[idx].pageX, ongoingTouches[idx].pageY);
+            // lineTo使用直线连接子路径到(x,y)坐标,这个方法并不会真正绘制
+            ctx.lineTo(touches[i].pageX, touches[i].pageY);
+            // 绘制当前的路径
+            ctx.stroke();
+            //改变当前的触摸点的位置
+            ongoingTouches.splice(idx, 1, touches[i]);
+        }
+    }
+
+    function touchEnd(event) {
+        event.preventDefault();
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var touches = event.changedTouches;
+
+        ctx.lineWidth = 4;
+
+        for (var i = 0; i < touches.length; i++) {
+            var color = '#00ffff';
+            var idx = ongoingTouchIndexById(touches[i].indentifier);
+
+            ctx.strokeStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(ongoingTouches[i].pageX, ongoingTouches[i].pageY);
+            ctx.lineTo(touches[i].pageX, touches[i].pageY);
+            // 删除掉行为结束的触摸点
+            ongoingTouches.splice(idx, 1);
+        }
+    }
+
+    function ongoingTouchIndexById(identifier) {
+//        var ids = ongoingTouches.filter(function (value, index) {
+//            if(value.identifier === identifier){
+//                return index + '';
+//            }
+//        });
+//        console.log(ids);
+        for(var i = 0; i < ongoingTouches.length; i++){
+            if(ongoingTouches[i].identifier === identifier){
+                return i;
+            }
+        }
+    }
+
+    function touchLeave(event) {
+        console.log('leave');
+    }
+
+//    setTimeout(function(){
+//        alert('123');
+//    }, 2000);
+</script>
+
+</body>
+</html>

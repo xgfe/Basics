@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .outer {
+            width: 300px;
+            height: 300px;
+            background-color: #2e6da4;
+            padding: 50px;
+        }
+
+        .inner {
+            width: 200px;
+            height: 200px;
+            background-color: #000000;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="outer" id="outer">
+        <div class="inner" id="inner"></div>
+
+    </div>
+
+    <script>
+        var outer = document.getElementById('outer');
+        var inner = document.getElementById('inner');
+
+        outer.addEventListener('mouseover', function () {
+            console.log('outer mouseover');
+        });
+
+        outer.addEventListener('mouseout', function () {
+            console.log('outer mouseout');
+        });
+
+        outer.addEventListener('mouseenter', function () {
+            console.log('outer mouseenter');
+        });
+
+        outer.addEventListener('mouseleave', function () {
+            console.log('outer mouseleave');
+        });
+
+        outer.addEventListener('mousemove', function () {
+            console.log('outer mousemove');
+        });
+
+        inner.addEventListener('mouseover', function (e) {
+            console.log('inner mouseover');
+            e.stopPropagation();
+        });
+
+        inner.addEventListener('mouseout', function () {
+            console.log('inner mouseout');
+        });
+
+        inner.addEventListener('mouseenter', function () {
+            console.log('inner mouseenter');
+        });
+
+        inner.addEventListener('mouseleave', function () {
+            console.log('inner mouseleave');
+        });
+
+        inner.addEventListener('mousemove', function () {
+            console.log('inner mousemove');
+        });
+
+    </script>
+</body>
+</html>

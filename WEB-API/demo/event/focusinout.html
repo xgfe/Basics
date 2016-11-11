@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+    <title></title>
+    <style>
+        #wrap {
+            width: 500px;
+            height: 500px;
+            background: orange;
+        }
+        #outer {
+            position: relative;
+            top: 50px;
+            left: 50px;
+            width: 300px;
+            height: 300px;
+            background: #eeddff;
+        }
+        #inner {
+            position: relative;
+            top: 25px;
+            left:25px;
+            width: 100px;
+            height: 100px;
+            background: #44ddff;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="wrap">
+    <div class="">
+        <div class="form-group">
+            <input type="text" class="form-control input-sm">
+        </div>
+    </div>
+    <div id="outer">
+        <div class="">
+            <div class="form-group">
+                <input type="text" class="form-control input-sm">
+            </div>
+        </div>
+        <div id="inner">
+            <div class="">
+                <div class="form-group">
+                    <input type="text" class="form-control input-sm">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var wrap = document.getElementById('wrap');
+    var outer = document.getElementById('outer');
+    var inner = document.getElementById('inner');
+
+    wrap.addEventListener('focusin',function(){
+        console.log('wrap');
+    },true);
+    outer.addEventListener('focusin',function(){
+        console.log('outer');
+    },true);
+    inner.addEventListener('focusin',function(){
+        console.log('inner');
+    },true);
+
+    wrap.addEventListener('focusin',function(){
+        console.log('123');
+    },false);
+    outer.addEventListener('focusin',function(){
+        console.log('456');
+    },false);
+    inner.addEventListener('focusin',function(){
+        console.log('789');
+    },false);
+
+    wrap.addEventListener('focusout',function(){
+        console.log('blur wrap');
+    },true);
+    outer.addEventListener('focusout',function(){
+        console.log('blur outer');
+    },true);
+    inner.addEventListener('focusout',function(){
+        console.log('blur inner');
+    },true);
+
+    wrap.addEventListener('focusout',function(){
+        console.log('blur 123');
+    },false);
+    outer.addEventListener('focusout',function(){
+        console.log('blur 456');
+    },false);
+    inner.addEventListener('focusout',function(){
+        console.log('blur 789');
+    },false);
+
+
+</script>
+
+</body>
+</html>

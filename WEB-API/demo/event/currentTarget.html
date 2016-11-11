@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="n5" style="height: 150px; background: #333;">
+        <div id="n4">
+            <p id="n6">我是n6内的p标签内容</p>
+            <div id="n1" style="height: 100px; background: #ddd;" >
+                <br>
+                <p id="n2" style="background: #999;" >我是n2内的P标签内容<br>
+                    <span id="n3" style="background: #fff;" >我是n2内的span标签内容</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var divs = document.getElementsByTagName('div');
+        for(var i = 0; i < divs.length; i++) {
+            divs[i].addEventListener('click', function (event) {
+                alert("最初触发事件的是:" + event.target.tagName + "#" + event.target.id);
+                alert("currentTarget:" + event.currentTarget.id);
+            }, true);
+        }
+
+
+    </script>
+
+</body>
+</html>

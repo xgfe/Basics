@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #wrap {
+            width: 200px;
+            height: 200px;
+            background: orange;
+        }
+        #outer {
+            position: relative;
+            top: 50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            background: #eeddff;
+        }
+        #inner {
+            position: relative;
+            top: 25px;
+            left:25px;
+            width: 50px;
+            height: 50px;
+            background: #44ddff;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="wrap">
+    <div id="outer">
+        <div id="inner"></div>
+    </div>
+</div>
+
+<script>
+
+    var wrap = document.getElementById('wrap');
+    var outer = document.getElementById('outer');
+    var inner = document.getElementById('inner');
+
+    wrap.addEventListener('click', function (event) {
+        alert('789');
+    }, false);
+    outer.addEventListener('click',function(event){
+        alert('456');
+        event.stopPropagation();
+    },false);
+    inner.addEventListener('click',function(event){
+        alert('123');
+    },false);
+    wrap.addEventListener('click',function(event){
+        alert('wrap');
+    },true);
+    outer.addEventListener('click',function(event){
+        alert('outer');
+        event.stopPropagation();
+    },true);
+    inner.addEventListener('click',function(event){
+        alert('inner');
+        event.stopPropagation();
+    },true);
+
+</script>
+
+</body>
+</html>
