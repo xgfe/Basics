@@ -1,0 +1,558 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>XMLHttpRequest（上）</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+    -webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+    table, pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">XMLHttpRequest（上）</h1>
+
+<p>XMLHttpRequest 是一个 JavaScript 对象，通过它,你可以很容易的取回一个URL上的资源数据. 尽管名字里有XML, 但 XMLHttpRequest 可以取回所有类型的数据资源，并不局限于XML。我们所熟知的AJAX就是使用XMLHTTPRequest的一种技术，使得无需重新加载整个网页的情况下，能够更新网页的一部分。<br>
+XMLHttpRequest最初由微软设计,随后被 Mozilla、Apple 和 Google采纳. 如今,该对象已经被 W3C组织标准化。虽然名字叫XMLHTTPRequest，但是并不局限于XML，而且除了HTTP ,它还支持file 和 ftp 协议。</p>
+
+<h2 id="toc_1">创建XHR对象</h2>
+
+<pre><code>var xhr = new XMLHttpRequest();</code></pre>
+
+<p>在老版本的 Internet Explorer （IE5 和 IE6）中并没有XMLHTTPRequest对象，要实现相同的功能需要使用 ActiveX 对象：</p>
+
+<pre><code>var xhr = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</code></pre>
+
+<h2 id="toc_2">XHR对象的方法</h2>
+
+<h3 id="toc_3">open</h3>
+
+<p>初始化一个请求。</p>
+
+<h4 id="toc_4">参数</h4>
+
+<ul>
+<li>method：请求所使用的HTTP方法; 例如 &quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;DELETE&quot;等</li>
+<li>url：该请求所要访问的URL</li>
+<li>async：一个可选的布尔值参数，默认为true,意味着是否执行异步操作。如果multipart 属性是true，这个值必须是true，否则将会出现一个意外。</li>
+<li>user：用户名，可选参数,为授权使用;默认参数为空string</li>
+<li>password：密码,可选参数,为授权使用;默认参数为空string</li>
+</ul>
+
+<pre><code>xhr.open(&#39;post&#39;,&#39;/wms/inbound/r/update&#39;,true);</code></pre>
+
+<h3 id="toc_5">setRequestHeader</h3>
+
+<p>给指定的HTTP请求头赋值.在这之前,你必须确认<strong>已经调用 open() 方法打开了一个url</strong>.</p>
+
+<h4 id="toc_6">参数</h4>
+
+<ul>
+<li>header：将要被赋值的请求头名称</li>
+<li>value：给指定的请求头赋的值</li>
+</ul>
+
+<pre><code>xhr.setRequestHeader(&quot;Content-type&quot;,&quot;application/x-www-form-urlencoded&quot;);</code></pre>
+
+<h3 id="toc_7">overrideMimeType</h3>
+
+<p>重写由服务器返回的MIME type。这个可用于, 例如，强制把一个响应流当作“text/xml”来处理和解析,即使服务器没有指明数据是这个类型。<br>
+<strong>注意，这个方法必须在<code>send()</code>之前被调用。</strong></p>
+
+<pre><code>xhr.overrideMimeType(&#39;text/xml&#39;);</code></pre>
+
+<h3 id="toc_8">send</h3>
+
+<p>发送请求. 如果该请求是异步模式(默认),该方法会立刻返回. 相反,如果请求是同步模式,则进程会被阻塞直到请求的响应完成。</p>
+
+<p><strong>注意: 所有相关的事件绑定必须在调用send()方法之前进行.</strong></p>
+
+<h3 id="toc_9">abort</h3>
+
+<p>该方法将终止请求，如果该请求已被发出。当一个请求被终止，它的 readyState 属性将被置为0（ UNSENT ），但是并不触发 readystatechange 事件。</p>
+
+<pre><code>var xhr = new XMLHttpRequest();
+xhr.open(&#39;GET&#39;,&quot;/path/to/get/list&quot;,true);
+
+xhr.send();
+
+xhr.abort();</code></pre>
+
+<h3 id="toc_10">getResponseHeader</h3>
+
+<p>返回指定的响应头的值, 如果响应头还没被接受,或该响应头不存在,则返回null.
+获取指定响应头的信息，如果多个响应头有同一个名字，则返回他们的值的合并之后的内容。</p>
+
+<pre><code>xhr.getResponseHeader(&quot;Content-Type&quot;) // 对大小写不敏感</code></pre>
+
+<h3 id="toc_11">getAllResponseHeaders</h3>
+
+<p>返回所有响应头信息(响应头名和值), 如果响应头还没接受,则返回null.</p>
+
+<h2 id="toc_12">XHR对象的属性</h2>
+
+<h3 id="toc_13">readyState</h3>
+
+<p>请求的几种状态，只读属性</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">值</th>
+<th style="text-align: left">状态</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: center">0</td>
+<td style="text-align: left">UNSENT (未打开)</td>
+<td style="text-align: left">open()方法还未被调用</td>
+</tr>
+<tr>
+<td style="text-align: center">1</td>
+<td style="text-align: left">OPENED  (未发送)</td>
+<td style="text-align: left">send()方法还未被调用.</td>
+</tr>
+<tr>
+<td style="text-align: center">2</td>
+<td style="text-align: left">HEADERS_RECEIVED (已获取响应头)</td>
+<td style="text-align: left">send()方法已经被调用, 响应头和响应状态已经返回.</td>
+</tr>
+<tr>
+<td style="text-align: center">3</td>
+<td style="text-align: left">LOADING (正在下载响应体)</td>
+<td style="text-align: left">响应体下载中; responseText中已经获取了部分数据.</td>
+</tr>
+<tr>
+<td style="text-align: center">4</td>
+<td style="text-align: left">DONE (请求完成)</td>
+<td style="text-align: left">整个请求过程已经完毕.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_14">timeout</h3>
+
+<p>设置超时时间，代表着一个请求在被自动终止前所消耗的毫秒数。默认值为 0，意味着没有超时。</p>
+
+<h3 id="toc_15">onreadystatechange</h3>
+
+<p>当readyState属性改变时会调用该函数，一般会把异步的回调放到这里面</p>
+
+<h3 id="toc_16">response</h3>
+
+<p>响应实体的类型由 <code>responseType</code> 来指定， 可以是 <code>ArrayBuffer</code>， <code>Blob</code>， <code>Document</code>， <code>JSON</code>， 或者是字符串。如果请求未完成或失败，则该值为 <code>null</code>。只读属性</p>
+
+<h3 id="toc_17">responseText</h3>
+
+<p>此次请求的响应为文本，或是当请求未成功或还未发送时为 null。是一个只读的属性。只读属性。</p>
+
+<h3 id="toc_18">responseType</h3>
+
+<p>设置该值能够改变响应类型。就是告诉服务器你期望的响应格式。</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">值</th>
+<th style="text-align: center">请求响应值的类型</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: center">&quot;&quot;</td>
+<td style="text-align: center">默认的字符串类型</td>
+</tr>
+<tr>
+<td style="text-align: center">&quot;arraybuffer&quot;</td>
+<td style="text-align: center">ArrayBuffer</td>
+</tr>
+<tr>
+<td style="text-align: center">&quot;blob&quot;</td>
+<td style="text-align: center">Blob(文件)</td>
+</tr>
+<tr>
+<td style="text-align: center">&quot;document&quot;</td>
+<td style="text-align: center">Document</td>
+</tr>
+<tr>
+<td style="text-align: center">&quot;json&quot;</td>
+<td style="text-align: center">JSON</td>
+</tr>
+<tr>
+<td style="text-align: center">&quot;text&quot;</td>
+<td style="text-align: center">字符串</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_19">status</h3>
+
+<p>该请求的响应状态码 (例如, 状态码200 表示一个成功的请求).只读属性。</p>
+
+<h3 id="toc_20">statusText</h3>
+
+<p>该请求的响应状态信息,包含一个状态码和原因短语 (例如 &quot;200 OK&quot;). 只读属性。</p>
+
+<h3 id="toc_21">upload</h3>
+
+<p>可以在 upload 上添加一个事件监听来跟踪上传过程。</p>
+
+<pre><code>xhr.upload.onloaderstart/onprogress/onloadend等方法</code></pre>
+
+<h3 id="toc_22">withCredentials</h3>
+
+<p>是否使用cookie等认证信息进行跨域请求。一个布尔值。设置该值不影响同站点的请求。也可以表明是否忽略请求回复的cookie，默认是false，从不同的域回来的xhr不能设置当前域的cookie除非在发送请求之前把该值设置为true，</p>
+
+<pre><code>var xhr = new XMLHttpRequest();
+xhr.open(&#39;GET&#39;, &#39;http://example.com/&#39;, true);
+xhr.withCredentials = true;
+xhr.send(null); // 在send函数之前设置withCredentials值</code></pre>
+
+<h2 id="toc_23">继承属性和方法</h2>
+
+<h3 id="toc_24">XMLHttpRequestEventTarget</h3>
+
+<p>XMLHttpRequestEventTarget是一个描述事件处理程序的接口，你可以在一个用于处理XMLHttpRequest事件的对象中使用到该事件处理程序。</p>
+
+<p>含有如下方法，包括</p>
+
+<ul>
+<li>onabort:被终止的时候的回调方法</li>
+<li>onerror:请求发生错误时调用该方法</li>
+<li>onload: 当一个HTTP请求正确加载出内容后返回时调用。</li>
+<li>onloadstart: 当一个HTTP请求开始加载数据时调用。</li>
+<li><p>onprogress: 间歇调用该方法用来获取请求过程中的信息。</p>
+
+<pre><code>XMLHttpRequest.onprogress = function (event) {
+  event.loaded; //已经接受的内容
+  event.size; // 总的请求内容大小
+};</code></pre></li>
+<li><p>ontimeout: 当时间超时时调用；<strong>只有通过设置XMLHttpRequest对象的timeout属性来发生超时时，这种情况才会发生。</strong></p></li>
+<li><p>onloadend: 当内容加载完成，不管失败与否，都会调用该方法</p></li>
+</ul>
+
+<h3 id="toc_25">EventTarget</h3>
+
+<p>EventTarget是一个可以接受DOM事件且能绑定事件监听器的对象.最常见的EventTarget就是DOM元素对象,另外,还有一些不是DOM元素的对象也能成为EventTarget,比如document, window, XMLHttpRequest,等等.</p>
+
+<ul>
+<li>addEventListener()</li>
+<li>removeEventListener()</li>
+<li>dispatchEvent()</li>
+</ul>
+
+<h2 id="toc_26">事件列表</h2>
+
+<ul>
+<li>loadstart</li>
+<li>progress</li>
+<li>abort</li>
+<li>error</li>
+<li>load</li>
+<li>timeout</li>
+<li>loadend</li>
+<li>readystatechange</li>
+</ul>
+
+
+</body>
+
+</html>

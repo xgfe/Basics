@@ -1,0 +1,513 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>XMLHttpRequest（下）</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">XMLHttpRequest（下）</h1>
+
+<h2 id="toc_1">跨域请求</h2>
+
+<p>当要在在页面中使用js获取其他网站的数据时，就会产生跨域问题，比如在网站中使用ajax请求其他网站的数据接口时浏览器就会提示以下错误。这种场景下就要解决js的跨域问题。
+<img src="http://p0.meituan.net/dpnewvc/949038b4d0ae3cf0783ed8ac37b4ade053431.png" alt="">
+跨域的方式有多种，比如JSONP，CORS等。</p>
+
+<h3 id="toc_2">JSONP解决方案</h3>
+
+<p>原理是浏览器的script标签是不受同源策略限制(你可以在你的网页中设置script的src属性问cdn服务器中静态文件的路径)。那么就可以使用script标签从服务器获取数据，请求时添加一个参数为callbakc=?，?号是要执行的回调方法。<br>
+这样在前端请求脚本，后端将返回的内容以脚本的方式运行，一般是<code>callback(response)</code>的方式，这样就能获取到不同域的数据了</p>
+
+<h3 id="toc_3">CORS方式</h3>
+
+<p>jsonp只能支持GET请求，因为加载脚本的时候只能使用get请求，对于post请求是无法完成的，所以就需要别的方式，比如CORS（跨域资源共享，Cross-Origin Resource Sharing）</p>
+
+<p>CORS定义一种跨域访问的机制，可以让AJAX实现跨域访问。CORS 允许一个域上的网络应用向另一个域提交跨域 AJAX 请求。实现此功能非常简单，只需由服务器发送一个响应标头即可。比如从<code>www.test1.com</code>向<code>www.test2.com</code>发送请求，则需要在<code>www.test2.com</code>的请求响应头中添加<code>Access-Control-Allow-Origin:*</code>，即允许<code>www.test1.com</code>这个域的请求，这样<code>www.test1.com</code>就可以访问<code>www.test2.com</code>的接口了。</p>
+
+<p>CORS请求默认不发送Cookie和HTTP认证信息，如果需要发送这些信息的话，需要client和server都进行设置，在client中增加<code>xhr.withCredentials = true;</code>，server的响应头中增加<code>header(&#39;Access-Control-Allow-Credentials&#39;,true)</code>，二者缺一不可。而且如果要发送Cookie的话，<code>Access-Control-Allow-Origin</code>就不能设置为<code>*</code>了，必须指定请求来源的域名，而且原网页代码中的<code>document.cookie</code>也无法读取服务器域名下的Cookie。<em>需要服务端设置</em></p>
+
+<p>如果发送的请求是复杂的请求，比如PUT，DELETE或者Content-Type为application/json，仍然是不能直接请求的，一般会有一次预检请求。浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。</p>
+
+<h2 id="toc_4">HTTP Methods</h2>
+
+<p><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html</a></p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">类型</th>
+<th style="text-align: left">CRUD</th>
+<th style="text-align: left">描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: center">GET</td>
+<td style="text-align: left">Read</td>
+<td style="text-align: left">获取内容</td>
+</tr>
+<tr>
+<td style="text-align: center">POST</td>
+<td style="text-align: left">Create</td>
+<td style="text-align: left">创建内容</td>
+</tr>
+<tr>
+<td style="text-align: center">PUT</td>
+<td style="text-align: left">Update/Replace</td>
+<td style="text-align: left">全部更新/替换</td>
+</tr>
+<tr>
+<td style="text-align: center">PATCH</td>
+<td style="text-align: left">Update/Modify</td>
+<td style="text-align: left">局部更新</td>
+</tr>
+<tr>
+<td style="text-align: center">DELETE</td>
+<td style="text-align: left">Delete</td>
+<td style="text-align: left">删除操作</td>
+</tr>
+</tbody>
+</table>
+
+<p>容易混淆的请求类型:</p>
+
+<ul>
+<li>post和put：一般创建对象的话使用post，修改用put，URL也能反映二者的不同，如<code>/order/add</code>就是一个post请求，这个URL是<strong>由server决定</strong>的，而<code>/order/edit/1002</code>就是一个PUT请求，表示对ID 1002的订单进行修改，这个URL是<strong>由client决定</strong>的。</li>
+<li>put和patch：put是全量更新，也就是完全替换，client提供一个完整的资源对象，缺失的字段会清空。而PATCH是增量更新，只是更新接受的字段，更节省资源。</li>
+</ul>
+
+<p>不常用的几种Methods:</p>
+
+<ul>
+<li>OPTIONS:用于请求获得由Request-URI标识的资源在请求/响应的通信过程中可以使用的功能选项。通过这个方法，客户端可以在采取具体资源请求之前，决定对该资源采取何种必要措施，或者了解服务器的性能。</li>
+<li>HEAD: “HEAD”方式同“GET”基本一致，只是“ HEAD”请求不在回复中返回信息主体。这种方式用于获得关于不直接传送实体主体本身而暗含的实体的META信息。这个方式也常用于检测超文本链接的有效性，可用性，META和最近的更新。</li>
+<li>TRACE: TRACE方法是用来调用一个远程的请求信息应用程序层的循环后退。TRACE允许client看到通过请求链的那一端在接收了些什么并使用那些数据来测试和诊断信息情况。</li>
+<li>CONNECT: 规范的保留方法名称CONNECT，用于可动态切换到隧道的代理（什么鬼?）</li>
+</ul>
+
+<h2 id="toc_5">HTTP Headers</h2>
+
+<p>HTTP头字段，指的是在超文本传输协议 (HTTP)的请求和回复消息中，协议头部分的那些信息。它们定义了某个超文本传输协议事务中的操作参数，如编码类型，解析方式等。自定义专用消息头可通过&#39;X-&#39; 前缀来添加。</p>
+
+<h3 id="toc_6">请求字段</h3>
+
+<ul>
+<li>Accept: 能够接受的响应内容类型（Content-Types），如<code>Accept: text/plain</code></li>
+<li>Accept-Charset: 能够接受的字符集，如<code>Accept-Charset: utf-8</code></li>
+<li>Accept-Encoding: 能够接受的编码方式列表,如<code>Accept-Encoding: gzip, deflate</code></li>
+<li>Accept-Language: 能够接受的回应内容的自然语言列表，如<code>Accept-Language: en-US</code></li>
+<li>Authorization：用于超文本传输协议的认证的认证信息，如<code>Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code></li>
+<li>Cache-Control： 用来指定在这次的请求/回复链中的所有缓存机制，如<code>Cache-Control: no-cache</code></li>
+<li>Connection： 该浏览器想要优先使用的连接类型，如<code>Connection: keep-alive</code></li>
+<li>Cookie：Cookie内容，如<code>Cookie: $Version=1; Skin=new;</code></li>
+<li>Content-Length： 以 八位字节数组 （8位的字节）表示的请求体的长度，如<code>Content-Length: 348</code></li>
+<li>Content-Type：请求体的多媒体类型，<code>Content-Type: application/json</code></li>
+<li>Date:发送该消息的日期和时间，如<code>Date: Tue, 15 Nov 1994 08:12:31 GMT</code></li>
+<li>Expect：表明客户端要求服务器做出特定的行为，如<code>Expect: 100-continue</code></li>
+<li>From： 发起此请求的用户的邮件地址 ，如<code>From: user@example.com</code></li>
+<li>Host: 服务器的域名，以及服务器所监听的 传输控制协议端口号。如果所请求的端口是对应的服务的标准端口，则可被省略。 如<code>Host:127.0.0.1:8080</code></li>
+<li>Origin: 发起一个针对跨来源资源共享的请求，如<code>Origin:http://localhost:8083</code></li>
+<li>User-Agent： 浏览器的浏览器身份标识字符串，如<code>User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36</code></li>
+<li>Upgrade： 要求服务器升级到另一个协议。 如<code>Upgrade: HTTP/2.0, SHTTP/1.3, IRC/6.9, RTA/x11</code></li>
+<li>Max-Forwards：限制该消息可被代理及网关转发的次数。 如<code>Max-Forwards: 10</code></li>
+<li>Proxy-Authorization：用来向代理进行认证的认证信息。 如<code>Proxy-Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</code></li>
+<li>Referer：表示浏览器所访问的前一个页面，正是那个页面上的某个链接将浏览器带到了当前所请求的这个页面。如<code>Referer: http://en.wikipedia.org/wiki/Main_Page</code></li>
+<li>TE: 浏览器预期接受的传输编码方式。如<code>TE: trailers, deflate</code></li>
+<li>Via： 向服务器告知，这个请求是由哪些代理发出的。 如<code>Via: 1.0 fred, 1.1 example.com (Apache/1.1)</code></li>
+<li>Warning: 一个一般性的警告，告知，在实体内容体中可能存在错误。 <code>Warning: 199 Miscellaneous warning</code></li>
+</ul>
+
+<h3 id="toc_7">响应字段</h3>
+
+<ul>
+<li>Access-Control-Allow-Origin：指定哪些网站可参与到 跨来源资源共享 过程中，如<code>Access-Control-Allow-Origin: *</code></li>
+<li>Age：这个对象在 代理缓存 中存在的时间，以秒为单位，如<code>Age: 12</code></li>
+<li>Allow： 对于特定资源有效的动作。如<code>Allow: GET, HEAD</code></li>
+<li>Cache-Control：定义缓存策略。缓存指令是单向的，意味着请求中的给定指令不意味着在响应中给出相同的指令。其单位为秒，如<code>Cache-Control: max-age=3600</code></li>
+<li>Pragma: 与具体的实现相关，这些字段可能在请求/回应链中的任何时候产生多种效果。 它用于与HTTP/1.0缓存的向后兼容，其中Cache-Control 在HTTP/1.1报头尚未存在。</li>
+<li>Connection: 针对该连接所预期的选项，<code>Connection: keep-alive</code></li>
+<li>Content-Encoding: 在数据上使用的编码类型。<code>Content-Encoding: gzip</code></li>
+<li>Content-Length:回应消息体的长度，以 字节 （8位为一字节）为单位 </li>
+<li>Content-Encoding: 在数据上使用的编码类型。参考 超文本传输协议压缩 。</li>
+<li>Content-Type：当前内容的MIME类型 </li>
+<li>Date： 此条消息被发送时的日期和时间</li>
+<li>Expires：指定一个日期/时间，超过该时间则认为此回应已经过期，不合法的日期格式被认为是已经过期的，<strong>如果Cache-Control设置了&quot;max-age&quot; 或 &quot;s-max-age&quot;，则Expires即无效</strong></li>
+<li>Last-Modified：所请求的对象的最后修改日期(按照 RFC 7231 中定义的“超文本传输协议日期”格式来表示) </li>
+<li>Location：用来 进行 重定向 ，或者在创建了某个新资源时使用</li>
+<li>P3P: 用来设置P3P策略,是一种个人隐私安全平台项目（the Platform for Privary Preferences）的标准。能够保护在线隐私权，可以选择在浏览网页时，是否被第三方收集并利用自己的个人信息。</li>
+<li>Server: 服务器的名字 </li>
+<li>Set-Cookie：HTTP Cookies，<code>Set-Cookie: UserID=JohnDoe; Max-Age=3600; Version=1</code></li>
+<li>Vary：告知下游的代理服务器，应当如何对未来的请求协议头进行匹配，以决定是否可使用已缓存的回应内容而不是重新从原始服务器请求新的内容。 <code>Vary:Accept-Encoding</code></li>
+<li>Transfer-Encoding：用来将实体安全地传输给用户的编码形式。<code>transfer-encoding:chunked</code></li>
+</ul>
+
+<p>HTTP Header的字段比较多，这里只摘录了比较常见的几个，更多的内容参考<a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields">List of HTTP header fields</a>，<a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html"></a></p>
+
+<h2 id="toc_8">Cache-Control</h2>
+
+<p>指定请求和响应中的缓存机制。 缓存指令是单向的，意味着请求中的给定指令不意味着在响应中给出相同的指令。默认是private</p>
+
+<h3 id="toc_9">请求中的缓存指令</h3>
+
+<ul>
+<li>Cache-Control: max-age=&lt;seconds&gt;<br>
+定义资源被重新加载的最长时间，时间是相对于请求的时间，和Expires是冲突的。</li>
+<li>Cache-Control: max-stale[=&lt;seconds&gt;]
+表示client愿意接受已超过其到期时间的响应。可以指定一个单位为秒的时间以表示最大的响应过期时间</li>
+<li>Cache-Control: min-fresh=&lt;seconds&gt;
+响应至少在指定的秒数内仍然是新的。</li>
+<li>Cache-control: no-cache
+表示此请求或响应不能用缓存替代，强制将请求提交到源服务器进行验证。 </li>
+<li>Cache-control: no-store
+缓存不存储任何请求或响应的内容</li>
+<li>Cache-control: no-transform
+不对资源进行转换。 Content-Encoding, Content-Range, Content-Type 等都不能由代理修改。</li>
+<li>Cache-control: only-if-cached
+表示不去获取新数据。客户端只希望获取缓存的响应，并且不去联系服务器去检查是否存在较新的副本。</li>
+</ul>
+
+<h3 id="toc_10">响应中的缓存指令</h3>
+
+<ul>
+<li>Cache-control: must-revalidate
+缓存必须在使用之前验证旧资源的状态，并且不可使用过期资源。</li>
+<li>Cache-control: no-cache</li>
+<li>Cache-control: no-store</li>
+<li>Cache-control: no-transform</li>
+<li>Cache-control: public
+表示响应可以被任何缓存区缓存。</li>
+<li>Cache-control: private
+表示对于单个用户的响应，不能被共享缓存处理。</li>
+<li>Cache-control: proxy-revalidate
+与must-revalidate相同，但它仅适用于共享缓存（例如代理），并被私有缓存忽略。</li>
+<li>Cache-Control: max-age=<seconds></li>
+<li>Cache-control: s-maxage=<seconds>
+覆盖max-age 或者 Expires 头，但是仅适用于共享缓存(比如代理)，并且可以被设置为私有缓存。</li>
+</ul>
+
+<h3 id="toc_11">浏览器对不同缓存指令的响应</h3>
+
+<p><img src="http://p0.meituan.net/dpnewvc/3f1803b75f07ed3b87c5ff1b18b38fc3190868.png" alt="浏览器对不同缓存指令的响应"></p>
+
+<h2 id="toc_12">formData</h2>
+
+<p>可以通过JavaScript用一些键值对来模拟一系列表单控件,还可以使用XMLHttpRequest的send()方法来异步的提交这个&quot;表单&quot;.比起普通的ajax,使用FormData的最大优点就是可以异步上传文件.</p>
+
+<h3 id="toc_13">方法</h3>
+
+<ul>
+<li>append：新增键值对，如果已经有同名的键，则新的值会追加到原来的值后面。注意在get的时候并不会获取到后append的值。第三个参数可选，用于指定文件名</li>
+<li>delete: 删除键，如果该键名不存在的话，返回null，而不是undefined</li>
+<li>entries: 返回一个迭代器，可以遍历formdata中的键值对。注意，遍历的时候，同名键的值不会合并</li>
+<li>get: 返回FormData对象中和指定的键关联的第一个值，如果你想要返回和指定键关联的全部值，那么可以使用getAll()方法。</li>
+<li>getAll: 返回同一个键的所有值组成是数组</li>
+<li>has: 判断是否包含某个名字的键</li>
+<li>keys: 返回一个迭代器，遍历所有的键，同名的会依次遍历多次</li>
+<li>set: 设置一个新的值在一个已经存在的键上，如果不存在的话，会进行创建</li>
+<li>values: 返回一个迭代器，遍历所有的值</li>
+</ul>
+
+
+</body>
+
+</html>
