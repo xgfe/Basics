@@ -1,0 +1,799 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>Performance</title>
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+</head>
+<body>
+<h1 id="toc_0">Performance</h1>
+
+<p>Performance API用于精确度量 、控制、增强浏览器的表现性能。</p>
+
+<h2 id="toc_1">背景</h2>
+
+<p>这个API为测量网站性能，提供以前没有办法做到的精度。例如之前为了得到脚本运行的准确时耗，需要一个高精度的时间戳。传统的方式是使用Date对象的getTime方法，具体如下：</p>
+
+<pre><code class="language-none">var start = new Date().getTime();
+
+// do something here
+
+var now = new Date().getTime();
+var latency = now - start;
+console.log(&quot;任务运行时间：&quot; + latency);</code></pre>
+
+<p>这种处理方法有两个问题：</p>
+
+<ul>
+<li>getTime方法只能精确到毫秒级别，不能得到更小的时间差别；</li>
+<li>这种写法只能获取代码运行过程中的时间进度，无法获取一些后台事件的时间进度，例如浏览器用了多少时间从服务器加载网页等。</li>
+</ul>
+
+<p>2010年末，W3C组织建立了<code>Web性能工作组</code>，提供了用来测量用户代理特性和API的应用程序性能各个方面的方法。并暴露了浏览器的js的API，创建了大量的新对象和事件，可量化性能指标和优化性能。</p>
+
+<p>因此，浏览器在ES5中引入了“高精度时间戳”的API，并部署在performance对象上。精度可以达到1ms的千分之一，即微秒级别。对衡量程序的细微差别，提高程序运行速度很有好处，可以获取后台事件的时间进度。</p>
+
+<h3 id="toc_2">DOMHighResTimeStamp类型</h3>
+
+<h2 id="toc_3">对象详解</h2>
+
+<pre><code class="language-none">// 获取 performance 数据
+var performance = {
+    // memory 是非标准属性，只在 Chrome 有
+    // 财富问题：我有多少内存
+    memory: {
+        usedJSHeapSize:  16100000, // JS 对象（包括V8引擎内部对象）占用的内存，一定小于 totalJSHeapSize
+        totalJSHeapSize: 35100000, // 可使用的内存
+        jsHeapSizeLimit: 793000000 // 内存大小限制
+    },
+
+    //  哲学问题：我从哪里来？
+    navigation: {
+        redirectCount: 0, // 如果有重定向的话，页面通过几次重定向跳转而来
+        type: 0           // 0   即 TYPE_NAVIGATENEXT 正常进入的页面（非刷新、非重定向等）
+                          // 1   即 TYPE_RELOAD       通过 window.location.reload() 刷新的页面
+                          // 2   即 TYPE_BACK_FORWARD 通过浏览器的前进后退按钮进入的页面（历史记录）
+                          // 255 即 TYPE_UNDEFINED    非以上方式进入的页面
+    },
+
+    timing: {
+        // 在同一个浏览器上下文中，前一个网页（与当前页面不一定同域）unload 的时间戳，如果无前一个网页 unload ，则与 fetchStart 值相等
+        navigationStart: 1441112691935,
+
+        // 前一个网页（与当前页面同域）unload 的时间戳，如果无前一个网页 unload 或者前一个网页与当前页面不同域，则值为 0
+        unloadEventStart: 0,
+
+        // 和 unloadEventStart 相对应，返回前一个网页 unload 事件绑定的回调函数执行完毕的时间戳
+        unloadEventEnd: 0,
+
+        // 第一个 HTTP 重定向发生时的时间。有跳转且是同域名内的重定向才算，否则值为 0 
+        redirectStart: 0,
+
+        // 最后一个 HTTP 重定向完成时的时间。有跳转且是同域名内部的重定向才算，否则值为 0 
+        redirectEnd: 0,
+
+        // 浏览器准备好使用 HTTP 请求抓取文档的时间，这发生在检查本地缓存之前
+        fetchStart: 1441112692155,
+
+        // DNS 域名查询开始的时间，如果使用了本地缓存（即无 DNS 查询）或持久连接，则与 fetchStart 值相等
+        domainLookupStart: 1441112692155,
+
+        // DNS 域名查询完成的时间，如果使用了本地缓存（即无 DNS 查询）或持久连接，则与 fetchStart 值相等
+        domainLookupEnd: 1441112692155,
+
+        // HTTP（TCP） 开始建立连接的时间，如果是持久连接，则与 fetchStart 值相等
+        // 注意如果在传输层发生了错误且重新建立连接，则这里显示的是新建立的连接开始的时间
+        connectStart: 1441112692155,
+
+        // HTTP（TCP） 完成建立连接的时间（完成握手），如果是持久连接，则与 fetchStart 值相等
+        // 注意如果在传输层发生了错误且重新建立连接，则这里显示的是新建立的连接完成的时间
+        // 注意这里握手结束，包括安全连接建立完成、SOCKS 授权通过
+        connectEnd: 1441112692155,
+
+        // HTTPS 连接开始的时间，如果不是安全连接，则值为 0
+        secureConnectionStart: 0,
+
+        // HTTP 请求读取真实文档开始的时间（完成建立连接），包括从本地读取缓存
+        // 连接错误重连时，这里显示的也是新建立连接的时间
+        requestStart: 1441112692158,
+
+        // HTTP 开始接收响应的时间（获取到第一个字节），包括从本地读取缓存
+        responseStart: 1441112692686,
+
+        // HTTP 响应全部接收完成的时间（获取到最后一个字节），包括从本地读取缓存
+        responseEnd: 1441112692687,
+
+        // 开始解析渲染 DOM 树的时间，此时 Document.readyState 变为 loading，并将抛出 readystatechange 相关事件
+        domLoading: 1441112692690,
+
+        // 完成解析 DOM 树的时间，Document.readyState 变为 interactive，并将抛出 readystatechange 相关事件
+        // 注意只是 DOM 树解析完成，这时候并没有开始加载网页内的资源
+        domInteractive: 1441112693093,
+
+        // DOM 解析完成后，网页内资源加载开始的时间
+        // 在 DOMContentLoaded 事件抛出前发生
+        domContentLoadedEventStart: 1441112693093,
+
+        // DOM 解析完成后，网页内资源加载完成的时间（如 JS 脚本加载执行完毕）
+        domContentLoadedEventEnd: 1441112693101,
+
+        // DOM 树解析完成，且资源也准备就绪的时间，Document.readyState 变为 complete，并将抛出 readystatechange 相关事件
+        domComplete: 1441112693214,
+
+        // load 事件发送给文档，也即 load 回调函数开始执行的时间
+        // 注意如果没有绑定 load 事件，值为 0
+        loadEventStart: 1441112693214,
+
+        // load 事件的回调函数执行完毕的时间
+        loadEventEnd: 1441112693215
+
+        // 字母顺序
+        // connectEnd: 1441112692155,
+        // connectStart: 1441112692155,
+        // domComplete: 1441112693214,
+        // domContentLoadedEventEnd: 1441112693101,
+        // domContentLoadedEventStart: 1441112693093,
+        // domInteractive: 1441112693093,
+        // domLoading: 1441112692690,
+        // domainLookupEnd: 1441112692155,
+        // domainLookupStart: 1441112692155,
+        // fetchStart: 1441112692155,
+        // loadEventEnd: 1441112693215,
+        // loadEventStart: 1441112693214,
+        // navigationStart: 1441112691935,
+        // redirectEnd: 0,
+        // redirectStart: 0,
+        // requestStart: 1441112692158,
+        // responseEnd: 1441112692687,
+        // responseStart: 1441112692686,
+        // secureConnectionStart: 0,
+        // unloadEventEnd: 0,
+        // unloadEventStart: 0
+    }
+};</code></pre>
+
+<h2 id="toc_4">API详情</h2>
+
+<h4 id="toc_5">performance.timing</h4>
+
+<p><img src="http://obzlzmp4u.bkt.clouddn.com/browser-event.jpeg" alt="event"></p>
+
+<p>performance对象的<code>timing</code>属性指向一个对象，它包含了各种与浏览器性能有关的时间数据，提供浏览器处理网页各个阶段的耗时。比如，<code>performance.timing.navigationStart</code>就是浏览器处理当前网页的启动时间。</p>
+
+<pre><code class="language-none">Date.now() - performance.timing.navigationStart
+// 1164112</code></pre>
+
+<p>表示距离浏览器开始处理当前的网页，已经过了1164112毫秒了。</p>
+
+<pre><code class="language-none">var t = performance.timing;
+var pageloadtime = t.loadEventStart - t.navigationStart;
+var dns = t.domainLookupEnd - t.domainLookupStart;
+var tcp = t.connectEnd - t.connectStart;
+var ttfb = t.responseStart - t.navigationStart;</code></pre>
+
+<p>上面代码依次得到页面加载的耗时、域名解析的耗时、TCP连接的耗时、读取页面第一个字节之前的耗时。</p>
+
+<p>performance.timing对象包含以下属性（全部为只读）：</p>
+
+<ul>
+<li><p><code>navigationStart</code>：当前浏览器窗口的前一个网页关闭，发生unload事件时的Unix毫秒时间戳。如果没有前一个网页，则等于<code>fetchStart</code>属性。</p></li>
+<li><p><code>unloadEventStart</code>：如果前一个网页与当前网页属于同一个域名，则返回前一个网页的unload事件发生时的Unix毫秒时间戳。如果没有前一个网页，或者之前的网页跳转不是在同一个域名内，则返回值为0。</p></li>
+<li><p><code>unloadEventEnd</code>：如果前一个网页与当前网页属于同一个域名，则返回前一个网页unload事件的回调函数结束时的Unix毫秒时间戳。如果没有前一个网页，或者之前的网页跳转不是在同一个域名内，则返回值为0。</p></li>
+<li><p><code>redirectStart</code>：返回第一个HTTP跳转开始时的Unix毫秒时间戳。如果没有跳转，或者不是同一个域名内部的跳转，则返回值为0。</p></li>
+<li><p><code>redirectEnd</code>：返回最后一个HTTP跳转结束时（即跳转回应的最后一个字节接受完成时）的Unix毫秒时间戳。如果没有跳转，或者不是同一个域名内部的跳转，则返回值为0。</p></li>
+<li><p><code>fetchStart</code>：返回浏览器准备使用HTTP请求读取文档时的Unix毫秒时间戳。该事件在网页查询本地缓存之前发生。</p></li>
+<li><p><code>domainLookupStart</code>：返回域名查询开始时的Unix毫秒时间戳。如果使用持久连接，或者信息是从本地缓存获取的，则返回值等同于fetchStart属性的值。</p></li>
+<li><p><code>domainLookupEnd</code>：返回域名查询结束时的Unix毫秒时间戳。如果使用持久连接，或者信息是从本地缓存获取的，则返回值等同于fetchStart属性的值。</p></li>
+<li><p><code>connectStart</code>：返回HTTP请求开始向服务器发送时的Unix毫秒时间戳。如果使用持久连接（persistent connection），则返回值等同于fetchStart属性的值。</p></li>
+<li><p><code>connectEnd</code>：返回浏览器与服务器之间的连接建立时的Unix毫秒时间戳。如果建立的是持久连接，则返回值等同于fetchStart属性的值。连接建立指的是所有握手和认证过程全部结束。</p></li>
+<li><p><code>secureConnectionStart</code>：返回浏览器与服务器开始安全链接的握手时的Unix毫秒时间戳。如果当前网页不要求安全连接，则返回0。</p></li>
+<li><p><code>requestStart</code>：返回浏览器向服务器发出HTTP请求时（或开始读取本地缓存时）的Unix毫秒时间戳。</p></li>
+<li><p><code>responseStart</code>：返回浏览器从服务器收到（或从本地缓存读取）第一个字节时的Unix毫秒时间戳。</p></li>
+<li><p><code>responseEnd</code>：返回浏览器从服务器收到（或从本地缓存读取）最后一个字节时（如果在此之前HTTP连接已经关闭，则返回关闭时）的Unix毫秒时间戳。</p></li>
+<li><p><code>domLoading</code>：返回当前网页DOM结构开始解析时（即Document.readyState属性变为“loading”、相应的readystatechange事件触发时）的Unix毫秒时间戳。</p></li>
+<li><p><code>domInteractive</code>：返回当前网页DOM结构结束解析、开始加载内嵌资源时（即Document.readyState属性变为“interactive”、相应的readystatechange事件触发时）的Unix毫秒时间戳。</p></li>
+<li><p><code>domContentLoadedEventStart</code>：返回当前网页DOMContentLoaded事件发生时（即DOM结构解析完毕、所有脚本开始运行时）的Unix毫秒时间戳。</p></li>
+<li><p><code>domContentLoadedEventEnd</code>：返回当前网页所有需要执行的脚本执行完成时的Unix毫秒时间戳。</p></li>
+<li><p><code>domComplete</code>：返回当前网页DOM结构生成时（即Document.readyState属性变为“complete”，以及相应的readystatechange事件发生时）的Unix毫秒时间戳。</p></li>
+<li><p><code>loadEventStart</code>：返回当前网页load事件的回调函数开始时的Unix毫秒时间戳。如果该事件还没有发生，返回0。</p></li>
+<li><p><code>loadEventEnd</code>：返回当前网页load事件的回调函数运行结束时的Unix毫秒时间戳。如果该事件还没有发生，返回0。</p></li>
+</ul>
+
+<p>常用差值组：</p>
+
+<pre><code class="language-none">DNS查询耗时 ：domainLookupEnd - domainLookupStart
+TCP链接耗时 ：connectEnd - connectStart
+request请求耗时 ：responseEnd - responseStart
+解析dom树耗时 ： domComplete - domInteractive
+白屏时间 ：responseStart - navigationStart
+domready时间 ：domContentLoadedEventEnd - navigationStart
+onload时间 ：loadEventEnd - navigationStart</code></pre>
+
+<pre><code class="language-none">// 重要时间节点
+// 计算加载时间
+function getPerformanceTiming () {
+    var performance = window.performance;
+
+    if (!performance) {
+        // 当前浏览器不支持
+        console.log(&#39;你的浏览器不支持 performance 接口&#39;);
+        return;
+    }
+
+    var t = performance.timing;
+    var times = {};
+    
+    //【重要】页面加载完成的时间
+    //【原因】这几乎代表了用户等待页面可用的时间
+    times.loadPage = t.loadEventEnd - t.navigationStart;
+
+    //【重要】解析 DOM 树结构的时间
+    //【原因】反省下你的 DOM 树嵌套是不是太多了！
+    times.domReady = t.domComplete - t.responseEnd;
+
+    //【重要】重定向的时间
+    //【原因】拒绝重定向！比如，http://example.com/ 就不该写成 http://example.com
+    times.redirect = t.redirectEnd - t.redirectStart;
+
+    //【重要】DNS 查询时间
+    //【原因】DNS 预加载做了么？页面内是不是使用了太多不同的域名导致域名查询的时间太长？
+    // 可使用 HTML5 Prefetch 预查询 DNS ，见：[HTML5 prefetch](http://segmentfault.com/a/1190000000633364)            
+    times.lookupDomain = t.domainLookupEnd - t.domainLookupStart;
+
+    //【重要】读取页面第一个字节的时间
+    //【原因】这可以理解为用户拿到你的资源占用的时间，加异地机房了么，加CDN 处理了么？加带宽了么？加 CPU 运算速度了么？
+    // TTFB 即 Time To First Byte 的意思
+    // 维基百科：https://en.wikipedia.org/wiki/Time_To_First_Byte
+    times.ttfb = t.responseStart - t.navigationStart;
+
+    //【重要】内容加载完成的时间
+    //【原因】页面内容经过 gzip 压缩了么，静态资源 css/js 等压缩了么？
+    times.request = t.responseEnd - t.requestStart;
+
+    //【重要】执行 onload 回调函数的时间
+    //【原因】是否太多不必要的操作都放到 onload 回调函数里执行了，考虑过延迟加载、按需加载的策略么？
+    times.loadEvent = t.loadEventEnd - t.loadEventStart;
+
+    // DNS 缓存时间
+    times.appcache = t.domainLookupStart - t.fetchStart;
+
+    // 卸载页面的时间
+    times.unloadEvent = t.unloadEventEnd - t.unloadEventStart;
+
+    // TCP 建立连接完成握手的时间
+    times.connect = t.connectEnd - t.connectStart;
+
+    return times;
+}</code></pre>
+
+<p>扩展阅读<a href="https://github.com/addyosmani/timing.js">timing.js</a></p>
+
+<h4 id="toc_6">performance.now</h4>
+
+<p><code>performance.now</code>方法返回当前网页从<code>performance.timing.navigationStart</code>到当前时间之间的微秒数（毫秒的千分之一），精度可以达到100万分之一秒。</p>
+
+<p>并且与<code>Date.now()</code>会受系统程序执行阻塞的影响不同，<code>performance.now()</code>的时间是以恒定速率递增的，不受系统时间的影响（系统时间可被人为或软件调整）。</p>
+
+<pre><code class="language-none">performance.now() 
+// 23493457.476999998
+
+Date.now() - (performance.timing.navigationStart + performance.now())
+// -0.64306640625</code></pre>
+
+<p>上面代码表示，performance.timing.navigationStart加上performance.now()，近似等于Date.now()，也就是说，Date.now()可以替代performance.now()。但是，前者返回的是毫秒，后者返回的是微秒，所以后者的精度比前者高1000倍。</p>
+
+<p>通过两次调用performance.now方法，可以得到间隔的准确时间，用来衡量某种操作的耗时。</p>
+
+<pre><code class="language-none">var start = performance.now();
+doTasks();
+var end = performance.now();
+
+console.log(&#39;耗时：&#39; + (end - start) + &#39;微秒。&#39;);</code></pre>
+
+<h4 id="toc_7">performance.mark</h4>
+
+<p>mark方法用于为相应的视点做标记。</p>
+
+<p>可以标记各种时间戳（类似地图打点），保存为各种测量值，即可以批量地分析这些数据。</p>
+
+<pre><code class="language-none">window.performance.mark(&#39;mark_fully_loaded&#39;);</code></pre>
+
+<p>可以通过<code>getEntriesByType</code>获取打点时间戳。</p>
+
+<pre><code class="language-none">function measurePerf() 
+  {
+   var perfEntries = performance.getEntriesByType(&quot;mark&quot;);
+   for (var i = 0; i &lt; perfEntries.length; i++)
+   {
+     if (window.console) 
+      console.log(&quot;Name: &quot; + perfEntries[i].name      + 
+                  &quot; Entry Type: &quot; + perfEntries[i].entryType +
+                  &quot; Start Time: &quot; + perfEntries[i].startTime + 
+                  &quot; Duration: &quot;   + perfEntries[i].duration  + &quot;\n&quot;);
+   }
+  }</code></pre>
+
+<p>clearMarks方法用于清除标记，如果不加参数，就表示清除所有的标记。</p>
+
+<pre><code class="language-none">window.peformance.clearMarks(&#39;mark_fully_loaded&#39;);
+window.performance.clearMarks();</code></pre>
+
+<h4 id="toc_8">performance.measure</h4>
+
+<p>measure方法会在浏览器的性能缓冲区的两个指定的标记之间创建一个命名的时间戳。</p>
+
+<p>measure方法可以作为浏览器性能接口getEntries*的方法之一使用。</p>
+
+<pre><code class="language-none">function create_measure(name, markStart, markEnd) {
+  if (performance.measure === undefined) {
+    console.log(&quot;performance.measure Not supported&quot;);
+    return;
+  }
+  // Create the performance measure between the two marks
+  performance.measure(name, markStart, markEnd);
+}</code></pre>
+
+<p>可以一下代码返回所有事件测量的数组：</p>
+
+<pre><code class="language-none">window.performance.getEntriesByType(&#39;measure&#39;);</code></pre>
+
+<p>clearMeasure方法用于清除标记，如果不加参数，则默认清除所有标记。</p>
+
+<pre><code class="language-none">performance.clearMeasures(name);
+performance.clearMeasures();</code></pre>
+
+<h4 id="toc_9">performance.getEntriesByType</h4>
+
+<p><code>getEntriesByType</code>方法可以获取所有的标识和测量的时间间隔，返回一个数组，可以循环并对这个数组进行处理。返回数据的顺序和页面上标记的顺序一样。</p>
+
+<p>下面代码返回页面中所有标记的数组：</p>
+
+<pre><code class="language-none">var items = window.performance.getEntriesByType(&#39;mark&#39;);</code></pre>
+
+<p>下面代码返回所有时间测量的数组：</p>
+
+<pre><code class="language-none">var items = window.performance.getEntriesByType(&#39;measure&#39;);</code></pre>
+
+<p>你也可以获取到特定名字的实体数组，例如：</p>
+
+<pre><code class="language-none">var items = window.performance.getEntriesByName(&#39;mark_fully_loaded&#39;);</code></pre>
+
+<h4 id="toc_10">performance.getEntries</h4>
+
+<p>浏览器获取网页时，会对网页中每一个对象（脚本文件及静态文件）发出一个HTTP请求，<code>performance.getEntries</code>方法以数组的形式，返回这些请求的时间统计信息，有多少个请求，返回数组就有多少个成员。</p>
+
+<p><strong>该方法只能在浏览器中使用</strong></p>
+
+<pre><code class="language-none">window.performance.getEntries()[0]
+
+// PerformanceResourceTiming { 
+//   responseEnd: 4121.6200000017125, 
+//   responseStart: 4120.0690000005125, 
+//   requestStart: 3315.355000002455, 
+//   ...
+// }</code></pre>
+
+<p>该信息以一个高精度时间戳的对象形式返回，每个属性的单位是微秒，即百万分之一秒。</p>
+
+<p>具体属性如下：</p>
+
+<pre><code class="language-none">var entry = {
+    // 资源名称，也是资源的绝对路径
+    name: &quot;http://cdn.alloyteam.com/wp-content/themes/alloyteam/style.css&quot;,
+    // 资源类型
+    entryType: &quot;resource&quot;,
+    // 谁发起的请求
+    initiatorType: &quot;link&quot;, // link 即 &lt;link&gt; 标签
+                           // script 即 &lt;script&gt;
+                           // redirect 即重定向
+    // 加载时间
+    duration: 18.13399999809917,
+   
+    redirectStart: 0,
+    redirectEnd: 0,
+    
+    fetchStart: 424.57699999795295,
+
+    domainLookupStart: 0,
+    domainLookupEnd: 0,
+
+    connectStart: 0,
+    connectEnd: 0,
+
+    secureConnectionStart: 0,
+
+    requestStart: 0,
+
+    responseStart: 0,
+    responseEnd: 442.7109999960521,
+
+    startTime: 424.57699999795295
+};</code></pre>
+
+<h4 id="toc_11">performance.memory</h4>
+
+<p>浏览器内存情况，其中有如下几个值：</p>
+
+<ul>
+<li>jsHeapSizeLimit表示js内存限制</li>
+<li>usedJSHeapSize表示所有被使用的js堆栈内存；</li>
+<li>totalJSHeapSize表示当前js堆栈内存总大小，</li>
+</ul>
+
+<p><strong>这表示usedJSHeapSize不能大于totalJSHeapSize，如果大于，有可能出现了内存泄漏</strong></p>
+
+<h4 id="toc_12">performance.navigation</h4>
+
+<p><code>performance.navigation</code>对象存放一些提供的用户行为信息。有两个属性：</p>
+
+<ul>
+<li>performance.navigation.type：返回一个整数值，表示网页的加载来源，有以下取值：
+
+<ul>
+<li>0：网页通过点击链接、地址栏输入、表单提交、脚本操作等方式加载，相当于常数<code>performance.navigation.TYPE_NAVIGATENEXT</code>。 </li>
+<li>1：网页通过“重新加载”按钮或者<code>location.reload()</code>方法加载，相当于常数performance.navigation.TYPE_RELOAD。</li>
+<li>2：网页通过“前进”或“后退”按钮加载，相当于常数performance.navigation.TYPE<em>BACK</em>FORWARD。</li>
+<li>255：任何其他来源的加载，相当于常数performance.navigation.TYPE_UNDEFINED。</li>
+</ul></li>
+<li>performance.navigation.redirectCount：该属性表示当前网页经过了多少次重定向跳转。</li>
+</ul>
+
+<h4 id="toc_13">performance.onresourcetimingbufferfull</h4>
+
+<p><code>performance.onresourcetimingbufferfull</code>该属性是当浏览器的<code>resourcetimingbufferfull</code>事件触发时执行的回调。当浏览器的资源性能缓冲区满了之后进行触发。</p>
+
+<pre><code class="language-none">function buffer_full(event) {
+  console.log(&quot;WARNING: Resource Timing Buffer is FULL!&quot;);
+  performance.setResourceTimingBufferSize(200);
+}
+function init() {
+  // Set a callback if the resource buffer becomes filled
+  performance.onresourcetimingbufferfull = buffer_full;
+}
+&lt;body onload=&quot;init()&quot;&gt;</code></pre>
+
+<h2 id="toc_14">应用</h2>
+
+<p>测量一个<code>XMLHttpRequest</code>请求所花费的时间：</p>
+
+<ul>
+<li>在<code>send</code>发出之前设置一个标识</li>
+<li>同时修改<code>success</code>的回调方法，在回调中设置另外一个标识</li>
+<li>生成一个请求耗时的测量结果</li>
+</ul>
+
+<pre><code class="language-none">var url = &#39;http://localhost:4000/login&#39;
+function something(){console.log(&quot;something running.&quot;)}
+
+var myReq = new XMLHttpRequest();
+myReq.open(&#39;GET&#39;, url, true);
+myReq.onload = function(e) {
+  something();
+}
+myReq.send();</code></pre>
+
+<p>添加一个全局的计数器变量<code>reqCount</code>，标识发送的次数并且储存每次的测量结果。</p>
+
+<pre><code class="language-none">var reqCnt = 0;
+
+var myReq = new XMLHttpRequest();
+myReq.open(&#39;GET&#39;, url, true);
+myReq.onload = function(e) {
+  window.performance.mark(&#39;mark_end_xhr&#39;);
+  reqCnt++;
+  window.performance.measure(&#39;measure_xhr_&#39; + reqCnt, &#39;mark_start_xhr&#39;, &#39;mark_end_xhr&#39;);
+  something();
+}
+window.performance.mark(&#39;mark_start_xhr&#39;);
+myReq.send();</code></pre>
+
+<p>上面为每次的请求生成了包含一个唯一名字的测量，所有请求完成之后，可以输出结果：</p>
+
+<pre><code class="language-none">var items = window.performance.getEntriesByType(&#39;measure&#39;);
+for (var i = 0; i &lt; items.length(); ++i) {
+  var req = items[i];
+  console.log(&#39;XHR &#39; + req.name + &#39; took &#39; + req.duration + &#39;ms&#39;);
+}</code></pre>
+
+
+</body>
+
+</html>
