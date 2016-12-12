@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>fetch</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h2 id="toc_0">Fetch API</h2>
+
+<p>Fetch API 提供了能够用于操作一部分 HTTP 管道的 JavaScript 接口，比如 requests 和 responses。它同时也提供了一个全局的 fetch() 方法——能够简单的异步的获取资源</p>
+
+<h3 id="toc_1">浏览器支持情况</h3>
+
+<ul>
+<li>Firefox 39 以上</li>
+<li>Chrome 42 以上</li>
+<li>对于不支持的浏览器，可以使用<a href="https://github.com/github/fetch">Fetch Polyfil</a></li>
+</ul>
+
+<h3 id="toc_2">功能检测</h3>
+
+<p>通过检测 Headers、Request、Response 或 fetch() 是否在 Window 或 Worker 域中</p>
+
+<div><pre class="line-numbers"><code class="language-none">if(self.fetch) {
+    // run my fetch request here
+} else {
+    // do something with XMLHttpRequest?
+}</code></pre></div>
+
+<h3 id="toc_3">具体分析</h3>
+
+<p>fetch api包含了四个接口，如下:</p>
+
+<ul>
+<li>GlobalFetch</li>
+<li>Headers</li>
+<li>Response</li>
+<li>Request</li>
+</ul>
+
+<h4 id="toc_4">GlobalFetch</h4>
+
+<p>GlobalFetch包含了一个Fetch方法，而我们发送请求或者获取资源都需要使用这个方法，而GlobalFetch在很多接口中都被实现了，比如 Window 和 WorkerGlobalScope。所以在各种环境中都可以用这个方法获取到资源。</p>
+
+<ul>
+<li><p>语法</p>
+
+<div><pre class="line-numbers"><code class="language-none">fetch(input, init).then(function(response) { ... });</code></pre></div>
+
+<ul>
+<li>input: 定义要获取的资源【string, response对象】</li>
+<li>init: 一个配置项对象，包括所有对请求的设置【method, headers, body, mode, credentials, cache】</li>
+<li>fetch函数会返回一个Promise对象来处理response，response中包含着一个Response对象</li>
+</ul></li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">fetch(URL, {
+  method: &quot;POST&quot;,
+  headers: {
+    &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded&quot;
+  },
+  body: &quot;firstName=Nikhil&amp;favColor=blue&amp;password=easytoguess&quot;
+}).then(function(res) {
+  if (res.ok) {
+    alert(&quot;Perfect! Your settings are saved.&quot;);
+  } else if (res.status == 401) {
+    alert(&quot;Oops! You are not authorized.&quot;);
+  }
+}, function(e) {
+  alert(&quot;Error submitting form!&quot;);
+});</code></pre></div>
+
+<h4 id="toc_5">Headers</h4>
+
+<p>Headers类允许你去对HTTP request和response headers执行各种操作。 这些操作包括：检索, 设置, 添加和删除。</p>
+
+<ul>
+<li>构造器
+
+<ul>
+<li>Headers.Headers()：创建一个新的Headers对象</li>
+</ul></li>
+<li><p>方法</p>
+
+<ul>
+<li>append(name, value)：给现有的header添加一个值, 或者添加一个未存在的header并赋值, 如果指定header不存在, append()将会添加这个header并赋值 . 如果指定header已存在并允许有多个值, append()将会把指定值添加到已有值队列的末尾,<strong>注意这里的name是不区分大小写的</strong></li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var myHeaders = new Headers();
+myHeaders.append(&#39;Content-Type&#39;, &#39;image/jpeg&#39;);
+myHeaders.get(&#39;Content-Type&#39;); //&quot;image/jpeg&quot;
+myHeaders.append(&#39;Content-Type&#39;, &#39;image/gif&#39;);
+myHeaders.getAll(&#39;Content-Type&#39;); //[&quot;image/gif&quot;, &quot;image/jpeg&quot;]</code></pre></div>
+
+<ul>
+<li>delete(name)：从Headers对象中删除指定header，<strong>注意这里的name是不区分大小写的</strong></li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">...
+myHeaders.delete(&#39;Content-Type&#39;);
+myHeaders.getAll(&#39;Content-Type&#39;); // []</code></pre></div>
+
+<ul>
+<li>entries()：以迭代器的形式返回Headers对象中所有的键值对</li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var myHeaders = new Headers();
+myHeaders.append(&#39;Content-Type&#39;, &#39;text/xml&#39;);
+myHeaders.append(&#39;Vary&#39;, &#39;Accept-Language&#39;);
+for (var pair of myHeaders.entries()) {
+   console.log(pair[0]+ &#39;: &#39;+ pair[1]);
+} //content-type: text/xml vary: Accept-Language</code></pre></div>
+
+<ul>
+<li>has(name): 返回一个布尔值来表示一个Header对象是否包含特定的header, <strong>注意这里的name是不区分大小写的</strong></li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var myHeaders = new Headers();
+myHeaders.has(&#39;Content-Type&#39;);//false
+myHeaders.append(&#39;Content-Type&#39;, &#39;image/jpeg&#39;);
+myHeaders.has(&#39;Content-Type&#39;); //true</code></pre></div>
+
+<ul>
+<li>keys(): 以迭代器的形式返回Headers对象中所有存在的header名</li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var myHeaders = new Headers();
+myHeaders.append(&#39;Content-Type&#39;, &#39;text/xml&#39;);
+myHeaders.append(&#39;Vary&#39;, &#39;Accept-Language&#39;);
+for(var key of myHeaders.keys()) {
+   console.log(key); //content-type vary
+}</code></pre></div>
+
+<ul>
+<li>set(name, value): 替换现有的header的值, 或者添加一个未存在的header并赋值, 与append的区别是, 如果name存在, 则这个方法会重写掉存在的值, 而append只是添加到后面</li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var myHeaders = new Headers();
+myHeaders.append(&#39;Content-Type&#39;, &#39;image/jpeg&#39;);
+myHeaders.set(&#39;Content-Type&#39;, &#39;text/html&#39;);
+myHeaders.get(&#39;Content-Type&#39;); //&quot;text/html&quot;
+</code></pre></div>
+
+<ul>
+<li>values(): 以迭代器的形式返回Headers对象中所有存在的header的值</li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var myHeaders = new Headers();
+myHeaders.append(&#39;Content-Type&#39;, &#39;text/xml&#39;);
+myHeaders.append(&#39;Vary&#39;, &#39;Accept-Language&#39;);
+for (var value of myHeaders.values()) {
+   console.log(value); // text/xml Accept-Language
+}</code></pre></div>
+
+<ul>
+<li>get(): 从Headers对象中返回指定header的第一个值</li>
+<li>getAll(): 以数组的形式从Headers对象中返回指定header的全部值</li>
+</ul></li>
+</ul>
+
+<p>由于Headers可以在request请求中被发送或者在response请求中被接收，并且规定了哪些参数是可写的，Headers对象有一个特殊的guard属性。这个属性没有暴露给Web，但是它影响到哪些内容可以在Headers对象中被改变。
+可能的值如下：</p>
+
+<ul>
+<li>&quot;none&quot;: 默认的</li>
+<li>&quot;request&quot;: 从Request中获得的Headers只读。</li>
+<li>&quot;request-no-cors&quot;：从不同域的Request中获得的Headers只读。</li>
+<li>&quot;response&quot;: 从Response获得的Headers只读。</li>
+<li>&quot;immutable&quot; 在ServiceWorkers中最常用的，所有的Headers都只读。</li>
+</ul>
+
+<h4 id="toc_6">Request</h4>
+
+<p>相当于一个资源请求</p>
+
+<ul>
+<li><p>构造器：</p>
+
+<ul>
+<li>Request.Request()：创造一个新的Request对象</li>
+<li>使用方法：new Request(input, init)</li>
+<li>input：你希望获取资源的URL或者一个Request Object</li>
+<li>init：可选，对request的用户自定义，可选值[method, headers, body, mode, credentials, cache, redirect, referrer, integrity]</li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var myInit = { method: &#39;GET&#39;,
+           headers: {
+               &#39;Content-Type&#39;: &#39;image/jpeg&#39;
+           },
+           mode: &#39;cors&#39;,
+           cache: &#39;default&#39; };
+
+var myRequest = new Request(&#39;flowers.jpg&#39;, myInit);</code></pre></div></li>
+<li><p>属性</p>
+
+<ul>
+<li>method: 只读，请求使用的方法 (GET, POST, 等.)</li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var myRequest = new Request(&#39;flowers.jpg&#39;);
+var myMethod = myRequest.method; // GET</code></pre></div>
+
+<ul>
+<li>url: 只读，请求使用的 URL</li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var myRequest = new Request(&#39;flowers.jpg&#39;);
+var myURL = myRequest.url;</code></pre></div>
+
+<ul>
+<li>headers: 只读，包括request的Header Object</li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var myHeaders = new Headers();
+myHeaders.append(&#39;Content-Type&#39;, &#39;image/jpeg&#39;);
+
+var myInit = { method: &#39;GET&#39;,
+                   headers: myHeaders,
+                   mode: &#39;cors&#39;,
+                   cache: &#39;default&#39; };
+
+var myRequest = new Request(&#39;flowers.jpg&#39;,myInit);
+
+myContentType = myRequest.headers.get(&#39;Content-Type&#39;);  //&quot;image/jpeg&quot;</code></pre></div>
+
+<ul>
+<li><strong>context: 只读，包含request的context，即获取资源的类型，比如audio, image, iframe等，这个只和 ServiceWorker API相关</strong></li>
+<li>referrer：只读，对应init里面的referrer，有 about:client, no-referrer, 或者 URL</li>
+<li>mode：只读，对应init里面的mode，展示是否允许跨域，有cors, no-cors, same-origin</li>
+<li>credentials：只读，对应于init里面的credentials，展示了cookies是否能跨域得到，有omit, same-origin, include</li>
+<li>redirect：只读，对应于init里面的redirect，展示了如何处理重定向，有follow, error, 和manual</li>
+<li>integrity：只读，对应于init里面的integrity，展示了资源完整性验证码。比如sha256-BpfBw7ivV8q2jLiT13fxDYAe2tJllusRSZ273h2nFSE=</li>
+<li>cache：只读，对应于init里面的cache，有default, reload, no-cache等</li>
+<li>bodyUsed：只读，保存的是一个布尔值，用来表示在response中body是否已经被使用。</li>
+</ul></li>
+<li><p>方法</p>
+
+<ul>
+<li>clone()：Request和Response的body只能被读取一次！它们有一个属性叫bodyUsed，读取一次之后设置为true，就不能再读取了</li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var res = new Response(&quot;one time use&quot;);
+console.log(res.bodyUsed); // false
+res.text().then(function(v) {
+  console.log(res.bodyUsed); // true
+});
+console.log(res.bodyUsed); // true
+
+res.text().catch(function(e) {
+  console.log(&quot;Tried to read already consumed Response&quot;);
+});</code></pre></div>
+
+<p>这样设计的目的是为了之后兼容基于流的API，让应用一次消费data，这样就允许了JavaScript处理大文件例如视频，并且可以支持实时压缩和编辑。那如果我们需要多次使用body呢？比如我们希望用cache去缓存然后提供离线使用，因此提供了clone()这个方法，调用这个方法可以得到一个克隆对象。不过要记得，clone()必须要在读取之前调用，也就是先clone()再读取。</p>
+
+<div><pre class="line-numbers"><code class="language-none">var res = new Response(&quot;one time use&quot;);
+console.log(&#39;res1 &#39; + res.bodyUsed); // false
+var clone = res.clone();
+console.log(&#39;clone1 &#39; + clone.bodyUsed); //false
+res.text().then(function(v) {
+  console.log(&#39;res &#39; + res.bodyUsed); // true
+});
+console.log(&#39;resnow &#39; + res.bodyUsed); // true
+console.log(&#39;clonenow &#39; + clone.bodyUsed); //false
+
+clone.text()
+  .then(function(v){    
+    console.log(&#39;clone&#39; + clone.bodyUsed)}) //true
+  .catch(function(e) {
+    console.log(&quot;Tried to read already consumed Response&quot;);
+});</code></pre></div>
+
+<ul>
+<li><p>无论response还是request都能处理body。我们来看下body。</p>
+
+<ul>
+<li>body可以是以下任何一种类型的实例
+
+<ul>
+<li>ArrayBuffer</li>
+<li>ArrayBufferView</li>
+<li>Blob/File</li>
+<li>字符串</li>
+<li>URLSearchParams</li>
+<li>FormData——目前不被Gecko和Blink支持，Firefox预计在版本39和Fetch的其他部分一起推出</li>
+</ul></li>
+<li>为body提供的方法，这些方法都返回一个Promise对象
+
+<ul>
+<li>arrayBuffer()：读取 Response对象并且将它设置为已读（因为Responses对象被设置为了 stream 的方式，所以它们只能被读取一次） ,并返回一个被解析为ArrayBuffer格式的promise对象</li>
+<li>blob()</li>
+<li>formData()</li>
+<li>json()</li>
+<li>text()</li>
+</ul></li>
+<li>在使用非文本的数据方面，Fetch API和XHR相比提供了极大的便利。可以通过传body参数来设置Request的body</li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var form = new FormData(document.getElementById(&#39;login-form&#39;));
+fetch(&quot;/login&quot;, {
+  method: &quot;POST&quot;,
+  body: form
+})</code></pre></div></li>
+</ul></li>
+</ul>
+
+<h4 id="toc_7">Response</h4>
+
+<p>呈现了对一次请求的响应数据, Response实例通常在fetch()的回调中获得。但是它们也可以用JS构造，不过通常这招只用于ServiceWorkers。</p>
+
+<ul>
+<li><p>构造器</p>
+
+<ul>
+<li>Response.Response()</li>
+<li>使用方法：new Response(body, init)</li>
+<li>body：一个定义response中body的对象，可以是[Blob, BufferSource, FormData, URLSearchParams, USVString]</li>
+<li>init: 一个参数(options)对象，包含要应用到response上的任何自定义设置, 可能是[status, statusText, headers]</li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var myBlob = new Blob();
+var init = { &quot;status&quot; : 200 , &quot;statusText&quot; : &quot;SuperSmashingGreat!&quot; };
+var myResponse = new Response(myBlob,init);</code></pre></div></li>
+<li><p>属性</p>
+
+<ul>
+<li>type：它的值可能是&quot;basic&quot;,&quot;cors&quot;,&quot;default&quot;,&quot;error&quot;或者&quot;opaque&quot; 【只读】
+
+<ul>
+<li>&quot;basic&quot;: 正常的，同域的请求，包含所有的headers除开&quot;Set-Cookie&quot;和&quot;Set-Cookie2&quot;。</li>
+<li>&quot;cors&quot;: Response从一个合法的跨域请求获得，一部分header和body可读。</li>
+<li>&quot;error&quot;: 网络错误。Response的status是0，Headers是空的并且不可写。当Response是从Response.error()中得到时，就是这种类型。</li>
+<li>&quot;opaque&quot;: Response从&quot;no-cors&quot;请求了跨域资源。依靠Server端来做限制。</li>
+<li>&quot;default&quot;: 为&quot;basic&quot;;</li>
+</ul></li>
+<li>url: 包含Response的URL 【只读】</li>
+<li>useFinalURL: 包含了一个布尔值来标示这是否是该Response的最终URL</li>
+<li>status: 包含Response的状态码  【只读】</li>
+<li>ok: 包含了一个布尔值来标示该Response成功(状态码200-299) 还是失败 【只读】</li>
+<li>statusText: 包含了与该Response状态码一致的状态信息 【只读】</li>
+<li>headers: 包含此Response所关联的Headers 对象 【只读】</li>
+<li>bodyUsed: 包含了一个布尔值来标示该Response是否包含一个Body 【只读】</li>
+</ul></li>
+<li><p>方法</p>
+
+<ul>
+<li>clone()：创建一个Response对象的克隆</li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-none">var image1 = document.querySelector(&#39;.img1&#39;);
+var image2 = document.querySelector(&#39;.img2&#39;);
+
+var myRequest = new Request(&#39;flowers.jpg&#39;);
+
+fetch(myRequest).then(function(response) {
+  var response2 = response.clone();
+
+  response.blob().then(function(myBlob) {
+    var objectURL = URL.createObjectURL(myBlob);
+    image1.src = objectURL;
+  });
+
+  response2.blob().then(function(myBlob) {
+    var objectURL = URL.createObjectURL(myBlob);
+    image2.src = objectURL;
+  });
+});</code></pre></div>
+
+<ul>
+<li>error(): 返回一个绑定了网络错误的新的Response对象</li>
+<li>redirect(): 用另一个URL创建一个新的 response</li>
+</ul></li>
+</ul>
+
+<h4 id="toc_8">其它注意点</h4>
+
+<ul>
+<li><p>有些浏览器（Chrome 45）原生支持 Fetch，但响应中有中文时会乱码，可以使用下面这几行代码来探测是否支持fetch</p>
+
+<div><pre class="line-numbers"><code class="language-none">var  userAgent  =  navigator.userAgent  ||  &quot;&quot;;
+var  appVersion  =  navigator.appVersion  ||  &quot;&quot;;
+var  vendor  =  navigator.vendor  ||  &quot;&quot;;
+var  ua  =  (userAgent  +  &quot;  &quot;  +  appVersion  +  &quot;  &quot;  +  vendor).toLowerCase();
+
+var  match  =  /(chrome)[  \/]([\w.]+)/.exec(ua)
+            ||  /(webkit)[  \/]([\w.]+)/.exec(ua)
+            ||  /(opera)(?:.*version|)[  \/]([\w.]+)/.exec(ua)
+            ||  /(msie)  ([\w.]+)/.exec(ua)
+            ||  /(trident)(?:.*?  rv:([\w.]+)|)/.exec(ua)
+            ||  ua.indexOf(&quot;compatible&quot;)  &lt;  0
+            &amp;&amp;  /(mozilla)(?:.*?  rv:([\w.]+)|)/.exec(ua)  ||  [];
+
+var  engine  =  match[0];
+var  mainVersion  =  match[2].split(&quot;.&quot;)[0];
+//  chrome  内核版本大于  46，  firefox  版本大于39  才开启  fetch
+if  (engine.indexOf(&quot;chrome&quot;)  ===  0  &amp;&amp;  mainVersion  &gt;=  46)  {
+    window.__disableNativeFetch  =  false;
+}  else  if  (engine.indexOf(&quot;mozilla&quot;)  ===  0  &amp;&amp;  mainVersion  &gt;=  39)  {
+    window.__disableNativeFetch  =  false;
+}  else  {
+    window.__disableNativeFetch  =  true;
+}</code></pre></div></li>
+<li><p>Fetch 请求默认是不带 cookie 的，需要设置 fetch(url, {credentials: &#39;include&#39;})</p></li>
+<li><p>服务器返回 400，500 错误码时并不会 reject，只有网络错误这些导致请求不能完成时，fetch 才会被 reject</p></li>
+<li><p>所有版本的 IE 均不支持原生 Fetch, fetch-ie8 会自动使用 XHR 做 polyfill</p></li>
+</ul>
+
+<h4 id="toc_9">总结与XMLHttpRequest的区别</h4>
+
+<ul>
+<li><p>API的设计更加简洁</p>
+
+<div><pre class="line-numbers"><code class="language-none">var xhr = new XMLHttpRequest();
+xhr.open(&#39;GET&#39;, url);
+xhr.responseType = &#39;json&#39;;
+
+xhr.onload = function() {
+  console.log(xhr.response);
+};
+
+xhr.onerror = function() {
+  console.log(&quot;Booo&quot;);
+};
+
+xhr.send();</code></pre></div>
+
+<div><pre class="line-numbers"><code class="language-none">fetch(url).then(function(response) {
+  return response.json();
+}).then(function(data) {
+  console.log(data);
+}).catch(function() {
+  console.log(&quot;Booo&quot;);
+});</code></pre></div>
+
+<div><pre class="line-numbers"><code class="language-none">fetch(url).then(r =&gt; r.json())
+.then(data =&gt; console.log(data))
+.catch(e =&gt; console.log(&quot;Booo&quot;))</code></pre></div>
+
+<div><pre class="line-numbers"><code class="language-none">(async() =&gt; {
+  try {
+    var response = await fetch(url);
+    var data = await response.json();
+    console.log(data);
+  } catch (e) {
+    console.log(&quot;Booo&quot;)
+  }
+})();</code></pre></div></li>
+<li><p>Fetch API足够底层，因为当前的WHATWG标准定义了XMLHttpRequest.send()方法其实等同于fetch的Requset对象。 Fetch中的Response.body实现了getReader()方法用于渐增的读取原始字节流。</p>
+
+<div><pre class="line-numbers"><code class="language-none">function streamingDemo() {
+//当数据全部被读完后会将done标记设置为true。 在这种方式下，每次你只需要处理一个chunk，而不是一次性的处理整个响应体。
+    var req = new Request(URL, {method: &#39;GET&#39;, cache: &#39;reload&#39;});
+    fetch(req).then(function(response) {
+        var reader = response.body.getReader();
+        return reader.read();
+    }).then(function(result, done) {
+        if (!done) {
+        // do something with each chunk
+        }
+    });
+}</code></pre></div></li>
+<li><p>对于传统的XMLHttpRequest而言，你必须使用它的一个实例来执行请求和检索返回的响应。在这种情况下请求和响应基本没法分开，但是通过Fetch API，我们还能够明确的配置请求对象。Request和Response都完全遵循HTTP标准。因此你可以通过Service Worker API将响应发送给你自己。 Service Worker允许通过截取来自浏览器的请求头和提供本地构造的响应头来替换来自服务器的响应头的方式来构建离线应用。除此之外，还可以使用缓存里的内容。</p>
+
+<div><pre class="line-numbers"><code class="language-jsWorker">self.addEventListener(&#39;fetch&#39;, function(event) {
+  if (event.request.url === new URL(&#39;/&#39;, location).href) {
+    event.respondWith(
+      new Response(&quot;&lt;h1&gt;Hello!&lt;/h1&gt;&quot;, {
+        headers: {&#39;Content-Type&#39;: &#39;text/html&#39;}
+      })
+    )
+  }
+});</code></pre></div></li>
+<li><p>Fetch提供了对&#39;no-cors&#39;的简单处理，当然下面这种情况也无法获取response内部的资源。但这种情况对缓存还是有用的。</p>
+
+<div><pre class="line-numbers"><code class="language-none">var xhr = new XMLHttpRequest();
+xhr.open(&#39;GET&#39;, &#39;https://www.baidu.com&#39;);
+xhr.responseType = &#39;json&#39;;
+
+xhr.onload = function() {
+  console.log(&#39;here&#39;);
+  console.log(xhr.response);
+};
+
+xhr.onerror = function() {
+  console.log(&quot;Booo&quot;);
+};
+
+xhr.send();
+//XMLHttpRequest cannot load https://www.baidu.com/. No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource. Origin &#39;https://www.zhihu.com&#39; is therefore not allowed access.
+// &quot;Booo&quot;</code></pre></div>
+
+<div><pre class="line-numbers"><code class="language-none">fetch(&#39;https://www.baidu.com&#39;, {
+  mode: &#39;no-cors&#39;
+}).then(function(response) {
+  console.log(response.type); // &quot;opaque&quot;
+});</code></pre></div></li>
+<li><p>XHR缺少流的处理，在request进行时，你可以得到.responseText，但是整个响应还是在缓存进内存，但是使用Fetch，可以获取底层的body流</p></li>
+<li><p>Fetch和其他新的API共同使用能发挥更大的作用，比如Cache API，Stream API</p></li>
+<li><p>Fetch有Header Class，可以修改读取headers，并且提供了ES6的迭代器来操作</p></li>
+</ul>
+
+<h4 id="toc_10">一些不足</h4>
+
+<ul>
+<li>当headers到达之前没发中断请求</li>
+<li>没有Progress events，只能自己监听Content-Length来实现</li>
+</ul>
+
+<h4 id="toc_11">参考文献</h4>
+
+<ul>
+<li><a href="https://www.w3ctech.com/topic/854">这个API很“迷人”——(新的Fetch API)</a></li>
+<li><a href="http://iwenku.net/?article_147.html">Fetch API</a></li>
+<li><a href="https://jakearchibald.com/2015/thats-so-fetch/">That&#39;s so fetch!</a></li>
+<li><a href="http://wwsun.github.io/posts/fetch-api-intro.html">深入浅出Fetch API</a></li>
+<li><a href="https://xhr.spec.whatwg.org/#the-send%28%29-method">XMLHttpRequest
+Living Standard — Last Updated 24 October 2016</a></li>
+<li><a href="https://segmentfault.com/a/1190000003810652">传统 Ajax 已死，Fetch 永生</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API">Fetch API</a></li>
+</ul>
+
+
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:{pattern:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+
+<script type="text/javascript">
+Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,number:/\b-?(0x[\dA-Fa-f]+|0b[01]+|0o[0-7]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|Infinity)\b/,"function":/[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i}),Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^\/])\/(?!\/)(\[.+?]|\\.|[^\/\\\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,lookbehind:!0,greedy:!0}}),Prism.languages.insertBefore("javascript","class-name",{"template-string":{pattern:/`(?:\\\\|\\?[^\\])*?`/,greedy:!0,inside:{interpolation:{pattern:/\$\{[^}]+\}/,inside:{"interpolation-punctuation":{pattern:/^\$\{|\}$/,alias:"punctuation"},rest:Prism.languages.javascript}},string:/[\s\S]+/}}}),Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(<script[\w\W]*?>)[\w\W]*?(?=<\/script>)/i,lookbehind:!0,inside:Prism.languages.javascript,alias:"language-javascript"}}),Prism.languages.js=Prism.languages.javascript;
+</script>
+
+<script type="text/javascript">
+!function(){"undefined"!=typeof self&&self.Prism&&self.document&&Prism.hooks.add("complete",function(e){if(e.code){var t=e.element.parentNode,s=/\s*\bline-numbers\b\s*/;if(t&&/pre/i.test(t.nodeName)&&(s.test(t.className)||s.test(e.element.className))&&!e.element.querySelector(".line-numbers-rows")){s.test(e.element.className)&&(e.element.className=e.element.className.replace(s,"")),s.test(t.className)||(t.className+=" line-numbers");var n,a=e.code.match(/\n(?!$)/g),l=a?a.length+1:1,m=new Array(l+1);m=m.join("<span></span>"),n=document.createElement("span"),n.className="line-numbers-rows",n.innerHTML=m,t.hasAttribute("data-start")&&(t.style.counterReset="linenumber "+(parseInt(t.getAttribute("data-start"),10)-1)),e.element.appendChild(n)}}})}();
+</script>
+
+<script type="text/javascript">
+!function(){if("undefined"!=typeof self&&self.Prism&&self.document){var e={html:"HTML",xml:"XML",svg:"SVG",mathml:"MathML",css:"CSS",clike:"C-like",javascript:"JavaScript",abap:"ABAP",actionscript:"ActionScript",apacheconf:"Apache Configuration",apl:"APL",applescript:"AppleScript",asciidoc:"AsciiDoc",aspnet:"ASP.NET (C#)",autoit:"AutoIt",autohotkey:"AutoHotkey",basic:"BASIC",csharp:"C#",cpp:"C++",coffeescript:"CoffeeScript","css-extras":"CSS Extras",fsharp:"F#",glsl:"GLSL",http:"HTTP",inform7:"Inform 7",json:"JSON",latex:"LaTeX",lolcode:"LOLCODE",matlab:"MATLAB",mel:"MEL",nasm:"NASM",nginx:"nginx",nsis:"NSIS",objectivec:"Objective-C",ocaml:"OCaml",parigp:"PARI/GP",php:"PHP","php-extras":"PHP Extras",powershell:"PowerShell",jsx:"React JSX",rest:"reST (reStructuredText)",sas:"SAS",sass:"Sass (Sass)",scss:"Sass (Scss)",sql:"SQL",typescript:"TypeScript",vhdl:"VHDL",vim:"vim",wiki:"Wiki markup",yaml:"YAML"};Prism.hooks.add("before-highlight",function(s){var a=s.element.parentNode;if(a&&/pre/i.test(a.nodeName)){var t,i,r=a.getAttribute("data-language")||e[s.language]||s.language.substring(0,1).toUpperCase()+s.language.substring(1),l=a.previousSibling;l&&/\s*\bprism-show-language\b\s*/.test(l.className)&&l.firstChild&&/\s*\bprism-show-language-label\b\s*/.test(l.firstChild.className)?i=l.firstChild:(t=document.createElement("div"),i=document.createElement("div"),i.className="prism-show-language-label",t.className="prism-show-language",t.appendChild(i),a.parentNode.insertBefore(t,a)),i.innerHTML=r}})}}();
+</script>
+
+
+</body>
+
+</html>
